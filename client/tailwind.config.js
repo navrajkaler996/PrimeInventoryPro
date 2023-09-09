@@ -7,10 +7,23 @@ export default {
       current: "currentColor",
       gray: "#EDEDED",
       white: "#FFF",
+      black: "#000",
+      primary: "#0FF8FF",
+    },
+
+    borderRadius: {
+      primary: "10px",
     },
     extend: {
       height: {
-        110: "110px",
+        80: "80px",
+        120: "120px",
+      },
+      width: {
+        120: "120px",
+      },
+      boxShadow: {
+        custom: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       },
     },
   },
