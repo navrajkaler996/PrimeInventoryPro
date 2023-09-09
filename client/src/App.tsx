@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import NavigationMenu from './components/NavigationMenu'
 import './index.css'
-import Dashboard from './pages/Dashboard'
+import Dashboard from './pages/Dashboard/Dashboard'
 import Inventory from './pages/Inventory'
 function App() {
   
