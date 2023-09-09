@@ -5,14 +5,14 @@ export default {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      gray: "#EDEDED",
+      gray: "#DDD",
       white: "#FFF",
       black: "#000",
       primary: "#0FF8FF",
     },
 
     borderRadius: {
-      primary: "10px",
+      custom: "10px",
     },
     extend: {
       height: {
