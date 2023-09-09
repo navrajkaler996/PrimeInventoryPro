@@ -15,7 +15,7 @@ const Calculations:React.FC = () => {
 
     return <div className="flex" id="dashboard-calculations">
             {calculations?.map((item) => {
-               return <div className="flex justify-center items-center relative w-[300px] h-[130px] bg-white ml-[60px] mt-[65px] rounded-primary shadow-custom">
+               return <div className="flex justify-center items-center relative w-[300px] h-[130px] bg-white ml-[60px] mt-[65px] rounded-custom shadow-custom">
                         <img src={getImage(item.type)} className="w-[80px] h-[80px]" />
                         <div className="flex flex-col ml-[20px]">
                             <p>{item.type}</p>
