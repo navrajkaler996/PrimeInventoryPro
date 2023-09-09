@@ -2,7 +2,7 @@
 
 const Header:React.FC = () => {
 
-    return <div className="w-full h-110 bg-white">
+    return <div className="w-full h-80 bg-white">
 
 
     </div>
