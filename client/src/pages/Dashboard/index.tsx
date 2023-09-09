@@ -1,6 +1,6 @@
-import Calculations from "./Calculations";
-import Chart from "./Chart";
-import StockAlerts from "./StockAlert";
+import Calculations from "./components/Calculations";
+import Chart from "./components/Chart";
+import StockAlerts from "./components/StockAlert";
 
 const Dashboard:React.FC = () => {
 

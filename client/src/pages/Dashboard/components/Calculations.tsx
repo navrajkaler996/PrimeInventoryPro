@@ -1,10 +1,10 @@
-import {calculations} from "../../data/calculations"
-import Increase from "../../assets/increase.png";
-import Decrease from "../../assets/decrease.png";
+import {calculations} from "../../../data/calculations"
+import Increase from "../../../assets/increase.png";
+import Decrease from "../../../assets/decrease.png";
 
-import Sales from "../../assets/sales.png";
-import Expenses from "../../assets/expenses.png";
-import Profit from "../../assets/profit.png";
+import Sales from "../../../assets/sales.png";
+import Expenses from "../../../assets/expenses.png";
+import Profit from "../../../assets/profit.png";
 
 const Calculations:React.FC = () => {
 
