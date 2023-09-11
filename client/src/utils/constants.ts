@@ -1,0 +1,1 @@
+export const stockAlertKeys = ["Name", "Code", "Department", "On hands", "Cap", "Required"];
