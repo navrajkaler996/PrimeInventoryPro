@@ -26,7 +26,7 @@ export const Chart: React.FC = () => {
   );
 
   return (
-    <div id="dashboard-chart">
+    <div id="dashboard__charts">
       <div className="w-[800px] h-auto bg-white mt-[70px] ml-[60px] rounded-custom shadow-custom">
         <div className="flex justify-between items-center ">
           <h1 className="ml-[20px] pt-[10px] text-[20px]">{displayValue}</h1>

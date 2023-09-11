@@ -5,6 +5,7 @@ import Decrease from "../../../assets/decrease.png";
 import Sales from "../../../assets/sales.png";
 import Expenses from "../../../assets/expenses.png";
 import Profit from "../../../assets/profit.png";
+import InventorySummary from "./InventorySummary";
 
 const Calculations: React.FC = () => {
   //Function to return the image for each calculations div.
@@ -13,10 +14,10 @@ const Calculations: React.FC = () => {
   };
 
   return (
-    <div className="flex" id="dashboard-calculations">
+    <div className="flex" id="dashboard__calculations">
       {calculations?.map((item) => {
         return (
-          <div className="flex justify-center items-center relative w-[280px] h-[130px] bg-white ml-[58px] mt-[65px] rounded-custom shadow-custom">
+          <div className="flex justify-center items-center relative w-[280px] h-[130px] bg-white ml-[40px] mt-[65px] rounded-custom shadow-custom">
             <img src={getImage(item.type)} className="w-[80px] h-[80px]" />
             <div className="flex flex-col ml-[20px]">
               <p>{item.type}</p>
@@ -33,6 +34,8 @@ const Calculations: React.FC = () => {
           </div>
         );
       })}
+
+      <InventorySummary />
     </div>
   );
 };
