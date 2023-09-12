@@ -26,13 +26,13 @@ function App() {
   };
 
   return (
-    <>
+    <div className="max-w-full">
       <Header />
       <div id="content" className="flex flex-row w-[100%]">
         <NavigationMenu navigate={navigate} />
         {switchView()}
       </div>
-    </>
+    </div>
   );
 }
 

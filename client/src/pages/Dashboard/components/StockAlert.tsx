@@ -6,9 +6,9 @@ const StockAlerts: React.FC = () => {
 
   return (
     <div id="dashboard__stockalerts">
-      <div className="w-[800px] h-[315px] bg-white mt-[70px] ml-[60px] rounded-custom shadow-custom overflow-auto">
-        <h1 className="ml-[20px] pt-[10px] text-[20px]">Stock alert</h1>
-        <hr className="m-[15px] text-gray" />
+      <div className=" max-w-[80rem] h-[31.5rem] bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom overflow-auto">
+        <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Stock alert</h1>
+        <hr className="m-[1.5rem] text-gray" />
         <div>
           <table className="table-fixed w-[100%] border-seperate border-spacing-y-3">
             <thead className="sticky top-0 bg-white">
@@ -21,7 +21,7 @@ const StockAlerts: React.FC = () => {
             <tbody className="text-center capitalize">
               {stockAlert?.map((alert) => {
                 return (
-                  <tr className="mt-[40px]">
+                  <tr className="mt-[4rem]">
                     <td className="pt-3">{alert.itemName}</td>
                     <td className="pt-3">{alert.code}</td>
                     <td className="pt-3">{alert.department}</td>

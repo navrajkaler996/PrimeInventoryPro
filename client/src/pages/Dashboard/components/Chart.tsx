@@ -27,12 +27,12 @@ export const Chart: React.FC = () => {
 
   return (
     <div id="dashboard__charts">
-      <div className="w-[800px] h-auto bg-white mt-[70px] ml-[60px] rounded-custom shadow-custom">
+      <div className="max-w-[80rem] h-auto bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom">
         <div className="flex justify-between items-center ">
-          <h1 className="ml-[20px] pt-[10px] text-[20px]">{displayValue}</h1>
+          <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">{displayValue}</h1>
           <img
             src={Switch}
-            className="w-[20px] mr-[15px] cursor-pointer transition-all ease-in-out duration-100 hover:scale-[1.5]"
+            className="w-[2rem] mr-[1.5rem] cursor-pointer transition-all ease-in-out duration-100 hover:scale-[1.5]"
             onClick={() =>
               setDisplayValue((prev) =>
                 prev === CHART_HEADINGS.SALES_AND_EXPENSES
@@ -42,10 +42,10 @@ export const Chart: React.FC = () => {
             }
           />
         </div>
-        <hr className="m-[15px] text-gray" />
-        <div>
+        <hr className="m-[1.5rem] text-gray" />
+        <div className="flex justify-center">
           <Bar
-            style={{ padding: "0px 20px" }}
+            style={{ padding: "0 2rem" }}
             data={
               displayValue === CHART_HEADINGS.SALES_AND_EXPENSES
                 ? chartSalesAndExpensesData
