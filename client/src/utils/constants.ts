@@ -10,3 +10,10 @@ export const CHART_HEADINGS = {
   SALES_AND_EXPENSES: "Sales and expenses",
   PROFIT: "Profit",
 };
+
+export const DEPARTMENTS = [
+  {
+    department: "Fresh",
+    subDepartments: ["Meats", "Produce", "Bakery", "Diary/Frozen"],
+  },
+];

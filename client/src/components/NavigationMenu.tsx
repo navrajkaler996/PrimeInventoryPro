@@ -4,10 +4,14 @@ import Inventory from "../assets/inventory.png";
 //Prop interface for NavigationMenuProps
 type NavigationMenuProps = {
   navigate: Function;
+  active: string;
 };
 
 //NavigationMenu, react functional component, that accepts 'navigate' function which switchs the view on the home.
-const NavigationMenu: React.FC<NavigationMenuProps> = ({ navigate }) => {
+const NavigationMenu: React.FC<NavigationMenuProps> = ({
+  navigate,
+  active,
+}) => {
   return (
     <div className="flex flex-col">
       <div

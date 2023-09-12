@@ -29,7 +29,7 @@ function App() {
     <div className="max-w-full">
       <Header />
       <div id="content" className="flex flex-row w-[100%]">
-        <NavigationMenu navigate={navigate} />
+        <NavigationMenu navigate={navigate} active={currentView} />
         {switchView()}
       </div>
     </div>
