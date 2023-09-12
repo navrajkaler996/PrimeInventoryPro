@@ -1,3 +1,4 @@
+//Options that are passed as props to the Bar component
 export const chartOptions = {
   responsive: true,
   maintainAspectRatio: true,
@@ -7,13 +8,12 @@ export const chartOptions = {
     },
     y: {
       stacked: false,
-      min: 0,
-      max: 50000,
     },
   },
 };
 
-export const chartData = {
+//Data for Sales and Expenses
+export const chartSalesAndExpensesData = {
   labels: [
     "January",
     "February",
@@ -49,6 +49,37 @@ export const chartData = {
       backgroundColor: "#FF0000",
       borderColor: "black",
       pointBorderColor: "#FF0000",
+      fill: true,
+    },
+  ],
+};
+
+//Data for profit
+export const chartProfitData = {
+  labels: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+  datasets: [
+    {
+      label: "Profit",
+      data: [
+        14000, 14000, 15000, 16000, 18000, 18000, 18000, 18000, 17000, 16000,
+        11000, 9000,
+      ],
+      backgroundColor: "#55FF00",
+      borderColor: "black",
+      pointBorderColor: "#55FF00",
       fill: true,
     },
   ],

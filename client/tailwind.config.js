@@ -12,15 +12,15 @@ export default {
     },
 
     borderRadius: {
-      custom: "10px",
+      custom: "1rem",
     },
     extend: {
       height: {
-        80: "80px",
-        120: "120px",
+        80: "8rem",
+        120: "12rem",
       },
       width: {
-        120: "120px",
+        120: "12rem",
       },
       boxShadow: {
         custom: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
