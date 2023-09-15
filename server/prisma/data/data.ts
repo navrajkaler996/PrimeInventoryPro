@@ -6,6 +6,7 @@ export const meatData = [
     total_quantity: 200,
     cap: 100,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Beef Ground Chuck',
@@ -14,6 +15,7 @@ export const meatData = [
     total_quantity: 150,
     cap: 75,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Pork Tenderloin',
@@ -22,6 +24,7 @@ export const meatData = [
     total_quantity: 100,
     cap: 50,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Lamb Chops',
@@ -30,6 +33,7 @@ export const meatData = [
     total_quantity: 80,
     cap: 40,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Ground Turkey',
@@ -38,6 +42,7 @@ export const meatData = [
     total_quantity: 120,
     cap: 60,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Salmon Fillet',
@@ -46,6 +51,7 @@ export const meatData = [
     total_quantity: 90,
     cap: 45,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Bacon Strips',
@@ -54,6 +60,7 @@ export const meatData = [
     total_quantity: 250,
     cap: 125,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Sausage Links',
@@ -62,6 +69,7 @@ export const meatData = [
     total_quantity: 180,
     cap: 90,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Ribeye Steak',
@@ -70,6 +78,7 @@ export const meatData = [
     total_quantity: 70,
     cap: 35,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Turkey Drumsticks',
@@ -78,6 +87,7 @@ export const meatData = [
     total_quantity: 120,
     cap: 60,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Pork Ribs',
@@ -86,6 +96,7 @@ export const meatData = [
     total_quantity: 100,
     cap: 50,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Sirloin Steak',
@@ -94,6 +105,7 @@ export const meatData = [
     total_quantity: 90,
     cap: 45,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Ground Pork',
@@ -102,6 +114,7 @@ export const meatData = [
     total_quantity: 150,
     cap: 75,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Chicken Wings',
@@ -110,6 +123,7 @@ export const meatData = [
     total_quantity: 300,
     cap: 150,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Filet Mignon',
@@ -118,6 +132,7 @@ export const meatData = [
     total_quantity: 60,
     cap: 30,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Ground Lamb',
@@ -126,6 +141,7 @@ export const meatData = [
     total_quantity: 90,
     cap: 45,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Bison Steak',
@@ -134,6 +150,7 @@ export const meatData = [
     total_quantity: 70,
     cap: 35,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Ham Slices',
@@ -142,6 +159,7 @@ export const meatData = [
     total_quantity: 200,
     cap: 100,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Venison Chops',
@@ -150,6 +168,7 @@ export const meatData = [
     total_quantity: 50,
     cap: 25,
     product_stock_alert: true,
+    sub_department_code: 'FRE001',
   },
   {
     product_name: 'Cornish Hens',
@@ -158,6 +177,7 @@ export const meatData = [
     total_quantity: 120,
     cap: 60,
     product_stock_alert: false,
+    sub_department_code: 'FRE001',
   },
 ];
 
