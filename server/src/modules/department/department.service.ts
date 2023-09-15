@@ -12,13 +12,13 @@ export class DepartmentsService {
 
   //FETCH All DEPARTMENTS
   //////api/vi/department
-  findAllDepartments() {
+  findAll() {
     return this.prisma.department.findMany();
   }
 
   //FETCH A SINGLE DEPARTMENT using department_code
   //////api/vi/department/:department_code
-  findDepartmentByCode(department_code: string) {
+  findByDepartmentCode(department_code: string) {
     return this.prisma.department.findFirst({
       where: { department_code: department_code?.toUpperCase() },
     });
