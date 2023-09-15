@@ -10,9 +10,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//model for departments
 model Department {
-  id              Int      @id @default(autoincrement())
-  department_name String   @unique
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  department_id           Int      @id @default(autoincrement())
+  department_code         String   @unique
+  department_name         String   @unique
+  total_sub_departments   Int      @default(0)
+  total_products          Int
+  total_products_quantity Int
+  stock_alert             Boolean
+  direct_supervisor       String   @unique
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+//model for subdepartments
+model SubDepartment {
+  sub_department_id       Int      @id @default(autoincrement())
+  sub_department_code     String   @unique
+  sub_department_name     String   @unique
+  department_code         String
+  total_products          Int
+  total_products_quantity Int
+  stock_alert             Boolean
+  sub_department_manager  String
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+//model for products
+model Product {
+  product_id          Int      @id @default(autoincrement())
+  product_name        String   @unique
+  product_code        String   @unique
+  price               Float
+  total_quantity      Int
+  cap                 Int
+  product_stock_alert Boolean  @default(false)
+  in_transit          Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }
