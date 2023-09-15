@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -11,26 +10,17 @@ export class DepartmentsService {
     return 'This action adds a new department';
   }
 
-  findAll() {
+  //FETCH All DEPARTMENTS
+  //////api/vi/department
+  findAllDepartments() {
     return this.prisma.department.findMany();
   }
 
-  findByName(name: string) {
-    console.log('----', name);
+  //FETCH A SINGLE DEPARTMENT using department_code
+  //////api/vi/department/:department_code
+  findDepartmentByCode(department_code: string) {
     return this.prisma.department.findFirst({
-      where: { department_name: name },
+      where: { department_code: department_code?.toUpperCase() },
     });
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} department`;
-  }
-
-  update(id: number, updateDepartmentDto: UpdateDepartmentDto) {
-    return `This action updates a #${id} department`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} department`;
   }
 }

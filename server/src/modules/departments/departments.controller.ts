@@ -1,50 +1,19 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { DepartmentsService } from './departments.service';
-import { CreateDepartmentDto } from './dto/create-department.dto';
-import { UpdateDepartmentDto } from './dto/update-department.dto';
 
-@Controller('/api/v1/departments')
+@Controller('/api/v1/department')
 export class DepartmentsController {
   constructor(private readonly departmentsService: DepartmentsService) {}
 
-  @Post()
-  create(@Body() createDepartmentDto: CreateDepartmentDto) {
-    return this.departmentsService.create(createDepartmentDto);
-  }
-
+  //FETCH All DEPARTMENTS
   @Get()
-  findAll() {
-    return this.departmentsService.findAll();
+  findAllDepartments() {
+    console.log('sasas');
+    return this.departmentsService.findAllDepartments();
   }
-
-  @Get('/:name')
-  findByName(@Param('name') name: string) {
-    return this.departmentsService.findByName(name);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.departmentsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateDepartmentDto: UpdateDepartmentDto,
-  ) {
-    return this.departmentsService.update(+id, updateDepartmentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.departmentsService.remove(+id);
+  //FETCH A SINGLE DEPARTMENT USING department_code
+  @Get('/:department_code')
+  findDepartmentByCode(@Param('department_code') department_code: string) {
+    return this.departmentsService.findDepartmentByCode(department_code);
   }
 }
