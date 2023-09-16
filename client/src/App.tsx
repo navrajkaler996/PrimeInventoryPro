@@ -4,6 +4,7 @@ import NavigationMenu from "./components/NavigationMenu";
 import "./index.css";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
+
 function App() {
   //State to store the value of current view.
   const [currentView, setCurrentView] = useState<string>("dashboard");
@@ -26,13 +27,15 @@ function App() {
   };
 
   return (
-    <div className="max-w-full">
-      <Header />
-      <div id="content" className="flex flex-row w-[100%]">
-        <NavigationMenu navigate={navigate} active={currentView} />
-        {switchView()}
+   
+      <div className="max-w-full">
+        <Header />
+        <div id="content" className="flex flex-row w-[100%]">
+          <NavigationMenu navigate={navigate} active={currentView} />
+          {switchView()}
+        </div>
       </div>
-    </div>
+
   );
 }
 
