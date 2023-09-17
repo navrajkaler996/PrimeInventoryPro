@@ -3,7 +3,8 @@ import Chart from "./components/Chart";
 import DepartmentDescription from "./components/Department";
 import StockAlerts from "./components/StockAlert";
 import { useGetByDepartmentCodeQuery } from "../../services/department";
-import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../services/subdepartments";
+import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../services/subdepartment";
+import { useGetStockAlertProductByDepartmentCodeQuery } from "../../services/product";
 
 const Dashboard: React.FC = () => {
   const {
@@ -18,6 +19,12 @@ const Dashboard: React.FC = () => {
     isLoading: subDepartmentIsLoading,
   } = useGetSubDepartmentsByDepartmentCodeQuery("DEP001");
 
+  const {
+    data: productData,
+    error: productError,
+    isLoading: productIsLoading,
+  } = useGetStockAlertProductByDepartmentCodeQuery("DEP001");
+
   return (
     <div id="dashboard-container" className="max-w-full">
       <DepartmentDescription
@@ -29,7 +36,11 @@ const Dashboard: React.FC = () => {
         subDepartmentsIsLoading={subDepartmentIsLoading}
       />
       <Calculations />
-      <StockAlerts />
+      <StockAlerts
+        productData={productData}
+        productError={productError}
+        productIsLoading={productIsLoading}
+      />
       <Chart />
     </div>
   );

@@ -29,3 +29,18 @@ export interface DepartmentType {
   subDepartmentsError: Object | undefined;
   subDepartmentsIsLoading: Object | undefined;
 }
+
+export interface ProductType {
+  productData: {
+    product_name: string;
+    product_code: string;
+    price: number;
+    total_quantity: number;
+    cap: number;
+    product_stock_alert: boolean;
+    sub_department_code: string;
+    department_code: string;
+  }[];
+  productError: Object | undefined;
+  productIsLoading: Boolean | undefined;
+}

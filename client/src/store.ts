@@ -3,19 +3,21 @@ import departmentReducer from "./features/departmentSlice";
 
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { departmentApi } from "./services/department";
-import { subDepartmentsApi } from "./services/subdepartments";
+import { subDepartmentApi } from "./services/subdepartment";
+import { productApi } from "./services/product";
 
 export const store: any = configureStore({
   reducer: {
     departmentData: departmentReducer,
     [departmentApi.reducerPath]: departmentApi.reducer,
-
-    [subDepartmentsApi.reducerPath]: subDepartmentsApi.reducer,
+    [subDepartmentApi.reducerPath]: subDepartmentApi.reducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       departmentApi.middleware,
-      subDepartmentsApi.middleware
+      subDepartmentApi.middleware,
+      productApi.middleware
     ),
 });
 

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
-export const subDepartmentsApi = createApi({
-  reducerPath: "subDepartmentsByDepartmentCodeApi",
+export const subDepartmentApi = createApi({
+  reducerPath: "subDepartment",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api/v1/subdepartment",
   }),
@@ -12,4 +12,4 @@ export const subDepartmentsApi = createApi({
   }),
 });
 
-export const { useGetSubDepartmentsByDepartmentCodeQuery } = subDepartmentsApi;
+export const { useGetSubDepartmentsByDepartmentCodeQuery } = subDepartmentApi;
