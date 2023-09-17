@@ -22,6 +22,7 @@ export interface DepartmentDataType {
         sub_department_name: string;
         sub_department_code: string;
         department_code: string;
+        department_name: string;
         total_products: number;
         total_products_quantity: number;
         total_products_in_transit: number;
@@ -52,6 +53,7 @@ export interface SubDepartmentType {
   sub_department_name: string;
   sub_department_code: string;
   department_code: string;
+  department_name: string;
   total_products: number;
   total_products_quantity: number;
   total_products_in_transit: number;

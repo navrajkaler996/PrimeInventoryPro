@@ -31,6 +31,7 @@ model SubDepartment {
   sub_department_code       String   @unique
   sub_department_name       String   @unique
   department_code           String
+  department_name           String   @default("department")
   total_products            Int
   total_products_quantity   Int
   total_products_in_transit Int      @default(0)

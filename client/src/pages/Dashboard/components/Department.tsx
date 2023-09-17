@@ -33,6 +33,7 @@ const Department: React.FC<DepartmentDataType> = ({
         return Dairy;
     }
   };
+
   return (
     <div id="dashboard__department" className="flex justify-between  mt-[3rem]">
       <div
@@ -58,19 +59,25 @@ const Department: React.FC<DepartmentDataType> = ({
           {departmentData?.department_name}
         </p>
         <select
-          className="w-[30rem] h-[3rem] bg-white  mr-[8rem] shadow-custom"
+          className="w-[30rem] h-[3rem] bg-white  mr-[8rem] shadow-custom pl-[5px] capitalize"
           style={subDepartmentsIsLoading ? SKELETON_STYLES : {}}
           onChange={(e) => subDepartmentChangeHandler(e.currentTarget.value)}>
-          <option>---choose---</option>
           {!subDepartmentsIsLoading &&
             subDepartmentsData &&
             subDepartmentsData?.length > 0 &&
-            subDepartmentsData.map((subDepartment) => (
-              <option
-                key={subDepartment.sub_department_code}
-                value={subDepartment.sub_department_code}>
-                {subDepartment.sub_department_name}
-              </option>
+            subDepartmentsData.map((subDepartment, i) => (
+              <>
+                {i === 0 && (
+                  <option value={subDepartment.department_code}>
+                    {subDepartment.department_name}
+                  </option>
+                )}
+                <option
+                  key={subDepartment.sub_department_code}
+                  value={subDepartment.sub_department_code}>
+                  {subDepartment.sub_department_name}
+                </option>
+              </>
             ))}
         </select>
       </div>

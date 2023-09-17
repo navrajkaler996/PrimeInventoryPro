@@ -67,11 +67,17 @@ const Dashboard: React.FC = () => {
       (subDepartment: SubDepartmentType) =>
         subDepartment.sub_department_code === subDepartmentCode
     );
+
+    //If selected department is a parent department.
+    if (!currentDepartment) {
+      currentDepartment = departmentData;
+    }
     //Again, the createCurrentDepartment function is used to transform the data into proper form,
     /////in order to avoid conflicts.
     currentDepartment = createCurrentDepartment(currentDepartment);
     dispatch(activeDepartment(currentDepartment));
   };
+
   return (
     <div id="dashboard-container" className="max-w-full">
       <DepartmentDescription
