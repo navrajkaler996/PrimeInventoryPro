@@ -8,6 +8,7 @@ export interface DepartmentState {
     total_sub_departments: Number | null;
     total_products: Number | null;
     total_products_quantity: Number | null;
+    total_products_in_transit: Number;
     stock_alert: Boolean | null;
     direct_supervisor: String | null;
     parent_department_code: String | null;

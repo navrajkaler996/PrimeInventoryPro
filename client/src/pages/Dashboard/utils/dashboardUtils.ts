@@ -7,6 +7,7 @@ export const createCurrentDepartment = (departmentData: any) => {
       total_sub_departments: null,
       total_products: departmentData.total_products,
       total_products_quantity: departmentData.total_products_quantity,
+      total_products_in_transit: departmentData.total_products_in_transit,
       stock_alert: departmentData.stock_alert,
       direct_supervisor: departmentData.sub_department_manager,
       parent_department_code: departmentData.department_code,

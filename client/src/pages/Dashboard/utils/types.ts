@@ -10,6 +10,7 @@ export interface DepartmentDataType {
         stock_alert: boolean;
         total_products: number;
         total_products_quantity: number;
+        total_products_in_transit: number;
         total_sub_departments: number;
         updatedAt: string;
       }
@@ -21,8 +22,10 @@ export interface DepartmentDataType {
         sub_department_name: string;
         sub_department_code: string;
         department_code: string;
+        department_name: string;
         total_products: number;
         total_products_quantity: number;
+        total_products_in_transit: number;
         stock_alert: boolean;
         sub_department_manager: string;
       }[]
@@ -50,8 +53,10 @@ export interface SubDepartmentType {
   sub_department_name: string;
   sub_department_code: string;
   department_code: string;
+  department_name: string;
   total_products: number;
   total_products_quantity: number;
+  total_products_in_transit: number;
   stock_alert: boolean;
   sub_department_manager: string;
 }
@@ -68,6 +73,7 @@ export interface StockAlertType {
         stock_alert: boolean;
         total_products: number;
         total_products_quantity: number;
+        total_products_in_transit: number;
         total_sub_departments: number;
         updatedAt: string;
       }
