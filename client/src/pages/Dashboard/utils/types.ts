@@ -1,3 +1,4 @@
+//Interface for Department component
 export interface DepartmentDataType {
   departmentData:
     | {
@@ -32,6 +33,7 @@ export interface DepartmentDataType {
 }
 
 export interface ProductDataType {
+  //Type for a single product
   productData: {
     product_name: string;
     product_code: string;
@@ -41,9 +43,7 @@ export interface ProductDataType {
     product_stock_alert: boolean;
     sub_department_code: string;
     department_code: string;
-  }[];
-  productError: Object | undefined;
-  productIsLoading: Boolean | undefined;
+  };
 }
 
 export interface SubDepartmentType {
@@ -54,4 +54,22 @@ export interface SubDepartmentType {
   total_products_quantity: number;
   stock_alert: boolean;
   sub_department_manager: string;
+}
+
+//Interface for StockAlert component
+export interface StockAlertType {
+  departmentData:
+    | {
+        createdAt: string;
+        department_code: string;
+        department_id: number;
+        department_name: string;
+        direct_supervisor: string;
+        stock_alert: boolean;
+        total_products: number;
+        total_products_quantity: number;
+        total_sub_departments: number;
+        updatedAt: string;
+      }
+    | undefined;
 }

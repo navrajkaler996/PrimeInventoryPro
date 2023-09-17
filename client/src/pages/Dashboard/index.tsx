@@ -20,6 +20,13 @@ import { createCurrentDepartment } from "./utils/dashboardUtils";
 import { SubDepartmentType } from "./utils/types";
 
 const Dashboard: React.FC = () => {
+  const dispatch = useDispatch();
+
+  //Extracting the current active department from the store
+  const currentDepartment = useSelector(
+    (state: any) => state?.activeDepartment
+  );
+
   const {
     data: departmentData,
     error: departmentError,
@@ -33,18 +40,13 @@ const Dashboard: React.FC = () => {
     isLoading: subDepartmentIsLoading,
   } = useGetSubDepartmentsByDepartmentCodeQuery("DEP001");
 
-  const {
-    data: productData,
-    error: productError,
-    isLoading: productIsLoading,
-  } = useGetStockAlertProductByDepartmentCodeQuery("DEP001");
-
-  const dispatch = useDispatch();
-
-  //Extracting the current active department from the store
-  const currentDepartment = useSelector(
-    (state: any) => state?.activeDepartment
-  );
+  // const {
+  //   data: productData,
+  //   error: productError,
+  //   isLoading: productIsLoading,
+  // } = useGetStockAlertProductByDepartmentCodeQuery(
+  //   currentDepartment?.deparment_code
+  // );
 
   useEffect(() => {
     //When department data is fetched from the API, the data is dispatched to the store.
@@ -56,6 +58,8 @@ const Dashboard: React.FC = () => {
       dispatch(activeDepartment(currentDepartment));
     }
   }, [departmentData]);
+
+  useEffect(() => {}, [currentDepartment]);
 
   //This change handler is passed to the Department component.
   /////It will be invoke when a subdepartment is selected from the dropdown.
@@ -81,11 +85,7 @@ const Dashboard: React.FC = () => {
         subDepartmentChangeHandler={subDepartmentChangeHandler}
       />
       <Calculations />
-      <StockAlerts
-        productData={productData}
-        productError={productError}
-        productIsLoading={productIsLoading}
-      />
+      <StockAlerts departmentData={currentDepartment} />
       <Chart />
     </div>
   );

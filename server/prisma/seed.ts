@@ -1,7 +1,7 @@
 // prisma/seed.ts
 
 import { PrismaClient } from '@prisma/client';
-import { meatData, departmentData, subDepartmentData } from './data/data';
+import { departmentData, subDepartmentData, productsData } from './data/data';
 
 // initialize Prisma Client
 const prisma = new PrismaClient();
@@ -13,7 +13,7 @@ async function main() {
   const deleteSubDepartments = await prisma.subDepartment.deleteMany({});
   const deleteProducts = await prisma.product.deleteMany({});
 
-  // create two dummy articles
+  // create two dummy departments
   const departments = await prisma.department.createMany({
     data: departmentData,
   });
@@ -41,7 +41,7 @@ async function main() {
   });
 
   const freshProducts = await prisma.product.createMany({
-    data: meatData,
+    data: productsData,
   });
 
   console.log({ deleteDepartments });

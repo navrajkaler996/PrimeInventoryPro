@@ -16,20 +16,20 @@ export interface DepartmentState {
   };
 }
 
-const initialState: DepartmentState = {
-  activeDepartment: {
-    department_id: null,
-    department_code: null,
-    department_name: null,
-    total_sub_departments: null,
-    total_products: null,
-    total_products_quantity: null,
-    stock_alert: null,
-    direct_supervisor: null,
-    parent_department_code: null,
-    createdAt: null,
-    updatedAt: null,
-  },
+const initialState = {
+  // activeDepartment: {
+  //   department_id: null,
+  //   department_code: null,
+  //   department_name: null,
+  //   total_sub_departments: null,
+  //   total_products: null,
+  //   total_products_quantity: null,
+  //   stock_alert: null,
+  //   direct_supervisor: null,
+  //   parent_department_code: null,
+  //   createdAt: null,
+  //   updatedAt: null,
+  // },
 };
 
 //This slice is used to store data related to department.
