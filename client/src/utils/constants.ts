@@ -17,3 +17,11 @@ export const DEPARTMENTS = [
     subDepartments: ["Meats", "Produce", "Bakery", "Diary/Frozen"],
   },
 ];
+
+export const SKELETON_STYLES = {
+  animationName: "custom-pulse",
+  animationDuration: "1s",
+  animationTimingFunction: "cubic-bezier(0.4, 0, 0.6, 1)",
+  animationIterationCount: "infinite",
+  opacity: "1",
+};

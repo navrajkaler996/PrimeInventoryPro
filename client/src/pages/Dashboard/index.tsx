@@ -1,24 +1,33 @@
-import { useDispatch } from "react-redux";
 import Calculations from "./components/Calculations";
 import Chart from "./components/Chart";
 import DepartmentDescription from "./components/Department";
 import StockAlerts from "./components/StockAlert";
-import { useEffect } from "react";
-import { departmentById } from "../../features/departmentSlice";
 import { useGetByDepartmentCodeQuery } from "../../services/department";
+import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../services/subdepartments";
 
 const Dashboard: React.FC = () => {
-  const dispatch = useDispatch();
+  const {
+    data: departmentData,
+    error: departmentError,
+    isLoading: departmentIsLoading,
+  } = useGetByDepartmentCodeQuery("DEP001");
 
-  // const { data, error, isLoading } = useGetByDepartmentCodeQuery("DEP001");
-
-  useEffect(() => {
-    dispatch(departmentById());
-  }, []);
+  const {
+    data: subDepartmentsData,
+    error: subDepartmentsError,
+    isLoading: subDepartmentIsLoading,
+  } = useGetSubDepartmentsByDepartmentCodeQuery("DEP001");
 
   return (
     <div id="dashboard-container" className="max-w-full">
-      <DepartmentDescription />
+      <DepartmentDescription
+        departmentData={departmentData}
+        departmentError={departmentError}
+        departmentIsLoading={departmentIsLoading}
+        subDepartmentsData={subDepartmentsData}
+        subDepartmentsError={subDepartmentsError}
+        subDepartmentsIsLoading={subDepartmentIsLoading}
+      />
       <Calculations />
       <StockAlerts />
       <Chart />

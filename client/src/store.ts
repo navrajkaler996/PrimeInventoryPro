@@ -2,15 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import departmentReducer from "./features/departmentSlice";
 
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { departmentByCodeApi } from "./services/department";
+import { departmentApi } from "./services/department";
+import { subDepartmentsApi } from "./services/subdepartments";
 
-export const store = configureStore({
+export const store: any = configureStore({
   reducer: {
     departmentData: departmentReducer,
-    [departmentByCodeApi.reducerPath]: departmentByCodeApi.reducer,
+    [departmentApi.reducerPath]: departmentApi.reducer,
+
+    [subDepartmentsApi.reducerPath]: subDepartmentsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(departmentByCodeApi.middleware),
+    getDefaultMiddleware().concat(
+      departmentApi.middleware,
+      subDepartmentsApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

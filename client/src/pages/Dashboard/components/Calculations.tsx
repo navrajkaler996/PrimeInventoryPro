@@ -18,9 +18,11 @@ const Calculations: React.FC = () => {
       className="grid grid-rows-1 md:grid-cols-[2fr,1fr] mt-[7rem]"
       id="dashboard__calculations">
       <div className="grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1 gap-x-[5rem] sm:justify-center">
-        {calculations?.map((item) => {
+        {calculations?.map((item, index) => {
           return (
-            <div className="max-w-full flex justify-center items-center relative lg:w-[28rem] md:w-[30rem] sm:w-[28rem] h-[13rem] bg-white lg:ml-[4rem] md:ml-[auto] md:mr-[auto] rounded-custom shadow-custom">
+            <div
+              key={index}
+              className="max-w-full flex justify-center items-center relative lg:w-[28rem] md:w-[30rem] sm:w-[28rem] h-[13rem] bg-white lg:ml-[4rem] md:ml-[auto] md:mr-[auto] rounded-custom shadow-custom">
               <img src={getImage(item.type)} className="w-[8rem] h-[8rem]" />
               <div className="flex flex-col ml-[2rem]">
                 <p>{item.type}</p>

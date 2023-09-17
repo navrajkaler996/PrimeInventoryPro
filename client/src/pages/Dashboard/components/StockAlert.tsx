@@ -13,15 +13,15 @@ const StockAlerts: React.FC = () => {
           <table className="table-fixed w-[100%] border-seperate border-spacing-y-3">
             <thead className="sticky top-0 bg-white">
               <tr>
-                {stockAlertKeys?.map((key) => (
-                  <th>{key}</th>
+                {stockAlertKeys?.map((key, index) => (
+                  <th key={index}>{key}</th>
                 ))}
               </tr>
             </thead>
             <tbody className="text-center capitalize">
-              {stockAlert?.map((alert) => {
+              {stockAlert?.map((alert, index) => {
                 return (
-                  <tr className="mt-[4rem]">
+                  <tr className="mt-[4rem]" key={index}>
                     <td className="pt-3">{alert.itemName}</td>
                     <td className="pt-3">{alert.code}</td>
                     <td className="pt-3">{alert.department}</td>
