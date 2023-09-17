@@ -11,7 +11,8 @@ export class SubdepartmentController {
   findAll() {
     return this.subdepartmentService.findAll();
   }
-
+  //FETCH A SINGLE DEPARTMENT
+  //////api/vi/subdepartment/:department_code
   @Get('/:department_code')
   findByDepartmentCode(@Param('department_code') department_code: String) {
     return this.subdepartmentService.findByDepartmentCode(department_code);

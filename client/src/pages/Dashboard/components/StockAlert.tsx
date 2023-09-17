@@ -1,39 +1,60 @@
-import { stockAlert } from "../../../data/stockAlert";
-import { stockAlertKeys } from "../../../utils/constants";
+import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
+import { ProductType } from "../utils/types";
 
-const StockAlerts: React.FC = () => {
-  //104704253249
-
+//THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
+//////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
+//////PROPS:
+//////productData = List of products with stock alerts.
+//////productError = Any error that came while fetching data.
+//////productIsLoading = Boolean value which is true when data is being fetch.
+const StockAlerts: React.FC<ProductType> = ({
+  productData,
+  productError,
+  productIsLoading,
+}) => {
   return (
     <div id="dashboard__stockalerts">
-      <div className=" max-w-[80rem] h-[31.5rem] bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom overflow-auto">
-        <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Stock alert</h1>
-        <hr className="m-[1.5rem] text-gray" />
-        <div>
-          <table className="table-fixed w-[100%] border-seperate border-spacing-y-3">
-            <thead className="sticky top-0 bg-white">
-              <tr>
-                {stockAlertKeys?.map((key) => (
-                  <th>{key}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="text-center capitalize">
-              {stockAlert?.map((alert) => {
-                return (
-                  <tr className="mt-[4rem]">
-                    <td className="pt-3">{alert.itemName}</td>
-                    <td className="pt-3">{alert.code}</td>
-                    <td className="pt-3">{alert.department}</td>
-                    <td className="pt-3">{alert.onHands}</td>
-                    <td className="pt-3">{alert.cap}</td>
-                    <td className="pt-3">{alert.required}</td>
+      <div
+        className=" max-w-[80rem] h-[31.5rem] bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom overflow-auto"
+        style={productIsLoading ? SKELETON_STYLES : {}}>
+        {!productIsLoading && (
+          <>
+            {" "}
+            <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Stock alert</h1>
+            <hr className="m-[1.5rem] text-gray" />
+            <div>
+              <table className="table-fixed w-[100%] border-seperate border-spacing-y-3">
+                <thead className="sticky top-0 bg-white">
+                  <tr>
+                    {stockAlertKeys?.map((key, index) => (
+                      <th key={index}>{key}</th>
+                    ))}
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody className="text-center capitalize">
+                  {productData &&
+                    productData?.length > 0 &&
+                    productData?.map((product, index) => {
+                      return (
+                        <tr className="mt-[4rem]" key={index}>
+                          <td className="pt-3">{product.product_name}</td>
+                          <td className="pt-3">{product.product_code}</td>
+                          <td className="pt-3">
+                            {product.sub_department_code}
+                          </td>
+                          <td className="pt-3">{product.total_quantity}</td>
+                          <td className="pt-3">{product.cap}</td>
+                          <td className="pt-3">
+                            {product.cap - product.total_quantity}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -17,3 +17,8 @@ export const DEPARTMENTS = [
     subDepartments: ["Meats", "Produce", "Bakery", "Diary/Frozen"],
   },
 ];
+
+export const SKELETON_STYLES = {
+  animation: "custom-pulse .8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+  opacity: "1",
+};
