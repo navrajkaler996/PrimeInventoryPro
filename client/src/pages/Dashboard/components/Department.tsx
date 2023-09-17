@@ -1,16 +1,21 @@
+//Importing images
 import Meats from "../../../assets/departments/meats.png";
 import Fresh from "../../../assets/departments/fresh.png";
-import { SKELETON_STYLES } from "../../../utils/constants";
-import { DepartmentType } from "../utils/types";
 
-const Department: React.FC<DepartmentType> = ({
+//Importing utilities
+import { SKELETON_STYLES } from "../../../utils/constants";
+import { DepartmentDataType } from "../utils/types";
+
+const Department: React.FC<DepartmentDataType> = ({
   departmentData,
   departmentError,
   departmentIsLoading,
   subDepartmentsData,
   subDepartmentsError,
   subDepartmentsIsLoading,
+  subDepartmentChangeHandler,
 }) => {
+  //This function returns the image according to the active depertment/subdepartment.
   const getDepartmentImage = (departmentName: String | undefined) => {
     switch (departmentName) {
       case "fresh":
@@ -19,9 +24,6 @@ const Department: React.FC<DepartmentType> = ({
         return Meats;
     }
   };
-
-  console.log(subDepartmentsData);
-
   return (
     <div id="dashboard__department" className="flex justify-between  mt-[3rem]">
       <div
@@ -48,13 +50,16 @@ const Department: React.FC<DepartmentType> = ({
         </p>
         <select
           className="w-[30rem] h-[3rem] bg-white  mr-[8rem] shadow-custom"
-          style={subDepartmentsIsLoading ? SKELETON_STYLES : {}}>
+          style={subDepartmentsIsLoading ? SKELETON_STYLES : {}}
+          onChange={(e) => subDepartmentChangeHandler(e.currentTarget.value)}>
           <option>---choose---</option>
           {!subDepartmentsIsLoading &&
             subDepartmentsData &&
             subDepartmentsData?.length > 0 &&
             subDepartmentsData.map((subDepartment) => (
-              <option key={subDepartment.sub_department_code}>
+              <option
+                key={subDepartment.sub_department_code}
+                value={subDepartment.sub_department_code}>
                 {subDepartment.sub_department_name}
               </option>
             ))}

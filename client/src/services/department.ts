@@ -5,6 +5,7 @@ export const departmentApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api/v1/department",
   }),
+
   endpoints: (builder) => ({
     getByDepartmentCode: builder.query({
       query: (departmentCode) => `/${departmentCode}`,

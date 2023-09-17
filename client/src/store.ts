@@ -8,7 +8,7 @@ import { productApi } from "./services/product";
 
 export const store: any = configureStore({
   reducer: {
-    departmentData: departmentReducer,
+    activeDepartment: departmentReducer,
     [departmentApi.reducerPath]: departmentApi.reducer,
     [subDepartmentApi.reducerPath]: subDepartmentApi.reducer,
     [productApi.reducerPath]: productApi.reducer,

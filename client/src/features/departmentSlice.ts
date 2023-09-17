@@ -1,45 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface DepartmentState {
-  department_id: Number;
-  department_code: String;
-  department_name: String;
-  total_sub_departments: Number;
-  total_products: Number;
-  total_products_quantity: Number;
-  stock_alert: Boolean;
-  direct_supervisor: String;
-  createdAt: String;
-  updatedAt: String;
+  activeDepartment: {
+    department_id: Number | null;
+    department_code: String | null;
+    department_name: String | null;
+    total_sub_departments: Number | null;
+    total_products: Number | null;
+    total_products_quantity: Number | null;
+    stock_alert: Boolean | null;
+    direct_supervisor: String | null;
+    parent_department_code: String | null;
+    createdAt: String | null;
+    updatedAt: String | null;
+  };
 }
 
-const initialState = {
-  activeDepartment: {},
+const initialState: DepartmentState = {
+  activeDepartment: {
+    department_id: null,
+    department_code: null,
+    department_name: null,
+    total_sub_departments: null,
+    total_products: null,
+    total_products_quantity: null,
+    stock_alert: null,
+    direct_supervisor: null,
+    parent_department_code: null,
+    createdAt: null,
+    updatedAt: null,
+  },
 };
 
+//This slice is used to store data related to department.
+/////activeDepartment reducer is used to store the current active department.
 export const departmentSlice = createSlice({
   name: "department",
   initialState,
   reducers: {
-    departmentById: () => {
-      return {
-        activeDepartment: {
-          department_id: 1,
-          department_code: "DEPT001",
-          department_name: "Example Department",
-          total_sub_departments: 3,
-          total_products: 100,
-          total_products_quantity: 500,
-          stock_alert: true,
-          direct_supervisor: "John Doe",
-          createdAt: "2023-09-15 06:02:15.486",
-          updatedAt: "2023-09-15 06:02:15.486",
-        },
-      };
+    activeDepartment: (state, action) => {
+      return action.payload;
     },
   },
 });
 
-export const { departmentById } = departmentSlice.actions;
+export const { activeDepartment } = departmentSlice.actions;
 
 export default departmentSlice.reducer;

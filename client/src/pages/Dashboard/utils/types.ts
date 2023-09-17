@@ -1,4 +1,4 @@
-export interface DepartmentType {
+export interface DepartmentDataType {
   departmentData:
     | {
         createdAt: string;
@@ -28,9 +28,10 @@ export interface DepartmentType {
     | undefined;
   subDepartmentsError: Object | undefined;
   subDepartmentsIsLoading: Object | undefined;
+  subDepartmentChangeHandler: Function;
 }
 
-export interface ProductType {
+export interface ProductDataType {
   productData: {
     product_name: string;
     product_code: string;
@@ -43,4 +44,14 @@ export interface ProductType {
   }[];
   productError: Object | undefined;
   productIsLoading: Boolean | undefined;
+}
+
+export interface SubDepartmentType {
+  sub_department_name: string;
+  sub_department_code: string;
+  department_code: string;
+  total_products: number;
+  total_products_quantity: number;
+  stock_alert: boolean;
+  sub_department_manager: string;
 }
