@@ -310,6 +310,7 @@ export const departmentData = [
     total_products_quantity: 300,
     stock_alert: true,
     direct_supervisor: 'john Doe',
+    total_products_in_transit: 120,
   },
   {
     department_name: 'general merchandise',
@@ -319,6 +320,7 @@ export const departmentData = [
     total_products_quantity: 230,
     stock_alert: true,
     direct_supervisor: 'jane Doe',
+    total_products_in_transit: 90,
   },
 ];
 
@@ -331,6 +333,7 @@ export const subDepartmentData = [
     total_products_quantity: 70,
     stock_alert: true,
     sub_department_manager: 'wang wu',
+    total_products_in_transit: 90,
   },
   {
     sub_department_name: 'produce',
@@ -340,6 +343,7 @@ export const subDepartmentData = [
     total_products_quantity: 90,
     stock_alert: true,
     sub_department_manager: 'ali',
+    total_products_in_transit: 30,
   },
   {
     sub_department_name: 'dairy/frozen',
@@ -349,6 +353,7 @@ export const subDepartmentData = [
     total_products_quantity: 110,
     stock_alert: true,
     sub_department_manager: 'lee',
+    total_products_in_transit: 110,
   },
   {
     sub_department_name: 'bakery',
@@ -358,6 +363,7 @@ export const subDepartmentData = [
     total_products_quantity: 100,
     stock_alert: true,
     sub_department_manager: 'petrov',
+    total_products_in_transit: 10,
   },
   {
     sub_department_name: 'home',
@@ -367,6 +373,7 @@ export const subDepartmentData = [
     total_products_quantity: 43,
     stock_alert: false,
     sub_department_manager: 'joe doe',
+    total_products_in_transit: 40,
   },
   {
     sub_department_name: 'furniture',
@@ -376,6 +383,7 @@ export const subDepartmentData = [
     total_products_quantity: 35,
     stock_alert: false,
     sub_department_manager: 'jay doe',
+    total_products_in_transit: 23,
   },
   {
     sub_department_name: 'toys',
@@ -385,6 +393,7 @@ export const subDepartmentData = [
     total_products_quantity: 104,
     stock_alert: true,
     sub_department_manager: 'simran',
+    total_products_in_transit: 40,
   },
   {
     sub_department_name: 'garden',
@@ -394,6 +403,7 @@ export const subDepartmentData = [
     total_products_quantity: 61,
     stock_alert: false,
     sub_department_manager: 'yang yu',
+    total_products_in_transit: 60,
   },
   {
     sub_department_name: 'electronics',
@@ -403,6 +413,7 @@ export const subDepartmentData = [
     total_products_quantity: 123,
     stock_alert: false,
     sub_department_manager: 'andres',
+    total_products_in_transit: 72,
   },
   {
     sub_department_name: 'sports',
@@ -412,5 +423,6 @@ export const subDepartmentData = [
     total_products_quantity: 142,
     stock_alert: false,
     sub_department_manager: 'singh',
+    total_products_in_transit: 42,
   },
 ];

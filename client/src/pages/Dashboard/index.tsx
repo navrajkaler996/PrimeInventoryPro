@@ -10,7 +10,6 @@ import StockAlerts from "./components/StockAlert";
 //Importing API hooks
 import { useGetByDepartmentCodeQuery } from "../../services/department";
 import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../services/subdepartment";
-import { useGetStockAlertProductByDepartmentCodeQuery } from "../../services/product";
 
 //Importing action creators
 import { activeDepartment } from "../../features/departmentSlice";
