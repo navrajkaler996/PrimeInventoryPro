@@ -1,5 +1,10 @@
+import { useGetStockAlertProductByDepartmentCodeQuery } from "../../../services/product";
 import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
-import { ProductType } from "../utils/types";
+import {
+  DepartmentDataType,
+  ProductDataType,
+  StockAlertType,
+} from "../utils/types";
 
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
@@ -7,11 +12,15 @@ import { ProductType } from "../utils/types";
 //////productData = List of products with stock alerts.
 //////productError = Any error that came while fetching data.
 //////productIsLoading = Boolean value which is true when data is being fetch.
-const StockAlerts: React.FC<ProductType> = ({
-  productData,
-  productError,
-  productIsLoading,
-}) => {
+const StockAlerts: React.FC<StockAlertType> = ({ departmentData }) => {
+  const {
+    data: productData,
+    error: productError,
+    isLoading: productIsLoading,
+  } = useGetStockAlertProductByDepartmentCodeQuery(
+    departmentData?.department_code
+  );
+
   return (
     <div id="dashboard__stockalerts">
       <div
@@ -34,22 +43,24 @@ const StockAlerts: React.FC<ProductType> = ({
                 <tbody className="text-center capitalize">
                   {productData &&
                     productData?.length > 0 &&
-                    productData?.map((product, index) => {
-                      return (
-                        <tr className="mt-[4rem]" key={index}>
-                          <td className="pt-3">{product.product_name}</td>
-                          <td className="pt-3">{product.product_code}</td>
-                          <td className="pt-3">
-                            {product.sub_department_code}
-                          </td>
-                          <td className="pt-3">{product.total_quantity}</td>
-                          <td className="pt-3">{product.cap}</td>
-                          <td className="pt-3">
-                            {product.cap - product.total_quantity}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                    productData?.map(
+                      (product: ProductDataType["productData"]) => {
+                        return (
+                          <tr className="mt-[4rem]" key={product.product_code}>
+                            <td className="pt-3">{product.product_name}</td>
+                            <td className="pt-3">{product.product_code}</td>
+                            <td className="pt-3">
+                              {product.sub_department_code}
+                            </td>
+                            <td className="pt-3">{product.total_quantity}</td>
+                            <td className="pt-3">{product.cap}</td>
+                            <td className="pt-3">
+                              {product.cap - product.total_quantity}
+                            </td>
+                          </tr>
+                        );
+                      }
+                    )}
                 </tbody>
               </table>
             </div>
