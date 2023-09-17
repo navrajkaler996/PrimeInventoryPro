@@ -1,4 +1,4 @@
-export const meatData = [
+export const productsData = [
   {
     product_name: 'Chicken Drumsticks',
     product_code: 'FREMEA001',
@@ -197,6 +197,106 @@ export const meatData = [
     cap: 60,
     product_stock_alert: false,
     sub_department_code: 'FRE001',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Apples',
+    product_code: 'FREPRO001',
+    price: 0.99,
+    total_quantity: 50,
+    cap: 60,
+    product_stock_alert: true,
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Bananas',
+    product_code: 'FREPRO002',
+    price: 0.99,
+    total_quantity: 40,
+    cap: 70,
+    product_stock_alert: true,
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Carrots',
+    product_code: 'FREPRO003',
+    price: 0.79,
+    total_quantity: 30,
+    cap: 40,
+    product_stock_alert: true,
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Oranges',
+    product_code: 'FREPRO004',
+    price: 0.99,
+    total_quantity: 60,
+    cap: 80,
+    product_stock_alert: true,
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Broccoli',
+    product_code: 'FREPRO005',
+    price: 1.49,
+    total_quantity: 70, // Updated total_quantity
+    cap: 30,
+    product_stock_alert: false, // Updated product_stock_alert
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Strawberries',
+    product_code: 'FREPRO006',
+    price: 1.99,
+    total_quantity: 30, // Updated total_quantity
+    cap: 25,
+    product_stock_alert: false, // Updated product_stock_alert
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Grapes',
+    product_code: 'FREPRO007',
+    price: 1.79,
+    total_quantity: 50, // Updated total_quantity
+    cap: 45,
+    product_stock_alert: false, // Updated product_stock_alert
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Tomatoes',
+    product_code: 'FREPRO008',
+    price: 0.89,
+    total_quantity: 35,
+    cap: 60,
+    product_stock_alert: true,
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Spinach',
+    product_code: 'FREPRO009',
+    price: 1.29,
+    total_quantity: 45, // Updated total_quantity
+    cap: 22,
+    product_stock_alert: false, // Updated product_stock_alert
+    sub_department_code: 'FRE002',
+    department_code: 'DEP001',
+  },
+  {
+    product_name: 'Cucumbers',
+    product_code: 'FREPRO010',
+    price: 0.99,
+    total_quantity: 55, // Updated total_quantity
+    cap: 40,
+    product_stock_alert: false, // Updated product_stock_alert
+    sub_department_code: 'FRE002',
     department_code: 'DEP001',
   },
 ];

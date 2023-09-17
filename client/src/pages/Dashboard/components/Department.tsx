@@ -1,6 +1,9 @@
 //Importing images
 import Meats from "../../../assets/departments/meats.png";
 import Fresh from "../../../assets/departments/fresh.png";
+import Dairy from "../../../assets/departments/dairy.png";
+import Produce from "../../../assets/departments/produce.png";
+import Bakery from "../../../assets/departments/bakery.png";
 
 //Importing utilities
 import { SKELETON_STYLES } from "../../../utils/constants";
@@ -22,6 +25,12 @@ const Department: React.FC<DepartmentDataType> = ({
         return Fresh;
       case "meats":
         return Meats;
+      case "produce":
+        return Produce;
+      case "bakery":
+        return Bakery;
+      case "dairy/frozen":
+        return Dairy;
     }
   };
   return (
