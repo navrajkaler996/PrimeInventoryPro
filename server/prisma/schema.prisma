@@ -49,6 +49,7 @@ model Product {
   product_stock_alert Boolean  @default(false)
   in_transit          Boolean  @default(false)
   sub_department_code String   @default("XXXXXX")
+  department_code     String   @default("XXXXXX")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
