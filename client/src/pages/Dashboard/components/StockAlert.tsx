@@ -24,7 +24,7 @@ const StockAlerts: React.FC<StockAlertType> = ({ departmentData }) => {
   return (
     <div id="dashboard__stockalerts">
       <div
-        className=" max-w-[80rem] h-[31.5rem] bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom overflow-auto"
+        className=" max-w-[80rem] h-[31.5rem] bg-white  ml-[6rem] rounded-custom shadow-custom overflow-auto"
         style={productIsLoading ? SKELETON_STYLES : {}}>
         {!productIsLoading && (
           <>

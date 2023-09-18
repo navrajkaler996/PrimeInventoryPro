@@ -17,6 +17,7 @@ import { activeDepartment } from "../../features/departmentSlice";
 //Importing utilities
 import { createCurrentDepartment } from "./utils/dashboardUtils";
 import { SubDepartmentType } from "./utils/types";
+import TopSellings from "./components/TopSellings";
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
@@ -90,7 +91,10 @@ const Dashboard: React.FC = () => {
         subDepartmentChangeHandler={subDepartmentChangeHandler}
       />
       <Calculations />
-      <StockAlerts departmentData={currentDepartment} />
+      <div className="grid grid-cols-[2fr,1fr] mt-[7rem]">
+        <StockAlerts departmentData={currentDepartment} />
+        <TopSellings />
+      </div>
       <Chart />
     </div>
   );
