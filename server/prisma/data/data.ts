@@ -8,6 +8,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 512, // Random value between 100 and 1000
   },
   {
     product_name: 'Beef Ground Chuck',
@@ -18,6 +19,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 761, // Random value between 100 and 1000
   },
   {
     product_name: 'Pork Tenderloin',
@@ -28,6 +30,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 398, // Random value between 100 and 1000
   },
   {
     product_name: 'Lamb Chops',
@@ -38,6 +41,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 223, // Random value between 100 and 1000
   },
   {
     product_name: 'Ground Turkey',
@@ -48,6 +52,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 618, // Random value between 100 and 1000
   },
   {
     product_name: 'Salmon Fillet',
@@ -58,6 +63,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 787, // Random value between 100 and 1000
   },
   {
     product_name: 'Bacon Strips',
@@ -68,6 +74,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 329, // Random value between 100 and 1000
   },
   {
     product_name: 'Sausage Links',
@@ -78,6 +85,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 492, // Random value between 100 and 1000
   },
   {
     product_name: 'Ribeye Steak',
@@ -88,6 +96,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 738, // Random value between 100 and 1000
   },
   {
     product_name: 'Turkey Drumsticks',
@@ -98,6 +107,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 189, // Random value between 100 and 1000
   },
   {
     product_name: 'Pork Ribs',
@@ -108,6 +118,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 523, // Random value between 100 and 1000
   },
   {
     product_name: 'Sirloin Steak',
@@ -118,6 +129,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 265, // Random value between 100 and 1000
   },
   {
     product_name: 'Ground Pork',
@@ -128,6 +140,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 873, // Random value between 100 and 1000
   },
   {
     product_name: 'Chicken Wings',
@@ -138,6 +151,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 442, // Random value between 100 and 1000
   },
   {
     product_name: 'Filet Mignon',
@@ -148,6 +162,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 589, // Random value between 100 and 1000
   },
   {
     product_name: 'Ground Lamb',
@@ -158,6 +173,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 185, // Random value between 100 and 1000
   },
   {
     product_name: 'Bison Steak',
@@ -168,6 +184,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 651, // Random value between 100 and 1000
   },
   {
     product_name: 'Ham Slices',
@@ -178,6 +195,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 387, // Random value between 100 and 1000
   },
   {
     product_name: 'Venison Chops',
@@ -188,6 +206,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 128, // Random value between 100 and 1000
   },
   {
     product_name: 'Cornish Hens',
@@ -198,6 +217,7 @@ export const productsData = [
     product_stock_alert: false,
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
+    total_sales: 731, // Random value between 100 and 1000
   },
   {
     product_name: 'Apples',
@@ -208,6 +228,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 279, // Random value between 100 and 1000
   },
   {
     product_name: 'Bananas',
@@ -218,6 +239,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 147, // Random value between 100 and 1000
   },
   {
     product_name: 'Carrots',
@@ -228,6 +250,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 625, // Random value between 100 and 1000
   },
   {
     product_name: 'Oranges',
@@ -238,6 +261,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 194, // Random value between 100 and 1000
   },
   {
     product_name: 'Broccoli',
@@ -248,6 +272,7 @@ export const productsData = [
     product_stock_alert: false, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 889, // Random value between 100 and 1000
   },
   {
     product_name: 'Strawberries',
@@ -258,6 +283,7 @@ export const productsData = [
     product_stock_alert: false, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 332, // Random value between 100 and 1000
   },
   {
     product_name: 'Grapes',
@@ -268,6 +294,7 @@ export const productsData = [
     product_stock_alert: false, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 718, // Random value between 100 and 1000
   },
   {
     product_name: 'Tomatoes',
@@ -278,6 +305,7 @@ export const productsData = [
     product_stock_alert: true,
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 421, // Random value between 100 and 1000
   },
   {
     product_name: 'Spinach',
@@ -288,6 +316,7 @@ export const productsData = [
     product_stock_alert: false, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 553, // Random value between 100 and 1000
   },
   {
     product_name: 'Cucumbers',
@@ -298,9 +327,9 @@ export const productsData = [
     product_stock_alert: false, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
+    total_sales: 714, // Random value between 100 and 1000
   },
 ];
-
 export const departmentData = [
   {
     department_name: 'fresh',
@@ -398,8 +427,8 @@ export const subDepartmentData = [
     department_name: 'general merchandise',
     total_products: 56,
     total_products_quantity: 104,
-    stock_alert: true,
     sub_department_manager: 'simran',
+    stock_alert: true,
     total_products_in_transit: 40,
   },
   {
