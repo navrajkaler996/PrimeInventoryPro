@@ -17,6 +17,7 @@ import {
 } from "../utils/chartUtils";
 import { useState } from "react";
 import { CHART_HEADINGS } from "../../../utils/constants";
+import * as React from "react";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -59,4 +60,4 @@ export const Chart: React.FC = () => {
   );
 };
 
-export default Chart;
+export default React.memo(Chart);
