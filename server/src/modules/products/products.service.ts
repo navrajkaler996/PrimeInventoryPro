@@ -51,7 +51,7 @@ export class ProductsService {
             total_sales: 'desc',
           },
         ],
-        take: count | 10,
+        take: Number(count),
       });
     }
 
@@ -71,7 +71,7 @@ export class ProductsService {
             total_sales: 'desc',
           },
         ],
-        take: count | 10,
+        take: Number(count),
       });
     }
   }
