@@ -9,7 +9,14 @@ export const productApi = createApi({
     getStockAlertProductByDepartmentCode: builder.query({
       query: (departmentCode) => `/stockalert/${departmentCode}`,
     }),
+    getTopSellingProdcutsByDepartmentCode: builder.query({
+      query: ({ departmentCode, count }) =>
+        `/topsales/${departmentCode}/${count}`,
+    }),
   }),
 });
 
-export const { useGetStockAlertProductByDepartmentCodeQuery } = productApi;
+export const {
+  useGetStockAlertProductByDepartmentCodeQuery,
+  useGetTopSellingProdcutsByDepartmentCodeQuery,
+} = productApi;

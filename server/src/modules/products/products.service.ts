@@ -40,6 +40,7 @@ export class ProductsService {
   //FETCH PRODUCTS WITH TOP SALES using department_code/sub_department_code and count
   //////api/v1/product/topsales/:department_code/:count
   findTopSalesByDepartmentCode(department_code: String, count: number) {
+    console.log(typeof count);
     //Fetching data for a department.
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       return this.prisma.product.findMany({
@@ -71,7 +72,7 @@ export class ProductsService {
             total_sales: 'desc',
           },
         ],
-        take: Number(count),
+        take: 10,
       });
     }
   }

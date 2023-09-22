@@ -82,8 +82,6 @@ const Department: React.FC = ({}) => {
     }
   };
 
-  console.log("department");
-
   return (
     <div id="dashboard__department" className="flex justify-between  mt-[3rem]">
       <div

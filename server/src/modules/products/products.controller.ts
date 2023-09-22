@@ -15,11 +15,11 @@ export class ProductsController {
   @Get('/topsales/:department_code/:count')
   findTopSalesByDepartmentCode(
     @Param('department_code') department_code: String,
-    @Param('count') count: number,
+    @Param('count') count: any,
   ) {
     return this.productsService.findTopSalesByDepartmentCode(
       department_code,
-      count,
+      Number(count),
     );
   }
 }
