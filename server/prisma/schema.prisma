@@ -53,6 +53,7 @@ model Product {
   in_transit          Boolean  @default(false)
   sub_department_code String   @default("XXXXXX")
   department_code     String   @default("XXXXXX")
+  total_sales         Int      @default(0)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }

@@ -1,30 +1,32 @@
+import * as React from "react";
 import { useGetStockAlertProductByDepartmentCodeQuery } from "../../../services/product";
 import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
-import {
-  DepartmentDataType,
-  ProductDataType,
-  StockAlertType,
-} from "../utils/types";
+import { ProductDataType } from "../utils/types";
+import { useSelector } from "react-redux";
 
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
-//////PROPS:
-//////productData = List of products with stock alerts.
-//////productError = Any error that came while fetching data.
-//////productIsLoading = Boolean value which is true when data is being fetch.
-const StockAlerts: React.FC<StockAlertType> = ({ departmentData }) => {
+const StockAlerts: React.FC = () => {
+  //Extracting the current active department from the store
+  const currentDepartment = useSelector(
+    (state: any) => state?.activeDepartment
+  );
+
+  //Executing hook to fetch stock alert products using department_code/sub_department_code
+  /////The code is used from currentDepartment which is fetched from redux store.
+  /////It is written as "department_code" but can also have the value of sub_department_code.
   const {
     data: productData,
     error: productError,
     isLoading: productIsLoading,
   } = useGetStockAlertProductByDepartmentCodeQuery(
-    departmentData?.department_code
+    currentDepartment?.department_code
   );
 
   return (
     <div id="dashboard__stockalerts">
       <div
-        className=" max-w-[80rem] h-[31.5rem] bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom overflow-auto"
+        className=" max-w-[80rem] h-[31.5rem] bg-white  ml-[6rem] rounded-custom shadow-custom overflow-auto"
         style={productIsLoading ? SKELETON_STYLES : {}}>
         {!productIsLoading && (
           <>
@@ -71,4 +73,4 @@ const StockAlerts: React.FC<StockAlertType> = ({ departmentData }) => {
   );
 };
 
-export default StockAlerts;
+export default React.memo(StockAlerts);
