@@ -6,3 +6,5 @@ export const SUBDEPARTMENT_CODES_STARTINGS = {
   BAKERY: 'BAK',
   DIARY_FROZEN: 'DIA',
 };
+
+export const STOCK_ALERT_TAKE = 8;
