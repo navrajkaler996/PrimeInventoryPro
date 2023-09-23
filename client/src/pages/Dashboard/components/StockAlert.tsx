@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useRef } from "react";
 import { useGetStockAlertProductByDepartmentCodeQuery } from "../../../services/product";
 import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
 import { ProductDataType } from "../utils/types";
@@ -7,6 +8,8 @@ import { useSelector } from "react-redux";
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
 const StockAlerts: React.FC = () => {
+  const ref = useRef();
+
   //Extracting the current active department from the store
   const currentDepartment = useSelector(
     (state: any) => state?.activeDepartment
@@ -22,6 +25,10 @@ const StockAlerts: React.FC = () => {
   } = useGetStockAlertProductByDepartmentCodeQuery(
     currentDepartment?.department_code
   );
+
+  React.useEffect(() => {
+    console.log(ref);
+  }, [productData]);
 
   return (
     <div id="dashboard__stockalerts">
@@ -46,7 +53,27 @@ const StockAlerts: React.FC = () => {
                   {productData &&
                     productData?.length > 0 &&
                     productData?.map(
-                      (product: ProductDataType["productData"]) => {
+                      (product: ProductDataType["productData"], i) => {
+                        if (i === productData.length - 1) {
+                          return (
+                            <tr
+                              className="mt-[4rem]"
+                              key={product.product_code}
+                              ref={ref}>
+                              <td className="pt-3">{product.product_name}</td>
+                              <td className="pt-3">{product.product_code}</td>
+                              <td className="pt-3">
+                                {product.sub_department_code}
+                              </td>
+                              <td className="pt-3">{product.total_quantity}</td>
+                              <td className="pt-3">{product.cap}</td>
+                              <td className="pt-3">
+                                {product.cap - product.total_quantity}
+                              </td>
+                            </tr>
+                          );
+                        }
+
                         return (
                           <tr className="mt-[4rem]" key={product.product_code}>
                             <td className="pt-3">{product.product_name}</td>

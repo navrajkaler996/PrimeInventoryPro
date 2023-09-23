@@ -11,7 +11,7 @@ export class ProductsService {
 
   //FETCH All PRODUCTS IN THE DEPARTMENT WHERE stock_alert IS true USING department_code OR sub_department_code
   //////api/v1/product/stockalert/:department_code
-  findByDepartmentCode(department_code: String) {
+  findByDepartmentCode(department_code: String, page: String) {
     //Fetching data for a department.
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       return this.prisma.product.findMany({
@@ -19,6 +19,8 @@ export class ProductsService {
           department_code: department_code?.toUpperCase(),
           product_stock_alert: true,
         },
+        skip: Number(page) * 2,
+        take: 2,
       });
     }
     //Fetching data for a subdepartment.
@@ -33,6 +35,8 @@ export class ProductsService {
           sub_department_code: department_code?.toUpperCase(),
           product_stock_alert: true,
         },
+        skip: Number(page) * 10,
+        take: Number(page),
       });
     }
   }
@@ -40,7 +44,6 @@ export class ProductsService {
   //FETCH PRODUCTS WITH TOP SALES using department_code/sub_department_code and count
   //////api/v1/product/topsales/:department_code/:count
   findTopSalesByDepartmentCode(department_code: String, count: number) {
-    console.log(typeof count);
     //Fetching data for a department.
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       return this.prisma.product.findMany({
