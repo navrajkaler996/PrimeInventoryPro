@@ -1,34 +1,58 @@
 import * as React from "react";
-import { useRef } from "react";
-import { useGetStockAlertProductByDepartmentCodeQuery } from "../../../services/product";
+import { useRef, useState, useCallback, RefObject } from "react";
 import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
 import { ProductDataType } from "../utils/types";
-import { useSelector } from "react-redux";
+import useStockAlert from "../hooks/useStockAlert";
+import StockAlertSkeleton from "./StockAlertSkeleton";
+import { DepartmentState } from "../../../features/departmentSlice";
 
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
-const StockAlerts: React.FC = () => {
-  const ref = useRef();
+const StockAlerts: React.FC<{
+  currentDepartment: DepartmentState["activeDepartment"];
+}> = ({ currentDepartment }) => {
+  if (!currentDepartment?.department_code) return <StockAlertSkeleton />;
 
-  //Extracting the current active department from the store
-  const currentDepartment = useSelector(
-    (state: any) => state?.activeDepartment
-  );
+  const observer: RefObject<IntersectionObserver | null> = useRef(null);
 
-  //Executing hook to fetch stock alert products using department_code/sub_department_code
+  const [cursor, setCursor] = useState(undefined);
+
+  //Executing the custom hook to fetch stock alert products using department_code/sub_department_code
   /////The code is used from currentDepartment which is fetched from redux store.
   /////It is written as "department_code" but can also have the value of sub_department_code.
-  const {
-    data: productData,
-    error: productError,
-    isLoading: productIsLoading,
-  } = useGetStockAlertProductByDepartmentCodeQuery(
-    currentDepartment?.department_code
+  const { productData, productError, productIsLoading } = useStockAlert(
+    currentDepartment.department_code,
+    cursor
   );
 
+  const lastProductId = useRef();
+
   React.useEffect(() => {
-    console.log(ref);
+    if (productData?.length > 7) {
+      lastProductId.current = productData[productData?.length - 1].product_id;
+    }
   }, [productData]);
+
+  React.useEffect(() => {}, [currentDepartment]);
+
+  const lastProduct = useCallback(
+    (node: HTMLElement | null) => {
+      if (productIsLoading) return;
+      let currentObserver = observer.current as IntersectionObserver | null;
+      if (currentObserver) currentObserver?.disconnect();
+
+      currentObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          if (lastProductId) {
+            setCursor(lastProductId.current);
+          }
+        }
+      });
+
+      if (node) currentObserver.observe(node);
+    },
+    [productIsLoading]
+  );
 
   return (
     <div id="dashboard__stockalerts">
@@ -53,13 +77,13 @@ const StockAlerts: React.FC = () => {
                   {productData &&
                     productData?.length > 0 &&
                     productData?.map(
-                      (product: ProductDataType["productData"], i) => {
-                        if (i === productData.length - 1) {
+                      (product: ProductDataType["productData"], i: number) => {
+                        if (i + 1 === productData.length) {
                           return (
                             <tr
                               className="mt-[4rem]"
                               key={product.product_code}
-                              ref={ref}>
+                              ref={(node) => lastProduct(node)}>
                               <td className="pt-3">{product.product_name}</td>
                               <td className="pt-3">{product.product_code}</td>
                               <td className="pt-3">
