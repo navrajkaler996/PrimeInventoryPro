@@ -30,7 +30,7 @@ const useStockAlert = (
       .then((data) => {
         //If returned products are less than 8 and its the first API call
         /////This means, department has been changed from the dropdown
-        if (cursor === undefined && data.length < 7) {
+        if (cursor === undefined && data.length < 11) {
           setProducts(data);
         } else {
           setProducts((prevProducts) => {

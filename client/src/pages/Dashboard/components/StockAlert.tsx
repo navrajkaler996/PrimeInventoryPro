@@ -46,7 +46,7 @@ const StockAlerts: React.FC<{}> = () => {
 
   //Updating the lastProductId whenever productData changes.
   useEffect(() => {
-    if (productData?.length > 7) {
+    if (productData?.length > 11) {
       lastProductId.current =
         productData[productData?.length - 1]["product_id"];
     } else {
@@ -76,7 +76,7 @@ const StockAlerts: React.FC<{}> = () => {
 
   return (
     <div id="dashboard__stockalerts" className="flex justify-center ">
-      <div className="max-w-[80rem] w-[90%] h-[31.5rem] lg:ml-[6rem] bg-white  rounded-custom shadow-custom overflow-auto">
+      <div className="max-w-[80rem] w-[90%] h-[38rem] lg:ml-[6rem] bg-white  rounded-custom shadow-custom overflow-auto">
         <>
           {" "}
           <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Stock alert</h1>
