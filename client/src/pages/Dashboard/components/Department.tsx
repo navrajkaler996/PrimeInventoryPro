@@ -83,9 +83,11 @@ const Department: React.FC = ({}) => {
   };
 
   return (
-    <div id="dashboard__department" className="flex justify-between  mt-[3rem]">
+    <div
+      id="dashboard__department"
+      className="flex lg:justify-between md:justify-between mt-[3rem]">
       <div
-        className="relative flex bg-white items-center w-[35rem] h-[8rem] ml-[8rem] shadow-custom"
+        className="relative flex bg-white items-center w-[35rem] md:w-[28rem] h-[8rem] lg:ml-[8rem] md:ml-[9rem] shadow-custom"
         style={departmentIsLoading ? SKELETON_STYLES : {}}>
         <img
           src={getDepartmentImage(departmentData?.department_name)}
@@ -102,12 +104,12 @@ const Department: React.FC = ({}) => {
           {departmentData?.direct_supervisor}
         </p>
       </div>
-      <div>
+      <div className="mr-[5rem]">
         <p className="w-[min-content] text-[1.2em] mb-[.5rem] tracking-[2.5px]">
           {departmentData?.department_name}
         </p>
         <select
-          className="w-[30rem] h-[3rem] bg-white  mr-[8rem] shadow-custom pl-[5px] capitalize"
+          className="w-[30rem] md:w-[20rem] h-[3rem] bg-white  lg:mr-[8rem] shadow-custom pl-[5px] capitalize"
           style={subDepartmentIsLoading ? SKELETON_STYLES : {}}
           onChange={(e) => subDepartmentChangeHandler(e.currentTarget.value)}>
           {!subDepartmentIsLoading &&

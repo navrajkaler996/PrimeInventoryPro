@@ -11,15 +11,15 @@ import TopSellings from "./components/TopSellings";
 
 const Dashboard: React.FC = () => {
   return (
-    <div id="dashboard-container" className="max-w-full">
+    <div id="dashboard-container" className="lg:max-w-full md:w-full">
       <DepartmentDescription />
       <Calculations />
-      <div className="grid grid-cols-[2fr,1fr] mt-[7rem]">
+      {/* <div className="grid grid-cols-[2fr,1fr] mt-[7rem]">
         <StockAlerts />
 
         <TopSellings />
       </div>
-      <Chart />
+      <Chart /> */}
     </div>
   );
 };
