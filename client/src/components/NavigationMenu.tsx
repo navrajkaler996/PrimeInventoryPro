@@ -13,7 +13,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
   active,
 }) => {
   return (
-    <div className="flex flex-col">
+    <div className="hidden md:flex flex-col ">
       <div
         id="dashboard"
         className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary"

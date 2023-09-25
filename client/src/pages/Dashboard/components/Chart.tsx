@@ -27,8 +27,8 @@ export const Chart: React.FC = () => {
   );
 
   return (
-    <div id="dashboard__charts">
-      <div className="max-w-[80rem] h-auto bg-white mt-[7rem] ml-[6rem] rounded-custom shadow-custom">
+    <div id="dashboard__charts" className="flex justify-center ">
+      <div className="max-w-[80rem] w-[90%] h-auto bg-white lg:ml-[6rem] rounded-custom shadow-custom">
         <div className="flex justify-between items-center ">
           <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">{displayValue}</h1>
           <img
@@ -46,7 +46,7 @@ export const Chart: React.FC = () => {
         <hr className="m-[1.5rem] text-gray" />
         <div className="flex justify-center">
           <Bar
-            style={{ padding: "0 2rem" }}
+            style={{ padding: "0 2rem", height: "31.5rem", maxHeight: "100%" }}
             data={
               displayValue === CHART_HEADINGS.SALES_AND_EXPENSES
                 ? chartSalesAndExpensesData
