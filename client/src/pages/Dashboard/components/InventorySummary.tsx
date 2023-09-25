@@ -5,8 +5,8 @@ const InventorySummary: React.FC = () => {
   return (
     <div
       id="dashboard__inventory-summary"
-      className="flex flex-col lg:justify-around md:justify-start sm:items-center lg:mt-[-4rem] lg:mb-[-4rem] lg:ml-[12rem] md:ml-[0rem] md:mr-[5rem]">
-      <div className="flex justify-between items-center max-w-full lg:w-[27rem] md:w-[100%] md:m-w-[25rem] sm:w-[35rem] h-[6rem] pl-[1.5rem] pr-[1.5rem] md:mt-[0] sm:mt-[5rem] bg-white rounded-custom shadow-custom">
+      className="flex flex-col lg:justify-around md:justify-start items-center lg:mt-[-4rem] lg:mb-[-4rem] lg:ml-[12rem] md:ml-[0rem] md:mr-[5rem]">
+      <div className="flex justify-between items-center max-w-full lg:w-[27rem] w-[80%] md:w-[100%] md:m-w-[25rem] sm:w-[35rem] h-[6rem] pl-[1.5rem] pr-[1.5rem] mt-[4rem] md:mt-[0]  bg-white rounded-custom shadow-custom">
         <p className="text-center">
           <span className="tracking-[1.5px]">
             <strong>Quantity </strong>
@@ -17,7 +17,7 @@ const InventorySummary: React.FC = () => {
           {currentDepartment.total_products_quantity}
         </p>
       </div>
-      <div className="flex justify-between items-center max-w-full lg:w-[27rem]md:w-[100%] md:m-w-[25rem] sm:w-[35rem] h-[6rem] pl-[1.5rem] pr-[1.5rem] lg:mt-0 md:mt-[6.5rem] sm:mt-[5rem] bg-white rounded-custom shadow-custom">
+      <div className="flex justify-between items-center max-w-full lg:w-[27rem] w-[80%] md:w-[100%] md:m-w-[25rem] sm:w-[35rem] h-[6rem] pl-[1.5rem] pr-[1.5rem] lg:mt-0 mt-[4rem] md:mt-[6.5rem] bg-white rounded-custom shadow-custom">
         <p className="text-center">
           <span className="tracking-[1.5px]">
             <strong>Quantity </strong>
