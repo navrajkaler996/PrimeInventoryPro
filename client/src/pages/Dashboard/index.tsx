@@ -16,6 +16,7 @@ const Dashboard: React.FC = () => {
       <Calculations />
       <div className="grid grid-cols-[2fr,1fr] mt-[7rem]">
         <StockAlerts />
+
         <TopSellings />
       </div>
       <Chart />

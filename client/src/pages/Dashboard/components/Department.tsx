@@ -7,7 +7,7 @@ import Bakery from "../../../assets/departments/bakery.png";
 
 //Importing utilities
 import { SKELETON_STYLES } from "../../../utils/constants";
-import { DepartmentDataType, SubDepartmentType } from "../utils/types";
+import { SubDepartmentType } from "../utils/types";
 import { useGetByDepartmentCodeQuery } from "../../../services/department";
 import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../../services/subdepartment";
 import { createCurrentDepartment } from "../utils/dashboardUtils";

@@ -38,6 +38,7 @@ export interface DepartmentDataType {
 export interface ProductDataType {
   //Type for a single product
   productData: {
+    product_id: number;
     product_name: string;
     product_code: string;
     price: number;
