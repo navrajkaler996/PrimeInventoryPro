@@ -7,20 +7,20 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     //API to fetch products using department_code/sub_department_code where stock_alert is true.
+    /////Not in use
     getStockAlertProductByDepartmentCode: builder.query({
       query: ({ departmentCode, cursor }) =>
         `/stockalert/${departmentCode}/${cursor}`,
 
-      keepUnusedDataFor: 0,
-
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      merge: (currentCache, newItems) => {
+      merge: (currentCache, newItems, otherArgs) => {
         if (currentCache) {
           return [...currentCache, ...newItems];
         } else return [...newItems];
       },
+
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
