@@ -7,4 +7,4 @@ export const SUBDEPARTMENT_CODES_STARTINGS = {
   DIARY_FROZEN: 'DIA',
 };
 
-export const STOCK_ALERT_TAKE = 8;
+export const STOCK_ALERT_TAKE = 12;
