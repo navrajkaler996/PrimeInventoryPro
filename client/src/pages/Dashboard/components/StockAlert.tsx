@@ -75,14 +75,14 @@ const StockAlerts: React.FC<{}> = () => {
   );
 
   return (
-    <div id="dashboard__stockalerts">
-      <div className=" max-w-[80rem] h-[31.5rem] bg-white  ml-[6rem] rounded-custom shadow-custom overflow-auto">
+    <div id="dashboard__stockalerts" className="flex justify-center ">
+      <div className="max-w-[80rem] w-[90%] h-[31.5rem] lg:ml-[6rem] bg-white  rounded-custom shadow-custom overflow-auto">
         <>
           {" "}
           <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Stock alert</h1>
           <hr className="m-[1.5rem] text-gray" />
           <div>
-            <table className="table-fixed w-[100%] border-seperate border-spacing-y-3">
+            <table className="table-auto w-[100%] text-[.7em] md:text-[1em] border-seperate border-spacing-y-3">
               <thead className="sticky top-0 bg-white">
                 <tr>
                   {stockAlertKeys?.map((key, index) => (

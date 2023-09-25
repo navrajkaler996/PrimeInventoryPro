@@ -14,12 +14,15 @@ const Dashboard: React.FC = () => {
     <div id="dashboard-container" className="lg:max-w-full md:w-full w-full">
       <DepartmentDescription />
       <Calculations />
-      {/* <div className="grid grid-cols-[2fr,1fr] mt-[7rem]">
+      <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">
         <StockAlerts />
 
         <TopSellings />
       </div>
-      <Chart /> */}
+      <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">
+        <Chart />
+        <div>Component</div>
+      </div>
     </div>
   );
 };

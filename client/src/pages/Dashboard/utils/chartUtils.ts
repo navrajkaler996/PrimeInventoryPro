@@ -1,7 +1,7 @@
 //Options that are passed as props to the Bar component
 export const chartOptions = {
   responsive: true,
-  maintainAspectRatio: true,
+  maintainAspectRatio: false,
   scales: {
     x: {
       stacked: false,

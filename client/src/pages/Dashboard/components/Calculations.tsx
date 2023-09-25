@@ -23,7 +23,7 @@ const Calculations: React.FC = () => {
           return (
             <div
               key={index}
-              className="w-[70%] md:max-w-full flex lg:justify-center md:justify-around items-center relative lg:w-[28rem] md:w-[35rem]  sm:w-[28rem] h-[13rem] bg-white lg:ml-[4rem] md:ml-[0] mb-[3rem] last:mb-[0] md:mb-[3rem] md:last:mb-[0]  rounded-custom shadow-custom">
+              className="w-[70%] md:max-w-full flex lg:justify-center md:justify-around items-center relative lg:w-[28rem] md:w-[35rem]  sm:w-[28rem] h-[13rem] bg-white lg:ml-[4rem] md:ml-[0] mb-[3rem] last:mb-[0] md:mb-[3rem] md:last:mb-[0] lg:mb-[0]  rounded-custom shadow-custom">
               <img src={getImage(item.type)} className="w-[8rem] h-[8rem]" />
               <div className="flex flex-col ml-[2rem]">
                 <p>{item.type}</p>
