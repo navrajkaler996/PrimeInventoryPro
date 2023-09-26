@@ -22,3 +22,14 @@ export const SKELETON_STYLES = {
   animation: "custom-pulse .8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
   opacity: "1",
 };
+
+export const CURRENT_PRODUCTS_KEYS = [
+  "id",
+  "name",
+  "code",
+  "price",
+  "total quantity",
+  "in transit",
+  "department code",
+  "total sales",
+];
