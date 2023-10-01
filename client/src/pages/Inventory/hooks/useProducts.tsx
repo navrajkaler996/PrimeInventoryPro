@@ -6,8 +6,10 @@ import { API_ENDPOINTS } from "../../../utils/constants";
 const useProducts = (
   departmentCode: String | null,
   cursor: Number | undefined,
-  count: Number | 0,
-  options: Object = {}
+  count: number | 0,
+  options: {
+    api: string;
+  }
 ) => {
   //State to store products
   const [products, setProducts] = useState<ProductDataType["productData"][]>(
@@ -33,10 +35,14 @@ const useProducts = (
     //Error is false when API is called.
     setError(false);
     //Variable to store the API URL
-    let productURL = `${API_ENDPOINTS.product_development}/${departmentCode}/${cursor}/${count}`;
+    let productURL;
     //If options are provided, productURL will be changed.
     if (Object.keys(options)?.length > 0) {
+      productURL = `${API_ENDPOINTS.product_development}/${options.api}/${departmentCode}/${cursor}/${count}`;
+    } else {
+      productURL = `${API_ENDPOINTS.product_development}/${departmentCode}/${cursor}/${count}`;
     }
+    console.log("url", productURL);
 
     //Using fetch to make an API call.
     fetch(productURL, {

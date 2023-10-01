@@ -7,14 +7,16 @@ export class ProductsController {
 
   //FETCH All PRODUCTS IN THE DEPARTMENT WHERE stock_alert IS true USING department_code
   //////api/v1/product/stockalert/:department_code
-  @Get('/stockalert/:department_code/:cursor')
+  @Get('/stockalert/:department_code/:cursor/:count')
   findStockAlertByDepartmentCode(
     @Param('department_code') department_code: String,
     @Param('cursor') cursor: String | undefined,
+    @Param('count') count: number,
   ) {
     return this.productsService.findStockAlertByDepartmentCode(
       department_code,
       cursor,
+      count,
     );
   }
 

@@ -39,3 +39,4 @@ export const API_ENDPOINTS = {
 };
 
 export const PRODUCT_COUNT = 15;
+export const STOCK_ALERT_PRODUCT_COUNT = 12;

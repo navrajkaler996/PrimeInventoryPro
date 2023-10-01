@@ -11,19 +11,21 @@ import {
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
-  //FETCH All PRODUCTS IN THE DEPARTMENT WHERE stock_alert IS true USING department_code OR sub_department_code
-  //////api/v1/product/stockalert/:department_code/:cursor
+  //FETCH PRODUCTS IN THE DEPARTMENT WHERE stock_alert IS true USING department_code OR sub_department_code AND count
+  //////api/v1/product/stockalert/:department_code/:cursor/:count
   findStockAlertByDepartmentCode(
     department_code: String,
     cursor: any | undefined,
+    count: number,
   ) {
+    console.log(count, typeof count);
     //If cursor is available.
     //It won't be available for the first API call.
     if (cursor != 'undefined') {
       //Fetching data for a department.
       if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
         return this.prisma.product.findMany({
-          take: STOCK_ALERT_TAKE,
+          take: Number(count),
           skip: 1,
           cursor: {
             product_id: Number(cursor),
@@ -43,7 +45,7 @@ export class ProductsService {
         department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.DIARY_FROZEN)
       ) {
         return this.prisma.product.findMany({
-          take: STOCK_ALERT_TAKE,
+          take: Number(count),
           skip: 1,
           cursor: {
             product_id: Number(cursor),
@@ -64,7 +66,7 @@ export class ProductsService {
             department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
           },
-          take: STOCK_ALERT_TAKE,
+          take: Number(count),
         });
       }
 
@@ -80,7 +82,7 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
           },
-          take: STOCK_ALERT_TAKE,
+          take: Number(count),
         });
       }
     }

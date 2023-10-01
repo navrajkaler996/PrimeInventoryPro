@@ -9,8 +9,13 @@ import useStockAlert from "../hooks/useStockAlert";
 import { DepartmentState } from "../../../features/departmentSlice";
 
 //Importing utilities
-import { SKELETON_STYLES, stockAlertKeys } from "../../../utils/constants";
+import {
+  SKELETON_STYLES,
+  STOCK_ALERT_PRODUCT_COUNT,
+  stockAlertKeys,
+} from "../../../utils/constants";
 import { ProductDataType } from "../utils/types";
+import useProducts from "../../Inventory/hooks/useProducts";
 
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
@@ -34,12 +39,28 @@ const StockAlerts: React.FC<{}> = () => {
   }, [currentDepartment?.department_code]);
 
   //Using useStockAlert custom hook to fetch the list of products.
+  // const {
+  //   loading: productIsLoading,
+  //   error: productError,
+  //   products: productData,
+  //   hasMore,
+  // } = useStockAlert(currentDepartment.department_code, cursor);xp
+
   const {
+    products: productData,
     loading: productIsLoading,
     error: productError,
-    products: productData,
     hasMore,
-  } = useStockAlert(currentDepartment.department_code, cursor);
+  } = useProducts(
+    currentDepartment?.department_code,
+    cursor,
+    STOCK_ALERT_PRODUCT_COUNT,
+    {
+      api: "stockalert",
+    }
+  );
+
+  console.log("----", productData);
 
   //Tracking the product_id of the last rendered product for cursor.
   const lastProductId = useRef<number | undefined>();
@@ -141,4 +162,3 @@ const StockAlerts: React.FC<{}> = () => {
 };
 
 export default React.memo(StockAlerts);
- 
