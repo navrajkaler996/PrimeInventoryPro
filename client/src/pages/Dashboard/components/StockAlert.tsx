@@ -141,3 +141,4 @@ const StockAlerts: React.FC<{}> = () => {
 };
 
 export default React.memo(StockAlerts);
+ 

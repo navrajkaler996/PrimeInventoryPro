@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { take } from 'rxjs';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   DEPARTMENT_CODES_STARTING,
@@ -12,7 +13,10 @@ export class ProductsService {
 
   //FETCH All PRODUCTS IN THE DEPARTMENT WHERE stock_alert IS true USING department_code OR sub_department_code
   //////api/v1/product/stockalert/:department_code/:cursor
-  findByDepartmentCode(department_code: String, cursor: any | undefined) {
+  findStockAlertByDepartmentCode(
+    department_code: String,
+    cursor: any | undefined,
+  ) {
     //If cursor is available.
     //It won't be available for the first API call.
     if (cursor != 'undefined') {
@@ -118,6 +122,64 @@ export class ProductsService {
         ],
         take: 10,
       });
+    }
+  }
+
+  findProductsByDepartmentCode(
+    department_code: String,
+    cursor: any | undefined,
+    count: Number,
+  ) {
+    if (cursor != 'undefined') {
+      if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
+        return this.prisma.product.findMany({
+          where: {
+            department_code: department_code?.toUpperCase(),
+          },
+          skip: 1,
+          take: Number(count),
+          cursor: {
+            product_id: Number(cursor),
+          },
+        });
+      } else if (
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.MEATS) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.PRODUCE) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.BAKERY) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.DIARY_FROZEN)
+      ) {
+        return this.prisma.product.findMany({
+          where: {
+            sub_department_code: department_code?.toUpperCase(),
+          },
+          skip: 1,
+          take: Number(count),
+          cursor: {
+            product_id: Number(cursor),
+          },
+        });
+      }
+    } else {
+      if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
+        return this.prisma.product.findMany({
+          where: {
+            department_code: department_code?.toUpperCase(),
+          },
+          take: Number(count),
+        });
+      } else if (
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.MEATS) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.PRODUCE) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.BAKERY) ||
+        department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.DIARY_FROZEN)
+      ) {
+        return this.prisma.product.findMany({
+          where: {
+            sub_department_code: department_code?.toUpperCase(),
+          },
+          take: Number(count),
+        });
+      }
     }
   }
 }

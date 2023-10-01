@@ -7,7 +7,7 @@ import Inventory from "./pages/Inventory";
 
 function App() {
   //State to store the value of current view.
-  const [currentView, setCurrentView] = useState<string>("dashboard");
+  const [currentView, setCurrentView] = useState<string>("inventory");
 
   //Function to track which view is clicked from the navigation menu.
   const navigate = (view: string) => {
@@ -27,15 +27,13 @@ function App() {
   };
 
   return (
-   
-      <div className="max-w-full">
-        <Header />
-        <div id="content" className="flex flex-row w-[100%]">
-          <NavigationMenu navigate={navigate} active={currentView} />
-          {switchView()}
-        </div>
+    <div className="max-w-full">
+      <Header />
+      <div id="content" className="flex flex-row w-[100%]">
+        <NavigationMenu navigate={navigate} active={currentView} />
+        {switchView()}
       </div>
-
+    </div>
   );
 }
 

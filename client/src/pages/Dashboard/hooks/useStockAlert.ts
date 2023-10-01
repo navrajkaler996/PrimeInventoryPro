@@ -26,7 +26,7 @@ const useStockAlert = (
         method: "GET",
       }
     )
-      .then((response) => response.json())
+      .then((response) => response?.json())
       .then((data) => {
         //If returned products are less than 8 and its the first API call
         /////This means, department has been changed from the dropdown

@@ -23,7 +23,7 @@ export const SKELETON_STYLES = {
   opacity: "1",
 };
 
-export const CURRENT_PRODUCTS_KEYS = [
+export const TOTAL_PRODUCTS_KEYS = [
   "id",
   "name",
   "code",
@@ -33,3 +33,9 @@ export const CURRENT_PRODUCTS_KEYS = [
   "department code",
   "total sales",
 ];
+
+export const API_ENDPOINTS = {
+  product_development: "http://localhost:3000/api/v1/product",
+};
+
+export const PRODUCT_COUNT = 15;
