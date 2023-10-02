@@ -18,7 +18,6 @@ export class ProductsService {
     cursor: any | undefined,
     count: number,
   ) {
-    console.log(count, typeof count);
     //If cursor is available.
     //It won't be available for the first API call.
     if (cursor != 'undefined') {

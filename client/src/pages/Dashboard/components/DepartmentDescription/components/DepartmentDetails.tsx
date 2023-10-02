@@ -6,6 +6,7 @@ import Fresh from "../../../../../assets/departments/fresh.png";
 import Dairy from "../../../../../assets/departments/dairy.png";
 import Produce from "../../../../../assets/departments/produce.png";
 import Bakery from "../../../../../assets/departments/bakery.png";
+
 interface DepartmentDetails {
   departmentData: {
     createdAt: string;
@@ -43,7 +44,7 @@ const DepartmentDetails: React.FC<DepartmentDetails> = ({
   departmentIsLoading,
 }) => {
   //This function returns the image according to the active depertment/subdepartment.
-  const getDepartmentImage = (departmentName: String | undefined) => {
+  const getDepartmentImage = (departmentName: String | null) => {
     switch (departmentName) {
       case "fresh":
         return Fresh;
@@ -57,12 +58,13 @@ const DepartmentDetails: React.FC<DepartmentDetails> = ({
         return Dairy;
     }
   };
+
   return (
     <div
       className="relative flex bg-white items-center w-[80%] lg:w-[35rem] md:w-[28rem] h-[8rem] lg:ml-[8rem] md:ml-[9rem] shadow-custom"
       style={departmentIsLoading ? SKELETON_STYLES : {}}>
       <img
-        src={getDepartmentImage(departmentData?.department_name)}
+        src={getDepartmentImage(currentDepartment?.department_name)}
         className="h-[5rem] ml-[3rem]"
       />
       <div className="ml-[3rem] text-center">
@@ -70,10 +72,10 @@ const DepartmentDetails: React.FC<DepartmentDetails> = ({
           {currentDepartment?.department_name}
         </p>
         <hr className="mt-[.5rem mb-[.5rem]" />
-        <p>{departmentData?.department_code}</p>
+        <p>{currentDepartment?.department_code}</p>
       </div>
       <p className="text-[.8em] absolute bottom-[5px] right-[10px]">
-        {departmentData?.direct_supervisor}
+        {currentDepartment?.direct_supervisor}
       </p>
     </div>
   );

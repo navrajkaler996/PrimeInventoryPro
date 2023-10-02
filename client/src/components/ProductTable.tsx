@@ -1,5 +1,6 @@
-import { TOTAL_PRODUCTS_KEYS } from "../../../utils/constants";
-import { ProductDataType } from "../../Dashboard/utils/types";
+import * as React from "react";
+import { TOTAL_PRODUCTS_KEYS } from "../utils/constants";
+import { ProductDataType } from "../pages/Dashboard/utils/types";
 
 interface ProductTableType {
   productData: ProductDataType["productData"][];
@@ -7,7 +8,7 @@ interface ProductTableType {
   productError: Object;
   lastProduct: Function;
 }
-
+//
 const ProductTable: React.FC<ProductTableType> = ({
   productData,
   productIsLoading,
@@ -26,8 +27,7 @@ const ProductTable: React.FC<ProductTableType> = ({
         </thead>
 
         <tbody className="text-center capitalize">
-          {!productIsLoading &&
-            productData?.length > 0 &&
+          {productData?.length > 0 &&
             productData?.map(
               (product: ProductDataType["productData"], i: number) => {
                 if (i + 1 === productData.length) {
@@ -74,4 +74,4 @@ const ProductTable: React.FC<ProductTableType> = ({
   );
 };
 
-export default ProductTable;
+export default React.memo(ProductTable);

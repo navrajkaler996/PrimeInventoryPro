@@ -37,12 +37,11 @@ const useProducts = (
     //Variable to store the API URL
     let productURL;
     //If options are provided, productURL will be changed.
-    if (Object.keys(options)?.length > 0) {
+    if (Object.keys(options)?.length > 0 && options.api.length > 0) {
       productURL = `${API_ENDPOINTS.product_development}/${options.api}/${departmentCode}/${cursor}/${count}`;
     } else {
       productURL = `${API_ENDPOINTS.product_development}/${departmentCode}/${cursor}/${count}`;
     }
-    console.log("url", productURL);
 
     //Using fetch to make an API call.
     fetch(productURL, {
@@ -52,17 +51,17 @@ const useProducts = (
       .then((data) => {
         //This is for a special case when API returns less products than the cound value at its first call.
         /////There is no previous data, so no need to mere the incoming data with previous products.
-        if (cursor === undefined && data.length < count) {
+        if (cursor === undefined && data.length < count - 1) {
           setProducts(data);
         } else {
           setProducts((prevProducts) => {
             //Merging previous data with incoming data.
             return [...new Set([...prevProducts, ...data])];
           });
-
-          setHasMore(data.length > 0);
-          setLoading(false);
         }
+
+        setHasMore(data.length > 0);
+        setLoading(false);
       });
   }, [departmentCode, cursor]);
 
