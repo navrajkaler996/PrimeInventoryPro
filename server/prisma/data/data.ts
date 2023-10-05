@@ -9,6 +9,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 512, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Beef Ground Chuck',
@@ -20,6 +21,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 761, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Pork Tenderloin',
@@ -31,6 +33,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 398, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Lamb Chops',
@@ -42,6 +45,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 223, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Ground Turkey',
@@ -53,6 +57,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 618, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Salmon Fillet',
@@ -64,6 +69,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 787, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Bacon Strips',
@@ -75,6 +81,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 329, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Sausage Links',
@@ -86,6 +93,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 492, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Ribeye Steak',
@@ -97,6 +105,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 738, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Turkey Drumsticks',
@@ -108,6 +117,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 189, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Pork Ribs',
@@ -119,6 +129,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 523, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Sirloin Steak',
@@ -130,6 +141,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 265, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Ground Pork',
@@ -141,6 +153,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 873, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Chicken Wings',
@@ -152,6 +165,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 442, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Filet Mignon',
@@ -163,6 +177,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 589, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Ground Lamb',
@@ -174,6 +189,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 185, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Bison Steak',
@@ -185,6 +201,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 651, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Ham Slices',
@@ -196,6 +213,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 387, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Venison Chops',
@@ -207,6 +225,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 128, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Cornish Hens',
@@ -218,6 +237,7 @@ export const productsData = [
     sub_department_code: 'FRE001',
     department_code: 'DEP001',
     total_sales: 731, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Apples',
@@ -229,6 +249,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 279, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Bananas',
@@ -240,6 +261,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 147, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Carrots',
@@ -251,6 +273,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 625, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Oranges',
@@ -262,6 +285,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 194, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Broccoli',
@@ -269,10 +293,11 @@ export const productsData = [
     price: 1.49,
     total_quantity: 70, // Updated total_quantity
     cap: 30,
-    product_stock_alert: false, // Updated product_stock_alert
+    product_stock_alert: true, // Updated product_stock_alert
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 889, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Strawberries',
@@ -284,6 +309,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 332, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Grapes',
@@ -295,6 +321,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 718, // Random value between 100 and 1000
+    in_transit: true,
   },
   {
     product_name: 'Tomatoes',
@@ -306,6 +333,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 421, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Spinach',
@@ -317,6 +345,7 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 553, // Random value between 100 and 1000
+    in_transit: false,
   },
   {
     product_name: 'Cucumbers',
@@ -328,6 +357,127 @@ export const productsData = [
     sub_department_code: 'FRE002',
     department_code: 'DEP001',
     total_sales: 714, // Random value between 100 and 1000
+    in_transit: true,
+  },
+  {
+    product_name: 'Milk',
+    product_code: 'FREDAI001',
+    price: 2.99,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 761,
+    in_transit: true,
+  },
+  {
+    product_name: 'Cheese',
+    product_code: 'FREDAI002',
+    price: 4.49,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 483,
+    in_transit: true,
+  },
+  {
+    product_name: 'Frozen Pizza',
+    product_code: 'FREDAI003',
+    price: 5.99,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 529,
+    in_transit: true,
+  },
+  {
+    product_name: 'Yogurt',
+    product_code: 'FREDAI004',
+    price: 1.49,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 167,
+    in_transit: true,
+  },
+  {
+    product_name: 'Ice Cream',
+    product_code: 'FREDAI005',
+    price: 3.99,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 647,
+    in_transit: false,
+  },
+  {
+    product_name: 'Butter',
+    product_code: 'FREDAI006',
+    price: 2.29,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 223,
+    in_transit: false,
+  },
+  {
+    product_name: 'Frozen Vegetables',
+    product_code: 'FREDAI007',
+    price: 3.79,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 512,
+    in_transit: false,
+  },
+  {
+    product_name: 'Cream Cheese',
+    product_code: 'FREDAI008',
+    price: 2.99,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 421,
+    in_transit: false,
+  },
+  {
+    product_name: 'Frozen Dessert',
+    product_code: 'FREDAI009',
+    price: 4.99,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 321,
+    in_transit: false,
+  },
+  {
+    product_name: 'Cottage Cheese',
+    product_code: 'FREDAI010',
+    price: 2.49,
+    total_quantity: 150,
+    cap: 75,
+    product_stock_alert: true,
+    sub_department_code: 'FRE003',
+    department_code: 'DEP001',
+    total_sales: 289,
+    in_transit: false,
   },
 ];
 export const departmentData = [

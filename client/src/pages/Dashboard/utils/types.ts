@@ -47,6 +47,8 @@ export interface ProductDataType {
     product_stock_alert: boolean;
     sub_department_code: string;
     department_code: string;
+    in_transit: boolean;
+    total_sales: number;
   };
 }
 
