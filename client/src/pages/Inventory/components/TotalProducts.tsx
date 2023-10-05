@@ -82,7 +82,7 @@ const TotalProducts: React.FC = () => {
   ) : (
     <div
       id="inventory__total-products"
-      className="w-[95%] bg-white md:mt-[7rem] ml-[auto] mr-[auto] shadow-custom rounded-custom">
+      className="w-[95%] bg-white md:mt-[4rem] ml-[auto] mr-[auto] shadow-custom rounded-custom">
       <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Total Products</h1>
       <hr className="m-[1.5rem] text-gray" />
       <div className="h-[35rem] overflow-auto">
