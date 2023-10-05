@@ -40,8 +40,14 @@ async function main() {
     },
   });
 
+  const productDataLowerCase = productsData?.map((product) => {
+    return {
+      ...product,
+      product_name: product.product_name?.toLowerCase(),
+    };
+  });
   const freshProducts = await prisma.product.createMany({
-    data: productsData,
+    data: productDataLowerCase,
   });
 
   console.log({ deleteDepartments });

@@ -183,4 +183,14 @@ export class ProductsService {
       }
     }
   }
+
+  findProductsByKeyword(keyword: string) {
+    return this.prisma.product.findMany({
+      where: {
+        product_name: {
+          contains: keyword?.toLowerCase(),
+        },
+      },
+    });
+  }
 }

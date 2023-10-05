@@ -45,4 +45,9 @@ export class ProductsController {
       Number(count),
     );
   }
+
+  @Get('/:keyword')
+  findProductsByKeyword(@Param('keyword') keyword: string) {
+    return this.productsService.findProductsByKeyword(keyword);
+  }
 }
