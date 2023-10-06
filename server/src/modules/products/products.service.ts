@@ -3,6 +3,7 @@ import { take } from 'rxjs';
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   DEPARTMENT_CODES_STARTING,
+  SEARCH_BY_PRODUCT_CODE_REGEX,
   STOCK_ALERT_TAKE,
   SUBDEPARTMENT_CODES_STARTINGS,
 } from 'src/utils/constants';
@@ -179,6 +180,59 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
           },
           take: Number(count),
+        });
+      }
+    }
+  }
+
+  //FETCH PRODUCTS BY TYPING A keyword IN THE SEARCH BAR.
+  //////api/v1/product/search/:keyword
+  /////Search is performed either by product_name or product_code.
+  /////To search with product_code, entire value of the product_code is needed.
+  /////To search with product_name, at least one character is needed
+  findProductsByKeyword(keyword: string, department_code) {
+    //When searching using a department code
+    if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
+      if (SEARCH_BY_PRODUCT_CODE_REGEX.test(keyword)) {
+        return this.prisma.product.findMany({
+          where: {
+            department_code: department_code.toUpperCase(),
+            product_code: keyword,
+          },
+        });
+      } else {
+        return this.prisma.product.findMany({
+          where: {
+            department_code: department_code.toUpperCase(),
+            product_name: {
+              contains: keyword?.toLowerCase(),
+            },
+          },
+        });
+      }
+    }
+    //When search using a subdepartment's code
+    else if (
+      department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.MEATS) ||
+      department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.PRODUCE) ||
+      department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.BAKERY) ||
+      department_code?.startsWith(SUBDEPARTMENT_CODES_STARTINGS.DIARY_FROZEN)
+    ) {
+      if (SEARCH_BY_PRODUCT_CODE_REGEX.test(keyword)) {
+        return this.prisma.product.findMany({
+          where: {
+            sub_department_code: department_code,
+            product_code: keyword,
+          },
+        });
+      } else {
+        return this.prisma.product.findMany({
+          where: {
+            sub_department_code: department_code,
+            product_name: {
+              contains: keyword?.toLowerCase(),
+            },
+          },
         });
       }
     }

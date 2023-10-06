@@ -33,6 +33,16 @@ export class ProductsController {
     );
   }
 
+  //FETCH PRODUCTS BY TYPING A keyword IN THE SEARCH BAR.
+  //////api/v1/product/search/:keyword
+  @Get('/search/:keyword/:department_code/')
+  findProductsByKeyword(
+    @Param('keyword') keyword: string,
+    @Param('department_code') department_code: string,
+  ) {
+    return this.productsService.findProductsByKeyword(keyword, department_code);
+  }
+
   @Get('/:department_code/:cursor/:count')
   findProductsByDepartmentCode(
     @Param('department_code') department_code: String,

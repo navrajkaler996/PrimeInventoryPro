@@ -62,7 +62,6 @@ const Department: React.FC = ({}) => {
     dispatch(activeDepartment(currentDepartment));
   };
 
-  console.log("----", currentDepartment);
 
   return (
     <div

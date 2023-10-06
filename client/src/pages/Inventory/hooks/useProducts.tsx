@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { ProductDataType } from "../../Dashboard/utils/types";
 import { API_ENDPOINTS } from "../../../utils/constants";
 
-//CUSTOME HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
+//CUSTOM HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
 const useProducts = (
   departmentCode: String | null,
   cursor: Number | undefined,
   count: number | 0,
+  keyword: string | undefined,
   options: {
     api: string;
   }
@@ -38,32 +39,39 @@ const useProducts = (
     let productURL;
     //If options are provided, productURL will be changed.
     if (Object.keys(options)?.length > 0 && options.api.length > 0) {
-      productURL = `${API_ENDPOINTS.product_development}/${options.api}/${departmentCode}/${cursor}/${count}`;
+      if (options.api === "stockalert") {
+        productURL = `${API_ENDPOINTS.product_development}/${options.api}/${departmentCode}/${cursor}/${count}`;
+      }
+
+      if (options.api === "search" && keyword && keyword?.length > 0) {
+        productURL = `${API_ENDPOINTS.product_development}/${options.api}/${keyword}/${departmentCode}`;
+      }
     } else {
       productURL = `${API_ENDPOINTS.product_development}/${departmentCode}/${cursor}/${count}`;
     }
 
-    //Using fetch to make an API call.
-    fetch(productURL, {
-      method: "GET",
-    })
-      .then((response) => response?.json())
-      .then((data) => {
-        //This is for a special case when API returns less products than the cound value at its first call.
-        /////There is no previous data, so no need to mere the incoming data with previous products.
-        if (cursor === undefined && data.length < count - 1) {
-          setProducts(data);
-        } else {
-          setProducts((prevProducts) => {
-            //Merging previous data with incoming data.
-            return [...new Set([...prevProducts, ...data])];
-          });
-        }
-
-        setHasMore(data.length > 0);
-        setLoading(false);
-      });
-  }, [departmentCode, cursor]);
+    if (productURL) {
+      //Using fetch to make an API call.
+      fetch(productURL, {
+        method: "GET",
+      })
+        .then((response) => response?.json())
+        .then((data) => {
+          //This is for a special case when API returns less products than the cound value at its first call.
+          /////There is no previous data, so no need to mere the incoming data with previous products.
+          if (cursor === undefined && data.length < count - 1) {
+            setProducts(data);
+          } else {
+            setProducts((prevProducts) => {
+              //Merging previous data with incoming data.
+              return [...new Set([...prevProducts, ...data])];
+            });
+          }
+          setHasMore(data.length > 0);
+          setLoading(false);
+        });
+    }
+  }, [departmentCode, cursor, keyword]);
 
   return { products, loading, error, hasMore };
 };

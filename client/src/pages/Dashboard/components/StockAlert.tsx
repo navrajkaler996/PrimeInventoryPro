@@ -47,6 +47,7 @@ const StockAlerts: React.FC<{}> = () => {
     currentDepartment?.department_code,
     cursor,
     STOCK_ALERT_PRODUCT_COUNT,
+    "",
     {
       api: "stockalert",
     }
