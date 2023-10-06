@@ -1,6 +1,5 @@
 export const createCurrentDepartment = (departmentData: any) => {
   if (departmentData.sub_department_name) {
-    console.log(")))", departmentData.sub_department_manager);
     return {
       department_name: departmentData.sub_department_name,
       department_code: departmentData.sub_department_code,

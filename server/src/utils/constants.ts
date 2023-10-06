@@ -8,3 +8,5 @@ export const SUBDEPARTMENT_CODES_STARTINGS = {
 };
 
 export const STOCK_ALERT_TAKE = 12;
+
+export const SEARCH_BY_PRODUCT_CODE_REGEX = /^[A-Za-z]{6}\d{3}$/;

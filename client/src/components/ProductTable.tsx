@@ -2,7 +2,7 @@ import * as React from "react";
 import { ProductDataType } from "../pages/Dashboard/utils/types";
 
 interface ProductTableType {
-  productData: ProductDataType["productData"][];
+  productData: ProductDataType["productData"][] | undefined;
   productIsLoading: Boolean;
   productError: Object;
   options: any;
@@ -14,7 +14,6 @@ const ProductTable: React.FC<ProductTableType> = ({
   productError,
   options,
 }) => {
-  console.log("---o", Object.keys(options?.keys));
 
   return (
     <table className="table-auto w-[100%] text-[.7em] md:text-[1em] border-seperate border-spacing-y-3">
@@ -26,7 +25,8 @@ const ProductTable: React.FC<ProductTableType> = ({
       </thead>
 
       <tbody className="text-center capitalize">
-        {productData?.length > 0 &&
+        {productData &&
+          productData?.length > 0 &&
           productData?.map(
             (product: ProductDataType["productData"], i: number) => {
               if (i + 1 === productData.length) {

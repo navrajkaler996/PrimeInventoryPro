@@ -1,11 +1,5 @@
 import * as React from "react";
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-
-//Importing custom hooks
-import useProducts from "../hooks/useProducts";
-
-import { DepartmentState } from "../../../features/departmentSlice";
+import { RefObject, useCallback, useEffect, useRef } from "react";
 
 //Importing reusable components
 import ProductTable from "../../../components/ProductTable";
@@ -19,39 +13,28 @@ import {
 //Importing skeleton
 import ProductTableSkeleton from "./ProductTableSkeleton";
 
-const TotalProducts: React.FC = () => {
-  //Fetching active department
-  const currentDepartment: DepartmentState["activeDepartment"] = useSelector(
-    (state: any) => state?.activeDepartment
-  );
+//Importing types
+import { TotalProductsType } from "../utils/types";
 
+//RETURNS A TABLE WHICH LISTS ALL THE PRODUCTS IN THE ACTIVE DEPARTMENT OR SUBDEPARTMENT.
+//It uses the data fetch by useProduct custom hook. This hook is being used in the parent component.
+//Optimized using cursor-based infinite scroll.
+const TotalProducts: React.FC<TotalProductsType> = ({
+  productData,
+  productIsLoading,
+  productError,
+  hasMore,
+  cursor,
+  setCursor,
+}) => {
+  //Ref for IntersectionObserver
   const observer: RefObject<IntersectionObserver | null> = useRef(null);
 
-  const [cursor, setCursor] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    setCursor(undefined);
-  }, [currentDepartment?.department_code]);
-
-  const {
-    products: productData,
-    loading: productIsLoading,
-    error: productError,
-    hasMore,
-  } = useProducts(
-    currentDepartment?.department_code,
-    cursor,
-    TOTAL_PRODUCT_COUNT,
-    {
-      api: "",
-    }
-  );
-
-  //Tracking the product_id of the last rendered product for cursor.
+  //Ref to track the last product in the list.
   const lastProductId = useRef<number | undefined>();
 
   useEffect(() => {
-    if (productData?.length > TOTAL_PRODUCT_COUNT - 1) {
+    if (productData && productData?.length > TOTAL_PRODUCT_COUNT - 1) {
       lastProductId.current =
         productData[productData?.length - 1]["product_id"];
     } else lastProductId.current = -1;
