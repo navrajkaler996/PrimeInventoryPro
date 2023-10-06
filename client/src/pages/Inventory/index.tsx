@@ -14,6 +14,7 @@ import useProducts from "./hooks/useProducts";
 
 //Importing constants
 import { TOTAL_PRODUCT_COUNT } from "../../utils/constants";
+import AddToInventory from "./components/AddToInventory";
 
 //INVENTORY COMPONENT DISPLAYS EVERYTHING RELATED TO THE PRODUCTS IN THE INVENTORY
 const Inventory: React.FC = () => {
@@ -58,7 +59,8 @@ const Inventory: React.FC = () => {
   return (
     <div id="inventory__container" className="lg:max-w-full md:w-full w-full">
       <Department />
-      <div className="flex justify-end relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
+      <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
+        <AddToInventory />
         <SearchBar keyword={keyword} changeHandler={changeHandler} />
       </div>
       <TotalProducts
