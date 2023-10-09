@@ -1,7 +1,9 @@
-import { ChangeEvent, KeyboardEventHandler, useState } from "react";
+import { useState } from "react";
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
+import useAddProduct from "../../../../../hooks/useAddProduct";
+import { filterFormData } from "../../../../../utils/helpers";
 
 const departments = ["Fresh", "General Merchandise", "Recieving"];
 const FORM_NEXT_BUTTON_STYLES = {
@@ -59,8 +61,8 @@ const AddToInventoryForm: React.FC = () => {
       product_cap: false,
     },
   });
-  const [productDetailsDisabled, setProductDetailsDisabled] = useState(true);
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+
+  const { clickHandler } = useAddProduct();
 
   const changeHandler = (e: any) => {
     setForm((prevValue) => {
@@ -69,10 +71,6 @@ const AddToInventoryForm: React.FC = () => {
         [e.target.name]: e.target.value,
       };
     });
-  };
-
-  const clickHandler = (e: any) => {
-    e.preventDefault();
   };
 
   return (
@@ -229,7 +227,13 @@ const AddToInventoryForm: React.FC = () => {
                   form.product_cap > 0
                 )
               }
-              clickHandler={clickHandler}
+              clickHandler={(e: KeyboardEvent) => {
+                e.preventDefault();
+
+                let filteredFormData = filterFormData(Object.assign({}, form));
+
+                clickHandler(filteredFormData, { api: "add" });
+              }}
             />
           </div>
         </>

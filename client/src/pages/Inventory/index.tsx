@@ -11,7 +11,7 @@ import Button from "../../components/Button";
 import { DepartmentState } from "../../features/departmentSlice";
 
 //Importing hooks
-import useProducts from "./hooks/useProducts";
+import useProducts from "../../hooks/useProducts";
 
 //Importing constants
 import { TOTAL_PRODUCT_COUNT } from "../../utils/constants";

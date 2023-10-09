@@ -1,6 +1,10 @@
 import AddToInventoryForm from "./components/AddToInventoryForm";
 
 const AddToInventory: React.FC = () => {
+
+  
+
+
   return (
     <div
       id="inventory__add-to-inventory"

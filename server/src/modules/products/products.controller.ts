@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
 
 @Controller('/api/v1/product')
@@ -54,5 +54,10 @@ export class ProductsController {
       cursor,
       Number(count),
     );
+  }
+
+  @Post('/add')
+  add(@Body() body: any) {
+    return this.productsService.add(body);
   }
 }

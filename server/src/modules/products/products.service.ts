@@ -190,7 +190,7 @@ export class ProductsService {
   /////Search is performed either by product_name or product_code.
   /////To search with product_code, entire value of the product_code is needed.
   /////To search with product_name, at least one character is needed
-  findProductsByKeyword(keyword: string, department_code) {
+  findProductsByKeyword(keyword: string, department_code: string) {
     //When searching using a department code
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       if (SEARCH_BY_PRODUCT_CODE_REGEX.test(keyword)) {
@@ -236,5 +236,40 @@ export class ProductsService {
         });
       }
     }
+  }
+
+  async add(data: any) {
+    const response = await this.findLastProductCode('FRE001');
+    let lastProductCode;
+    if (response?.length > 0) {
+      lastProductCode = response[0].product_code;
+
+      let newProductCode =
+        lastProductCode.slice(0, 6) + (Number(lastProductCode.slice(-3)) + 1);
+
+      if (newProductCode.length < 9) {
+        newProductCode =
+          newProductCode.slice(0, 6) + 0 + newProductCode.slice(-2);
+      }
+
+      data.product_code = newProductCode;
+      return this.prisma.product.create({
+        data: data,
+      });
+    } else throw new Error('Product code could not be created');
+  }
+
+  async findLastProductCode(sub_department_code: string) {
+    const data = await this.prisma.product.findMany({
+      where: {
+        sub_department_code: sub_department_code,
+      },
+      orderBy: {
+        product_code: 'desc',
+      },
+      take: 1,
+    });
+
+    return data;
   }
 }

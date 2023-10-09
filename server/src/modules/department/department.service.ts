@@ -23,4 +23,13 @@ export class DepartmentsService {
       where: { department_code: department_code?.toUpperCase() },
     });
   }
+
+  listDepartments() {
+    return this.prisma.department.findMany({
+      select: {
+        department_code: true,
+        total_sub_departments: true,
+      },
+    });
+  }
 }

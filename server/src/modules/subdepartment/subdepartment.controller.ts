@@ -5,6 +5,12 @@ import { SubdepartmentService } from './subdepartment.service';
 export class SubdepartmentController {
   constructor(private readonly subdepartmentService: SubdepartmentService) {}
 
+  //HELPERS
+  @Get('/list')
+  listSubepartments() {
+    return this.subdepartmentService.listSubDepartments();
+  }
+
   //FETCH All DEPARTMENTS
   //////api/vi/subdepartment
   @Get()

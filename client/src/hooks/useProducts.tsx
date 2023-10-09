@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ProductDataType } from "../../Dashboard/utils/types";
-import { API_ENDPOINTS } from "../../../utils/constants";
+
+import { ProductDataType } from "../pages/Dashboard/utils/types";
+import { API_ENDPOINTS } from "../utils/constants";
 
 //CUSTOM HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
 const useProducts = (

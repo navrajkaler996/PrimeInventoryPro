@@ -18,4 +18,13 @@ export class SubdepartmentService {
       where: { department_code: department_code?.toUpperCase() },
     });
   }
+
+  listSubDepartments() {
+    return this.prisma.subDepartment.findMany({
+      select: {
+        sub_department_name: true,
+        sub_department_code: true,
+      },
+    });
+  }
 }

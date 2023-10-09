@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 //Importing custom hooks
 
-import useProducts from "../../Inventory/hooks/useProducts";
+import useProducts from "../../../hooks/useProducts";
 
 //Importing slice
 import { DepartmentState } from "../../../features/departmentSlice";
