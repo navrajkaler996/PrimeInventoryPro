@@ -47,7 +47,7 @@ model Product {
   product_name        String   @unique
   product_code        String   @unique
   price               Float
-  total_quantity      Int
+  total_quantity      Int      @default(0)
   cap                 Int
   product_stock_alert Boolean  @default(false)
   in_transit          Boolean  @default(false)

@@ -28,7 +28,7 @@ export class DepartmentsService {
     return this.prisma.department.findMany({
       select: {
         department_code: true,
-        total_sub_departments: true,
+        department_name: true,
       },
     });
   }

@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
 import useAddProduct from "../../../../../hooks/useAddProduct";
 import { filterFormData } from "../../../../../utils/helpers";
+import { useListDepartmentsQuery } from "../../../../../services/department";
+import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
+import FlashMessage from "../../../../../components/FlashMessage";
 
 const departments = ["Fresh", "General Merchandise", "Recieving"];
 const FORM_NEXT_BUTTON_STYLES = {
@@ -62,7 +65,27 @@ const AddToInventoryForm: React.FC = () => {
     },
   });
 
-  const { clickHandler } = useAddProduct();
+  const [departmentList, setDepartmentList] = useState();
+  const [subDepartmentList, setSubDepartmentList] = useState();
+
+  const {
+    clickHandler,
+    loading: addProductLoading,
+    requestStatus: addProductRequestStatus,
+    error: addProductError,
+  } = useAddProduct();
+
+  const {
+    data: departmentListData,
+    error: departmentListError,
+    isLoading: departmentListIsLoading,
+  } = useListDepartmentsQuery("");
+
+  const {
+    data: subDepartmentListData,
+    error: subDepartmentListError,
+    isLoading: subDepartmentListIsLoading,
+  } = useListSubDepartmentsQuery("");
 
   const changeHandler = (e: any) => {
     setForm((prevValue) => {
@@ -72,6 +95,34 @@ const AddToInventoryForm: React.FC = () => {
       };
     });
   };
+
+  useEffect(() => {
+    if (!departmentListIsLoading) {
+      setDepartmentList(
+        departmentListData.map((department: any) => department.department_name)
+      );
+    }
+  }, [departmentListIsLoading]);
+
+  useEffect(() => {
+    if (form?.product_department?.length > 0) {
+      let { department_code } = departmentListData.find((department: any) => {
+        if (department.department_name === form.product_department)
+          return department;
+      });
+
+      const requiredSubDepartments = subDepartmentListData.filter(
+        (subDepartment: any) =>
+          subDepartment.department_code === department_code
+      );
+
+      setSubDepartmentList(
+        requiredSubDepartments.map(
+          (subDepartment: any) => subDepartment.sub_department_name
+        )
+      );
+    }
+  }, [form?.product_department]);
 
   return (
     <form id="form" className="w-[90%] h-[100rem] mx-auto mb-[2rem]">
@@ -93,14 +144,14 @@ const AddToInventoryForm: React.FC = () => {
             <div id="form__product-department" className="mx-auto">
               <Select
                 label="product department"
-                options={departments}
+                options={departmentList ? departmentList : []}
                 changeHandler={changeHandler}
               />
             </div>
             <div id="form__product-subdepartment" className="mx-auto">
               <Select
                 label="product sub department"
-                options={departments}
+                options={subDepartmentList ? subDepartmentList : []}
                 changeHandler={changeHandler}
               />
             </div>
@@ -230,13 +281,23 @@ const AddToInventoryForm: React.FC = () => {
               clickHandler={(e: KeyboardEvent) => {
                 e.preventDefault();
 
-                let filteredFormData = filterFormData(Object.assign({}, form));
+                let filteredFormData = filterFormData(
+                  Object.assign({}, form),
+                  departmentListData,
+                  subDepartmentListData
+                );
 
                 clickHandler(filteredFormData, { api: "add" });
               }}
             />
           </div>
         </>
+        {addProductRequestStatus.status && (
+          <FlashMessage
+            message={addProductRequestStatus.message}
+            type={addProductRequestStatus.type}
+          />
+        )}
       </fieldset>
     </form>
   );

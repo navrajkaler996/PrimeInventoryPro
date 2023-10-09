@@ -45,3 +45,8 @@ export const API_ENDPOINTS = {
 
 export const TOTAL_PRODUCT_COUNT = 15;
 export const STOCK_ALERT_PRODUCT_COUNT = 12;
+
+export const FLASH_MESSAGE_TYPES = {
+  success: "#AAFF00",
+  failed: "#FF0000",
+};

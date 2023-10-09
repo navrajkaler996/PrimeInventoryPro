@@ -24,6 +24,7 @@ export class SubdepartmentService {
       select: {
         sub_department_name: true,
         sub_department_code: true,
+        department_code: true,
       },
     });
   }

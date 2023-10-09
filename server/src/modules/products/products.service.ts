@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { take } from 'rxjs';
+
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
   DEPARTMENT_CODES_STARTING,
   SEARCH_BY_PRODUCT_CODE_REGEX,
-  STOCK_ALERT_TAKE,
   SUBDEPARTMENT_CODES_STARTINGS,
 } from 'src/utils/constants';
 
@@ -239,24 +238,32 @@ export class ProductsService {
   }
 
   async add(data: any) {
-    const response = await this.findLastProductCode('FRE001');
-    let lastProductCode;
-    if (response?.length > 0) {
-      lastProductCode = response[0].product_code;
+    try {
+      const response = await this.findLastProductCode('FRE001');
+      let lastProductCode;
+      if (response?.length > 0) {
+        lastProductCode = response[0].product_code;
 
-      let newProductCode =
-        lastProductCode.slice(0, 6) + (Number(lastProductCode.slice(-3)) + 1);
+        let newProductCode =
+          lastProductCode.slice(0, 6) + (Number(lastProductCode.slice(-3)) + 1);
 
-      if (newProductCode.length < 9) {
-        newProductCode =
-          newProductCode.slice(0, 6) + 0 + newProductCode.slice(-2);
+        if (newProductCode.length < 9) {
+          newProductCode =
+            newProductCode.slice(0, 6) + 0 + newProductCode.slice(-2);
+        }
+
+        data.product_code = newProductCode;
+        const createdProduct = await this.prisma.product.create({
+          data: data,
+        });
+
+        return createdProduct;
       }
+    } catch (e) {
+      // return e;
 
-      data.product_code = newProductCode;
-      return this.prisma.product.create({
-        data: data,
-      });
-    } else throw new Error('Product code could not be created');
+      return e;
+    }
   }
 
   async findLastProductCode(sub_department_code: string) {
