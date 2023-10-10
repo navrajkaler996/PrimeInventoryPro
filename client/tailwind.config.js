@@ -9,6 +9,8 @@ export default {
       white: "#FFF",
       black: "#000",
       primary: "#0FF8FF",
+      btnPrimary: "#7FFE3C",
+      error: "#FF0000",
     },
 
     borderRadius: {

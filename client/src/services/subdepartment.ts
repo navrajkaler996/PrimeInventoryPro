@@ -9,7 +9,13 @@ export const subDepartmentApi = createApi({
     getSubDepartmentsByDepartmentCode: builder.query({
       query: (departmentCode) => `/${departmentCode}`,
     }),
+    listSubDepartments: builder.query({
+      query: () => `/list`,
+    }),
   }),
 });
 
-export const { useGetSubDepartmentsByDepartmentCodeQuery } = subDepartmentApi;
+export const {
+  useListSubDepartmentsQuery,
+  useGetSubDepartmentsByDepartmentCodeQuery,
+} = subDepartmentApi;

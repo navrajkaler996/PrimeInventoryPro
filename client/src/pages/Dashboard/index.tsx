@@ -4,8 +4,6 @@ import Chart from "./components/Chart";
 import DepartmentDescription from "./components/DepartmentDescription";
 import StockAlerts from "./components/StockAlert";
 
-//Importing action creators
-
 //Importing utilities
 import TopSellings from "./components/TopSellings";
 

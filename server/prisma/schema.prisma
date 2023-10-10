@@ -47,13 +47,18 @@ model Product {
   product_name        String   @unique
   product_code        String   @unique
   price               Float
-  total_quantity      Int
+  total_quantity      Int      @default(0)
   cap                 Int
   product_stock_alert Boolean  @default(false)
   in_transit          Boolean  @default(false)
   sub_department_code String   @default("XXXXXX")
   department_code     String   @default("XXXXXX")
   total_sales         Int      @default(0)
+  base_price          Int      @default(0)
+  selling_price       Int      @default(0)
+  manufacturer        String   @default("")
+  brand               String   @default("")
+  case_pack           Int      @default(0)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
