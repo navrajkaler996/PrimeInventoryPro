@@ -7,8 +7,9 @@ import { filterFormData } from "../../../../../utils/helpers";
 import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
 import FlashMessage from "../../../../../components/FlashMessage";
+import { FORM_VALIDATIONS } from "../../../../../utils/constants";
+import FormError from "../../../../../components/FormError";
 
-const departments = ["Fresh", "General Merchandise", "Recieving"];
 const FORM_NEXT_BUTTON_STYLES = {
   width: "30rem",
   height: "3.5rem",
@@ -138,6 +139,13 @@ const AddToInventoryForm: React.FC = () => {
                 type="text"
                 disabled={false}
               />
+
+              <FormError
+                value={form.product_name}
+                type="text"
+                name="product name"
+                validation={FORM_VALIDATIONS.name_min_length}
+              />
             </div>
           </div>
           <div id="form__row-2" className="w-[100%] grid grid-cols-2 mt-[3rem]">
@@ -176,6 +184,12 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+              />
+              <FormError
+                value={form.product_manufacturer}
+                type="text"
+                name="manufacturer name"
+                validation={FORM_VALIDATIONS.name_min_length}
               />
             </div>
             <div id="form__product-brand" className="mx-auto">

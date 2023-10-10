@@ -50,3 +50,7 @@ export const FLASH_MESSAGE_TYPES = {
   success: "#AAFF00",
   failed: "#FF0000",
 };
+
+export const FORM_VALIDATIONS = {
+  name_min_length: 5,
+};
