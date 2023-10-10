@@ -18,7 +18,7 @@ const TopSellings: React.FC = () => {
 
   const {
     data: topSellingData,
-    error: topSellingError,
+    error: _topSellingError,
     isLoading: topSellingIsLoading,
   } = useGetTopSellingProdcutsByDepartmentCodeQuery({
     departmentCode: currentDepartment?.department_code,

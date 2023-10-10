@@ -5,16 +5,17 @@ interface ProductTableType {
   productData: ProductDataType["productData"][] | undefined;
   productIsLoading: Boolean;
   productError: Object;
-  options: any;
+  options: {
+    lastProduct: any;
+    keys: string[];
+  };
 }
 //
 const ProductTable: React.FC<ProductTableType> = ({
   productData,
-  productIsLoading,
-  productError,
+
   options,
 }) => {
-
   return (
     <table className="table-auto w-[100%] text-[.7em] md:text-[1em] border-seperate border-spacing-y-3">
       <thead className="sticky top-0 bg-white">

@@ -15,7 +15,7 @@ export const productApi = createApi({
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
-      merge: (currentCache, newItems, otherArgs) => {
+      merge: (currentCache, newItems, _otherArgs) => {
         if (currentCache) {
           return [...currentCache, ...newItems];
         } else return [...newItems];
