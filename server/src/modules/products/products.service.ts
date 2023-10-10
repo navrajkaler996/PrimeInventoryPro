@@ -239,29 +239,31 @@ export class ProductsService {
 
   async add(data: any) {
     try {
-      const response = await this.findLastProductCode('FRE001');
+      const response = await this.findLastProductCode(data.sub_department_code);
       let lastProductCode;
       if (response?.length > 0) {
         lastProductCode = response[0].product_code;
-
+        console.log(lastProductCode);
         let newProductCode =
           lastProductCode.slice(0, 6) + (Number(lastProductCode.slice(-3)) + 1);
-
+        console.log(newProductCode);
         if (newProductCode.length < 9) {
           newProductCode =
             newProductCode.slice(0, 6) + 0 + newProductCode.slice(-2);
         }
 
         data.product_code = newProductCode;
+
         const createdProduct = await this.prisma.product.create({
           data: data,
         });
 
+        console.log(createdProduct);
         return createdProduct;
       }
     } catch (e) {
       // return e;
-
+      console.log(e);
       return e;
     }
   }

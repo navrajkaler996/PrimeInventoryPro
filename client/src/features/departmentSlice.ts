@@ -39,7 +39,7 @@ export const departmentSlice = createSlice({
   name: "department",
   initialState,
   reducers: {
-    activeDepartment: (state, action) => {
+    activeDepartment: (_state, action) => {
       return action.payload;
     },
   },

@@ -71,21 +71,21 @@ const AddToInventoryForm: React.FC = () => {
 
   const {
     clickHandler,
-    loading: addProductLoading,
+    loading: _addProductLoading,
     requestStatus: addProductRequestStatus,
-    error: addProductError,
+    error: _addProductError,
   } = useAddProduct();
 
   const {
     data: departmentListData,
-    error: departmentListError,
+    error: _departmentListError,
     isLoading: departmentListIsLoading,
   } = useListDepartmentsQuery("");
 
   const {
     data: subDepartmentListData,
-    error: subDepartmentListError,
-    isLoading: subDepartmentListIsLoading,
+    error: _subDepartmentListError,
+    isLoading: _subDepartmentListIsLoading,
   } = useListSubDepartmentsQuery("");
 
   const changeHandler = (e: any) => {

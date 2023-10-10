@@ -68,7 +68,12 @@ const Inventory: React.FC = () => {
       <Department />
       <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
         {/* <AddToInventory clickHandler={addToInventoryChangeHandler} /> */}
-        <Button value="new" clickHandler={addToInventoryChangeHandler} />
+        <Button
+          value="new"
+          clickHandler={addToInventoryChangeHandler}
+          disabled={false}
+          styles={{}}
+        />
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
       {!showAddToInventory && (

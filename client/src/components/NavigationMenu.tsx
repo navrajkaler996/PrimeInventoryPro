@@ -8,10 +8,7 @@ type NavigationMenuProps = {
 };
 
 //NavigationMenu, react functional component, that accepts 'navigate' function which switchs the view on the home.
-const NavigationMenu: React.FC<NavigationMenuProps> = ({
-  navigate,
-  active,
-}) => {
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ navigate }) => {
   return (
     <div className="hidden md:flex flex-col ">
       <div
