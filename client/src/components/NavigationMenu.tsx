@@ -1,30 +1,28 @@
 import Dashboard from "../assets/dashboard.png";
 import Inventory from "../assets/inventory.png";
 
-//Prop interface for NavigationMenuProps
-type NavigationMenuProps = {
-  navigate: Function;
-  active: string;
-};
+import { Link } from "react-router-dom";
 
 //NavigationMenu, react functional component, that accepts 'navigate' function which switchs the view on the home.
-const NavigationMenu: React.FC<NavigationMenuProps> = ({ navigate }) => {
+const NavigationMenu: React.FC = () => {
   return (
     <div className="hidden md:flex flex-col ">
-      <div
-        id="dashboard"
-        className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary"
-        onClick={(e) => navigate(e?.currentTarget?.id)}>
-        <img src={Dashboard} className="w-[4rem] h-[4rem]" />
-        <p className="mt-[1rem]">Dashboard</p>
-      </div>
-      <div
-        id="inventory"
-        className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary"
-        onClick={(e) => navigate(e?.currentTarget?.id)}>
-        <img src={Inventory} className="w-[4rem] h-[4rem]" />
-        <p className="mt-[1rem]">Inventory</p>
-      </div>
+      <Link to="/dashboard">
+        <div
+          id="dashboard"
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary">
+          <img src={Dashboard} className="w-[4rem] h-[4rem]" />
+          <p className="mt-[1rem]">Dashboard</p>
+        </div>
+      </Link>
+      <Link to="/inventory">
+        <div
+          id="inventory"
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary">
+          <img src={Inventory} className="w-[4rem] h-[4rem]" />
+          <p className="mt-[1rem]">Inventory</p>
+        </div>
+      </Link>
       <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
       <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
       <div className="w-120 h-120 bg-white mt-[.6rem]"></div>

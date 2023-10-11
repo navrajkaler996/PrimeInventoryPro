@@ -28,7 +28,7 @@ const Inventory: React.FC = () => {
   const [cursor, setCursor] = useState<number | undefined>(undefined);
   const [keyword, setKeyword] = useState<string>("");
   //State to show AddToInventory form.
-  const [showAddToInventory, setShowAddToInventory] = useState<boolean>(true);
+  const [showAddToInventory, setShowAddToInventory] = useState<boolean>(false);
 
   useEffect(() => {
     setCursor(undefined);
@@ -76,6 +76,7 @@ const Inventory: React.FC = () => {
         />
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
+
       {!showAddToInventory && (
         <TotalProducts
           productData={productData}
