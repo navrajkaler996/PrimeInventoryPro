@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 export const subDepartmentApi = createApi({
   reducerPath: "subDepartment",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api/v1/subdepartment",
+    baseUrl: `${import.meta.env.VITE_REACT_API}/api/v1/subdepartment`,
   }),
   endpoints: (builder) => ({
     getSubDepartmentsByDepartmentCode: builder.query({
