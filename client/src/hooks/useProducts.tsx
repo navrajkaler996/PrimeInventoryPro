@@ -41,13 +41,13 @@ const useProducts = (
     //If options are provided, productURL will be changed.
     if (Object.keys(options)?.length > 0 && options.api.length > 0) {
       if (options.api === "stockalert") {
-        productURL = `${import.meta.env.VITE_REACT_API}${
+        productURL = `${import.meta.env.VITE_REACT_API}/${
           API_ENDPOINTS.product_development
         }/${options.api}/${departmentCode}/${cursor}/${count}`;
       }
 
       if (options.api === "search" && keyword && keyword?.length > 0) {
-        productURL = `${import.meta.env.VITE_REACT_API}${
+        productURL = `${import.meta.env.VITE_REACT_API}/${
           API_ENDPOINTS.product_development
         }${options.api}/${keyword}/${departmentCode}`;
       }
