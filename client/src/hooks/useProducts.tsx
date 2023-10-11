@@ -54,7 +54,7 @@ const useProducts = (
     } else {
       productURL = `${import.meta.env.VITE_REACT_API}/${
         API_ENDPOINTS.product_development
-      }${departmentCode}/${cursor}/${count}`;
+      }/${departmentCode}/${cursor}/${count}`;
     }
 
     if (productURL) {
