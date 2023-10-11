@@ -26,7 +26,7 @@ function App() {
     }
   };
 
-  console.log(import.meta.env);
+  console.log(import.meta.envp);
 
   return (
     <div className="max-w-full">
