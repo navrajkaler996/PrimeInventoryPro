@@ -40,7 +40,7 @@ export const PRODUCT_TABLE_TYPES = {
 };
 
 export const API_ENDPOINTS = {
-  product_development: "http://localhost:3000/api/v1/product",
+  product_development: "api/v1/product",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;

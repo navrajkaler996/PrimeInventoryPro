@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 export const productApi = createApi({
   reducerPath: "product",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api/v1/product",
+    baseUrl: `${import.meta.env.VITE_REACT_API}/api/v1/product`,
   }),
   endpoints: (builder) => ({
     //API to fetch products using department_code/sub_department_code where stock_alert is true.
