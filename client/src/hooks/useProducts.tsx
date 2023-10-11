@@ -26,7 +26,7 @@ const useProducts = (
   /////Will be used to stop the infinite scroll.
   const [hasMore, setHasMore] = useState(false);
 
-  //useEffect will execute everytime cursor is changed
+  //useEffect will execute everytime cursor is changed.
   /////and cursor will change when table is scrolled to the last element.
   /////or when current department (department_code) is changed.
   useEffect(() => {
