@@ -22,10 +22,14 @@ const useAddProduct = () => {
     //If options are provided, productURL will be changed.
     if (Object.keys(options)?.length > 0 && options.api.length > 0) {
       if (options.api === "add") {
-        productURL = `${API_ENDPOINTS.product_development}/add`;
-      } 
+        productURL = `${import.meta.env.VITE_REACT_API}/${
+          API_ENDPOINTS.product_development
+        }/add`;
+      }
     } else {
-      productURL = `${API_ENDPOINTS.product_development}`;
+      productURL = `${import.meta.env.VITE_REACT_API}/${
+        API_ENDPOINTS.product_development
+      }`;
     }
 
     const response = await fetch(productURL, {

@@ -21,7 +21,9 @@ const useStockAlert = (
     setLoading(true);
     setError(false);
     fetch(
-      `http://localhost:3000/api/v1/product/stockalert/${departmentCode}/${cursor}`,
+      `${
+        import.meta.env.VITE_REACT_API
+      }/api/v1/product/stockalert/${departmentCode}/${cursor}`,
       {
         method: "GET",
       }
