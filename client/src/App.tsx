@@ -26,6 +26,8 @@ function App() {
     }
   };
 
+  console.log(import.meta.env);
+
   return (
     <div className="max-w-full">
       <Header />
