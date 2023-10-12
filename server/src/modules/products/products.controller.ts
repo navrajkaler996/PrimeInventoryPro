@@ -56,6 +56,11 @@ export class ProductsController {
     );
   }
 
+  @Get('/:product_code')
+  findProductByProductCode(@Param('product_code') product_code: string) {
+    return this.productsService.findProductByProductCode(product_code);
+  }
+
   @Post('/add')
   add(@Body() body: any) {
     return this.productsService.add(body);

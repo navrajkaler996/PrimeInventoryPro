@@ -7,14 +7,15 @@ interface ProductTableType {
   productError: Object;
   options: {
     lastProduct: any;
-    keys: string[];
+    keys: Object;
   };
+  productClickHandler: Function;
 }
-//
+
 const ProductTable: React.FC<ProductTableType> = ({
   productData,
-
   options,
+  productClickHandler,
 }) => {
   return (
     <table className="table-auto w-[100%] text-[.7em] md:text-[1em] border-seperate border-spacing-y-3">
@@ -33,9 +34,11 @@ const ProductTable: React.FC<ProductTableType> = ({
               if (i + 1 === productData.length) {
                 return (
                   <tr
-                    className="mt-[4rem]"
+                    className="mt-[4rem] hover:cursor-pointer hover:bg-gray "
+                    id={product.product_code}
                     key={product.product_code}
-                    ref={(node) => options?.lastProduct(node)}>
+                    ref={(node) => options?.lastProduct(node)}
+                    onClick={(e) => productClickHandler(e.currentTarget.id)}>
                     {Object.values(options?.keys)?.map((value) => {
                       if (value === "in_transit")
                         return (
@@ -50,7 +53,11 @@ const ProductTable: React.FC<ProductTableType> = ({
               }
 
               return (
-                <tr className="mt-[4rem]" key={product.product_code}>
+                <tr
+                  className="mt-[4rem] hover:cursor-pointer hover:bg-gray"
+                  id={product.product_code}
+                  key={product.product_code}
+                  onClick={(e) => productClickHandler(e.currentTarget.id)}>
                   {Object.values(options?.keys)?.map((value) => {
                     if (value === "in_transit")
                       return (

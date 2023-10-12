@@ -16,6 +16,7 @@ import useProducts from "../../hooks/useProducts";
 //Importing constants
 import { TOTAL_PRODUCT_COUNT } from "../../utils/constants";
 import AddToInventory from "./components/AddToInventory";
+import Product from "./components/Product";
 
 //INVENTORY COMPONENT DISPLAYS EVERYTHING RELATED TO THE PRODUCTS IN THE INVENTORY
 const Inventory: React.FC = () => {
@@ -27,8 +28,9 @@ const Inventory: React.FC = () => {
   //In this component, I have uplifted the state, which is being used in multiple child components.
   const [cursor, setCursor] = useState<number | undefined>(undefined);
   const [keyword, setKeyword] = useState<string>("");
-  //State to show AddToInventory form.
-  const [showAddToInventory, setShowAddToInventory] = useState<boolean>(false);
+  const [productCode, setProductCode] = useState<string>("");
+
+  const [currentView, setCurrentView] = useState<string>("ProductTable");
 
   useEffect(() => {
     setCursor(undefined);
@@ -60,14 +62,18 @@ const Inventory: React.FC = () => {
   };
 
   const addToInventoryChangeHandler = () => {
-    setShowAddToInventory((prevValue) => !prevValue);
+    setCurrentView("AddToInventory");
+  };
+
+  const productClickHandler = (productCode: string) => {
+    setProductCode(productCode);
+    setCurrentView("Product");
   };
 
   return (
-    <div id="inventory__container" className="lg:max-w-full md:w-full w-full">
+    <div id="inventory__container" className="lg:max-w-full md:w-full w-full ">
       <Department />
       <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
-        {/* <AddToInventory clickHandler={addToInventoryChangeHandler} /> */}
         <Button
           value="new"
           clickHandler={addToInventoryChangeHandler}
@@ -77,7 +83,7 @@ const Inventory: React.FC = () => {
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 
-      {!showAddToInventory && (
+      {currentView === "ProductTable" && (
         <TotalProducts
           productData={productData}
           productIsLoading={productIsLoading}
@@ -85,10 +91,13 @@ const Inventory: React.FC = () => {
           hasMore={hasMore}
           cursor={cursor}
           setCursor={setCursor}
+          productClickHandler={productClickHandler}
         />
       )}
 
-      {showAddToInventory && <AddToInventory />}
+      {currentView === "AddToInventory" && <AddToInventory />}
+
+      {currentView === "Product" && <Product productCode={productCode} />}
     </div>
   );
 };

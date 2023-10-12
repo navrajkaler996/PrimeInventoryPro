@@ -27,4 +27,5 @@ export interface TotalProductsType {
   hasMore: boolean;
   cursor: number | undefined;
   setCursor: Function;
+  productClickHandler: Function;
 }

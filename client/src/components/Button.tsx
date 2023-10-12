@@ -32,6 +32,8 @@ const Button: React.FC<ButtonType> = ({
           </span>
         </div>
       );
+
+    return <>{value}</>;
   };
 
   return (

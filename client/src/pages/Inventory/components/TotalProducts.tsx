@@ -26,6 +26,7 @@ const TotalProducts: React.FC<TotalProductsType> = ({
   hasMore,
   cursor,
   setCursor,
+  productClickHandler,
 }) => {
   //Ref for IntersectionObserver
   const observer: RefObject<IntersectionObserver | null> = useRef(null);
@@ -74,6 +75,7 @@ const TotalProducts: React.FC<TotalProductsType> = ({
           productIsLoading={productIsLoading}
           productError={productError}
           options={{ lastProduct: lastProduct, keys: TOTAL_PRODUCTS_KEYS }}
+          productClickHandler={productClickHandler}
         />
         {productIsLoading && (
           <div className="text-center">

@@ -268,6 +268,16 @@ export class ProductsService {
     }
   }
 
+  findProductByProductCode(product_code: string) {
+    console.log(product_code);
+    return this.prisma.product.findFirst({
+      where: {
+        product_code: product_code.toUpperCase(),
+      },
+    });
+  }
+
+  //helpers
   async findLastProductCode(sub_department_code: string) {
     const data = await this.prisma.product.findMany({
       where: {

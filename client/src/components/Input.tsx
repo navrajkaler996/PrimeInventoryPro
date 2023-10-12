@@ -6,19 +6,28 @@ interface InputType {
   value: string | number;
   type: string;
   disabled: boolean;
+  showLabel: boolean;
+  styles: Object;
 }
 
 const Input: React.FC<InputType> = ({
-  label,
+  label = "",
   changeHandler,
   value,
   type = "text",
   disabled,
+  showLabel = true,
+  styles = {},
 }) => {
   return (
     <>
-      <label>{label}</label>
-      <br />
+      {showLabel && (
+        <>
+          {" "}
+          <label>{label}</label>
+          <br />
+        </>
+      )}
       <input
         type={type}
         id={label?.split(" ")?.join("_")}
@@ -28,6 +37,7 @@ const Input: React.FC<InputType> = ({
         className="border-[1.5px] border-gray w-[30rem] h-[3.5rem] mt-[1rem] pl-[1rem]"
         placeholder={`Enter ${label} `}
         disabled={disabled}
+        style={styles}
       />
     </>
   );
