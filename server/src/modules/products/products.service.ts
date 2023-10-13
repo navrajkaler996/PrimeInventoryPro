@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { productsData } from 'prisma/data/data';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import {
@@ -280,6 +281,14 @@ export class ProductsService {
         product_code: product_code,
       },
       data: body,
+    });
+  }
+
+  deleteProductByProductCode(product_code: string) {
+    return this.prisma.product.delete({
+      where: {
+        product_code: product_code?.toUpperCase(),
+      },
     });
   }
 
