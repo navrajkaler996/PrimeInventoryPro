@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
-import useAddProduct from "../../../../../hooks/useAddProduct";
+import useProduct from "../../../../../hooks/useProduct";
 import { filterFormData } from "../../../../../utils/helpers";
 import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
@@ -74,7 +74,7 @@ const AddToInventoryForm: React.FC = () => {
     loading: _addProductLoading,
     requestStatus: addProductRequestStatus,
     error: _addProductError,
-  } = useAddProduct();
+  } = useProduct();
 
   const {
     data: departmentListData,

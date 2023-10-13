@@ -4,6 +4,9 @@ import Button from "../../../../components/Button";
 import { useEffect, useState } from "react";
 import Input from "../../../../components/Input";
 import { FORM_NEXT_BUTTON_STYLES } from "../AddToInventory/components/AddToInventoryForm";
+import { filterFormData } from "../../../../utils/helpers";
+import useProduct from "../../../../hooks/useProduct";
+import FlashMessage from "../../../../components/FlashMessage";
 
 interface ProductType {
   productCode: string;
@@ -19,7 +22,7 @@ interface AddToInventoryFormErrorsType {
   product_case_pack: boolean;
   product_cap: boolean;
   product_brand: boolean;
-  product_on_hands: boolean;
+  product_total_quantity: boolean;
 }
 
 interface AddToInventoryFormType {
@@ -32,7 +35,8 @@ interface AddToInventoryFormType {
   product_selling_price: number;
   product_case_pack: number;
   product_cap: number;
-  product_on_hands: number;
+  product_total_quantity: number;
+  product_code: string;
   errors: AddToInventoryFormErrorsType;
 }
 
@@ -42,6 +46,13 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
     isLoading: productIsLoading,
     error: productError,
   } = useGetProductByProductCodeQuery(productCode);
+
+  const {
+    clickHandler,
+    loading: editProductLoading,
+    requestStatus: editProductRequestStatus,
+    error: editProductError,
+  } = useProduct();
 
   const [edit, setEdit] = useState<boolean>(false);
 
@@ -55,7 +66,8 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
     product_selling_price: 0,
     product_case_pack: 0,
     product_cap: 0,
-    product_on_hands: 0,
+    product_total_quantity: 0,
+    product_code: productCode,
     errors: {
       product_name: false,
       product_department: false,
@@ -66,7 +78,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
       product_selling_price: false,
       product_case_pack: false,
       product_cap: false,
-      product_on_hands: false,
+      product_total_quantity: false,
     },
   });
 
@@ -83,17 +95,20 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
         product_selling_price: productData.selling_price,
         product_case_pack: productData.case_pack,
         product_cap: productData.cap,
-        product_on_hands: productData.total_quanity,
+        product_total_quantity: productData.total_quantity,
       });
     }
   }, [productData]);
+
+  useEffect(() => {
+    if (editProductRequestStatus && edit) setEdit(false);
+  }, [editProductRequestStatus]);
 
   const editClickHandler = () => {
     setEdit((prev) => !prev);
   };
 
   const changeHandler = (e: any) => {
-    console.log(e.target.name);
     setForm((prevValue) => {
       return {
         ...prevValue,
@@ -101,8 +116,6 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
       };
     });
   };
-
-  console.log(form);
 
   if (productIsLoading)
     return (
@@ -116,13 +129,13 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
     return (
       <div
         id="inventory__product"
-        className="w-[95%] bg-white md:mt-[4rem] ml-[auto] mr-[auto] shadow-custom rounded-custom">
+        className="w-[95%] bg-white md:mt-[4rem] ml-[auto] mr-[auto] shadow-custom rounded-custom relative">
         <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Product</h1>
         <hr className="mt-[1.5rem] text-gray" />
 
         <div
           id="inventory__product-details"
-          className="w-[90%] mx-[auto] py-[2rem] relative">
+          className="w-[80%] mx-[auto] py-[2rem]">
           <div
             id="inentory__product-row-1"
             className="w-[100%] grid grid-cols-2">
@@ -156,12 +169,16 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             className="w-[100%] grid grid-cols-2 mt-[2rem] ">
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Product id:</p>
-              <p className="capitalize pl-[1rem] h-[3rem]">{productData.product_id}</p>
+              <p className="capitalize pl-[1rem] h-[3rem]">
+                {productData.product_id}
+              </p>
             </div>
 
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Product code:</p>
-              <p className="capitalize pl-[1rem] h-[3rem]">{productData.product_code}</p>
+              <p className="capitalize pl-[1rem] h-[3rem]">
+                {productData.product_code}
+              </p>
             </div>
           </div>
           <div
@@ -211,7 +228,9 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Brand:</p>
               {!edit ? (
-                <p className="capitalize pl-[1rem] h-[3rem]">{productData.brand}</p>
+                <p className="capitalize pl-[1rem] h-[3rem]">
+                  {productData.brand}
+                </p>
               ) : (
                 <div id="form__product-brand">
                   <Input
@@ -237,7 +256,9 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Base price:</p>
               {!edit ? (
-                <p className="capitalize pl-[1rem] h-[3rem]">{productData.base_price}</p>
+                <p className="capitalize pl-[1rem] h-[3rem]">
+                  {productData.base_price}
+                </p>
               ) : (
                 <div id="form__product-base-price">
                   <Input
@@ -286,12 +307,16 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             className="w-[100%] grid grid-cols-2 mt-[2rem] ">
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Total sales:</p>
-              <p className="capitalize pl-[1rem] h-[3rem]">{productData.total_sales}</p>
+              <p className="capitalize pl-[1rem] h-[3rem]">
+                {productData.total_sales}
+              </p>
             </div>
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Cap:</p>
               {!edit ? (
-                <p className="capitalize pl-[1rem] h-[3rem]">{productData.cap}</p>
+                <p className="capitalize pl-[1rem] h-[3rem]">
+                  {productData.cap}
+                </p>
               ) : (
                 <div id="form__product-cap">
                   <Input
@@ -315,18 +340,18 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             id="inventory__product-row-7"
             className="w-[100%] grid grid-cols-2 mt-[2rem]  ">
             <div className="grid grid-cols-[1fr,2fr]">
-              <p>On hands:</p>
+              <p>Total quantity:</p>
               {!edit ? (
                 <p className="capitalize pl-[1rem] h-[3rem]">
                   {productData.total_quantity}
                 </p>
               ) : (
-                <div id="form__product-on-hands">
+                <div id="form__product-total_quantity">
                   <Input
-                    label="product on hands"
-                    value={form.product_on_hands}
+                    label="product total quantity"
+                    value={form.product_total_quantity}
                     changeHandler={changeHandler}
-                    type="text"
+                    type="number"
                     disabled={false}
                     showLabel={false}
                     styles={{
@@ -341,14 +366,16 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             <div className="grid grid-cols-[1fr,2fr]">
               <p>Case pack:</p>
               {!edit ? (
-                <p className="capitalize pl-[1rem] h-[3rem]">{productData.case_pack}</p>
+                <p className="capitalize pl-[1rem] h-[3rem]">
+                  {productData.case_pack}
+                </p>
               ) : (
                 <div id="form__product-case-pack">
                   <Input
                     label="product case pack"
                     value={form.product_case_pack}
                     changeHandler={changeHandler}
-                    type="text"
+                    type="number"
                     disabled={false}
                     showLabel={false}
                     styles={{
@@ -381,27 +408,33 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
                     form.product_cap > 0
                   )
                 }
-                // clickHandler={(e: KeyboardEvent) => {
-                //   e.preventDefault();
+                clickHandler={(e: KeyboardEvent) => {
+                  e.preventDefault();
 
-                //   let filteredFormData = filterFormData(
-                //     Object.assign({}, form),
-                //     departmentListData,
-                //     subDepartmentListData
-                //   );
-
-                //   clickHandler(filteredFormData, { api: "add" });
-                // }}
+                  let filteredFormData = filterFormData(
+                    Object.assign({}, form),
+                    null,
+                    null
+                  );
+                  clickHandler(filteredFormData, { api: "edit" });
+                }}
               />
             </div>
           )}
-          <Button
-            value="Edit"
-            styles={{ position: "absolute", top: "5%", right: 0 }}
-            clickHandler={editClickHandler}
-            disabled={false}
-          />
+
+          {editProductRequestStatus.status && (
+            <FlashMessage
+              message={editProductRequestStatus.message}
+              type={editProductRequestStatus.type}
+            />
+          )}
         </div>
+        <Button
+          value="Edit"
+          styles={{ position: "absolute", top: "3%", right: 0 }}
+          clickHandler={editClickHandler}
+          disabled={false}
+        />
       </div>
     );
 };

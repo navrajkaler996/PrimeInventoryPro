@@ -237,16 +237,16 @@ export class ProductsService {
     }
   }
 
-  async add(data: any) {
+  async addProduct(data: any) {
     try {
       const response = await this.findLastProductCode(data.sub_department_code);
       let lastProductCode;
       if (response?.length > 0) {
         lastProductCode = response[0].product_code;
-        console.log(lastProductCode);
+
         let newProductCode =
           lastProductCode.slice(0, 6) + (Number(lastProductCode.slice(-3)) + 1);
-        console.log(newProductCode);
+
         if (newProductCode.length < 9) {
           newProductCode =
             newProductCode.slice(0, 6) + 0 + newProductCode.slice(-2);
@@ -258,22 +258,28 @@ export class ProductsService {
           data: data,
         });
 
-        console.log(createdProduct);
         return createdProduct;
       }
     } catch (e) {
-      // return e;
-      console.log(e);
       return e;
     }
   }
 
   findProductByProductCode(product_code: string) {
-    console.log(product_code);
     return this.prisma.product.findFirst({
       where: {
         product_code: product_code.toUpperCase(),
       },
+    });
+  }
+
+  updateProductByProductCode(body: any) {
+    const product_code = body.product_code;
+    return this.prisma.product.update({
+      where: {
+        product_code: product_code,
+      },
+      data: body,
     });
   }
 

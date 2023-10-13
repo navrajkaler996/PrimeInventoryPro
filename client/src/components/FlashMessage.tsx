@@ -14,8 +14,6 @@ const FlashMessage: React.FC<FlashMessageType> = ({ message, type }) => {
       break;
     }
   }
-
-  console.log(messageType);
   return (
     <div
       id="flash-message"
