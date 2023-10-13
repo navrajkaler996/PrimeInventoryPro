@@ -24,6 +24,7 @@ export class DepartmentsService {
     });
   }
 
+  //FETCH A LIST OF DEPARTMENTS
   listDepartments() {
     return this.prisma.department.findMany({
       select: {

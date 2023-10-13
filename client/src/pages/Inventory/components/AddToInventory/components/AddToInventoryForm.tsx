@@ -1,48 +1,30 @@
 import { useEffect, useState } from "react";
+
+//Importing reusable components
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
+import FormError from "../../../../../components/FormError";
+import FlashMessage from "../../../../../components/FlashMessage";
+
+//Importing hooks
 import useProduct from "../../../../../hooks/useProduct";
-import { filterFormData } from "../../../../../utils/helpers";
+
+//Importing services
 import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
-import FlashMessage from "../../../../../components/FlashMessage";
-import { FORM_VALIDATIONS } from "../../../../../utils/constants";
-import FormError from "../../../../../components/FormError";
 
-export const FORM_NEXT_BUTTON_STYLES = {
-  width: "30rem",
-  height: "3.5rem",
-  fontSize: "1.1em",
-  letterSpacing: "3px",
-  margin: 0,
-};
-interface AddToInventoryFormErrorsType {
-  product_name: boolean;
-  product_department: boolean;
-  product_sub_department: boolean;
-  product_manufacturer: boolean;
-  product_base_price: boolean;
-  product_selling_price: boolean;
-  product_case_pack: boolean;
-  product_cap: boolean;
-  product_brand: boolean;
-}
+//Importing helpers and constants
+import { filterFormData } from "../../../../../utils/helpers";
+import {
+  FORM_ADD_BUTTON_STYLES,
+  FORM_VALIDATIONS,
+} from "../../../../../utils/constants";
+import { AddToInventoryFormType } from "../../../utils/types";
 
-interface AddToInventoryFormType {
-  product_name: string;
-  product_department: string;
-  product_sub_department: string;
-  product_manufacturer: string;
-  product_brand: string;
-  product_base_price: number;
-  product_selling_price: number;
-  product_case_pack: number;
-  product_cap: number;
-  errors: AddToInventoryFormErrorsType;
-}
-
+/////This component returns the form for AddToInventory
 const AddToInventoryForm: React.FC = () => {
+  //State to store the form data and errors
   const [form, setForm] = useState<AddToInventoryFormType>({
     product_name: "",
     product_department: "",
@@ -66,9 +48,12 @@ const AddToInventoryForm: React.FC = () => {
     },
   });
 
+  //State to store the department list for dropdown
   const [departmentList, setDepartmentList] = useState();
+  //State to store the subdepartment list for dropdown
   const [subDepartmentList, setSubDepartmentList] = useState();
 
+  //Custom hook that calls the API to add product
   const {
     clickHandler,
     loading: _addProductLoading,
@@ -76,18 +61,23 @@ const AddToInventoryForm: React.FC = () => {
     error: _addProductError,
   } = useProduct();
 
+  //Service to fetch department list for dropdown
+  //Data is being stored in redux
   const {
     data: departmentListData,
     error: _departmentListError,
     isLoading: departmentListIsLoading,
   } = useListDepartmentsQuery("");
 
+  //Service to fetch sub department list for dropdown
+  //Data is being stored in redux
   const {
     data: subDepartmentListData,
     error: _subDepartmentListError,
     isLoading: _subDepartmentListIsLoading,
   } = useListSubDepartmentsQuery("");
 
+  //Handler called when input is changed
   const changeHandler = (e: any) => {
     setForm((prevValue) => {
       return {
@@ -97,26 +87,33 @@ const AddToInventoryForm: React.FC = () => {
     });
   };
 
+  //This useEffect is called once department list is fetch
   useEffect(() => {
     if (!departmentListIsLoading) {
+      //Storing department names in the state
       setDepartmentList(
         departmentListData.map((department: any) => department.department_name)
       );
     }
   }, [departmentListIsLoading]);
 
+  //This useEffect is called once a department is selected from the department
+  //Its is used to populate the subdepartment state with names according to the selected department
   useEffect(() => {
     if (form?.product_department?.length > 0) {
+      //Extracting the department_code according to the selected department
       let { department_code } = departmentListData.find((department: any) => {
         if (department.department_name === form.product_department)
           return department;
       });
 
+      //Filtering subdepartment list according to the extracted department_code
       const requiredSubDepartments = subDepartmentListData.filter(
         (subDepartment: any) =>
           subDepartment.department_code === department_code
       );
 
+      //Updating subdepartment state accordingly
       setSubDepartmentList(
         requiredSubDepartments.map(
           (subDepartment: any) => subDepartment.sub_department_name
@@ -292,7 +289,7 @@ const AddToInventoryForm: React.FC = () => {
             className="w-[100%] flex justify-around mt-[3rem]">
             <Button
               value="add to inventory"
-              styles={FORM_NEXT_BUTTON_STYLES}
+              styles={FORM_ADD_BUTTON_STYLES}
               disabled={
                 !(
                   form.product_name?.length > 0 &&

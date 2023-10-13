@@ -19,6 +19,7 @@ export class SubdepartmentService {
     });
   }
 
+  //FETCH THE LOST OF SUBDEPARTMENTS
   listSubDepartments() {
     return this.prisma.subDepartment.findMany({
       select: {
