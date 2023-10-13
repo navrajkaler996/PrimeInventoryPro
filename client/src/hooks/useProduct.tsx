@@ -10,6 +10,20 @@ const useProduct = () => {
   });
   const [error, _setError] = useState(false);
 
+  const createResponseMessage = (type: string, method: string) => {
+    if (type === "success") {
+      if (method === "POST") return "Product created successfully";
+      if (method === "PUT") return "Product updated successfully";
+      if (method === "DELETE") return "Product deleted successfully";
+    } else if (type === "failed") {
+      if (method === "POST") return "Product could not be created!";
+      if (method === "PUT") return "Product could not be updated";
+      if (method === "DELETE") return "Product could not be deleted";
+    }
+
+    return "Unknown response";
+  };
+
   const clickHandler = async (
     body: Object,
     options: {
@@ -32,6 +46,11 @@ const useProduct = () => {
           API_ENDPOINTS.product_development
         }/update`;
         method = "PUT";
+      } else if (options.api === "delete") {
+        productURL = `${import.meta.env.VITE_REACT_API}/${
+          API_ENDPOINTS.product_development
+        }/delete/${body.product_code}`;
+        method = "DELETE";
       }
     } else {
       productURL = `${import.meta.env.VITE_REACT_API}/${
@@ -44,27 +63,27 @@ const useProduct = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: method === "DELETE" ? null : JSON.stringify(body),
     });
 
     const data = await response?.json();
 
     if (data?.product_id) {
       setLoading(false);
+
+      const message = createResponseMessage("success", method);
       setRequestStatus({
         status: true,
-        message: `Product ${
-          method === "POST" ? "created" : "updated"
-        } successfully!`,
+        message: message,
         type: "success",
       });
     } else {
       setLoading(false);
+
+      const message = createResponseMessage("failed", method);
       setRequestStatus({
         status: true,
-        message: `Product could not be ${
-          method === "POST" ? "created" : "updated"
-        }`,
+        message: message,
         type: "failed",
       });
     }
