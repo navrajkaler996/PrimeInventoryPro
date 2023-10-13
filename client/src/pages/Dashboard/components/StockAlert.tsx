@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 //Importing custom hooks
 
-import useProducts from "../../../hooks/useProducts";
+import useFetchProducts from "../../../hooks/useFetchProduct";
 
 //Importing slice
 import { DepartmentState } from "../../../features/departmentSlice";
@@ -37,13 +37,13 @@ const StockAlerts: React.FC<{}> = () => {
     setCursor(undefined);
   }, [currentDepartment?.department_code]);
 
-  //Using useProduct custom hook to fetch the list of products.
+  //Using useFetchProduct custom hook to fetch the list of products.
   const {
     products: productData,
     loading: productIsLoading,
     error: productError,
     hasMore,
-  } = useProducts(
+  } = useFetchProducts(
     currentDepartment?.department_code,
     cursor,
     STOCK_ALERT_PRODUCT_COUNT,

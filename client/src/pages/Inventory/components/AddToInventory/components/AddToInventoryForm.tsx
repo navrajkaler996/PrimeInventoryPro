@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
-import useAddProduct from "../../../../../hooks/useAddProduct";
+import useProduct from "../../../../../hooks/useProduct";
 import { filterFormData } from "../../../../../utils/helpers";
 import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
@@ -10,7 +10,7 @@ import FlashMessage from "../../../../../components/FlashMessage";
 import { FORM_VALIDATIONS } from "../../../../../utils/constants";
 import FormError from "../../../../../components/FormError";
 
-const FORM_NEXT_BUTTON_STYLES = {
+export const FORM_NEXT_BUTTON_STYLES = {
   width: "30rem",
   height: "3.5rem",
   fontSize: "1.1em",
@@ -74,7 +74,7 @@ const AddToInventoryForm: React.FC = () => {
     loading: _addProductLoading,
     requestStatus: addProductRequestStatus,
     error: _addProductError,
-  } = useAddProduct();
+  } = useProduct();
 
   const {
     data: departmentListData,
@@ -138,6 +138,8 @@ const AddToInventoryForm: React.FC = () => {
                 changeHandler={changeHandler}
                 type="text"
                 disabled={false}
+                showLabel={true}
+                styles={{}}
               />
 
               <FormError
@@ -184,6 +186,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
               <FormError
                 value={form.product_manufacturer}
@@ -205,6 +209,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
             </div>
           </div>
@@ -222,6 +228,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
             </div>
             <div id="form__product-selling-price" className="mx-auto">
@@ -237,6 +245,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
             </div>
           </div>
@@ -254,6 +264,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
             </div>
             <div id="form__product-cap" className="mx-auto">
@@ -269,6 +281,8 @@ const AddToInventoryForm: React.FC = () => {
                     form.product_sub_department?.length > 0
                   )
                 }
+                showLabel={true}
+                styles={{}}
               />
             </div>
           </div>

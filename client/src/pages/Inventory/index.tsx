@@ -11,11 +11,12 @@ import Button from "../../components/Button";
 import { DepartmentState } from "../../features/departmentSlice";
 
 //Importing hooks
-import useProducts from "../../hooks/useProducts";
+import useFetchProducts from "../../hooks/useFetchProduct";
 
 //Importing constants
 import { TOTAL_PRODUCT_COUNT } from "../../utils/constants";
 import AddToInventory from "./components/AddToInventory";
+import Product from "./components/Product";
 
 //INVENTORY COMPONENT DISPLAYS EVERYTHING RELATED TO THE PRODUCTS IN THE INVENTORY
 const Inventory: React.FC = () => {
@@ -27,14 +28,15 @@ const Inventory: React.FC = () => {
   //In this component, I have uplifted the state, which is being used in multiple child components.
   const [cursor, setCursor] = useState<number | undefined>(undefined);
   const [keyword, setKeyword] = useState<string>("");
-  //State to show AddToInventory form.
-  const [showAddToInventory, setShowAddToInventory] = useState<boolean>(false);
+  const [productCode, setProductCode] = useState<string>("");
+
+  const [currentView, setCurrentView] = useState<string>("ProductTable");
 
   useEffect(() => {
     setCursor(undefined);
   }, [currentDepartment?.department_code]);
 
-  //useProduct custom hook is being used here to provide data to the following components:
+  //useFetchProduct custom hook is being used here to provide data to the following components:
   //SearchBar
   //TotalProducts
   const {
@@ -42,7 +44,7 @@ const Inventory: React.FC = () => {
     loading: productIsLoading,
     error: productError,
     hasMore,
-  } = useProducts(
+  } = useFetchProducts(
     currentDepartment?.department_code,
     keyword.length > 0 ? undefined : cursor,
     TOTAL_PRODUCT_COUNT,
@@ -53,21 +55,25 @@ const Inventory: React.FC = () => {
   );
 
   //changeHandler function is used in the SearchBar component.
-  //It is used to give a value to state keyword, which in turn, is used in the useProduct hook
+  //It is used to give a value to state keyword, which in turn, is used in the useFetchProduct hook
   //to fetch products according to the value.
   const searchBarChangeHandler = (value: string) => {
     setKeyword(value);
   };
 
   const addToInventoryChangeHandler = () => {
-    setShowAddToInventory((prevValue) => !prevValue);
+    setCurrentView("AddToInventory");
+  };
+
+  const productClickHandler = (productCode: string) => {
+    setProductCode(productCode);
+    setCurrentView("Product");
   };
 
   return (
-    <div id="inventory__container" className="lg:max-w-full md:w-full w-full">
+    <div id="inventory__container" className="lg:max-w-full md:w-full w-full ">
       <Department />
       <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
-        {/* <AddToInventory clickHandler={addToInventoryChangeHandler} /> */}
         <Button
           value="new"
           clickHandler={addToInventoryChangeHandler}
@@ -77,7 +83,7 @@ const Inventory: React.FC = () => {
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 
-      {!showAddToInventory && (
+      {currentView === "ProductTable" && (
         <TotalProducts
           productData={productData}
           productIsLoading={productIsLoading}
@@ -85,10 +91,13 @@ const Inventory: React.FC = () => {
           hasMore={hasMore}
           cursor={cursor}
           setCursor={setCursor}
+          productClickHandler={productClickHandler}
         />
       )}
 
-      {showAddToInventory && <AddToInventory />}
+      {currentView === "AddToInventory" && <AddToInventory />}
+
+      {currentView === "Product" && <Product productCode={productCode} />}
     </div>
   );
 };

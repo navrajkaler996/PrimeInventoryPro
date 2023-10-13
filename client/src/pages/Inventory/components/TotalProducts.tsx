@@ -17,7 +17,7 @@ import ProductTableSkeleton from "./ProductTableSkeleton";
 import { TotalProductsType } from "../utils/types";
 
 //RETURNS A TABLE WHICH LISTS ALL THE PRODUCTS IN THE ACTIVE DEPARTMENT OR SUBDEPARTMENT.
-//It uses the data fetch by useProduct custom hook. This hook is being used in the parent component.
+//It uses the data fetch by useFetchProduct custom hook. This hook is being used in the parent component.
 //Optimized using cursor-based infinite scroll.
 const TotalProducts: React.FC<TotalProductsType> = ({
   productData,
@@ -26,6 +26,7 @@ const TotalProducts: React.FC<TotalProductsType> = ({
   hasMore,
   cursor,
   setCursor,
+  productClickHandler,
 }) => {
   //Ref for IntersectionObserver
   const observer: RefObject<IntersectionObserver | null> = useRef(null);
@@ -74,6 +75,7 @@ const TotalProducts: React.FC<TotalProductsType> = ({
           productIsLoading={productIsLoading}
           productError={productError}
           options={{ lastProduct: lastProduct, keys: TOTAL_PRODUCTS_KEYS }}
+          productClickHandler={productClickHandler}
         />
         {productIsLoading && (
           <div className="text-center">

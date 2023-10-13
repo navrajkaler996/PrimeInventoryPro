@@ -4,7 +4,7 @@ import { ProductDataType } from "../pages/Dashboard/utils/types";
 import { API_ENDPOINTS } from "../utils/constants";
 
 //CUSTOM HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
-const useProducts = (
+const useFetchProduct = (
   departmentCode: String | null,
   cursor: Number | undefined,
   count: number | 0,
@@ -83,4 +83,4 @@ const useProducts = (
   return { products, loading, error, hasMore };
 };
 
-export default useProducts;
+export default useFetchProduct;
