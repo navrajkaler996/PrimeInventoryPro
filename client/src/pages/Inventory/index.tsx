@@ -14,7 +14,7 @@ import { DepartmentState } from "../../features/departmentSlice";
 import useFetchProducts from "../../hooks/useFetchProduct";
 
 //Importing constants
-import { TOTAL_PRODUCT_COUNT } from "../../utils/constants";
+import { INVENTORY_VIEWS, TOTAL_PRODUCT_COUNT } from "../../utils/constants";
 import AddToInventory from "./components/AddToInventory";
 import Product from "./components/Product";
 
@@ -30,7 +30,9 @@ const Inventory: React.FC = () => {
   const [keyword, setKeyword] = useState<string>("");
   const [productCode, setProductCode] = useState<string>("");
 
-  const [currentView, setCurrentView] = useState<string>("ProductTable");
+  const [currentView, setCurrentView] = useState<string>(
+    INVENTORY_VIEWS.PRODUCT_TABLE
+  );
 
   useEffect(() => {
     setCursor(undefined);
@@ -62,12 +64,12 @@ const Inventory: React.FC = () => {
   };
 
   const addToInventoryChangeHandler = () => {
-    setCurrentView("AddToInventory");
+    setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
   };
 
   const productClickHandler = (productCode: string) => {
     setProductCode(productCode);
-    setCurrentView("Product");
+    setCurrentView(INVENTORY_VIEWS.PRODUCT);
   };
 
   return (
@@ -83,7 +85,7 @@ const Inventory: React.FC = () => {
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 
-      {currentView === "ProductTable" && (
+      {currentView === INVENTORY_VIEWS.PRODUCT_TABLE && (
         <TotalProducts
           productData={productData}
           productIsLoading={productIsLoading}
@@ -95,9 +97,11 @@ const Inventory: React.FC = () => {
         />
       )}
 
-      {currentView === "AddToInventory" && <AddToInventory />}
+      {currentView === INVENTORY_VIEWS.ADD_TO_INVENTORY && <AddToInventory />}
 
-      {currentView === "Product" && <Product productCode={productCode} />}
+      {currentView === INVENTORY_VIEWS.PRODUCT && (
+        <Product productCode={productCode} />
+      )}
     </div>
   );
 };

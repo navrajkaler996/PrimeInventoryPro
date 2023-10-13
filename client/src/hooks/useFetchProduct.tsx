@@ -49,13 +49,15 @@ const useFetchProduct = (
       if (options.api === "search" && keyword && keyword?.length > 0) {
         productURL = `${import.meta.env.VITE_REACT_API}/${
           API_ENDPOINTS.product_development
-        }${options.api}/${keyword}/${departmentCode}`;
+        }/${options.api}/${keyword}/${departmentCode}`;
       }
     } else {
       productURL = `${import.meta.env.VITE_REACT_API}/${
         API_ENDPOINTS.product_development
       }/${departmentCode}/${cursor}/${count}`;
     }
+
+    console.log(productURL);
 
     if (productURL) {
       //Using fetch to make an API call.

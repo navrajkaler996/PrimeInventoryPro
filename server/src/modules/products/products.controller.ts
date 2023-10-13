@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 
 @Controller('/api/v1/product')
@@ -43,6 +51,9 @@ export class ProductsController {
     return this.productsService.findProductsByKeyword(keyword, department_code);
   }
 
+  //FETCH PRODUCTS BY USING department_code, cursor, AND count
+  /////api/v1/product/:department_code/:cursor/:count
+  /////Used for infinite scroll
   @Get('/:department_code/:cursor/:count')
   findProductsByDepartmentCode(
     @Param('department_code') department_code: String,
@@ -56,23 +67,31 @@ export class ProductsController {
     );
   }
 
+  //FETCH A SINGLE PRODUCT USING product_code
+  /////api/v1/product/:product_code
   @Get('/:product_code')
   findProductByProductCode(@Param('product_code') product_code: string) {
     return this.productsService.findProductByProductCode(product_code);
   }
 
+  //INSERT A SINGLE PRODUCT
+  /////api/v1/product/add
   @Post('/add')
   addProduct(@Body() body: any) {
     return this.productsService.addProduct(body);
   }
 
+  //UPDATE A SINGLE PRODUCT
+  /////api/v1/product/update
   @Put('/update')
   updateProductByProductCode(@Body() body: any) {
     return this.productsService.updateProductByProductCode(body);
   }
 
+  //DELETE A SINGLE PRODUCT USING product_code
+  /////api/v1/product/delete/:product_code
   @Delete('/delete/:product_code')
-  deleteProductByProductCode(@Param('product_code') product_code: string){
-    return this.productsService.deleteProductByProductCode(product_code)
+  deleteProductByProductCode(@Param('product_code') product_code: string) {
+    return this.productsService.deleteProductByProductCode(product_code);
   }
 }

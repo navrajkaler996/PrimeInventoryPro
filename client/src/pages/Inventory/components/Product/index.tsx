@@ -1,62 +1,48 @@
-import { SKELETON_STYLES } from "../../../../utils/constants";
-import { useGetProductByProductCodeQuery } from "../../../../services/product";
-import Button from "../../../../components/Button";
 import { useEffect, useState } from "react";
+
+//Importing reusable components
+import Button from "../../../../components/Button";
 import Input from "../../../../components/Input";
-import { FORM_NEXT_BUTTON_STYLES } from "../AddToInventory/components/AddToInventoryForm";
-import { filterFormData } from "../../../../utils/helpers";
-import useProduct from "../../../../hooks/useProduct";
 import FlashMessage from "../../../../components/FlashMessage";
 
-interface ProductType {
-  productCode: string;
-}
+//Importing custom hooks
+import useProduct from "../../../../hooks/useProduct";
 
-interface AddToInventoryFormErrorsType {
-  product_name: boolean;
-  product_department: boolean;
-  product_sub_department: boolean;
-  product_manufacturer: boolean;
-  product_base_price: boolean;
-  product_selling_price: boolean;
-  product_case_pack: boolean;
-  product_cap: boolean;
-  product_brand: boolean;
-  product_total_quantity: boolean;
-}
+//Importing services
+import { useGetProductByProductCodeQuery } from "../../../../services/product";
 
-interface AddToInventoryFormType {
-  product_name: string;
-  product_department: string;
-  product_sub_department: string;
-  product_manufacturer: string;
-  product_brand: string;
-  product_base_price: number;
-  product_selling_price: number;
-  product_case_pack: number;
-  product_cap: number;
-  product_total_quantity: number;
-  product_code: string;
-  errors: AddToInventoryFormErrorsType;
-}
+//Importing constants
+import { EditToInventoryFormType, ProductType } from "../../utils/types";
+import { filterFormData } from "../../../../utils/helpers";
+import {
+  FORM_ADD_BUTTON_STYLES,
+  SKELETON_STYLES,
+} from "../../../../utils/constants";
 
+/////This component display the product details
+//This component also has the edit form and delete functionality
 const Product: React.FC<ProductType> = ({ productCode }) => {
+
+  //Service to fetch a single product using product_code
   const {
     data: productData,
     isLoading: productIsLoading,
     error: productError,
   } = useGetProductByProductCodeQuery(productCode);
 
+  //Custom to edit and delete product
   const {
     clickHandler,
-    loading: editProductLoading,
+    loading: _editProductLoading,
     requestStatus: editProductRequestStatus,
-    error: editProductError,
+    error: _editProductError,
   } = useProduct();
 
+  //State to display edit button
   const [edit, setEdit] = useState<boolean>(false);
 
-  const [form, setForm] = useState<AddToInventoryFormType>({
+  //State to store the form data
+  const [form, setForm] = useState<EditToInventoryFormType>({
     product_name: "",
     product_department: "",
     product_sub_department: "",
@@ -82,6 +68,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
     },
   });
 
+  //useEffect to set the form data when productData is fetched
   useEffect(() => {
     if (productData) {
       setForm({
@@ -100,14 +87,17 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
     }
   }, [productData]);
 
+  //useEffect to change the view once edit request succeeds
   useEffect(() => {
     if (editProductRequestStatus && edit) setEdit(false);
   }, [editProductRequestStatus]);
 
+  //Click handler to display the edit form
   const editClickHandler = () => {
     setEdit((prev) => !prev);
   };
 
+  //Handler called when input is changed
   const changeHandler = (e: any) => {
     setForm((prevValue) => {
       return {
@@ -394,7 +384,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
               className="w-[100%] flex justify-around mt-[3rem]">
               <Button
                 value="update product"
-                styles={FORM_NEXT_BUTTON_STYLES}
+                styles={FORM_ADD_BUTTON_STYLES}
                 disabled={
                   !(
                     form.product_name?.length > 0 &&

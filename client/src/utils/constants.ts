@@ -54,3 +54,18 @@ export const FLASH_MESSAGE_TYPES = {
 export const FORM_VALIDATIONS = {
   name_min_length: 5,
 };
+
+export const INVENTORY_VIEWS = {
+  PRODUCT_TABLE: "PRODUCT_TABLE",
+  ADD_TO_INVENTORY: "ADD_TO_INVENTORY",
+  PRODUCT: "PRODUCT",
+};
+
+export const FORM_ADD_BUTTON_STYLES = {
+  width: "30rem",
+  height: "3.5rem",
+  fontSize: "1.1em",
+  letterSpacing: "3px",
+  margin: 0,
+};
+

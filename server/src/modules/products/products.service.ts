@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { productsData } from 'prisma/data/data';
-
 import { PrismaService } from 'src/prisma/prisma.service';
+
+//Importing constants
 import {
   DEPARTMENT_CODES_STARTING,
   SEARCH_BY_PRODUCT_CODE_REGEX,
@@ -238,6 +238,8 @@ export class ProductsService {
     }
   }
 
+  //INSERT A SINGLE PRODUCT
+  /////api/v1/product/add
   async addProduct(data: any) {
     try {
       const response = await this.findLastProductCode(data.sub_department_code);
@@ -266,6 +268,8 @@ export class ProductsService {
     }
   }
 
+  //FETCH A SINGLE PRODUCT USING product_code
+  /////api/v1/product/:product_code
   findProductByProductCode(product_code: string) {
     return this.prisma.product.findFirst({
       where: {
@@ -274,6 +278,8 @@ export class ProductsService {
     });
   }
 
+  //UPDATE A SINGLE PRODUCT
+  /////api/v1/product/update
   updateProductByProductCode(body: any) {
     const product_code = body.product_code;
     return this.prisma.product.update({
@@ -284,6 +290,8 @@ export class ProductsService {
     });
   }
 
+  //DELETE A SINGLE PRODUCT USING product_code
+  /////api/v1/product/delete/:product_code
   deleteProductByProductCode(product_code: string) {
     return this.prisma.product.delete({
       where: {
@@ -292,7 +300,8 @@ export class ProductsService {
     });
   }
 
-  //helpers
+  //HELPERS
+  //FETCH product_code OF THE LAST PRODUCT
   async findLastProductCode(sub_department_code: string) {
     const data = await this.prisma.product.findMany({
       where: {
