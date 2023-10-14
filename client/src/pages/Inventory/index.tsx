@@ -17,6 +17,7 @@ import useFetchProducts from "../../hooks/useFetchProduct";
 import { INVENTORY_VIEWS, TOTAL_PRODUCT_COUNT } from "../../utils/constants";
 import AddToInventory from "./components/AddToInventory";
 import Product from "./components/Product";
+import { debounce } from "../../utils/helpers";
 
 //INVENTORY COMPONENT DISPLAYS EVERYTHING RELATED TO THE PRODUCTS IN THE INVENTORY
 const Inventory: React.FC = () => {
@@ -38,6 +39,8 @@ const Inventory: React.FC = () => {
     setCursor(undefined);
   }, [currentDepartment?.department_code]);
 
+  const [doKeyword, setDoKeyword] = useState(false);
+
   //useFetchProduct custom hook is being used here to provide data to the following components:
   //SearchBar
   //TotalProducts
@@ -52,15 +55,20 @@ const Inventory: React.FC = () => {
     TOTAL_PRODUCT_COUNT,
     keyword,
     {
-      api: keyword.length > 0 ? "search" : "",
+      api: doKeyword && keyword.length > 0 ? "search" : "",
     }
   );
 
   //changeHandler function is used in the SearchBar component.
   //It is used to give a value to state keyword, which in turn, is used in the useFetchProduct hook
   //to fetch products according to the value.
+  //This function is using debounce to avoid calling search api on every key stroke
   const searchBarChangeHandler = (value: string) => {
+    if (doKeyword) setDoKeyword(false);
     setKeyword(value);
+    const debounced = debounce(setDoKeyword, 600);
+
+    debounced();
   };
 
   const addToInventoryChangeHandler = () => {

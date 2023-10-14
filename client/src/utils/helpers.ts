@@ -55,3 +55,15 @@ export const filterFormData = (
 
   return filteredData;
 };
+
+export function debounce(fn: Function, delay: number) {
+  let id: number | undefined;
+
+  return () => {
+    if (id) clearTimeout(id);
+
+    id = setTimeout(() => {
+      fn(true);
+    }, delay);
+  };
+}

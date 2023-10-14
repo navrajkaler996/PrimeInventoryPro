@@ -36,6 +36,7 @@ const useFetchProduct = (
     setLoading(true);
     //Error is false when API is called.
     setError(false);
+
     //Variable to store the API URL
     let productURL;
     //If options are provided, productURL will be changed.
@@ -51,13 +52,11 @@ const useFetchProduct = (
           API_ENDPOINTS.product_development
         }/${options.api}/${keyword}/${departmentCode}`;
       }
-    } else {
+    } else if (keyword?.length === 0) {
       productURL = `${import.meta.env.VITE_REACT_API}/${
         API_ENDPOINTS.product_development
       }/${departmentCode}/${cursor}/${count}`;
     }
-
-    console.log(productURL);
 
     if (productURL) {
       //Using fetch to make an API call.
@@ -80,7 +79,7 @@ const useFetchProduct = (
           setLoading(false);
         });
     }
-  }, [departmentCode, cursor, keyword]);
+  }, [departmentCode, cursor, options.api, keyword]);
 
   return { products, loading, error, hasMore };
 };
