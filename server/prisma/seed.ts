@@ -12,6 +12,7 @@ async function main() {
   const deleteDepartments = await prisma.department.deleteMany({});
   const deleteSubDepartments = await prisma.subDepartment.deleteMany({});
   const deleteProducts = await prisma.product.deleteMany({});
+  const deleteEmployee = await prisma.employee.deleteMany();
 
   // create two dummy departments
   const departments = await prisma.department.createMany({

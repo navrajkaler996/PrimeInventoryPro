@@ -615,3 +615,14 @@ export const subDepartmentData = [
     total_products_in_transit: 42,
   },
 ];
+
+export const employeeData = [
+  {
+    employee_name: 'avneet kaur',
+    employee_email: 'avneet.kaur@walmart.com',
+    employee_designation: 'general manager',
+    employee_role: 'manager',
+    employee_department: 'store',
+    employee_password: 'password',
+  },
+];
