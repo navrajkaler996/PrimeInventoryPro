@@ -1,7 +1,12 @@
 // prisma/seed.ts
 
 import { PrismaClient } from '@prisma/client';
-import { departmentData, subDepartmentData, productsData } from './data/data';
+import {
+  departmentData,
+  subDepartmentData,
+  productsData,
+  employeeData,
+} from './data/data';
 
 // initialize Prisma Client
 const prisma = new PrismaClient();
@@ -51,14 +56,20 @@ async function main() {
     data: productDataLowerCase,
   });
 
+  const employees = await prisma.employee.createMany({
+    data: employeeData,
+  });
+
   console.log({ deleteDepartments });
   console.log({ deleteSubDepartments });
   console.log({ deleteProducts });
+  console.log({ deleteEmployee });
   console.log({ departments });
   console.log({ subDepartments });
   console.log({ updateDepartment1 });
   console.log({ updateDepartment2 });
-  console.log(freshProducts);
+  console.log({ freshProducts });
+  console.log({ employees });
 }
 
 // execute the main function
