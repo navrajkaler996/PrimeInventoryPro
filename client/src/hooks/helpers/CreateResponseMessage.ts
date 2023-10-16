@@ -1,4 +1,4 @@
-const createResponseMessage = (type: string, method: string) => {
+const createResponseMessage = (type: string, method: string): string => {
   if (type === "success") {
     if (method === "POST") return "Product created successfully";
     if (method === "PUT") return "Product updated successfully";
