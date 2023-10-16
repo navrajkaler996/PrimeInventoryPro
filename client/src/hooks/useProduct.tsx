@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 import { ProductDataType } from "../pages/Dashboard/utils/types";
-import createResponseMessage from "./helpers/createResponseMessage";
+import { createResponseMessage } from "./helpers/createResponseMessage";
 
 const useProduct = () => {
   const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ const useProduct = () => {
     urlDirector.buildURL();
     let productURL = urlDirector.getProductURL();
 
+    console.log(productURL);
     if (productURL && options.method) {
       const response = await fetch(productURL, {
         method: options.method,
@@ -38,6 +39,7 @@ const useProduct = () => {
 
       const data = await response?.json();
 
+      console.log(data);
       if (data?.product_id) {
         setLoading(false);
 

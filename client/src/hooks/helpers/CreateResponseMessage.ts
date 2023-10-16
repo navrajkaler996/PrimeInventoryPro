@@ -1,4 +1,4 @@
-const createResponseMessage = (type: string, method: string): string => {
+export const createResponseMessage = (type: string, method: string): string => {
   if (type === "success") {
     if (method === "POST") return "Product created successfully";
     if (method === "PUT") return "Product updated successfully";
@@ -11,5 +11,3 @@ const createResponseMessage = (type: string, method: string): string => {
 
   return "Unknown response";
 };
-
-export default createResponseMessage;

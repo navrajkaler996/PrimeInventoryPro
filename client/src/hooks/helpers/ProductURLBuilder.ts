@@ -58,8 +58,8 @@ export class ProductURLDirector {
       default:
         throw new Error("Invalid method");
     }
-    if (this.productCode)
-      this.productURL = urlBuilder.buildUrl(this.productCode);
+
+    this.productURL = urlBuilder.buildUrl(this.productCode);
   }
 
   getProductURL(): string {
