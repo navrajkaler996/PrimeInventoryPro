@@ -312,7 +312,10 @@ const AddToInventoryForm: React.FC = () => {
                   subDepartmentListData
                 );
 
-                clickHandler(filteredFormData, { api: "add" });
+                clickHandler(filteredFormData, null, {
+                  api: "add",
+                  method: "POST",
+                });
               }}
             />
           </div>

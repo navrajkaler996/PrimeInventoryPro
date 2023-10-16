@@ -22,7 +22,6 @@ import {
 /////This component display the product details
 //This component also has the edit form and delete functionality
 const Product: React.FC<ProductType> = ({ productCode }) => {
-
   //Service to fetch a single product using product_code
   const {
     data: productData,
@@ -407,7 +406,10 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
                     null
                   );
 
-                  clickHandler(filteredFormData, { api: "edit" });
+                  clickHandler(filteredFormData, null, {
+                    api: "edit",
+                    method: "PUT",
+                  });
                 }}
               />
             </div>
@@ -430,7 +432,10 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
           value="Delete"
           styles={{ position: "absolute", top: "3%", right: 0 }}
           clickHandler={() =>
-            clickHandler({ product_code: form.product_code }, { api: "delete" })
+            clickHandler(undefined, form.product_code, {
+              api: "delete",
+              method: "DELETE",
+            })
           }
           disabled={false}
         />
