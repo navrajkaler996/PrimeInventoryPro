@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { API_ENDPOINTS } from "../utils/constants";
+import { createResponseMessage } from "../utils/helpers";
 
 const useProduct = () => {
   const [loading, setLoading] = useState(false);
@@ -9,20 +10,6 @@ const useProduct = () => {
     type: "",
   });
   const [error, _setError] = useState(false);
-
-  const createResponseMessage = (type: string, method: string) => {
-    if (type === "success") {
-      if (method === "POST") return "Product created successfully";
-      if (method === "PUT") return "Product updated successfully";
-      if (method === "DELETE") return "Product deleted successfully";
-    } else if (type === "failed") {
-      if (method === "POST") return "Product could not be created!";
-      if (method === "PUT") return "Product could not be updated";
-      if (method === "DELETE") return "Product could not be deleted";
-    }
-
-    return "Unknown response";
-  };
 
   const clickHandler = async (
     body: Object,

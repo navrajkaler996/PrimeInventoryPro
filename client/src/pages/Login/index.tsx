@@ -53,7 +53,15 @@ const Login: React.FC = () => {
             />
 
             <div id="login__submit" className="mt-[3rem] text-center">
-              <Button value="login" styles={{ margin: "0 auto" }} />
+              <Button
+                value="login"
+                styles={{ padding: ".5rem 2rem" }}
+                disabled={!(form.email.length > 0 && form.password.length > 0)}
+                clickHandler={(e: KeyboardEvent) => {
+                  e.preventDefault();
+                  
+                }}
+              />
             </div>
           </div>
         </form>
