@@ -82,6 +82,16 @@ export interface EditToInventoryFormType {
   product_code: string;
   errors: EditToInventoryFormErrorsType;
 }
+export interface LoginFormType {
+  email: string;
+  password: string;
+  errors: LoginFormErrorsType;
+}
+
+export interface LoginFormErrorsType {
+  email: boolean;
+  password: boolean;
+}
 
 export interface ProductType {
   productCode: string;

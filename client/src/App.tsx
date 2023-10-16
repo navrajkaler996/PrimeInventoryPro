@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./index.css";
 
@@ -9,19 +9,30 @@ import NavigationMenu from "./components/NavigationMenu";
 //Importing pages
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
+import Login from "./pages/Login";
 
 function App() {
+  const location = useLocation();
+
+  const { pathname } = location;
+
   return (
     <div className="max-w-full">
-      <Header />
-      <div id="content" className="flex flex-row w-[100%]">
-        <NavigationMenu />
-        {/* {switchView()} */}
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/inventory" element={<Inventory />} />
-        </Routes>
-      </div>
+      {pathname !== "/login" && (
+        <>
+          <Header />
+          <div id="content" className="flex flex-row w-[100%]">
+            <NavigationMenu />
+            {/* {switchView()} */}
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/inventory" element={<Inventory />} />
+            </Routes>
+          </div>
+        </>
+      )}
+
+      {pathname === "/login" && <Login />}
     </div>
   );
 }
