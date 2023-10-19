@@ -18,19 +18,19 @@ function App() {
 
   return (
     <div className="max-w-full">
-      {pathname !== "/login" && (
-        <>
-          <Header />
-          <div id="content" className="flex flex-row w-[100%]">
-            <NavigationMenu />
-            {/* {switchView()} */}
-            <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/inventory" element={<Inventory />} />
-            </Routes>
-          </div>
-        </>
-      )}
+      {/* {pathname !== "/login" && ( */}
+      <>
+        <Header />
+        <div id="content" className="flex flex-row w-[100%]">
+          <NavigationMenu />
+          {/* {switchView()} */}
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/inventory" element={<Inventory />} />
+          </Routes>
+        </div>
+      </>
+      {/* )} */}
 
       {pathname === "/login" && (
         <Routes>
