@@ -407,8 +407,8 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
                   );
 
                   clickHandler(filteredFormData, null, {
-                    api: "edit",
                     method: "PUT",
+                    type: "EDIT_PRODUCT",
                   });
                 }}
               />
@@ -433,7 +433,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
           styles={{ position: "absolute", top: "3%", right: 0 }}
           clickHandler={() =>
             clickHandler(undefined, form.product_code, {
-              api: "delete",
+              type: "DELETE_PRODUCT",
               method: "DELETE",
             })
           }

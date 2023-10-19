@@ -1,13 +1,13 @@
 import { API_ENDPOINTS } from "../../utils/constants";
 
 //ProductURLBuilder abstract class can be extended and implemented in other class to build a product url
-//according to the method provided.
+//according to the type provided.
 //This helper is created to implement the Open/Close SOLID principle.
 abstract class ProductURLBuilder {
   abstract buildUrl(...args: Array<any>): string;
 }
 
-export class PostProductURLBuilder extends ProductURLBuilder {
+export class AddProductURLBuilder extends ProductURLBuilder {
   buildUrl(): string {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.product_development
@@ -15,7 +15,7 @@ export class PostProductURLBuilder extends ProductURLBuilder {
   }
 }
 
-export class PutProductURLBuilder extends ProductURLBuilder {
+export class EditProductURLBuilder extends ProductURLBuilder {
   buildUrl(): string {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.product_development
@@ -31,13 +31,21 @@ export class DeleteProductURLBuilder extends ProductURLBuilder {
   }
 }
 
+export class LoginAuthURLBuilder extends ProductURLBuilder {
+  buildUrl(): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.auth_development
+    }/login`;
+  }
+}
+
 export class ProductURLDirector {
-  method: string;
   productCode: string | null;
+  type: string | null;
   productURL: string;
 
-  constructor(method: string, productCode: string | null) {
-    this.method = method;
+  constructor(type: string, productCode: string | null) {
+    this.type = type;
     this.productCode = productCode;
     this.productURL = "";
   }
@@ -45,18 +53,21 @@ export class ProductURLDirector {
   buildURL() {
     let urlBuilder;
 
-    switch (this.method) {
-      case "POST":
-        urlBuilder = new PostProductURLBuilder();
+    switch (this.type) {
+      case "ADD_PRODUCT":
+        urlBuilder = new AddProductURLBuilder();
         break;
-      case "PUT":
-        urlBuilder = new PutProductURLBuilder();
+      case "EDIT_PRODUCT":
+        urlBuilder = new EditProductURLBuilder();
         break;
-      case "DELETE":
+      case "DELETE_PRODUCT":
         urlBuilder = new DeleteProductURLBuilder();
         break;
+      case "LOGIN_AUTH":
+        urlBuilder = new LoginAuthURLBuilder();
+        break;
       default:
-        throw new Error("Invalid method");
+        throw new Error("Invalid type");
     }
 
     this.productURL = urlBuilder.buildUrl(this.productCode);

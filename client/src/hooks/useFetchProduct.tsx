@@ -60,8 +60,12 @@ const useFetchProduct = (
 
     if (productURL) {
       //Using fetch to make an API call.
+      const token = localStorage.getItem("accessToken");
       fetch(productURL, {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
         .then((response) => response?.json())
         .then((data) => {

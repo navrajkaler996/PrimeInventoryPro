@@ -58,10 +58,9 @@ const Department: React.FC = ({}) => {
     //Again, the createCurrentDepartment function is used to transform the data into proper form,
     /////in order to avoid conflicts.
     currentDepartment = createCurrentDepartment(currentDepartment);
-    
+
     dispatch(activeDepartment(currentDepartment));
   };
-
 
   return (
     <div

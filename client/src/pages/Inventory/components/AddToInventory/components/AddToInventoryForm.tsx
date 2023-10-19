@@ -313,8 +313,8 @@ const AddToInventoryForm: React.FC = () => {
                 );
 
                 clickHandler(filteredFormData, null, {
-                  api: "add",
                   method: "POST",
+                  type: "ADD_PRODUCT",
                 });
               }}
             />

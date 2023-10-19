@@ -62,3 +62,16 @@ model Product {
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
+
+//model for employee
+model Employee {
+  employee_id          Int      @id @default(autoincrement())
+  employee_name        String   @default("")
+  employee_email       String   @unique
+  employee_designation String   @default("")
+  employee_role        String   @default("")
+  employee_department  String   @default("")
+  employee_password    String
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
