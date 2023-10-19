@@ -4,6 +4,8 @@ import { AuthController } from './auth.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { EmployeeModule } from '../employee/employee.module';
+import { JwtStrategy } from './strategy/jwt.strategy';
 
 export const jwtSecret =
   'b052e8cfe83e555278792d1f8fde091361bdb3916d203039c964d40bc9103d80';
@@ -18,8 +20,9 @@ export const jwtSecret =
         expiresIn: '5m',
       },
     }),
+    EmployeeModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
