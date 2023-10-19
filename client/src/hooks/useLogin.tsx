@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { API_ENDPOINTS } from "../utils/constants";
 import { createResponseMessage } from "../utils/helpers";
+import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -14,34 +15,32 @@ const useLogin = () => {
   const clickHandler = async (
     body: any,
     options: {
-      api: string;
+      method: string;
+      type: string;
     }
   ) => {
     setLoading(true);
 
-    let productURL = "";
-    let method = "";
+    let loginURL = "";
+    let method = "POST";
 
-    if (Object.keys(options)?.length > 0 && options.api.length > 0) {
-      if (options.api === "login") {
-        productURL = `${import.meta.env.VITE_REACT_API}/${
-          API_ENDPOINTS.product_development
-        }/login`;
+    const urlDirector = new ProductURLDirector(options.type, null);
+    urlDirector.buildURL();
 
-        method = "POST";
-      }
-    }
+    loginURL = urlDirector.getProductURL();
 
-    if (productURL) {
-      const response = await fetch(productURL, {
+    if (loginURL) {
+      const response = await fetch(loginURL, {
         method: method,
         headers: { "Content-type": "application/json" },
-        body: body,
+        body: JSON.stringify(body),
       });
 
       const data = await response?.json();
       setLoading(false);
-      if (data?.employee_id) {
+
+      if (data?.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
         const message = createResponseMessage("success", method);
 
         setRequestStatus({

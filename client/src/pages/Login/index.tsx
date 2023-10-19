@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { LoginFormType } from "../Inventory/utils/types";
+import useLogin from "../../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState<LoginFormType>({
     email: "",
     password: "",
@@ -12,6 +16,8 @@ const Login: React.FC = () => {
       password: false,
     },
   });
+
+  const { clickHandler, loading, requestStatus, error } = useLogin();
 
   //Handler called when input is changed
   const changeHandler = (e: any) => {
@@ -22,6 +28,18 @@ const Login: React.FC = () => {
       };
     });
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      localStorage.removeItem("accessToken");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (requestStatus.type === "success") {
+      navigate("/dashboard");
+    }
+  }, [requestStatus]);
 
   return (
     <div
@@ -59,7 +77,14 @@ const Login: React.FC = () => {
                 disabled={!(form.email.length > 0 && form.password.length > 0)}
                 clickHandler={(e: KeyboardEvent) => {
                   e.preventDefault();
-                  
+
+                  clickHandler(
+                    { email: form.email, password: form.password },
+                    {
+                      method: "POST",
+                      type: "LOGIN_AUTH",
+                    }
+                  );
                 }}
               />
             </div>

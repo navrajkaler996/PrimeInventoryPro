@@ -41,6 +41,7 @@ export const PRODUCT_TABLE_TYPES = {
 
 export const API_ENDPOINTS = {
   product_development: "api/v1/product",
+  auth_development: "api/v1/auth",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;
@@ -68,4 +69,3 @@ export const FORM_ADD_BUTTON_STYLES = {
   letterSpacing: "3px",
   margin: 0,
 };
-

@@ -29,30 +29,30 @@ const useProduct = () => {
     body: ProductDataType["productData"] | undefined,
     productCode: string | null,
     options: {
-      api: string;
       method: string;
+      type: string;
     }
   ) => {
     setLoading(true);
 
     //Using Open/Close principle
-    const urlDirector = new ProductURLDirector(options.method, productCode);
+    const urlDirector = new ProductURLDirector(options.type, productCode);
     urlDirector.buildURL();
     let productURL = urlDirector.getProductURL();
 
-    console.log(productURL);
     if (productURL && options.method) {
+      const token = localStorage.getItem("accessToken");
       const response = await fetch(productURL, {
         method: options.method,
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: options.method === "DELETE" ? null : JSON.stringify(body),
       });
 
       const data = await response?.json();
 
-      console.log(data);
       if (data?.product_id) {
         setLoading(false);
 
