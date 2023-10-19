@@ -32,7 +32,12 @@ function App() {
         </>
       )}
 
-      {pathname === "/login" && <Login />}
+      {pathname === "/login" && (
+        <Routes>
+          {" "}
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      )}
     </div>
   );
 }
