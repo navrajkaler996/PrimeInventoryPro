@@ -7,34 +7,27 @@ import { join } from 'path';
 export class CatchAllController {
   @Get('/*')
   catchAll(@Res() response: Response) {
-    console.log(
-      join(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        '..',
-        '..',
-        'client',
-        'dist',
-        'index.html',
-      ),
-    );
-    const indexHtml = readFileSync(
-      join(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        '..',
-        '..',
-        'client',
-        'dist',
-        'index.html',
-      ),
-      'utf-8',
-    );
+    try {
+      const indexHtml = readFileSync(
+        join(
+          __dirname,
+          '..',
+          '..',
+          '..',
+          '..',
+          '..',
+          'client',
+          'dist',
+          'index.html',
+        ),
+        'utf-8',
+      );
+      console.log('assdadas');
 
-    response.send(indexHtml);
+      response.send(indexHtml);
+    } catch (error) {
+      console.error('Error reading index.html:', error);
+      response.status(500).send('Internal Server Error');
+    }
   }
 }

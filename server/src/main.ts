@@ -8,7 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use(express.static(join(__dirname, '..', '..', '..', 'client', 'build')));
-  console.log(join(__dirname, '..', '..', '..', 'client', 'build'));
 
   const PORT = process.env.PORT;
 
