@@ -7,7 +7,7 @@ import { SubdepartmentModule } from './modules/subdepartment/subdepartment.modul
 import { ProductsModule } from './modules/products/products.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { CatchAllController } from './catch-all.controller';
+import { CatchAllModule } from './modules/catch-all/catch-all.module';
 
 @Module({
   imports: [
@@ -17,8 +17,9 @@ import { CatchAllController } from './catch-all.controller';
     ProductsModule,
     EmployeeModule,
     AuthModule,
+    CatchAllModule,
   ],
-  controllers: [AppController, CatchAllController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

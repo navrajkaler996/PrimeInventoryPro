@@ -7,11 +7,24 @@ import { join } from 'path';
 export class CatchAllController {
   @Get('*')
   catchAll(@Res() response: Response) {
+    console.log(__dirname);
     const indexHtml = readFileSync(
-      join(__dirname, 'index.html'),
+      join(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        '..',
+        'client',
+        'dist',
+        'index.html',
+      ),
       'utf-8',
     );
-    console.log(__dirname);
+
+    console.log(indexHtml);
+
     response.send(indexHtml);
   }
 }

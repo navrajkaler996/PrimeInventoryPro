@@ -23,14 +23,15 @@ function App() {
           <Header />
           <div id="content" className="flex flex-row w-[100%]">
             <NavigationMenu />
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/inventory" element={<Inventory />} />
+            </Routes>
           </div>
         </>
       )}
-
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/inventory" element={<Inventory />} />
       </Routes>
     </div>
   );
