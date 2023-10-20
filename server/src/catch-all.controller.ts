@@ -8,7 +8,7 @@ export class CatchAllController {
   @Get('*')
   catchAll(@Res() response: Response) {
     const indexHtml = readFileSync(
-      join(__dirname, 'client', 'dist', 'index.html'),
+      join(__dirname, 'index.html'),
       'utf-8',
     );
     console.log(__dirname);

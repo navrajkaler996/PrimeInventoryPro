@@ -7,7 +7,7 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(express.static(join(__dirname, '..', 'client')));
+  app.use(express.static(join(__dirname, '..')));
 
   const PORT = process.env.PORT;
 
