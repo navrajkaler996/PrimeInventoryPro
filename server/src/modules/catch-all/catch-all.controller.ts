@@ -9,17 +9,7 @@ export class CatchAllController {
   catchAll(@Res() response: Response) {
     try {
       const indexHtml = readFileSync(
-        join(
-          __dirname,
-          '..',
-          '..',
-          '..',
-          '..',
-          '..',
-          'client',
-          'dist',
-          'index.html',
-        ),
+        join(__dirname, '..', '..', '..', '..', '..', 'client', 'index.html'),
         'utf-8',
       );
       console.log('assdadas');
