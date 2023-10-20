@@ -3,11 +3,23 @@ import { Response } from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-@Controller('*')
+@Controller('')
 export class CatchAllController {
-  @Get('*')
+  @Get('/*')
   catchAll(@Res() response: Response) {
-
+    console.log(
+      join(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        '..',
+        'client',
+        'dist',
+        'index.html',
+      ),
+    );
     const indexHtml = readFileSync(
       join(
         __dirname,
@@ -22,8 +34,6 @@ export class CatchAllController {
       ),
       'utf-8',
     );
-
-
 
     response.send(indexHtml);
   }
