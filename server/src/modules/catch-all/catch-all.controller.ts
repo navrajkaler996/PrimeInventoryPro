@@ -7,7 +7,7 @@ import { join } from 'path';
 export class CatchAllController {
   @Get('*')
   catchAll(@Res() response: Response) {
-    console.log(__dirname);
+
     const indexHtml = readFileSync(
       join(
         __dirname,
@@ -23,7 +23,7 @@ export class CatchAllController {
       'utf-8',
     );
 
-    console.log(indexHtml);
+
 
     response.send(indexHtml);
   }
