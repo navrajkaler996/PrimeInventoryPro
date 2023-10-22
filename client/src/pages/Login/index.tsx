@@ -40,7 +40,10 @@ const Login: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (requestStatus.type === "success") {
+    if (
+      requestStatus.type === "success" &&
+      localStorage.getItem("accessToken")
+    ) {
       navigate("/dashboard");
     }
   }, [requestStatus]);
