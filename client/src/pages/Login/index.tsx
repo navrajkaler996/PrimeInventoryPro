@@ -5,10 +5,13 @@ import { LoginFormType } from "../Inventory/utils/types";
 import useLogin from "../../hooks/useLogin";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlashMessage from "../../components/FlashMessage";
+import { useDispatch } from "react-redux";
+import { loggedInUser } from "../../features/userSlice";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const { state } = location;
 
@@ -21,7 +24,7 @@ const Login: React.FC = () => {
     },
   });
 
-  const { clickHandler, loading, requestStatus, error } = useLogin();
+  const { clickHandler, loading, requestStatus, error, userData } = useLogin();
 
   //Handler called when input is changed
   const changeHandler = (e: any) => {
@@ -47,6 +50,13 @@ const Login: React.FC = () => {
       navigate("/dashboard");
     }
   }, [requestStatus]);
+
+  useEffect(() => {
+    if (userData) {
+      console.log("asa", userData);
+      dispatch(loggedInUser(userData));
+    }
+  }, [userData]);
 
   return (
     <div

@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import departmentReducer from "./features/departmentSlice";
-
+import userReducer from "./features/userSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { departmentApi } from "./services/department";
 import { subDepartmentApi } from "./services/subdepartment";
 import { productApi } from "./services/product";
-
-
 
 export const store: any = configureStore({
   reducer: {
@@ -14,6 +12,7 @@ export const store: any = configureStore({
     [departmentApi.reducerPath]: departmentApi.reducer,
     [subDepartmentApi.reducerPath]: subDepartmentApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    loggedInUser: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

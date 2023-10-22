@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { API_ENDPOINTS } from "../utils/constants";
 import { createResponseMessage } from "../utils/helpers";
 import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 
@@ -11,6 +10,7 @@ const useLogin = () => {
     type: "",
   });
   const [error, setError] = useState(false);
+  const [userData, setUserData] = useState({});
 
   const clickHandler = async (
     body: any,
@@ -41,6 +41,7 @@ const useLogin = () => {
 
       if (data?.accessToken) {
         localStorage.setItem("accessToken", data.accessToken);
+        setUserData(data.user);
         const message = createResponseMessage("success", method);
 
         setRequestStatus({
@@ -60,7 +61,7 @@ const useLogin = () => {
     }
   };
 
-  return { clickHandler, loading, requestStatus, error };
+  return { clickHandler, loading, requestStatus, error, userData };
 };
 
 export default useLogin;
