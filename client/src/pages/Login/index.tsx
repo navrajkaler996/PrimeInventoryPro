@@ -3,10 +3,14 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { LoginFormType } from "../Inventory/utils/types";
 import useLogin from "../../hooks/useLogin";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import FlashMessage from "../../components/FlashMessage";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { state } = location;
 
   const [form, setForm] = useState<LoginFormType>({
     email: "",
@@ -36,7 +40,10 @@ const Login: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (requestStatus.type === "success") {
+    if (
+      requestStatus.type === "success" &&
+      localStorage.getItem("accessToken")
+    ) {
       navigate("/dashboard");
     }
   }, [requestStatus]);
@@ -45,9 +52,12 @@ const Login: React.FC = () => {
     <div
       id="login"
       className="w-[100%] h-[100vh] flex justify-center items-center">
-      <div className="w-[60%] h-[60vh] bg-white shadow-custom rounded-custom">
+      <div className="w-[60%] bg-white py-[5rem] shadow-custom rounded-custom">
         <form className="w-[100%] h-[100%] flex flex-col justify-center items-center">
           <h1 className="uppercase text-[4rem]">Login</h1>
+          {state?.message && (
+            <FlashMessage message={state.message} type="failed" />
+          )}
           <div id="login__email" className="mt-[3rem]">
             <Input
               label="email"

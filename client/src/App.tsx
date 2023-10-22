@@ -10,6 +10,7 @@ import NavigationMenu from "./components/NavigationMenu";
 import Dashboard from "./pages/Dashboard";
 import Inventory from "./pages/Inventory";
 import Login from "./pages/Login";
+import PrivateRoutes from "./components/PrivateRoute";
 
 function App() {
   const location = useLocation();
@@ -24,14 +25,16 @@ function App() {
           <div id="content" className="flex flex-row w-[100%]">
             <NavigationMenu />
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/inventory" element={<Inventory />} />
+              <Route element={<PrivateRoutes />}>
+                <Route element={<Dashboard />} path="/dashboard" />
+                <Route element={<Inventory />} path="/inventory" />
+              </Route>
             </Routes>
           </div>
         </>
       )}
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

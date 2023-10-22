@@ -6,6 +6,8 @@ import { departmentApi } from "./services/department";
 import { subDepartmentApi } from "./services/subdepartment";
 import { productApi } from "./services/product";
 
+
+
 export const store: any = configureStore({
   reducer: {
     activeDepartment: departmentReducer,
