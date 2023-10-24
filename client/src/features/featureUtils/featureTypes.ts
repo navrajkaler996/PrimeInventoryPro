@@ -20,5 +20,5 @@ export interface UserState {
   employee_email: string | undefined;
   employee_designation: string | undefined;
   employee_role: string | undefined;
-  employee_department: string | undefined;
+  employee_department_code: string | undefined;
 }

@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserState } from "./featureTypes";
+import { UserState } from "./featureUtils/featureTypes";
 
 const initialState: UserState = {
   employee_name: undefined,
   employee_email: undefined,
   employee_designation: undefined,
   employee_role: undefined,
-  employee_department: undefined,
+  employee_department_code: undefined,
 };
 
 export const userSlice = createSlice({

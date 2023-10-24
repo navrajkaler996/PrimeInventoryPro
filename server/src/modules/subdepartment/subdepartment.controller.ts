@@ -22,9 +22,19 @@ export class SubdepartmentController {
   }
   //FETCH A SINGLE DEPARTMENT
   //////api/vi/subdepartment/:department_code
-  @Get('/:department_code')
+  @Get('list/:department_code')
   @UseGuards(JwtAuthGaurd)
   findByDepartmentCode(@Param('department_code') department_code: String) {
     return this.subdepartmentService.findByDepartmentCode(department_code);
+  }
+
+  @Get('/:sub_department_code')
+  @UseGuards(JwtAuthGaurd)
+  findBySubDepartmentCode(
+    @Param('sub_department_code') sub_department_code: String,
+  ) {
+    return this.subdepartmentService.findBySubDepartmentCode(
+      sub_department_code,
+    );
   }
 }

@@ -6,6 +6,8 @@ import { departmentApi } from "./services/department";
 import { subDepartmentApi } from "./services/subdepartment";
 import { productApi } from "./services/product";
 
+
+
 export const store: any = configureStore({
   reducer: {
     activeDepartment: departmentReducer,
@@ -21,6 +23,8 @@ export const store: any = configureStore({
       productApi.middleware
     ),
 });
+
+
 
 export type RootState = ReturnType<typeof store.getState>;
 

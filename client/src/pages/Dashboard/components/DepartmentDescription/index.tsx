@@ -9,6 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DepartmentDropdown from "./components/DepartmentDropdown";
 import DepartmentDetails from "./components/DepartmentDetails";
+import { UserState } from "../../../../features/featureUtils/featureTypes";
+import useDepartment from "../../../../hooks/useDepartment";
+
+const createType = (code: string | undefined) => {
+  if (code?.startsWith("DEP")) return "GET_DEPARTMENT";
+  else return "GET_SUB_DEPARTMENT";
+};
 
 const Department: React.FC = ({}) => {
   const dispatch = useDispatch();
@@ -18,19 +25,21 @@ const Department: React.FC = ({}) => {
     (state: any) => state?.activeDepartment
   );
 
+  const userData: UserState = useSelector((state: any) => state?.loggedInUser);
+  const { employee_department_code: employeeDepartmentCode } = userData;
+
   //Executing hook to fetch a single department using department_code
-  const {
-    data: departmentData,
-    error: departmentError,
-    isLoading: departmentIsLoading,
-  } = useGetByDepartmentCodeQuery("DEP001");
+  const { departmentData, departmentError, departmentIsLoading } =
+    useDepartment(employeeDepartmentCode, {
+      type: createType(employeeDepartmentCode),
+    });
 
   //Executing hook to fetch a single subdepartment using department_code
   const {
     data: subDepartmentsData,
     error: subDepartmentsError,
     isLoading: subDepartmentIsLoading,
-  } = useGetSubDepartmentsByDepartmentCodeQuery("DEP001");
+  } = useGetSubDepartmentsByDepartmentCodeQuery(employeeDepartmentCode);
 
   useEffect(() => {
     //When department data is fetched from the API, the data is dispatched to the store.
@@ -42,6 +51,8 @@ const Department: React.FC = ({}) => {
       dispatch(activeDepartment(currentDepartment));
     }
   }, [departmentData]);
+
+  console.log("----", departmentData);
 
   //This change handler is passed to the Department component.
   /////It will be invoke when a subdepartment is selected from the dropdown.
@@ -72,12 +83,14 @@ const Department: React.FC = ({}) => {
         departmentIsLoading={departmentIsLoading}
       />
 
-      <DepartmentDropdown
-        departmentData={departmentData}
-        subDepartmentsData={subDepartmentsData}
-        subDepartmentIsLoading={subDepartmentIsLoading}
-        subDepartmentChangeHandler={subDepartmentChangeHandler}
-      />
+      {subDepartmentsData?.length > 0 && (
+        <DepartmentDropdown
+          departmentData={departmentData}
+          subDepartmentsData={subDepartmentsData}
+          subDepartmentIsLoading={subDepartmentIsLoading}
+          subDepartmentChangeHandler={subDepartmentChangeHandler}
+        />
+      )}
     </div>
   );
 };

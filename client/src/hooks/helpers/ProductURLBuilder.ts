@@ -39,15 +39,31 @@ export class LoginAuthURLBuilder extends ProductURLBuilder {
   }
 }
 
-export class ProductURLDirector {
-  productCode: string | null;
-  type: string | null;
-  productURL: string;
+export class GetDepartmentBuilder extends ProductURLBuilder {
+  buildUrl(department_code: string): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.department_development
+    }/${department_code}`;
+  }
+}
 
-  constructor(type: string, productCode: string | null) {
+export class GetSubdepartmentBuilder extends ProductURLBuilder {
+  buildUrl(sub_department_code: string): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.sub_department_development
+    }/${sub_department_code}`;
+  }
+}
+
+export class ProductURLDirector {
+  code: string | null;
+  type: string | null;
+  URL: string;
+
+  constructor(type: string, code: string | null | undefined) {
     this.type = type;
-    this.productCode = productCode;
-    this.productURL = "";
+    this.code = code;
+    this.URL = "";
   }
 
   buildURL() {
@@ -66,14 +82,20 @@ export class ProductURLDirector {
       case "LOGIN_AUTH":
         urlBuilder = new LoginAuthURLBuilder();
         break;
+      case "GET_DEPARTMENT":
+        urlBuilder = new GetDepartmentBuilder();
+        break;
+      case "GET_SUB_DEPARTMENT":
+        urlBuilder = new GetSubdepartmentBuilder();
+        break;
       default:
         throw new Error("Invalid type");
     }
 
-    this.productURL = urlBuilder.buildUrl(this.productCode);
+    this.URL = urlBuilder.buildUrl(this.code);
   }
 
   getProductURL(): string {
-    return this.productURL;
+    return this.URL;
   }
 }

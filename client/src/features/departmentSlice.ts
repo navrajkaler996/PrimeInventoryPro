@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DepartmentState } from "./featureTypes";
+import { DepartmentState } from "./featureUtils/featureTypes";
 
 const initialState: DepartmentState = {
   activeDepartment: {

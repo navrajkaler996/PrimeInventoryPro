@@ -42,6 +42,8 @@ export const PRODUCT_TABLE_TYPES = {
 export const API_ENDPOINTS = {
   product_development: "api/v1/product",
   auth_development: "api/v1/auth",
+  department_development: "api/v1/department",
+  sub_department_development: "api/v1/subdepartment",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;

@@ -53,7 +53,6 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (userData) {
-      console.log("asa", userData);
       dispatch(loggedInUser(userData));
     }
   }, [userData]);

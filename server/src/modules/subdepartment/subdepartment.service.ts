@@ -29,4 +29,10 @@ export class SubdepartmentService {
       },
     });
   }
+
+  findBySubDepartmentCode(sub_department_code: String) {
+    return this.prisma.subDepartment.findUnique({
+      where: { sub_department_code: sub_department_code?.toUpperCase() },
+    });
+  }
 }

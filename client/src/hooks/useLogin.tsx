@@ -41,6 +41,8 @@ const useLogin = () => {
 
       if (data?.accessToken) {
         localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+
         setUserData(data.user);
         const message = createResponseMessage("success", method);
 
