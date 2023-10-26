@@ -82,7 +82,7 @@ model InventoryRequest {
   request_id                  Int            @id @default(autoincrement())
   request_type                String         @default("")
   request_by_name             String
-  request_by_employee_id      String
+  request_by_employee_id      Int
   request_by_email            String
   request                     String
   request_department_code     String

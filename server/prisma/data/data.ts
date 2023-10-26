@@ -642,3 +642,15 @@ export const employeeData = [
     employee_password: 'password',
   },
 ];
+
+export const inventoryRequestData = [
+  {
+    request_type: 'ADD',
+    request_by_name: 'john doe',
+    request_by_employee_id: 2,
+    request_by_email: 'john.doe@walmart.com',
+    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
+    request_department_code: 'DEP001',
+    request_sub_department_code: 'FRE001',
+  },
+];
