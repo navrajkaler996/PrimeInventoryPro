@@ -12,33 +12,35 @@ datasource db {
 
 //model for departments
 model Department {
-  department_id             Int      @id @default(autoincrement())
-  department_code           String   @unique
-  department_name           String   @unique
-  total_sub_departments     Int      @default(0)
+  department_id             Int                @id @default(autoincrement())
+  department_code           String             @unique
+  department_name           String             @unique
+  total_sub_departments     Int                @default(0)
   total_products            Int
   total_products_quantity   Int
-  total_products_in_transit Int      @default(0)
+  total_products_in_transit Int                @default(0)
   stock_alert               Boolean
-  direct_supervisor         String   @unique
-  createdAt                 DateTime @default(now())
-  updatedAt                 DateTime @updatedAt
+  direct_supervisor         String             @unique
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
+  inventoryRequests         InventoryRequest[]
 }
 
 //model for subdepartments
 model SubDepartment {
-  sub_department_id         Int      @id @default(autoincrement())
-  sub_department_code       String   @unique
-  sub_department_name       String   @unique
+  sub_department_id         Int                @id @default(autoincrement())
+  sub_department_code       String             @unique
+  sub_department_name       String             @unique
   department_code           String
-  department_name           String   @default("department")
+  department_name           String             @default("department")
   total_products            Int
   total_products_quantity   Int
-  total_products_in_transit Int      @default(0)
+  total_products_in_transit Int                @default(0)
   stock_alert               Boolean
   sub_department_manager    String
-  createdAt                 DateTime @default(now())
-  updatedAt                 DateTime @updatedAt
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
+  inventoryRequests         InventoryRequest[]
 }
 
 //model for products
@@ -74,4 +76,19 @@ model Employee {
   employee_password        String
   createdAt                DateTime @default(now())
   updatedAt                DateTime @updatedAt
+}
+
+model InventoryRequest {
+  request_id                  Int            @id @default(autoincrement())
+  request_type                String         @default("")
+  request_by_name             String
+  request_by_employee_id      String
+  request_by_email            String
+  request                     String
+  request_department_code     String
+  request_sub_department_code String
+  createdAt                   DateTime       @default(now())
+  updatedAt                   DateTime       @updatedAt
+  department                  Department     @relation(fields: [request_department_code], references: [department_code])
+  subDepartment               SubDepartment? @relation(fields: [request_sub_department_code], references: [sub_department_code])
 }

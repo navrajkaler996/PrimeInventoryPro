@@ -622,7 +622,7 @@ export const employeeData = [
     employee_email: 'avneet.kaur@walmart.com',
     employee_designation: 'general manager',
     employee_role: 'manager',
-    employee_department_code: 'STORE',
+    employee_department_code: 'STORE3117',
     employee_password: 'password',
   },
   {
