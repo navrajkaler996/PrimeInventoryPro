@@ -14,12 +14,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   //deleting all the records
+  const deleteInventoryRequests = await prisma.inventoryRequest.deleteMany();
+  const deleteEmployee = await prisma.employee.deleteMany();
 
   const deleteDepartments = await prisma.department.deleteMany({});
   const deleteSubDepartments = await prisma.subDepartment.deleteMany({});
   const deleteProducts = await prisma.product.deleteMany({});
-  const deleteEmployee = await prisma.employee.deleteMany();
-  const deleteInventoryRequests = await prisma.inventoryRequest.deleteMany();
 
   // create two dummy departments
   const departments = await prisma.department.createMany({

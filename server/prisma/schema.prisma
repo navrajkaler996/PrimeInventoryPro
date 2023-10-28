@@ -67,15 +67,16 @@ model Product {
 
 //model for employee
 model Employee {
-  employee_id              Int      @id @default(autoincrement())
-  employee_name            String   @default("")
-  employee_email           String   @unique
-  employee_designation     String   @default("")
-  employee_role            String   @default("")
-  employee_department_code String   @default("")
+  employee_id              Int                @id @default(autoincrement())
+  employee_name            String             @default("")
+  employee_email           String             @unique
+  employee_designation     String             @default("")
+  employee_role            String             @default("")
+  employee_department_code String             @default("")
   employee_password        String
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
+  createdAt                DateTime           @default(now())
+  updatedAt                DateTime           @updatedAt
+  inventoryRequest         InventoryRequest[]
 }
 
 model InventoryRequest {
@@ -83,6 +84,7 @@ model InventoryRequest {
   request_type                String         @default("")
   request_by_name             String
   request_by_employee_id      Int
+  request_for_employee_id     Int            @default(7)
   request_by_email            String
   request                     String
   request_department_code     String
@@ -91,4 +93,5 @@ model InventoryRequest {
   updatedAt                   DateTime       @updatedAt
   department                  Department     @relation(fields: [request_department_code], references: [department_code])
   subDepartment               SubDepartment? @relation(fields: [request_sub_department_code], references: [sub_department_code])
+  employee                    Employee?      @relation(fields: [request_for_employee_id], references: [employee_id])
 }

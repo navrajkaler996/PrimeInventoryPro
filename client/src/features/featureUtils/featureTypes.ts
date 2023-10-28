@@ -16,6 +16,7 @@ export interface DepartmentState {
 }
 
 export interface UserState {
+  employee_id: number | undefined;
   employee_name: string | undefined;
   employee_email: string | undefined;
   employee_designation: string | undefined;

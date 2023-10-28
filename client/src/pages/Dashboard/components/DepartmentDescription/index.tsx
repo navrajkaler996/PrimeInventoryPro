@@ -1,22 +1,32 @@
-//Importing utilities
-
-import { SubDepartmentType } from "../../utils/types";
-import { useGetByDepartmentCodeQuery } from "../../../../services/department";
-import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../../../services/subdepartment";
-import { createCurrentDepartment } from "../../utils/dashboardUtils";
-import { activeDepartment } from "../../../../features/departmentSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+//Importing hooks
+import useDepartment from "../../../../hooks/useDepartment";
+
+//Importing features
+import { activeDepartment } from "../../../../features/departmentSlice";
+
+//Importing services
+import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../../../services/subdepartment";
+
+//Importing utilities
+import { SubDepartmentType } from "../../utils/types";
+import { createCurrentDepartment } from "../../utils/dashboardUtils";
+import { UserState } from "../../../../features/featureUtils/featureTypes";
+
+//Importing components
 import DepartmentDropdown from "./components/DepartmentDropdown";
 import DepartmentDetails from "./components/DepartmentDetails";
-import { UserState } from "../../../../features/featureUtils/featureTypes";
-import useDepartment from "../../../../hooks/useDepartment";
 
 const createType = (code: string | undefined) => {
   if (code?.startsWith("DEP")) return "GET_DEPARTMENT";
   else return "GET_SUB_DEPARTMENT";
 };
 
+/////RENDERS A FUNCTIONAL COMPONENT
+//Department component renders description of the department,
+//and a dropdown to switch departments
 const Department: React.FC = ({}) => {
   const dispatch = useDispatch();
 
@@ -37,7 +47,7 @@ const Department: React.FC = ({}) => {
   //Executing hook to fetch a single subdepartment using department_code
   const {
     data: subDepartmentsData,
-    error: subDepartmentsError,
+    error: _subDepartmentsError,
     isLoading: subDepartmentIsLoading,
   } = useGetSubDepartmentsByDepartmentCodeQuery(employeeDepartmentCode);
 
@@ -51,8 +61,6 @@ const Department: React.FC = ({}) => {
       dispatch(activeDepartment(currentDepartment));
     }
   }, [departmentData]);
-
-  console.log("----", departmentData);
 
   //This change handler is passed to the Department component.
   /////It will be invoke when a subdepartment is selected from the dropdown.
@@ -77,12 +85,17 @@ const Department: React.FC = ({}) => {
     <div
       id="dashboard__department"
       className="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between items-center mt-[3rem]">
+      {/*
+        Component to display the department details
+      */}
       <DepartmentDetails
         departmentData={departmentData}
         currentDepartment={currentDepartment}
         departmentIsLoading={departmentIsLoading}
       />
-
+      {/*
+        Component that displays a dropdown
+      */}
       {subDepartmentsData?.length > 0 && (
         <DepartmentDropdown
           departmentData={departmentData}

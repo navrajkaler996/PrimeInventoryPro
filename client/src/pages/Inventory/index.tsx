@@ -6,20 +6,21 @@ import TotalProducts from "./components/TotalProducts";
 import Department from "../Dashboard/components/DepartmentDescription";
 import SearchBar from "./components/SearchBar";
 import Button from "../../components/Button";
-
-//Importing slices
-import { DepartmentState } from "../../features/departmentSlice";
+import AddToInventory from "./components/AddToInventory";
+import Product from "./components/Product";
 
 //Importing hooks
 import useFetchProducts from "../../hooks/useFetchProduct";
 
+//Importing types
+import { DepartmentState } from "../../features/featureUtils/featureTypes";
+
 //Importing constants
 import { INVENTORY_VIEWS, TOTAL_PRODUCT_COUNT } from "../../utils/constants";
-import AddToInventory from "./components/AddToInventory";
-import Product from "./components/Product";
 import { debounce } from "../../utils/helpers";
 
-//INVENTORY COMPONENT DISPLAYS EVERYTHING RELATED TO THE PRODUCTS IN THE INVENTORY
+/////RENDERS A REACT FUNCTIONAL COMPONENT
+//Inventory component renders everything related to inventory
 const Inventory: React.FC = () => {
   //Fetching active department
   const currentDepartment: DepartmentState["activeDepartment"] = useSelector(
@@ -30,16 +31,18 @@ const Inventory: React.FC = () => {
   const [cursor, setCursor] = useState<number | undefined>(undefined);
   const [keyword, setKeyword] = useState<string>("");
   const [productCode, setProductCode] = useState<string>("");
+  //State to track if search is being performed or not
+  const [doKeyword, setDoKeyword] = useState(false);
 
+  //State to change the view of the app
   const [currentView, setCurrentView] = useState<string>(
     INVENTORY_VIEWS.PRODUCT_TABLE
   );
 
+  //useEffect to set cursor to undefined when department is changed fromt dropwdown
   useEffect(() => {
     setCursor(undefined);
   }, [currentDepartment?.department_code]);
-
-  const [doKeyword, setDoKeyword] = useState(false);
 
   //useFetchProduct custom hook is being used here to provide data to the following components:
   //SearchBar
@@ -75,6 +78,7 @@ const Inventory: React.FC = () => {
     setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
   };
 
+  //Function that invokes when a row is clicked in the table
   const productClickHandler = (productCode: string) => {
     setProductCode(productCode);
     setCurrentView(INVENTORY_VIEWS.PRODUCT);
@@ -82,17 +86,29 @@ const Inventory: React.FC = () => {
 
   return (
     <div id="inventory__container" className="lg:max-w-full md:w-full w-full ">
+      {/*
+        Component that displays department description and dropdown
+        */}
       <Department />
       <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
+        {/*
+          Button to open add to inventory product form
+          */}
         <Button
           value="new"
           clickHandler={addToInventoryChangeHandler}
           disabled={false}
           styles={{}}
         />
+        {/*
+          Component that contains the search bar
+          */}
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 
+      {/*
+      Component that contains the table which displays all the products
+        */}
       {currentView === INVENTORY_VIEWS.PRODUCT_TABLE && (
         <TotalProducts
           productData={productData}
@@ -104,9 +120,13 @@ const Inventory: React.FC = () => {
           productClickHandler={productClickHandler}
         />
       )}
-
+      {/*
+      Component that contains add to inventory product form
+        */}
       {currentView === INVENTORY_VIEWS.ADD_TO_INVENTORY && <AddToInventory />}
-
+      {/*
+      Component that contains product view
+        */}
       {currentView === INVENTORY_VIEWS.PRODUCT && (
         <Product productCode={productCode} />
       )}

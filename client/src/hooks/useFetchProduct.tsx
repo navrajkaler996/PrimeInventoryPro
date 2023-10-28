@@ -5,7 +5,7 @@ import { API_ENDPOINTS } from "../utils/constants";
 
 //CUSTOM HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
 const useFetchProduct = (
-  departmentCode: String | null,
+  departmentCode: String | undefined,
   cursor: Number | undefined,
   count: number | 0,
   keyword: string | undefined,

@@ -35,8 +35,16 @@ export const STOCK_ALERT_KEYS = {
   cap: "cap",
 };
 
+export const INVENORY_REQUESTS_KEYS = {
+  type: "request_type",
+  "request by": "request_by_email",
+  request: "request",
+  "created at": "createdAt",
+};
+
 export const PRODUCT_TABLE_TYPES = {
   STOCK_ALERTS: "STOCK_ALERTS",
+  INVENORY_REQUESTS: "INVENORY_REQUESTS",
 };
 
 export const API_ENDPOINTS = {
@@ -44,10 +52,12 @@ export const API_ENDPOINTS = {
   auth_development: "api/v1/auth",
   department_development: "api/v1/department",
   sub_department_development: "api/v1/subdepartment",
+  inventory_request_development: "api/v1/inventory-request",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;
 export const STOCK_ALERT_PRODUCT_COUNT = 12;
+export const INVENORY_REQUESTS_COUNT = 6;
 
 export const FLASH_MESSAGE_TYPES = {
   success: "#AAFF00",
