@@ -1,15 +1,32 @@
-//Importing utilities
-
-import { SubDepartmentType } from "../../utils/types";
-import { useGetByDepartmentCodeQuery } from "../../../../services/department";
-import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../../../services/subdepartment";
-import { createCurrentDepartment } from "../../utils/dashboardUtils";
-import { activeDepartment } from "../../../../features/departmentSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+//Importing hooks
+import useDepartment from "../../../../hooks/useDepartment";
+
+//Importing features
+import { activeDepartment } from "../../../../features/departmentSlice";
+
+//Importing services
+import { useGetSubDepartmentsByDepartmentCodeQuery } from "../../../../services/subdepartment";
+
+//Importing utilities
+import { SubDepartmentType } from "../../utils/types";
+import { createCurrentDepartment } from "../../utils/dashboardUtils";
+import { UserState } from "../../../../features/featureUtils/featureTypes";
+
+//Importing components
 import DepartmentDropdown from "./components/DepartmentDropdown";
 import DepartmentDetails from "./components/DepartmentDetails";
 
+const createType = (code: string | undefined) => {
+  if (code?.startsWith("DEP")) return "GET_DEPARTMENT";
+  else return "GET_SUB_DEPARTMENT";
+};
+
+/////RENDERS A FUNCTIONAL COMPONENT
+//Department component renders description of the department,
+//and a dropdown to switch departments
 const Department: React.FC = ({}) => {
   const dispatch = useDispatch();
 
@@ -18,19 +35,21 @@ const Department: React.FC = ({}) => {
     (state: any) => state?.activeDepartment
   );
 
+  const userData: UserState = useSelector((state: any) => state?.loggedInUser);
+  const { employee_department_code: employeeDepartmentCode } = userData;
+
   //Executing hook to fetch a single department using department_code
-  const {
-    data: departmentData,
-    error: departmentError,
-    isLoading: departmentIsLoading,
-  } = useGetByDepartmentCodeQuery("DEP001");
+  const { departmentData, departmentError, departmentIsLoading } =
+    useDepartment(employeeDepartmentCode, {
+      type: createType(employeeDepartmentCode),
+    });
 
   //Executing hook to fetch a single subdepartment using department_code
   const {
     data: subDepartmentsData,
-    error: subDepartmentsError,
+    error: _subDepartmentsError,
     isLoading: subDepartmentIsLoading,
-  } = useGetSubDepartmentsByDepartmentCodeQuery("DEP001");
+  } = useGetSubDepartmentsByDepartmentCodeQuery(employeeDepartmentCode);
 
   useEffect(() => {
     //When department data is fetched from the API, the data is dispatched to the store.
@@ -66,18 +85,25 @@ const Department: React.FC = ({}) => {
     <div
       id="dashboard__department"
       className="flex flex-col lg:flex-row md:flex-row lg:justify-between md:justify-between items-center mt-[3rem]">
+      {/*
+        Component to display the department details
+      */}
       <DepartmentDetails
         departmentData={departmentData}
         currentDepartment={currentDepartment}
         departmentIsLoading={departmentIsLoading}
       />
-
-      <DepartmentDropdown
-        departmentData={departmentData}
-        subDepartmentsData={subDepartmentsData}
-        subDepartmentIsLoading={subDepartmentIsLoading}
-        subDepartmentChangeHandler={subDepartmentChangeHandler}
-      />
+      {/*
+        Component that displays a dropdown
+      */}
+      {subDepartmentsData?.length > 0 && (
+        <DepartmentDropdown
+          departmentData={departmentData}
+          subDepartmentsData={subDepartmentsData}
+          subDepartmentIsLoading={subDepartmentIsLoading}
+          subDepartmentChangeHandler={subDepartmentChangeHandler}
+        />
+      )}
     </div>
   );
 };

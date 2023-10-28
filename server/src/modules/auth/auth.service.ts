@@ -25,7 +25,10 @@ export class AuthService {
       throw new UnauthorizedException('Wrong password');
     }
 
+    delete user.employee_password;
+
     return {
+      user,
       accessToken: this.jwtService.sign({ userId: user.employee_id }),
     };
   }

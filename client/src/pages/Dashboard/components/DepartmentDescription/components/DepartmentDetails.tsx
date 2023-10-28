@@ -8,19 +8,21 @@ import Produce from "../../../../../assets/departments/produce.png";
 import Bakery from "../../../../../assets/departments/bakery.png";
 
 interface DepartmentDetails {
-  departmentData: {
-    createdAt: string;
-    department_code: string;
-    department_id: number;
-    department_name: string;
-    direct_supervisor: string;
-    stock_alert: boolean;
-    total_products: number;
-    total_products_quantity: number;
-    total_products_in_transit: number;
-    total_sub_departments: number;
-    updatedAt: string;
-  };
+  departmentData:
+    | {
+        createdAt: string;
+        department_code: string;
+        department_id: number;
+        department_name: string;
+        direct_supervisor: string;
+        stock_alert: boolean;
+        total_products: number;
+        total_products_quantity: number;
+        total_products_in_transit: number;
+        total_sub_departments: number;
+        updatedAt: string;
+      }
+    | undefined;
   currentDepartment: {
     department_id: Number | null;
     department_code: String | null;

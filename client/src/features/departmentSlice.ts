@@ -1,36 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { DepartmentState } from "./featureUtils/featureTypes";
 
-export interface DepartmentState {
+const initialState: DepartmentState = {
   activeDepartment: {
-    department_id: Number | null;
-    department_code: String | null;
-    department_name: String | null;
-    total_sub_departments: Number | null;
-    total_products: Number | null;
-    total_products_quantity: Number | null;
-    total_products_in_transit: Number;
-    stock_alert: Boolean | null;
-    direct_supervisor: String | null;
-    parent_department_code: String | null;
-    createdAt: String | null;
-    updatedAt: String | null;
-  };
-}
-
-const initialState = {
-  // activeDepartment: {
-  //   department_id: null,
-  //   department_code: null,
-  //   department_name: null,
-  //   total_sub_departments: null,
-  //   total_products: null,
-  //   total_products_quantity: null,
-  //   stock_alert: null,
-  //   direct_supervisor: null,
-  //   parent_department_code: null,
-  //   createdAt: null,
-  //   updatedAt: null,
-  // },
+    department_id: undefined,
+    department_code: undefined,
+    department_name: undefined,
+    total_sub_departments: undefined,
+    total_products: undefined,
+    total_products_quantity: undefined,
+    total_products_in_transit: undefined,
+    stock_alert: undefined,
+    direct_supervisor: undefined,
+    parent_department_code: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+  },
 };
 
 //This slice is used to store data related to department.

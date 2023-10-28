@@ -7,6 +7,7 @@ import { SubdepartmentModule } from './modules/subdepartment/subdepartment.modul
 import { ProductsModule } from './modules/products/products.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { InventoryRequestsModule } from './modules/inventory-requests/inventory-requests.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthModule } from './modules/auth/auth.module';
     ProductsModule,
     EmployeeModule,
     AuthModule,
+    InventoryRequestsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

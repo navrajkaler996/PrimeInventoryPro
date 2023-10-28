@@ -6,6 +6,7 @@ import {
   subDepartmentData,
   productsData,
   employeeData,
+  inventoryRequestData,
 } from './data/data';
 
 // initialize Prisma Client
@@ -13,11 +14,12 @@ const prisma = new PrismaClient();
 
 async function main() {
   //deleting all the records
+  const deleteInventoryRequests = await prisma.inventoryRequest.deleteMany();
+  const deleteEmployee = await prisma.employee.deleteMany();
 
   const deleteDepartments = await prisma.department.deleteMany({});
   const deleteSubDepartments = await prisma.subDepartment.deleteMany({});
   const deleteProducts = await prisma.product.deleteMany({});
-  const deleteEmployee = await prisma.employee.deleteMany();
 
   // create two dummy departments
   const departments = await prisma.department.createMany({
@@ -60,16 +62,22 @@ async function main() {
     data: employeeData,
   });
 
+  const inventoryRequests = await prisma.inventoryRequest.createMany({
+    data: inventoryRequestData,
+  });
+
   console.log({ deleteDepartments });
   console.log({ deleteSubDepartments });
   console.log({ deleteProducts });
   console.log({ deleteEmployee });
+  console.log({ deleteInventoryRequests });
   console.log({ departments });
   console.log({ subDepartments });
   console.log({ updateDepartment1 });
   console.log({ updateDepartment2 });
   console.log({ freshProducts });
   console.log({ employees });
+  console.log({ inventoryRequests });
 }
 
 // execute the main function

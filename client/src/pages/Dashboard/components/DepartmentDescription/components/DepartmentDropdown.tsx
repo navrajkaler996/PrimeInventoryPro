@@ -1,19 +1,21 @@
 import { SKELETON_STYLES } from "../../../../../utils/constants";
 
 interface DepartmentDropdownProps {
-  departmentData: {
-    createdAt: string;
-    department_code: string;
-    department_id: number;
-    department_name: string;
-    direct_supervisor: string;
-    stock_alert: boolean;
-    total_products: number;
-    total_products_quantity: number;
-    total_products_in_transit: number;
-    total_sub_departments: number;
-    updatedAt: string;
-  };
+  departmentData:
+    | {
+        createdAt: string;
+        department_code: string;
+        department_id: number;
+        department_name: string;
+        direct_supervisor: string;
+        stock_alert: boolean;
+        total_products: number;
+        total_products_quantity: number;
+        total_products_in_transit: number;
+        total_sub_departments: number;
+        updatedAt: string;
+      }
+    | undefined;
   subDepartmentsData: {
     sub_department_name: string;
     sub_department_code: string;

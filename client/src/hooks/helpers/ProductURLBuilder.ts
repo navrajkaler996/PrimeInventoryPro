@@ -1,5 +1,10 @@
 import { API_ENDPOINTS } from "../../utils/constants";
 
+interface UrlBuilderOptionsType {
+  cursor: number | undefined;
+  count: number;
+}
+
 //ProductURLBuilder abstract class can be extended and implemented in other class to build a product url
 //according to the type provided.
 //This helper is created to implement the Open/Close SOLID principle.
@@ -8,7 +13,10 @@ abstract class ProductURLBuilder {
 }
 
 export class AddProductURLBuilder extends ProductURLBuilder {
-  buildUrl(): string {
+  buildUrl(
+    _code: string | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.product_development
     }/add`;
@@ -16,7 +24,10 @@ export class AddProductURLBuilder extends ProductURLBuilder {
 }
 
 export class EditProductURLBuilder extends ProductURLBuilder {
-  buildUrl(): string {
+  buildUrl(
+    _code: string | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.product_development
     }/update`;
@@ -24,7 +35,10 @@ export class EditProductURLBuilder extends ProductURLBuilder {
 }
 
 export class DeleteProductURLBuilder extends ProductURLBuilder {
-  buildUrl(product_code: string): string {
+  buildUrl(
+    product_code: string | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.product_development
     }/delete/${product_code}`;
@@ -39,15 +53,54 @@ export class LoginAuthURLBuilder extends ProductURLBuilder {
   }
 }
 
-export class ProductURLDirector {
-  productCode: string | null;
-  type: string | null;
-  productURL: string;
+export class GetDepartmentBuilder extends ProductURLBuilder {
+  buildUrl(
+    department_code: string | undefined | null,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.department_development
+    }/${department_code}`;
+  }
+}
 
-  constructor(type: string, productCode: string | null) {
+export class GetSubdepartmentBuilder extends ProductURLBuilder {
+  buildUrl(
+    sub_department_code: string | undefined | null,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.sub_department_development
+    }/${sub_department_code}`;
+  }
+}
+
+export class GetInventoryRequestBuilder extends ProductURLBuilder {
+  buildUrl(
+    employee_id: string | undefined | null,
+    options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.inventory_request_development
+    }/list/${employee_id}/${options?.cursor}/${options?.count}`;
+  }
+}
+
+export class ProductURLDirector {
+  code: string | null | undefined;
+  type: string | null;
+  URL: string;
+  options: UrlBuilderOptionsType | undefined;
+
+  constructor(
+    type: string,
+    code: string | null | undefined,
+    options: UrlBuilderOptionsType | undefined
+  ) {
     this.type = type;
-    this.productCode = productCode;
-    this.productURL = "";
+    this.code = code;
+    this.URL = "";
+    this.options = options;
   }
 
   buildURL() {
@@ -66,14 +119,23 @@ export class ProductURLDirector {
       case "LOGIN_AUTH":
         urlBuilder = new LoginAuthURLBuilder();
         break;
+      case "GET_DEPARTMENT":
+        urlBuilder = new GetDepartmentBuilder();
+        break;
+      case "GET_SUB_DEPARTMENT":
+        urlBuilder = new GetSubdepartmentBuilder();
+        break;
+      case "GET_INVENTORY_REQUEST":
+        urlBuilder = new GetInventoryRequestBuilder();
+        break;
       default:
         throw new Error("Invalid type");
     }
 
-    this.productURL = urlBuilder.buildUrl(this.productCode);
+    this.URL = urlBuilder.buildUrl(this.code, this.options);
   }
 
   getProductURL(): string {
-    return this.productURL;
+    return this.URL;
   }
 }
