@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { FindByEmployeeIdDto } from './dto/find-by-employee-id.dto';
+import { AddToInventoryDto } from './dto/add-request.dto';
 
 @Injectable()
 export class InventoryRequestsService {
@@ -29,6 +30,18 @@ export class InventoryRequestsService {
           request_for_employee_id: Number(employee_id),
         },
       });
+    }
+  }
+
+  async addRequest(data: AddToInventoryDto) {
+    try {
+      const response = await this.prisma.inventoryRequest.create({
+        data: data,
+      });
+      console.log(response);
+      return response;
+    } catch (error) {
+      return error;
     }
   }
 }

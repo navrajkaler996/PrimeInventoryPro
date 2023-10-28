@@ -1,8 +1,8 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { InventoryRequestsService } from './inventory-requests.service';
-import { FindByEmployeeIdDto } from './dto/find-by-employee-id.dto';
-import { AuthGuard } from '@nestjs/passport';
+
 import { JwtAuthGaurd } from '../auth/jwt-auth.gaurd';
+import { AddToInventoryDto } from './dto/add-request.dto';
 
 @Controller('/api/v1/inventory-request')
 export class InventoryRequestsController {
@@ -22,5 +22,11 @@ export class InventoryRequestsController {
       cursor,
       count,
     );
+  }
+
+  @Post('/add')
+  @UseGuards(JwtAuthGaurd)
+  addRequest(@Body() body: AddToInventoryDto) {
+    return this.inventoryRequestsService.addRequest(body);
   }
 }
