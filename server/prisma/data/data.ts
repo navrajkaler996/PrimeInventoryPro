@@ -10,6 +10,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 512, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Beef Ground Chuck',
@@ -22,6 +23,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 761, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Pork Tenderloin',
@@ -34,6 +36,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 398, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Lamb Chops',
@@ -46,6 +49,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 223, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Ground Turkey',
@@ -58,6 +62,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 618, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Salmon Fillet',
@@ -70,6 +75,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 787, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Bacon Strips',
@@ -82,6 +88,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 329, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Sausage Links',
@@ -94,6 +101,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 492, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Ribeye Steak',
@@ -106,6 +114,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 738, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Turkey Drumsticks',
@@ -118,6 +127,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 189, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Pork Ribs',
@@ -130,6 +140,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 523, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Sirloin Steak',
@@ -142,6 +153,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 265, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Ground Pork',
@@ -154,6 +166,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 873, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Chicken Wings',
@@ -166,6 +179,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 442, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Filet Mignon',
@@ -178,6 +192,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 589, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Ground Lamb',
@@ -190,6 +205,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 185, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Bison Steak',
@@ -202,6 +218,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 651, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Ham Slices',
@@ -214,6 +231,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 387, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Venison Chops',
@@ -226,6 +244,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 128, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Cornish Hens',
@@ -238,6 +257,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 731, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Apples',
@@ -250,6 +270,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 279, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Bananas',
@@ -262,6 +283,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 147, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Carrots',
@@ -274,6 +296,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 625, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Oranges',
@@ -286,6 +309,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 194, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Broccoli',
@@ -298,6 +322,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 889, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Strawberries',
@@ -310,6 +335,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 332, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Grapes',
@@ -322,6 +348,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 718, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Tomatoes',
@@ -334,6 +361,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 421, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Spinach',
@@ -346,6 +374,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 553, // Random value between 100 and 1000
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Cucumbers',
@@ -358,6 +387,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 714, // Random value between 100 and 1000
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Milk',
@@ -370,6 +400,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 761,
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Cheese',
@@ -382,6 +413,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 483,
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Frozen Pizza',
@@ -394,6 +426,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 529,
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Yogurt',
@@ -406,6 +439,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 167,
     in_transit: true,
+    pending_approval: false,
   },
   {
     product_name: 'Ice Cream',
@@ -418,6 +452,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 647,
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Butter',
@@ -430,6 +465,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 223,
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Frozen Vegetables',
@@ -442,6 +478,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 512,
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Cream Cheese',
@@ -454,6 +491,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 421,
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Frozen Dessert',
@@ -466,6 +504,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 321,
     in_transit: false,
+    pending_approval: false,
   },
   {
     product_name: 'Cottage Cheese',
@@ -478,6 +517,7 @@ export const productsData = [
     department_code: 'DEP001',
     total_sales: 289,
     in_transit: false,
+    pending_approval: false,
   },
 ];
 export const departmentData = [
@@ -656,6 +696,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -666,6 +707,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -676,6 +718,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -686,6 +729,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -696,46 +740,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
-  },
-  {
-    request_type: 'ADD',
-    request_by_name: 'john doe',
-    request_by_employee_id: 2,
-    request_for_employee_id: 1,
-    request_by_email: 'john.doe@walmart.com',
-    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
-    request_department_code: 'DEP001',
-    request_sub_department_code: 'FRE001',
-  },
-  {
-    request_type: 'ADD',
-    request_by_name: 'john doe',
-    request_by_employee_id: 2,
-    request_for_employee_id: 1,
-    request_by_email: 'john.doe@walmart.com',
-    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
-    request_department_code: 'DEP001',
-    request_sub_department_code: 'FRE001',
-  },
-  {
-    request_type: 'ADD',
-    request_by_name: 'john doe',
-    request_by_employee_id: 2,
-    request_for_employee_id: 1,
-    request_by_email: 'john.doe@walmart.com',
-    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
-    request_department_code: 'DEP001',
-    request_sub_department_code: 'FRE001',
-  },
-  {
-    request_type: 'ADD',
-    request_by_name: 'john doe',
-    request_by_employee_id: 2,
-    request_for_employee_id: 1,
-    request_by_email: 'john.doe@walmart.com',
-    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
-    request_department_code: 'DEP001',
-    request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
 
   {
@@ -747,6 +752,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -757,6 +763,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -767,6 +774,7 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -777,6 +785,19 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
+  },
+
+  {
+    request_type: 'ADD',
+    request_by_name: 'john doe',
+    request_by_employee_id: 2,
+    request_for_employee_id: 1,
+    request_by_email: 'john.doe@walmart.com',
+    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
+    request_department_code: 'DEP001',
+    request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
   {
     request_type: 'ADD',
@@ -787,5 +808,39 @@ export const inventoryRequestData = [
     request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
     request_department_code: 'DEP001',
     request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
+  },
+  {
+    request_type: 'ADD',
+    request_by_name: 'john doe',
+    request_by_employee_id: 2,
+    request_for_employee_id: 1,
+    request_by_email: 'john.doe@walmart.com',
+    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
+    request_department_code: 'DEP001',
+    request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
+  },
+  {
+    request_type: 'ADD',
+    request_by_name: 'john doe',
+    request_by_employee_id: 2,
+    request_for_employee_id: 1,
+    request_by_email: 'john.doe@walmart.com',
+    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
+    request_department_code: 'DEP001',
+    request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
+  },
+  {
+    request_type: 'ADD',
+    request_by_name: 'john doe',
+    request_by_employee_id: 2,
+    request_for_employee_id: 1,
+    request_by_email: 'john.doe@walmart.com',
+    request: 'add mapple leaf chicken skinless drumsticks to meats (fresh)',
+    request_department_code: 'DEP001',
+    request_sub_department_code: 'FRE001',
+    status: 'PENDING_APPROVAL',
   },
 ];
