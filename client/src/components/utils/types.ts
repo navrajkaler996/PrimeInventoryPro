@@ -28,3 +28,8 @@ export interface TableType {
   };
   clickHandler: Function;
 }
+
+export interface ModalType {
+  data: any;
+  clickHandler: Function;
+}

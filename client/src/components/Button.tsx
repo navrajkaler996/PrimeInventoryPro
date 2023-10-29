@@ -1,4 +1,6 @@
 import { ButtonType } from "./utils/types";
+import Checkmark from "../assets/checkmark.png";
+import Cross from "../assets/cross.png";
 /////HELPERS
 //This function returns a formatted text value for the button accoridng to the value provided
 const assembleValue = (value: string, disabled: boolean) => {
@@ -18,6 +20,28 @@ const assembleValue = (value: string, disabled: boolean) => {
               ? "group-hover:tracking-[.5rem] transition-tracking ease-in-out duration-300"
               : ""
           }>
+          {value}
+        </span>
+      </div>
+    );
+
+  if (value == "approve")
+    return (
+      <div className="flex justify-center ">
+        <img src={Checkmark} className="w-[2rem]" />
+        &nbsp;
+        <span className="group-hover:tracking-[.5rem] transition-tracking ease-in-out duration-300">
+          {value}
+        </span>
+      </div>
+    );
+
+  if (value == "reject")
+    return (
+      <div className="flex justify-center items-center">
+        <img src={Cross} className="h-[1.5rem]" />
+        &nbsp;
+        <span className="group-hover:tracking-[.5rem] transition-tracking ease-in-out duration-300">
           {value}
         </span>
       </div>

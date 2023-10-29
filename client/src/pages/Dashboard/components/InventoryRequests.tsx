@@ -14,6 +14,8 @@ import {
 } from "../../../utils/constants";
 import { UserState } from "../../../features/featureUtils/featureTypes";
 import { useSelector } from "react-redux";
+import InventoryRequest from "./InventoryRequest";
+import Modal from "../../../components/Modal";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //InventoryRequests components renders a component which contains a table
@@ -22,6 +24,7 @@ const InventoryRequests: React.FC = () => {
   //State to track if the page is in initial render
   //It is helping for loading the component when API is being called
   const [isInitialRendering, setIsInitialRendering] = useState(true);
+  const [expandInventoryRequest, setExpandInventoryRequest] = useState(false);
   const [cursor, setCursor] = useState<number | undefined>(undefined);
 
   //Tracking the product_id of the last rendered product for cursor.
@@ -78,10 +81,12 @@ const InventoryRequests: React.FC = () => {
     [inventoryRequestIsLoading, hasMore]
   );
 
-  const clickHandler = () => {};
+  const clickHandler = () => {
+    setExpandInventoryRequest((prevState) => !prevState);
+  };
 
   return (
-    <div id="dashboard__inventory-request" className="flex justify-center ">
+    <div id="dashboard__inventory-requests" className="flex justify-center ">
       {isInitialRendering && (
         <div
           style={SKELETON_STYLES}
@@ -114,6 +119,8 @@ const InventoryRequests: React.FC = () => {
           </>
         </div>
       )}
+
+      {expandInventoryRequest && <Modal clickHandler={clickHandler} />}
     </div>
   );
 };
