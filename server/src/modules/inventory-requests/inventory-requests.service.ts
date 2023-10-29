@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { FindByEmployeeIdDto } from './dto/find-by-employee-id.dto';
 import { AddToInventoryDto } from './dto/add-request.dto';
 import { FindByRequestIdDto } from './dto/find-by-request-id.dto';
+import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
 
 @Injectable()
 export class InventoryRequestsService {
@@ -63,6 +64,34 @@ export class InventoryRequestsService {
       return response;
     } catch (error) {
       return error;
+    }
+  }
+
+  async changeRequestStatus(
+    request_id: ChangeRequestStatusDto,
+    decision: boolean,
+  ) {
+    try {
+      const status = decision ? 'APPROVED' : 'REJECTED';
+
+      const data = await this.prisma.inventoryRequest.update({
+        where: {
+          request_id: Number(request_id),
+        },
+        data: {
+          status: status,
+        },
+      });
+
+      return {
+        status: 'success',
+        data: data,
+      };
+    } catch (error) {
+      return {
+        status: 'error',
+        message: error,
+      };
     }
   }
 }
