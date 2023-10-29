@@ -17,7 +17,7 @@ export const jwtSecret =
     JwtModule.register({
       secret: jwtSecret,
       signOptions: {
-        expiresIn: '5m',
+        expiresIn: '1h',
       },
     }),
     EmployeeModule,
