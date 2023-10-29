@@ -1,4 +1,5 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 //Importing components
 import Table from "../../../components/Table";
@@ -13,9 +14,7 @@ import {
   SKELETON_STYLES,
 } from "../../../utils/constants";
 import { UserState } from "../../../features/featureUtils/featureTypes";
-import { useSelector } from "react-redux";
 import InventoryRequest from "./InventoryRequest";
-import Modal from "../../../components/Modal";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //InventoryRequests components renders a component which contains a table
@@ -26,6 +25,7 @@ const InventoryRequests: React.FC = () => {
   const [isInitialRendering, setIsInitialRendering] = useState(true);
   const [expandInventoryRequest, setExpandInventoryRequest] = useState(false);
   const [cursor, setCursor] = useState<number | undefined>(undefined);
+  const [requestId, setRequestId] = useState<number | undefined>();
 
   //Tracking the product_id of the last rendered product for cursor.
   const lastProductId = useRef<number | undefined>();
@@ -81,7 +81,8 @@ const InventoryRequests: React.FC = () => {
     [inventoryRequestIsLoading, hasMore]
   );
 
-  const clickHandler = () => {
+  const clickHandler = (requestId: number) => {
+    setRequestId(requestId);
     setExpandInventoryRequest((prevState) => !prevState);
   };
 
@@ -120,7 +121,9 @@ const InventoryRequests: React.FC = () => {
         </div>
       )}
 
-      {expandInventoryRequest && <Modal clickHandler={clickHandler} />}
+      {expandInventoryRequest && (
+        <InventoryRequest requestId={requestId} clickHandler={clickHandler} />
+      )}
     </div>
   );
 };

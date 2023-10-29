@@ -56,17 +56,23 @@ const useInventoryRequest = (
         })
           .then((response) => response.json())
           .then((data) => {
-            //This is for a special case when API returns less products than the cound value at its first call.
-            /////There is no previous data, so no need to mere the incoming data with previous products.
-            if (cursor === undefined && data.length < count - 1) {
-              setData(data);
+            if (options.type === "GET_INVENTORY_REQUEST") {
+              //This is for a special case when API returns less products than the cound value at its first call.
+              /////There is no previous data, so no need to mere the incoming data with previous products.
+              if (cursor === undefined && data.length < count - 1) {
+                setData(data);
+              } else {
+                //Merging previous data with incoming data.
+                setData((prevData) => {
+                  return [...new Set([...prevData, ...data])];
+                });
+              }
+              setHasMore(data.length > 0);
             } else {
-              //Merging previous data with incoming data.
-              setData((prevData) => {
-                return [...new Set([...prevData, ...data])];
-              });
+              if (data.status === "success") {
+                setData([data.data]);
+              }
             }
-            setHasMore(data.length > 0);
             setLoading(false);
           });
       }

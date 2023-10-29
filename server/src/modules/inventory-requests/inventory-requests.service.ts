@@ -34,9 +34,9 @@ export class InventoryRequestsService {
     }
   }
 
-  findByRequestId(request_id: FindByRequestIdDto) {
+  async findByRequestId(request_id: FindByRequestIdDto) {
     try {
-      const data = this.prisma.inventoryRequest.findUnique({
+      const data = await this.prisma.inventoryRequest.findUnique({
         where: {
           request_id: Number(request_id),
         },

@@ -96,6 +96,16 @@ export class AddInventoryRequestBuilder extends ProductURLBuilder {
     }/add`;
   }
 }
+export class GetByRequestIdInventoryRequestBuilder extends ProductURLBuilder {
+  buildUrl(
+    request_id: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.inventory_request_development
+    }/${request_id}`;
+  }
+}
 
 export class ProductURLDirector {
   code: string | number | null | undefined;
@@ -141,6 +151,9 @@ export class ProductURLDirector {
         break;
       case "ADD_INVENTORY_REQUEST":
         urlBuilder = new AddInventoryRequestBuilder();
+        break;
+      case "GET_BY_REQUEST_ID_INVENTORY_REQUEST":
+        urlBuilder = new GetByRequestIdInventoryRequestBuilder();
         break;
       default:
         throw new Error("Invalid type");

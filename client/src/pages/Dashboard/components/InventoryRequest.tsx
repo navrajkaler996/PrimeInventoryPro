@@ -1,26 +1,29 @@
-import * as React from "react";
+//Importing components
+import Modal from "../../../components/Modal";
 
-const InventoryRequest: React.FC = () => {
+//Importing hooks
+import useInventoryRequest from "../../../hooks/useInventoryRequest";
+import { InventoryRequestType } from "../utils/types";
+
+const InventoryRequest: React.FC<InventoryRequestType> = ({
+  requestId,
+  clickHandler,
+}) => {
+  const {
+    data: inventoryRequestData,
+    loading: inventoryRequestIsLoading,
+    error: _inventoryRequestError,
+  } = useInventoryRequest(requestId, undefined, 0, {
+    method: "GET",
+    type: "GET_BY_REQUEST_ID_INVENTORY_REQUEST",
+  });
+
   return (
-    <div id="dashboard__inventory-request" className="px-[2rem]">
-      <p className="text-[1.3em] mb-[1rem] text-center">
-        Add chicken to meats (fresh)
-      </p>
-      <p className="mb-[.6rem]">
-        <strong>Raised by</strong>: John doe (john.doe@walmart.ca)
-      </p>
-      <p className="mb-[.6rem]">
-        <strong>Raised by</strong>: John doe (john.doe@walmart.ca)
-      </p>
-      <p className="mb-[.6rem]">
-        <strong>Raised by</strong>: John doe (john.doe@walmart.ca)
-      </p>
-      <p className="mb-[.6rem]">
-        <strong>Raised by</strong>: John doe (john.doe@walmart.ca)
-      </p>
-      <p></p>
-    </div>
+    <Modal
+      data={inventoryRequestData[0]}
+      clickHandler={clickHandler}
+      isLoading={inventoryRequestIsLoading}
+    />
   );
 };
-
 export default InventoryRequest;
