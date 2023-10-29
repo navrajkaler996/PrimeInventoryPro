@@ -81,3 +81,8 @@ export const FORM_ADD_BUTTON_STYLES = {
   letterSpacing: "3px",
   margin: 0,
 };
+
+export const COLOR_CODE = {
+  DANGER: "#FF0000",
+  SUCCESS: "#AAFF00",
+};

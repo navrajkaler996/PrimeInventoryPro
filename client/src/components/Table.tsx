@@ -34,16 +34,16 @@ const Table: React.FC<TableType> = ({
           data?.length > 0 &&
           data?.map((item, i: number) => {
             //Returns the last row in currect list
-            //It is tracked using ref and lastProduct function, 
+            //It is tracked using ref and lastProduct function,
             //which is passed through props
             if (i + 1 === data.length) {
               return (
                 <tr
                   className="mt-[4rem] align-baseline hover:cursor-pointer hover:bg-gray"
                   id={item.request_id?.toString()}
-                  key={item.request_id}
+                  // key={item.request_id}
                   ref={(node) => options?.lastProduct(node)}
-                  onClick={(e) => clickHandler(e.currentTarget.id)}>
+                  onClick={(e) => clickHandler(e.currentTarget.id, undefined)}>
                   {Object.values(options?.keys)?.map((value) => {
                     return (
                       <td className="py-[1rem] px-[1rem]">
@@ -59,8 +59,8 @@ const Table: React.FC<TableType> = ({
               <tr
                 className="mt-[4rem] align-baseline hover:cursor-pointer hover:bg-gray"
                 id={item.request_id?.toString()}
-                key={item.request_id}
-                onClick={(e) => clickHandler(e.currentTarget.id)}>
+                // key={item.request_id}
+                onClick={(e) => clickHandler(e.currentTarget.id, undefined)}>
                 {Object.values(options?.keys)?.map((value) => {
                   return (
                     <td className="py-[1rem] px-[1rem]">

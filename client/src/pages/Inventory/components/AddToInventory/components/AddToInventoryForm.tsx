@@ -15,15 +15,22 @@ import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
 
 //Importing helpers and constants
-import { filterFormData } from "../../../../../utils/helpers";
+import {
+  createInventoryRequestBody,
+  filterFormData,
+} from "../../../../../utils/helpers";
 import {
   FORM_ADD_BUTTON_STYLES,
   FORM_VALIDATIONS,
 } from "../../../../../utils/constants";
 import { AddToInventoryFormType } from "../../../utils/types";
+import useInventoryRequest from "../../../../../hooks/useInventoryRequest";
+import { useSelector } from "react-redux";
 
 /////This component returns the form for AddToInventory
 const AddToInventoryForm: React.FC = () => {
+  const loggedInUser = useSelector((state: any) => state.loggedInUser);
+
   //State to store the form data and errors
   const [form, setForm] = useState<AddToInventoryFormType>({
     product_name: "",
@@ -55,11 +62,19 @@ const AddToInventoryForm: React.FC = () => {
 
   //Custom hook that calls the API to add product
   const {
-    clickHandler,
+    clickHandler: addProductClickHandler,
     loading: _addProductLoading,
     requestStatus: addProductRequestStatus,
     error: _addProductError,
   } = useProduct();
+
+  const {
+    clickHandler: addInventoryRequestClickHandler,
+    requestStatus: addInventoryRequestStatus,
+  } = useInventoryRequest(undefined, undefined, 0, {
+    method: "",
+    type: "",
+  });
 
   //Service to fetch department list for dropdown
   //Data is being stored in redux
@@ -303,7 +318,7 @@ const AddToInventoryForm: React.FC = () => {
                   form.product_cap > 0
                 )
               }
-              clickHandler={(e: KeyboardEvent) => {
+              clickHandler={async (e: KeyboardEvent) => {
                 e.preventDefault();
 
                 let filteredFormData = filterFormData(
@@ -312,10 +327,35 @@ const AddToInventoryForm: React.FC = () => {
                   subDepartmentListData
                 );
 
-                clickHandler(filteredFormData, null, {
-                  method: "POST",
-                  type: "ADD_PRODUCT",
-                });
+                let { product_code }: any = await addProductClickHandler(
+                  filteredFormData,
+                  null,
+                  {
+                    method: "POST",
+                    type: "ADD_PRODUCT",
+                  }
+                );
+
+                let inventoryRequestData = createInventoryRequestBody(
+                  "ADD",
+                  form,
+                  filteredFormData,
+                  loggedInUser
+                );
+
+                if (product_code && inventoryRequestData) {
+                  console.log(product_code, inventoryRequestData);
+                  inventoryRequestData.product_code = product_code;
+
+                  addInventoryRequestClickHandler(
+                    inventoryRequestData,
+                    undefined,
+                    {
+                      method: "POST",
+                      type: "ADD_INVENTORY_REQUEST",
+                    }
+                  );
+                }
               }}
             />
           </div>
@@ -324,6 +364,7 @@ const AddToInventoryForm: React.FC = () => {
           <FlashMessage
             message={addProductRequestStatus.message}
             type={addProductRequestStatus.type}
+            timer={false}
           />
         )}
       </fieldset>

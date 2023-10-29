@@ -82,3 +82,8 @@ export interface StockAlertType {
       }
     | undefined;
 }
+
+export interface InventoryRequestType {
+  requestId: number | undefined;
+  clickHandler: Function;
+}

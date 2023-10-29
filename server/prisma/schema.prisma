@@ -61,6 +61,7 @@ model Product {
   manufacturer        String   @default("")
   brand               String   @default("")
   case_pack           Int      @default(0)
+  pending_approval    Boolean  @default(true)
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
@@ -89,6 +90,8 @@ model InventoryRequest {
   request                     String
   request_department_code     String
   request_sub_department_code String
+  status                      String         @default("PENDING APPROVAL")
+  product_code                String         @unique
   createdAt                   DateTime       @default(now())
   updatedAt                   DateTime       @updatedAt
   department                  Department     @relation(fields: [request_department_code], references: [department_code])

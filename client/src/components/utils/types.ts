@@ -6,7 +6,7 @@ export interface ButtonType {
 }
 
 export interface InventoryRequestType {
-  request_id: number;
+  request_id: number | undefined;
   request_type: string;
   request_by_name: string;
   request_by_employee_id: number;
@@ -15,6 +15,9 @@ export interface InventoryRequestType {
   request: string;
   request_department_code: string;
   request_sub_department_code: string;
+  status: string;
+  product_code: string;
+  createdAt: Date;
 }
 
 export interface TableType {
@@ -26,4 +29,10 @@ export interface TableType {
     keys: Object;
   };
   clickHandler: Function;
+}
+
+export interface ModalType {
+  data: InventoryRequestType | [];
+  clickHandler: Function;
+  isLoading: Boolean;
 }

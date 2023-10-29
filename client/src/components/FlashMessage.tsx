@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
 import { FLASH_MESSAGE_TYPES } from "../utils/constants";
 
 interface FlashMessageType {
   message: string;
   type: string;
+  timer: boolean | undefined;
 }
 
-const FlashMessage: React.FC<FlashMessageType> = ({ message, type }) => {
+const FlashMessage: React.FC<FlashMessageType> = ({ message, type, timer }) => {
+  const [hide, setHide] = useState(false);
   let messageType;
 
   for (let [key, value] of Object.entries(FLASH_MESSAGE_TYPES)) {
@@ -14,13 +17,23 @@ const FlashMessage: React.FC<FlashMessageType> = ({ message, type }) => {
       break;
     }
   }
-  return (
+
+  useEffect(() => {
+    if (timer) {
+      setTimeout(() => {
+        setHide(true);
+      }, 5000);
+    }
+  }, []);
+  return !hide ? (
     <div
       id="flash-message"
-      className="w-[60%] h-[5rem] mx-[auto] mt-[4rem] flex justify-center items-center"
+      className="w-[60%] h-[5rem] mx-[auto] flex justify-center items-center"
       style={{ backgroundColor: messageType }}>
       <span> {message} </span>
     </div>
+  ) : (
+    <></>
   );
 };
 

@@ -7,7 +7,6 @@ const useDepartment = (
     type: string;
   }
 ) => {
- 
   const [departmentData, setDepartmentData] = useState();
   const [departmentIsLoading, setDepartmentIsLoading] = useState(false);
   const [departmentError, setDepartmentError] = useState(false);
@@ -15,7 +14,11 @@ const useDepartment = (
   useEffect(() => {
     let departmentUrl;
 
-    const urlDirector = new ProductURLDirector(options.type, departmentCode);
+    const urlDirector = new ProductURLDirector(
+      options.type,
+      departmentCode,
+      undefined
+    );
 
     urlDirector.buildURL();
 

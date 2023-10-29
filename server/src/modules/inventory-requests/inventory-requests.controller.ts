@@ -1,8 +1,19 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { InventoryRequestsService } from './inventory-requests.service';
-import { FindByEmployeeIdDto } from './dto/find-by-employee-id.dto';
-import { AuthGuard } from '@nestjs/passport';
+
 import { JwtAuthGaurd } from '../auth/jwt-auth.gaurd';
+import { AddToInventoryDto } from './dto/add-request.dto';
+import { FindByRequestIdDto } from './dto/find-by-request-id.dto';
+import { ChangeRequestStatusDto } from './dto/change-request-status.dto';
 
 @Controller('/api/v1/inventory-request')
 export class InventoryRequestsController {
@@ -21,6 +32,29 @@ export class InventoryRequestsController {
       employee_id,
       cursor,
       count,
+    );
+  }
+
+  @Get('/:request_id')
+  @UseGuards(JwtAuthGaurd)
+  findByRequestId(@Param('request_id') request_id: FindByRequestIdDto) {
+    return this.inventoryRequestsService.findByRequestId(request_id);
+  }
+
+  @Post('/add')
+  @UseGuards(JwtAuthGaurd)
+  addRequest(@Body() body: AddToInventoryDto) {
+    return this.inventoryRequestsService.addRequest(body);
+  }
+
+  @Patch('/:request_id')
+  changeRequestStatus(
+    @Param('request_id') request_id: ChangeRequestStatusDto,
+    @Body() { decision }: ChangeRequestStatusDto,
+  ) {
+    return this.inventoryRequestsService.changeRequestStatus(
+      request_id,
+      decision,
     );
   }
 }
