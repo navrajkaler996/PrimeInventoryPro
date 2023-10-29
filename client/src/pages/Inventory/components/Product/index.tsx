@@ -419,6 +419,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             <FlashMessage
               message={editProductRequestStatus.message}
               type={editProductRequestStatus.type}
+              timer={false}
             />
           )}
         </div>

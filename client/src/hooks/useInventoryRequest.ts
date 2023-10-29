@@ -80,7 +80,8 @@ const useInventoryRequest = (
   }, [employee_id, cursor]);
 
   const clickHandler = async (
-    body: InventoryRequestType,
+    body: InventoryRequestType | any,
+    request_id: number | undefined,
     options: {
       method: string;
       type: string;
@@ -92,7 +93,7 @@ const useInventoryRequest = (
     //in options prop
     const urlDirector = new ProductURLDirector(
       options.type,
-      undefined,
+      request_id,
       undefined
     );
 
@@ -114,7 +115,7 @@ const useInventoryRequest = (
 
       const data = await response?.json();
 
-      if (data?.request_id) {
+      if (data?.status === "success") {
         setLoading(false);
 
         const message = createResponseMessage("success", options.method);
@@ -133,6 +134,8 @@ const useInventoryRequest = (
           type: "failed",
         });
       }
+
+      return data;
     }
   };
 

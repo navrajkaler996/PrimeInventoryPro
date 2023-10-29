@@ -33,6 +33,7 @@ export class ProductsService {
           where: {
             department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
+            pending_approval: false,
           },
         });
       }
@@ -53,6 +54,7 @@ export class ProductsService {
           where: {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
+            pending_approval: false,
           },
         });
       }
@@ -65,6 +67,7 @@ export class ProductsService {
           where: {
             department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
+            pending_approval: false,
           },
           take: Number(count),
         });
@@ -81,6 +84,7 @@ export class ProductsService {
           where: {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
+            pending_approval: false,
           },
           take: Number(count),
         });
@@ -96,6 +100,7 @@ export class ProductsService {
       return this.prisma.product.findMany({
         where: {
           department_code: department_code?.toUpperCase(),
+          pending_approval: false,
         },
         orderBy: [
           {
@@ -116,6 +121,7 @@ export class ProductsService {
       return this.prisma.product.findMany({
         where: {
           sub_department_code: department_code?.toUpperCase(),
+          pending_approval: false,
         },
         orderBy: [
           {
@@ -137,6 +143,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
+            pending_approval: false,
           },
           skip: 1,
           take: Number(count),
@@ -153,6 +160,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
+            pending_approval: false,
           },
           skip: 1,
           take: Number(count),
@@ -166,6 +174,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
+            pending_approval: false,
           },
           take: Number(count),
         });
@@ -178,6 +187,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
+            pending_approval: false,
           },
           take: Number(count),
         });
@@ -198,6 +208,7 @@ export class ProductsService {
           where: {
             department_code: department_code.toUpperCase(),
             product_code: keyword,
+            pending_approval: false,
           },
         });
       } else {
@@ -207,6 +218,7 @@ export class ProductsService {
             product_name: {
               contains: keyword?.toLowerCase(),
             },
+            pending_approval: false,
           },
         });
       }
@@ -223,6 +235,7 @@ export class ProductsService {
           where: {
             sub_department_code: department_code,
             product_code: keyword,
+            pending_approval: false,
           },
         });
       } else {
@@ -232,6 +245,7 @@ export class ProductsService {
             product_name: {
               contains: keyword?.toLowerCase(),
             },
+            pending_approval: false,
           },
         });
       }
@@ -274,6 +288,7 @@ export class ProductsService {
     return this.prisma.product.findFirst({
       where: {
         product_code: product_code.toUpperCase(),
+        pending_approval: false,
       },
     });
   }
@@ -296,6 +311,25 @@ export class ProductsService {
     return this.prisma.product.delete({
       where: {
         product_code: product_code?.toUpperCase(),
+      },
+    });
+  }
+
+  deleteProductByRequestId(request_id: string) {
+    // return this.prisma.product.deleteMany({
+    //   where: {
+    //     request_id: Number(request_id),
+    //   },
+    // });
+  }
+
+  updatePendingApproval(product_code: string) {
+    return this.prisma.product.updateMany({
+      where: {
+        product_code: product_code?.toUpperCase(),
+      },
+      data: {
+        pending_approval: false,
       },
     });
   }

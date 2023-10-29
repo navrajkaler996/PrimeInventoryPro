@@ -27,7 +27,7 @@ const useProduct = () => {
 
   const clickHandler = async (
     body: ProductDataType["productData"] | undefined,
-    productCode: string | null,
+    productCode: number | string | null | undefined,
     options: {
       method: string;
       type: string;
@@ -59,16 +59,16 @@ const useProduct = () => {
 
       if (data?.product_id) {
         setLoading(false);
-
         const message = createResponseMessage("success", options.method);
         setRequestStatus({
           status: true,
           message: message,
           type: "success",
         });
+
+        return data;
       } else {
         setLoading(false);
-
         const message = createResponseMessage("failed", options.method);
         setRequestStatus({
           status: true,

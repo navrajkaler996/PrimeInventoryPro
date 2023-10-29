@@ -21,22 +21,24 @@ const Dashboard: React.FC = () => {
       <DepartmentDescription />
       <Calculations />
       <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">
-        {!employeeDepartmentCode?.startsWith("STORE") && (
-          <>
-            <StockAlerts />
+        {employeeDepartmentCode &&
+          !employeeDepartmentCode?.startsWith("STORE") && (
+            <>
+              <StockAlerts />
 
-            <TopSellings />
-          </>
-        )}
+              <TopSellings />
+            </>
+          )}
         {/* 
           InventoryRequests component is only rendered for the employee whose employee_department_code
           starts with STORE
         */}
-        {employeeDepartmentCode?.startsWith("STORE") && (
-          <>
-            <InventoryRequests />
-          </>
-        )}
+        {employeeDepartmentCode &&
+          employeeDepartmentCode?.startsWith("STORE") && (
+            <>
+              <InventoryRequests />
+            </>
+          )}
       </div>
       <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">
         <Chart />

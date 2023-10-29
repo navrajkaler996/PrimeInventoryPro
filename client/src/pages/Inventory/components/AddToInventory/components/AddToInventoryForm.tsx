@@ -318,7 +318,7 @@ const AddToInventoryForm: React.FC = () => {
                   form.product_cap > 0
                 )
               }
-              clickHandler={(e: KeyboardEvent) => {
+              clickHandler={async (e: KeyboardEvent) => {
                 e.preventDefault();
 
                 let filteredFormData = filterFormData(
@@ -327,10 +327,14 @@ const AddToInventoryForm: React.FC = () => {
                   subDepartmentListData
                 );
 
-                addProductClickHandler(filteredFormData, null, {
-                  method: "POST",
-                  type: "ADD_PRODUCT",
-                });
+                let { product_code }: any = await addProductClickHandler(
+                  filteredFormData,
+                  null,
+                  {
+                    method: "POST",
+                    type: "ADD_PRODUCT",
+                  }
+                );
 
                 let inventoryRequestData = createInventoryRequestBody(
                   "ADD",
@@ -339,10 +343,19 @@ const AddToInventoryForm: React.FC = () => {
                   loggedInUser
                 );
 
-                addInventoryRequestClickHandler(inventoryRequestData, {
-                  method: "POST",
-                  type: "ADD_INVENTORY_REQUEST",
-                });
+                if (product_code && inventoryRequestData) {
+                  console.log(product_code, inventoryRequestData);
+                  inventoryRequestData.product_code = product_code;
+
+                  addInventoryRequestClickHandler(
+                    inventoryRequestData,
+                    undefined,
+                    {
+                      method: "POST",
+                      type: "ADD_INVENTORY_REQUEST",
+                    }
+                  );
+                }
               }}
             />
           </div>
@@ -351,6 +364,7 @@ const AddToInventoryForm: React.FC = () => {
           <FlashMessage
             message={addProductRequestStatus.message}
             type={addProductRequestStatus.type}
+            timer={false}
           />
         )}
       </fieldset>

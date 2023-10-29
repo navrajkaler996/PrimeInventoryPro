@@ -16,6 +16,7 @@ export interface InventoryRequestType {
   request_department_code: string;
   request_sub_department_code: string;
   status: string;
+  product_code: string;
   createdAt: Date;
 }
 
@@ -31,7 +32,7 @@ export interface TableType {
 }
 
 export interface ModalType {
-  data: InventoryRequestType;
+  data: InventoryRequestType | [];
   clickHandler: Function;
   isLoading: Boolean;
 }

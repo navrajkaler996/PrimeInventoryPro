@@ -1,9 +1,9 @@
 //Importing components
-import Modal from "../../../components/Modal";
+import Modal from "../../../../../components/Modal";
 
 //Importing hooks
-import useInventoryRequest from "../../../hooks/useInventoryRequest";
-import { InventoryRequestType } from "../utils/types";
+import useInventoryRequest from "../../../../../hooks/useInventoryRequest";
+import { InventoryRequestType } from "../../../utils/types";
 
 const InventoryRequest: React.FC<InventoryRequestType> = ({
   requestId,
@@ -20,7 +20,7 @@ const InventoryRequest: React.FC<InventoryRequestType> = ({
 
   return (
     <Modal
-      data={inventoryRequestData[0]}
+      data={inventoryRequestData ? inventoryRequestData[0] : []}
       clickHandler={clickHandler}
       isLoading={inventoryRequestIsLoading}
     />

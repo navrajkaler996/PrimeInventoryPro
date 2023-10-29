@@ -2,19 +2,21 @@ import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 //Importing components
-import Table from "../../../components/Table";
+import Table from "../../../../components/Table";
 
 //Importing hooks
-import useInventoryRequest from "../../../hooks/useInventoryRequest";
+import useInventoryRequest from "../../../../hooks/useInventoryRequest";
 
 //Importing utilities
 import {
   INVENORY_REQUESTS_COUNT,
   INVENORY_REQUESTS_KEYS,
   SKELETON_STYLES,
-} from "../../../utils/constants";
-import { UserState } from "../../../features/featureUtils/featureTypes";
-import InventoryRequest from "./InventoryRequest";
+} from "../../../../utils/constants";
+import { UserState } from "../../../../features/featureUtils/featureTypes";
+import InventoryRequest from "./components/InventoryRequest";
+import FlashMessage from "../../../../components/FlashMessage";
+import useProduct from "../../../../hooks/useProduct";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //InventoryRequests components renders a component which contains a table
@@ -40,14 +42,26 @@ const InventoryRequests: React.FC = () => {
     loading: inventoryRequestIsLoading,
     error: _inventoryRequestError,
     hasMore,
+    clickHandler: inventoryRequestClickHandler,
+    requestStatus,
   } = useInventoryRequest(employeeId, cursor, INVENORY_REQUESTS_COUNT, {
     method: "GET",
     type: "GET_INVENTORY_REQUEST",
   });
 
+  const {
+    clickHandler: productClickHandler,
+    loading: _productLoading,
+    requestStatus: productRequestStatus,
+    error: _productError,
+  } = useProduct();
+
   //useEffect to track the id of the last item in the list for infinite scroll
   useEffect(() => {
-    if (inventoryRequestData?.length > INVENORY_REQUESTS_COUNT - 1) {
+    if (
+      inventoryRequestData &&
+      inventoryRequestData?.length > INVENORY_REQUESTS_COUNT - 1
+    ) {
       lastProductId.current =
         inventoryRequestData[inventoryRequestData?.length - 1]["request_id"];
     } else {
@@ -57,7 +71,7 @@ const InventoryRequests: React.FC = () => {
 
   //useEffect to track the initial rendering
   useEffect(() => {
-    if (inventoryRequestData?.length > 0 && isInitialRendering)
+    if (inventoryRequestData && isInitialRendering)
       setIsInitialRendering(false);
   }, [inventoryRequestData, cursor]);
 
@@ -81,8 +95,33 @@ const InventoryRequests: React.FC = () => {
     [inventoryRequestIsLoading, hasMore]
   );
 
-  const clickHandler = (requestId: number) => {
-    setRequestId(requestId);
+  const clickHandler = (id: number, value: boolean) => {
+    if (id) setRequestId(id);
+    if (value !== undefined) {
+      const body = {
+        decision: value,
+      };
+
+      let product_code = inventoryRequestData[0].product_code;
+      if (product_code && requestId) {
+        inventoryRequestClickHandler(body, requestId, {
+          method: "PATCH",
+          type: "UPDATE_INVENTORY_REQUEST",
+        });
+
+        if (value === false) {
+          productClickHandler(undefined, product_code, {
+            type: "DELETE_PRODUCT",
+            method: "DELETE",
+          });
+        } else if (value === true) {
+          productClickHandler(undefined, product_code, {
+            type: "UPDATE_PENDING_APPROVAL_PRODUCT",
+            method: "PATCH",
+          });
+        }
+      }
+    }
     setExpandInventoryRequest((prevState) => !prevState);
   };
 
@@ -105,17 +144,27 @@ const InventoryRequests: React.FC = () => {
             <hr className="m-[1.5rem] text-gray" />
             <div>
               {/* Using reusable component: ProductTable to display the data */}
-
-              <Table
-                data={inventoryRequestData}
-                dataIsLoading={inventoryRequestIsLoading}
-                dataError={false}
-                options={{
-                  lastProduct: lastProduct,
-                  keys: INVENORY_REQUESTS_KEYS,
-                }}
-                clickHandler={clickHandler}
-              />
+              {requestStatus.status && (
+                <FlashMessage
+                  message={requestStatus.message}
+                  type={requestStatus.type}
+                  timer={true}
+                />
+              )}
+              {inventoryRequestData && inventoryRequestData?.length > 0 ? (
+                <Table
+                  data={inventoryRequestData}
+                  dataIsLoading={inventoryRequestIsLoading}
+                  dataError={false}
+                  options={{
+                    lastProduct: lastProduct,
+                    keys: INVENORY_REQUESTS_KEYS,
+                  }}
+                  clickHandler={clickHandler}
+                />
+              ) : (
+                <p>Nothing to show</p>
+              )}
             </div>
           </>
         </div>

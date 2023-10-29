@@ -72,11 +72,13 @@ export function debounce(fn: Function, delay: number) {
 export const createResponseMessage = (type: string, method: string) => {
   if (type === "success") {
     if (method === "POST") return "Product created successfully";
-    if (method === "PUT") return "Product updated successfully";
+    if (method === "PUT" || method === "PATCH")
+      return "Product updated successfully";
     if (method === "DELETE") return "Product deleted successfully";
   } else if (type === "failed") {
     if (method === "POST") return "Product could not be created!";
-    if (method === "PUT") return "Product could not be updated";
+    if (method === "PUT" || method === "PATCH")
+      return "Product could not be updated";
     if (method === "DELETE") return "Product could not be deleted";
   }
 
@@ -100,5 +102,6 @@ export const createInventoryRequestBody = (
       request_department_code: filteredFormData.department_code,
       request_sub_department_code: filteredFormData.sub_department_code,
       status: "PENDING_APPROVAL",
+      product_code: undefined,
     };
 };

@@ -62,7 +62,7 @@ const Modal: React.FC<ModalType> = ({ data, clickHandler, isLoading }) => {
         <div className="w-[100%] flex justify-center my-[4rem]">
           <Button
             value="approve"
-            clickHandler={clickHandler}
+            clickHandler={() => clickHandler("", true)}
             disabled={false}
             styles={{
               backgroundColor: COLOR_CODE.SUCCESS,
@@ -72,7 +72,7 @@ const Modal: React.FC<ModalType> = ({ data, clickHandler, isLoading }) => {
           />
           <Button
             value="reject"
-            clickHandler={clickHandler}
+            clickHandler={() => clickHandler("", false)}
             disabled={false}
             styles={{
               backgroundColor: COLOR_CODE.DANGER,

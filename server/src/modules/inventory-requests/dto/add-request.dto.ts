@@ -33,4 +33,8 @@ export class AddToInventoryDto {
   @IsNotEmpty()
   @ApiProperty()
   request_sub_department_code: string;
+
+  @IsNotEmpty()
+  @ApiProperty()
+  product_code: string;
 }

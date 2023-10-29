@@ -23,6 +23,7 @@ export class InventoryRequestsService {
         },
         where: {
           request_for_employee_id: Number(employee_id),
+          status: 'PENDING_APPROVAL',
         },
       });
     } else {
@@ -30,6 +31,7 @@ export class InventoryRequestsService {
         take: Number(count),
         where: {
           request_for_employee_id: Number(employee_id),
+          status: 'PENDING_APPROVAL',
         },
       });
     }

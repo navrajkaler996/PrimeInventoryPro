@@ -45,6 +45,17 @@ export class DeleteProductURLBuilder extends ProductURLBuilder {
   }
 }
 
+export class DeleteByRequestIdProductURLBuilder extends ProductURLBuilder {
+  buildUrl(
+    request_id: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.product_development
+    }/delete-by-request-id/${request_id}`;
+  }
+}
+
 export class LoginAuthURLBuilder extends ProductURLBuilder {
   buildUrl(): string {
     return `${import.meta.env.VITE_REACT_API}/${
@@ -96,6 +107,7 @@ export class AddInventoryRequestBuilder extends ProductURLBuilder {
     }/add`;
   }
 }
+
 export class GetByRequestIdInventoryRequestBuilder extends ProductURLBuilder {
   buildUrl(
     request_id: string | number | null | undefined,
@@ -104,6 +116,28 @@ export class GetByRequestIdInventoryRequestBuilder extends ProductURLBuilder {
     return `${import.meta.env.VITE_REACT_API}/${
       API_ENDPOINTS.inventory_request_development
     }/${request_id}`;
+  }
+}
+
+export class UpdateInventoryRequestBuilder extends ProductURLBuilder {
+  buildUrl(
+    request_id: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.inventory_request_development
+    }/${request_id}`;
+  }
+}
+
+export class UpdatePendingApprovalProductBuilder extends ProductURLBuilder {
+  buildUrl(
+    request_id: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.product_development
+    }/update-pending-approval/${request_id}`;
   }
 }
 
@@ -154,6 +188,15 @@ export class ProductURLDirector {
         break;
       case "GET_BY_REQUEST_ID_INVENTORY_REQUEST":
         urlBuilder = new GetByRequestIdInventoryRequestBuilder();
+        break;
+      case "UPDATE_INVENTORY_REQUEST":
+        urlBuilder = new UpdateInventoryRequestBuilder();
+        break;
+      case "DELETE_BY_REQUEST_ID_PRODUCT":
+        urlBuilder = new DeleteByRequestIdProductURLBuilder();
+        break;
+      case "UPDATE_PENDING_APPROVAL_PRODUCT":
+        urlBuilder = new UpdatePendingApprovalProductBuilder();
         break;
       default:
         throw new Error("Invalid type");

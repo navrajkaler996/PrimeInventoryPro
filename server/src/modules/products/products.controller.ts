@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
   UseGuards,
@@ -103,5 +104,16 @@ export class ProductsController {
   @UseGuards(JwtAuthGaurd)
   deleteProductByProductCode(@Param('product_code') product_code: string) {
     return this.productsService.deleteProductByProductCode(product_code);
+  }
+
+  @Delete('/delete-by-request-id/:request_id')
+  @UseGuards(JwtAuthGaurd)
+  deleteProductByRequestId(@Param('request_id') request_id: string) {
+    return this.productsService.deleteProductByRequestId(request_id);
+  }
+
+  @Patch('/update-pending-approval/:product_code')
+  updatePendingApproval(@Param('product_code') product_code: string) {
+    return this.productsService.updatePendingApproval(product_code);
   }
 }
