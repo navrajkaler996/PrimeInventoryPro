@@ -38,7 +38,7 @@ export class InventoryRequestsService {
       const response = await this.prisma.inventoryRequest.create({
         data: data,
       });
-      console.log(response);
+
       return response;
     } catch (error) {
       return error;

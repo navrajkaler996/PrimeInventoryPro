@@ -32,6 +32,7 @@ export const filterFormData = (
 
     filteredData.department_code = department_code;
     filteredData.sub_department_code = sub_department_code;
+    filteredData.pending_approval = true;
 
     delete filteredData.department;
     delete filteredData.sub_department;
@@ -80,4 +81,24 @@ export const createResponseMessage = (type: string, method: string) => {
   }
 
   return "Unknown response";
+};
+
+export const createInventoryRequestBody = (
+  type: string,
+  formData: any,
+  filteredFormData: any,
+  loggedInUser: any
+) => {
+  if (type === "ADD")
+    return {
+      request_type: "ADD",
+      request_by_name: loggedInUser.employee_name,
+      request_by_employee_id: loggedInUser.employee_id,
+      request_for_employee_id: 1,
+      request: `ADD ${formData.product_brand} ${formData.product_name} to ${formData.product_sub_department} (${formData.product_department})`,
+      request_by_email: loggedInUser.employee_email,
+      request_department_code: filteredFormData.department_code,
+      request_sub_department_code: filteredFormData.sub_department_code,
+      status: "PENDING_APPROVAL",
+    };
 };

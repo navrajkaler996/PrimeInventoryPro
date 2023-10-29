@@ -6,7 +6,7 @@ export interface ButtonType {
 }
 
 export interface InventoryRequestType {
-  request_id: number;
+  request_id: number | undefined;
   request_type: string;
   request_by_name: string;
   request_by_employee_id: number;
@@ -15,6 +15,7 @@ export interface InventoryRequestType {
   request: string;
   request_department_code: string;
   request_sub_department_code: string;
+  status: string;
 }
 
 export interface TableType {

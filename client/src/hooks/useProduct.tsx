@@ -36,7 +36,11 @@ const useProduct = () => {
     setLoading(true);
 
     //Using Open/Close principle
-    const urlDirector = new ProductURLDirector(options.type, productCode);
+    const urlDirector = new ProductURLDirector(
+      options.type,
+      productCode,
+      undefined
+    );
     urlDirector.buildURL();
     let productURL = urlDirector.getProductURL();
 

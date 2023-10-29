@@ -15,15 +15,22 @@ import { useListDepartmentsQuery } from "../../../../../services/department";
 import { useListSubDepartmentsQuery } from "../../../../../services/subdepartment";
 
 //Importing helpers and constants
-import { filterFormData } from "../../../../../utils/helpers";
+import {
+  createInventoryRequestBody,
+  filterFormData,
+} from "../../../../../utils/helpers";
 import {
   FORM_ADD_BUTTON_STYLES,
   FORM_VALIDATIONS,
 } from "../../../../../utils/constants";
 import { AddToInventoryFormType } from "../../../utils/types";
+import useInventoryRequest from "../../../../../hooks/useInventoryRequest";
+import { useSelector } from "react-redux";
 
 /////This component returns the form for AddToInventory
 const AddToInventoryForm: React.FC = () => {
+  const loggedInUser = useSelector((state: any) => state.loggedInUser);
+
   //State to store the form data and errors
   const [form, setForm] = useState<AddToInventoryFormType>({
     product_name: "",
@@ -55,11 +62,19 @@ const AddToInventoryForm: React.FC = () => {
 
   //Custom hook that calls the API to add product
   const {
-    clickHandler,
+    clickHandler: addProductClickHandler,
     loading: _addProductLoading,
     requestStatus: addProductRequestStatus,
     error: _addProductError,
   } = useProduct();
+
+  const {
+    clickHandler: addInventoryRequestClickHandler,
+    requestStatus: addInventoryRequestStatus,
+  } = useInventoryRequest(undefined, undefined, 0, {
+    method: "",
+    type: "",
+  });
 
   //Service to fetch department list for dropdown
   //Data is being stored in redux
@@ -312,9 +327,21 @@ const AddToInventoryForm: React.FC = () => {
                   subDepartmentListData
                 );
 
-                clickHandler(filteredFormData, null, {
+                addProductClickHandler(filteredFormData, null, {
                   method: "POST",
                   type: "ADD_PRODUCT",
+                });
+
+                let inventoryRequestData = createInventoryRequestBody(
+                  "ADD",
+                  form,
+                  filteredFormData,
+                  loggedInUser
+                );
+
+                addInventoryRequestClickHandler(inventoryRequestData, {
+                  method: "POST",
+                  type: "ADD_INVENTORY_REQUEST",
                 });
               }}
             />

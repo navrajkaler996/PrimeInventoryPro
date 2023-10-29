@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 import { InventoryRequestType } from "../components/utils/types";
+import { createResponseMessage } from "../utils/helpers";
 
 /////CUSTOM HOOK TO FETCH DATA RELATED TO INVENTORY REQUESTS
 /////ACCEPTS FOUR PROPS
@@ -22,16 +23,72 @@ const useInventoryRequest = (
   const [loading, setLoading] = useState(false);
   const [error, _setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
+  const [requestStatus, setRequestStatus] = useState({
+    status: false,
+    message: "",
+    type: "",
+  });
 
   useEffect(() => {
+    if (options.type?.length > 0) {
+      let inventoryRequestUrl = "";
+
+      //Using URLDirector to build the API URL according to the type provided
+      //in options prop
+      const urlDirector = new ProductURLDirector(options?.type, employee_id, {
+        cursor: cursor,
+        count: count,
+      });
+
+      urlDirector.buildURL();
+
+      inventoryRequestUrl = urlDirector.getProductURL();
+
+      if (inventoryRequestUrl) {
+        setLoading(true);
+        const token = localStorage.getItem("accessToken");
+        fetch(inventoryRequestUrl, {
+          method: options.method,
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            //This is for a special case when API returns less products than the cound value at its first call.
+            /////There is no previous data, so no need to mere the incoming data with previous products.
+            if (cursor === undefined && data.length < count - 1) {
+              setData(data);
+            } else {
+              //Merging previous data with incoming data.
+              setData((prevData) => {
+                return [...new Set([...prevData, ...data])];
+              });
+            }
+            setHasMore(data.length > 0);
+            setLoading(false);
+          });
+      }
+    }
+  }, [employee_id, cursor]);
+
+  const clickHandler = async (
+    body: InventoryRequestType,
+    options: {
+      method: string;
+      type: string;
+    }
+  ) => {
     let inventoryRequestUrl = "";
 
     //Using URLDirector to build the API URL according to the type provided
     //in options prop
-    const urlDirector = new ProductURLDirector(options.type, employee_id, {
-      cursor: cursor,
-      count: count,
-    });
+    const urlDirector = new ProductURLDirector(
+      options.type,
+      undefined,
+      undefined
+    );
 
     urlDirector.buildURL();
 
@@ -40,32 +97,40 @@ const useInventoryRequest = (
     if (inventoryRequestUrl) {
       setLoading(true);
       const token = localStorage.getItem("accessToken");
-      fetch(inventoryRequestUrl, {
+      const response = await fetch(inventoryRequestUrl, {
         method: options.method,
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          //This is for a special case when API returns less products than the cound value at its first call.
-          /////There is no previous data, so no need to mere the incoming data with previous products.
-          if (cursor === undefined && data.length < count - 1) {
-            setData(data);
-          } else {
-            //Merging previous data with incoming data.
-            setData((prevData) => {
-              return [...new Set([...prevData, ...data])];
-            });
-          }
-          setHasMore(data.length > 0);
-          setLoading(false);
-        });
-    }
-  }, [employee_id, cursor]);
+        body: options.method === "DELETE" ? null : JSON.stringify(body),
+      });
 
-  return { data, loading, error, hasMore };
+      const data = await response?.json();
+
+      if (data?.request_id) {
+        setLoading(false);
+
+        const message = createResponseMessage("success", options.method);
+        setRequestStatus({
+          status: true,
+          message: message,
+          type: "success",
+        });
+      } else {
+        setLoading(false);
+
+        const message = createResponseMessage("failed", options.method);
+        setRequestStatus({
+          status: true,
+          message: message,
+          type: "failed",
+        });
+      }
+    }
+  };
+
+  return { data, loading, error, hasMore, clickHandler, requestStatus };
 };
 
 export default useInventoryRequest;
