@@ -32,7 +32,7 @@ export interface TableType {
 }
 
 export interface ModalType {
-  data: InventoryRequestType | [];
+  data: InventoryRequestType;
   clickHandler: Function;
   isLoading: Boolean;
 }
