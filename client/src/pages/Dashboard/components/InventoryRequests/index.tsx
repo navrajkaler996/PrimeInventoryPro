@@ -163,7 +163,8 @@ const InventoryRequests: React.FC = () => {
                   clickHandler={clickHandler}
                 />
               )}
-              {inventoryRequestData.length === 0 && <p>nothing to show</p>}
+              {!inventoryRequestIsLoading &&
+                inventoryRequestData.length === 0 && <p>nothing to show</p>}
             </div>
           </>
         </div>
