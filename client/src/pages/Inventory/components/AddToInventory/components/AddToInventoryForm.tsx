@@ -137,6 +137,8 @@ const AddToInventoryForm: React.FC = () => {
     }
   }, [form?.product_department]);
 
+  console.log("-------", addInventoryRequestStatus);
+
   return (
     <form id="form" className="w-[90%] h-[100rem] mx-auto mb-[2rem]">
       <fieldset className={"border-[.5px] p-[4rem] "}>
@@ -342,9 +344,9 @@ const AddToInventoryForm: React.FC = () => {
                   filteredFormData,
                   loggedInUser
                 );
+                console.log(product_code, inventoryRequestData);
 
                 if (product_code && inventoryRequestData) {
-                  console.log(product_code, inventoryRequestData);
                   inventoryRequestData.product_code = product_code;
 
                   addInventoryRequestClickHandler(
