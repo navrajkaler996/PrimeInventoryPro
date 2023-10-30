@@ -9,15 +9,13 @@ const Modal: React.FC<ModalType> = ({ data, clickHandler, isLoading }) => {
     <div
       id="modal"
       className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-25 backdrop-blur-sm w-[100%] h-[100%] z-50 shadow-custom">
-      <div
-        className="bg-white min-w-[70rem] h-[30rem] shadow-custom relative"
-        style={SKELETON_STYLES}></div>
+      <div className="bg-white min-w-[60rem] min-h-[34rem] shadow-custom relative"></div>
     </div>
   ) : (
     <div
       id="modal"
       className="fixed flex justify-center items-center inset-0 bg-black bg-opacity-25 backdrop-blur-sm w-[100%] h-[100%] z-50 shadow-custom">
-      <div className="bg-white min-w-[60rem] shadow-custom relative">
+      <div className="bg-white min-w-[60rem] min-h-[34rem] shadow-custom relative">
         <img
           src={Cross}
           className="absolute top-[1.5rem] right-[2rem] w-[1.5rem] hover:cursor-pointer hover:scale-[1.5] transition-all"

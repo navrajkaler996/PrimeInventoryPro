@@ -20,7 +20,7 @@ const InventoryRequest: React.FC<InventoryRequestType> = ({
 
   return (
     <Modal
-      data={inventoryRequestData ? inventoryRequestData[0] : []}
+      data={inventoryRequestData && inventoryRequestData[0]}
       clickHandler={clickHandler}
       isLoading={inventoryRequestIsLoading}
     />
