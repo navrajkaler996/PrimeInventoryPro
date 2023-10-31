@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 
 //Importing slices
 import { loggedInUser } from "./features/userSlice";
+import Toast from "./components/Toast";
 
 function App() {
   const location = useLocation();
@@ -30,7 +31,6 @@ function App() {
   useEffect(() => {
     const storedUserData = localStorage.getItem("loggedInUser");
     if (storedUserData) {
-
       dispatch(loggedInUser(JSON.parse(storedUserData)));
     }
   }, []);
@@ -39,7 +39,9 @@ function App() {
     <div className="max-w-full">
       {pathname !== "/login" && (
         <>
+         
           <Header />
+
           <div id="content" className="flex flex-row w-[100%]">
             <NavigationMenu />
             <Routes>

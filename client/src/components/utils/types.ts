@@ -36,3 +36,8 @@ export interface ModalType {
   clickHandler: Function;
   isLoading: Boolean;
 }
+
+export interface ToastType {
+  type: string;
+  message: string;
+}

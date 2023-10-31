@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import departmentReducer from "./features/departmentSlice";
 import userReducer from "./features/userSlice";
+import toastReducer from "./features/toastSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { departmentApi } from "./services/department";
 import { subDepartmentApi } from "./services/subdepartment";
 import { productApi } from "./services/product";
-
-
 
 export const store: any = configureStore({
   reducer: {
@@ -15,6 +14,7 @@ export const store: any = configureStore({
     [subDepartmentApi.reducerPath]: subDepartmentApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
     loggedInUser: userReducer,
+    displayToastMessage: toastReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -23,8 +23,6 @@ export const store: any = configureStore({
       productApi.middleware
     ),
 });
-
-
 
 export type RootState = ReturnType<typeof store.getState>;
 

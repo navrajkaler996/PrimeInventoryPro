@@ -1,4 +1,7 @@
+import SuccessIcon from "../../assets/toast/success.png";
+import FailedIcon from "../../assets/toast/failed.png";
 import moment from "moment";
+import { COLOR_CODE } from "../../utils/constants";
 //Index signature
 interface ItemType {
   [key: string]: any;
@@ -7,7 +10,7 @@ interface ItemType {
 //Function to return the values for the table
 //Using moment.js for createdAt
 export const getValue = (item: ItemType, value: string) => {
-for (const key in item) {
+  for (const key in item) {
     if (key == value) {
       if (key == "createdAt") return moment(item[key]).fromNow();
 
@@ -15,4 +18,14 @@ for (const key in item) {
     }
   }
   return "";
+};
+
+export const getIcon = (type: string) => {
+  if (type === "success") return SuccessIcon;
+  if (type === "failed") return FailedIcon;
+};
+
+export const getBackgroundColor = (type: string) => {
+  if (type === "success") return { backgroundColor: COLOR_CODE.SUCCESS };
+  if (type === "failed") return { backgroundColor: COLOR_CODE.FAILED };
 };

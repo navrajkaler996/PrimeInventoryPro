@@ -1,5 +1,5 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //Importing components
 import Table from "../../../../components/Table";
@@ -17,11 +17,14 @@ import { UserState } from "../../../../features/featureUtils/featureTypes";
 import InventoryRequest from "./components/InventoryRequest";
 import FlashMessage from "../../../../components/FlashMessage";
 import useProduct from "../../../../hooks/useProduct";
+import { displayToastMessage } from "../../../../features/toastSlice";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //InventoryRequests components renders a component which contains a table
 //The table has all the inventory requests to approve
 const InventoryRequests: React.FC = () => {
+  const dispatch = useDispatch();
+
   //State to track if the page is in initial render
   //It is helping for loading the component when API is being called
   const [isInitialRendering, setIsInitialRendering] = useState(true);
@@ -55,6 +58,18 @@ const InventoryRequests: React.FC = () => {
     requestStatus: productRequestStatus,
     error: _productError,
   } = useProduct();
+
+  useEffect(() => {
+    if (requestStatus.status) {
+      dispatch(
+        displayToastMessage({
+          display: true,
+          type: requestStatus.type,
+          message: requestStatus.message,
+        })
+      );
+    }
+  }, [requestStatus]);
 
   //useEffect to track the id of the last item in the list for infinite scroll
   useEffect(() => {
