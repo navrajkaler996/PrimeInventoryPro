@@ -10,3 +10,59 @@
       opacity: 0.5;
     }
   }
+
+  .toast-pop-up {
+
+    animation: toast-animation 1s ease-in-out forwards, toast-animation-2 .5s 4s ease-out forwards;
+ 
+
+  }
+
+  .toast-loading {
+    animation: toast-loader 3s 1s ease-in-out;
+    transition: all;
+
+  }
+
+
+  @keyframes toast-animation {
+
+    0%{
+      top:70%;
+      opacity: 0;
+    }
+
+    100%{
+      top:2%;
+      opacity: 1;
+    }
+
+  }
+
+  @keyframes toast-animation-2 {
+
+    0%{
+      top:2%;
+      opacity: 1;
+    }
+
+    100%{
+      top:-100%;
+      opacity: 0;
+     
+    }
+
+  }
+
+  @keyframes toast-loader {
+
+    0%{
+      width: 100%;
+    }
+
+    100%{
+      width: 0;
+    }
+
+  }
+

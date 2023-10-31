@@ -85,4 +85,5 @@ export const FORM_ADD_BUTTON_STYLES = {
 export const COLOR_CODE = {
   DANGER: "#FF0000",
   SUCCESS: "#AAFF00",
+  FAILED: "#FF0000",
 };

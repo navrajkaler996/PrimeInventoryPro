@@ -1,0 +1,32 @@
+import CloseIcon from "../assets/cross.png";
+
+import { COLOR_CODE } from "../utils/constants";
+import { ToastType } from "./utils/types";
+import { getBackgroundColor, getIcon } from "./utils/helper";
+
+const Toast: React.FC<ToastType> = ({ type, message }) => {
+  return (
+    <div
+      id="toast"
+      className=" w-[35rem] h-[8rem] bg-black shadow-custom fixed right-[2%]  z-10 toast-pop-up ">
+      <div
+        className="flex justify-center items-center w-[35rem] h-[7.5rem] relative"
+        style={getBackgroundColor(type)}>
+        <img src={getIcon(type)} className="w-[4rem]" />
+        <div className="ml-[2rem]">
+          <p className="text-[1.2em] uppercase">{type}</p>
+          <p>{message}</p>
+        </div>
+        <img
+          src={CloseIcon}
+          className="absolute top-[1rem] right-[1rem] w-[1rem] hover:cursor-pointer hover:scale-[1.3] transition-all"
+        />
+      </div>
+      <div className="w-[35rem] h-[.5rem]">
+        <div className="w-[35rem] h-[.5rem] bg-primary toast-loading"></div>
+      </div>
+    </div>
+  );
+};
+
+export default Toast;
