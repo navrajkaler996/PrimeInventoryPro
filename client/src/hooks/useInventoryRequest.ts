@@ -101,8 +101,6 @@ const useInventoryRequest = (
 
     inventoryRequestUrl = urlDirector.getProductURL();
 
-    console.log(inventoryRequestUrl);
-
     if (inventoryRequestUrl) {
       setLoading(true);
       const token = localStorage.getItem("accessToken");
@@ -117,7 +115,6 @@ const useInventoryRequest = (
 
       const data = await response?.json();
 
-      console.log(data);
       if (data?.status === "success") {
         setLoading(false);
 

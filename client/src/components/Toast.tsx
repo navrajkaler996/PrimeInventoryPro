@@ -1,9 +1,15 @@
+//Importing icons
 import CloseIcon from "../assets/cross.png";
 
-import { COLOR_CODE } from "../utils/constants";
+//Importing utilities
 import { ToastType } from "./utils/types";
 import { getBackgroundColor, getIcon } from "./utils/helper";
 
+/////RENDER A REUSABLE COMPONENT
+//This component creates a toast message
+//Accepts two props
+//type: A string which indicates the type of toast message to display
+//message: A string which is the actual message to be displayed on the toast
 const Toast: React.FC<ToastType> = ({ type, message }) => {
   return (
     <div
