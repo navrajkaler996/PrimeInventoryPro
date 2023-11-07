@@ -8,6 +8,7 @@ import { ProductsModule } from './modules/products/products.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { InventoryRequestsModule } from './modules/inventory-requests/inventory-requests.module';
+import { StoreModule } from './modules/store/store.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { InventoryRequestsModule } from './modules/inventory-requests/inventory-
     EmployeeModule,
     AuthModule,
     InventoryRequestsModule,
+    StoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],

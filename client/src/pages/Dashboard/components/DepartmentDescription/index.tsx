@@ -20,7 +20,10 @@ import DepartmentDropdown from "./components/DepartmentDropdown";
 import DepartmentDetails from "./components/DepartmentDetails";
 
 const createType = (code: string | undefined) => {
+  if (!code) return "";
+
   if (code?.startsWith("DEP")) return "GET_DEPARTMENT";
+  else if (code?.startsWith("STORE")) return "GET_STORE";
   else return "GET_SUB_DEPARTMENT";
 };
 
