@@ -53,6 +53,7 @@ export const API_ENDPOINTS = {
   department_development: "api/v1/department",
   sub_department_development: "api/v1/subdepartment",
   inventory_request_development: "api/v1/inventory-request",
+  store_development: "api/v1/store",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;

@@ -141,6 +141,17 @@ export class UpdatePendingApprovalProductBuilder extends ProductURLBuilder {
   }
 }
 
+export class GetStoreBuilder extends ProductURLBuilder {
+  buildUrl(
+    store_code: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.store_development
+    }/${store_code}`;
+  }
+}
+
 export class ProductURLDirector {
   code: string | number | null | undefined;
   type: string | null;
@@ -197,6 +208,9 @@ export class ProductURLDirector {
         break;
       case "UPDATE_PENDING_APPROVAL_PRODUCT":
         urlBuilder = new UpdatePendingApprovalProductBuilder();
+        break;
+      case "GET_STORE":
+        urlBuilder = new GetStoreBuilder();
         break;
       default:
         throw new Error("Invalid type");

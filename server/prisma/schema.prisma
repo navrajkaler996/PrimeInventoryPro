@@ -10,9 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Store {
+  store_id                  Int          @id @default(autoincrement())
+  store_code                String       @unique
+  store_name                String
+  general_manager           String
+  total_departments         Int
+  total_sub_departments     Int
+  total_products            Int
+  total_products_quantity   Int
+  total_products_in_transit Int
+  Department                Department[]
+}
+
 //model for departments
 model Department {
   department_id             Int                @id @default(autoincrement())
+  store_code                String
   department_code           String             @unique
   department_name           String             @unique
   total_sub_departments     Int                @default(0)
@@ -24,6 +38,9 @@ model Department {
   createdAt                 DateTime           @default(now())
   updatedAt                 DateTime           @updatedAt
   inventoryRequests         InventoryRequest[]
+  store                     Store              @relation(fields: [store_code], references: [store_code], onDelete: Cascade)
+  subDepartments            SubDepartment[]
+  product                   Product[]
 }
 
 //model for subdepartments
@@ -41,29 +58,33 @@ model SubDepartment {
   createdAt                 DateTime           @default(now())
   updatedAt                 DateTime           @updatedAt
   inventoryRequests         InventoryRequest[]
+  department                Department         @relation(fields: [department_code], references: [department_code], onDelete: Cascade)
+  product                   Product[]
 }
 
 //model for products
 model Product {
-  product_id          Int      @id @default(autoincrement())
-  product_name        String   @unique
-  product_code        String   @unique
+  product_id          Int           @id @default(autoincrement())
+  product_name        String        @unique
+  product_code        String        @unique
   price               Float
-  total_quantity      Int      @default(0)
+  total_quantity      Int           @default(0)
   cap                 Int
-  product_stock_alert Boolean  @default(false)
-  in_transit          Boolean  @default(false)
-  sub_department_code String   @default("XXXXXX")
-  department_code     String   @default("XXXXXX")
-  total_sales         Int      @default(0)
-  base_price          Int      @default(0)
-  selling_price       Int      @default(0)
-  manufacturer        String   @default("")
-  brand               String   @default("")
-  case_pack           Int      @default(0)
-  pending_approval    Boolean  @default(true)
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  product_stock_alert Boolean       @default(false)
+  in_transit          Boolean       @default(false)
+  sub_department_code String        @default("XXXXXX")
+  department_code     String        @default("XXXXXX")
+  total_sales         Int           @default(0)
+  base_price          Int           @default(0)
+  selling_price       Int           @default(0)
+  manufacturer        String        @default("")
+  brand               String        @default("")
+  case_pack           Int           @default(0)
+  pending_approval    Boolean       @default(true)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  subDepartment       SubDepartment @relation(fields: [sub_department_code], references: [sub_department_code], onDelete: Cascade)
+  department          Department?   @relation(fields: [department_code], references: [department_code], onDelete: Cascade)
 }
 
 //model for employee
@@ -94,7 +115,7 @@ model InventoryRequest {
   product_code                String
   createdAt                   DateTime       @default(now())
   updatedAt                   DateTime       @updatedAt
-  department                  Department     @relation(fields: [request_department_code], references: [department_code])
-  subDepartment               SubDepartment? @relation(fields: [request_sub_department_code], references: [sub_department_code])
-  employee                    Employee?      @relation(fields: [request_for_employee_id], references: [employee_id])
+  department                  Department     @relation(fields: [request_department_code], references: [department_code], onDelete: Cascade)
+  subDepartment               SubDepartment? @relation(fields: [request_sub_department_code], references: [sub_department_code], onDelete: Cascade)
+  employee                    Employee?      @relation(fields: [request_for_employee_id], references: [employee_id], onDelete: Cascade)
 }

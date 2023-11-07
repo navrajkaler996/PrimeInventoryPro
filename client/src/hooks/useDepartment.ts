@@ -14,33 +14,36 @@ const useDepartment = (
   useEffect(() => {
     let departmentUrl;
 
-    const urlDirector = new ProductURLDirector(
-      options.type,
-      departmentCode,
-      undefined
-    );
+    if (departmentCode) {
+      const urlDirector = new ProductURLDirector(
+        options.type,
+        departmentCode,
+        undefined
+      );
 
-    urlDirector.buildURL();
+      urlDirector.buildURL();
 
-    departmentUrl = urlDirector.getProductURL();
+      departmentUrl = urlDirector.getProductURL();
 
-    if (departmentUrl) {
-      setDepartmentIsLoading(true);
-      const token = localStorage.getItem("accessToken");
-      fetch(departmentUrl, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) {
-            setDepartmentIsLoading(false);
-            setDepartmentData(data);
-          }
-        });
+      if (departmentUrl) {
+        setDepartmentIsLoading(true);
+        const token = localStorage.getItem("accessToken");
+        fetch(departmentUrl, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data) {
+              setDepartmentIsLoading(false);
+              setDepartmentData(data);
+            }
+          });
+      }
     }
   }, [departmentCode]);
 

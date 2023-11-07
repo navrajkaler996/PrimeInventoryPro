@@ -520,6 +520,19 @@ export const productsData = [
     pending_approval: false,
   },
 ];
+
+export const storeData = [
+  {
+    store_name: '3117',
+    store_code: 'STORE3117',
+    general_manager: 'avneet kaur',
+    total_departments: 2,
+    total_sub_departments: 10,
+    total_products: 400,
+    total_products_quantity: 670,
+    total_products_in_transit: 40,
+  },
+];
 export const departmentData = [
   {
     department_name: 'fresh',
@@ -530,6 +543,7 @@ export const departmentData = [
     stock_alert: true,
     direct_supervisor: 'john Doe',
     total_products_in_transit: 120,
+    store_code: 'STORE3117',
   },
   {
     department_name: 'general merchandise',
@@ -540,6 +554,7 @@ export const departmentData = [
     stock_alert: true,
     direct_supervisor: 'jane Doe',
     total_products_in_transit: 90,
+    store_code: 'STORE3117',
   },
 ];
 
