@@ -1,6 +1,11 @@
+//Importing components
+import Spinner from "./Spinner";
+
+//Importing utilities
 import { ButtonType } from "./utils/types";
 import Checkmark from "../assets/checkmark.png";
 import Cross from "../assets/cross.png";
+
 /////HELPERS
 //This function returns a formatted text value for the button accoridng to the value provided
 const assembleValue = (value: string, disabled: boolean) => {
@@ -52,8 +57,8 @@ const assembleValue = (value: string, disabled: boolean) => {
 
 const BUTTON_TAILWIND = {
   NOT_DISABLED:
-    "group w-[8rem] h-[3rem] bg-primary mr-[2rem] shadow-custom uppercase tracking-[1px]",
-  DISABLED: "bg-gray shadow-custom uppercase tracking-[1px] cursor-not-allowed",
+    "group w-[8rem] h-[3rem] bg-primary mr-[2rem] uppercase tracking-[1px]",
+  DISABLED: "bg-gray uppercase tracking-[1px] cursor-not-allowed",
 };
 
 //////THIS FUNCTION CREATES A BUTTON.
@@ -61,6 +66,7 @@ const Button: React.FC<ButtonType> = ({
   value,
   clickHandler,
   disabled = false,
+  loading = false,
   styles,
 }) => {
   return (
@@ -68,11 +74,11 @@ const Button: React.FC<ButtonType> = ({
       id="btn"
       onClick={(e) => clickHandler(e)}
       style={styles}
-      disabled={disabled}
+      disabled={disabled || loading}
       className={
         !disabled ? BUTTON_TAILWIND.NOT_DISABLED : BUTTON_TAILWIND.DISABLED
       }>
-      {assembleValue(value, disabled)}
+      {loading ? <Spinner /> : assembleValue(value, disabled)}
     </button>
   );
 };

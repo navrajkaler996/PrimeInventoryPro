@@ -11,58 +11,46 @@
     }
   }
 
-  .toast-pop-up {
+/* CSS for toast */
+.toast + .toast {
+  margin-top: 0.5em;
+}
 
-    animation: toast-animation 1s ease-in-out forwards, toast-animation-2 .5s 4s ease-out forwards;
- 
+.toast-message {
+  display: flex;
+  align-items: top;
+  gap: 1em;
+}
 
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
   }
-
-  .toast-loading {
-    animation: toast-loader 3s 1s ease-in-out;
-    transition: all;
-
+  to {
+    transform: translateX(0);
   }
+}
 
-
-  @keyframes toast-animation {
-
-    0%{
-      top:70%;
-      opacity: 0;
-    }
-
-    100%{
-      top:2%;
-      opacity: 1;
-    }
-
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
   }
-
-  @keyframes toast-animation-2 {
-
-    0%{
-      top:2%;
-      opacity: 1;
-    }
-
-    100%{
-      top:-100%;
-      opacity: 0;
-     
-    }
-
+  to {
+    transform: translateX(0);
   }
+}
 
-  @keyframes toast-loader {
+.toast-list--top-left .toast,
+.toast-list--bottom-left .toast {
+  animation: toast-in-left .1s;
+}
 
-    0%{
-      width: 100%;
-    }
+.toast-list--top-right .toast,
+.toast-list--bottom-right .toast {
+  animation: toast-in-right .1s;
+}
 
-    100%{
-      width: 0;
-    }
-
-  }
-
+.toast-list .toast {
+  transition: transform .1s, opacity .1s,
+    box-shadow .1s ease-in-out;
+}

@@ -1,6 +1,4 @@
 export const createCurrentDepartment = (departmentData: any) => {
-  console.log("asasa", departmentData);
-
   if (departmentData.store_name) {
     return {
       department_name: departmentData.store_name,

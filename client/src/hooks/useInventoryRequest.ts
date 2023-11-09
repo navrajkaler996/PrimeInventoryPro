@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
+
+//Importing utilities
 import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 import { InventoryRequestType } from "../components/utils/types";
-import { createResponseMessage } from "../utils/helpers";
+import {
+  createApiResponseMessage,
+  createResponseMessage,
+} from "../utils/helpers";
 
 /////CUSTOM HOOK TO FETCH DATA RELATED TO INVENTORY REQUESTS
 /////ACCEPTS FOUR PROPS
@@ -118,7 +123,17 @@ const useInventoryRequest = (
       if (data?.status === "success") {
         setLoading(false);
 
-        const message = createResponseMessage("success", options.method);
+        let message;
+        if (body?.decision === true) {
+          message = createApiResponseMessage(
+            "success_inventory_request_approved"
+          );
+        } else {
+          message = createApiResponseMessage(
+            "success_inventory_request_rejected"
+          );
+        }
+
         setRequestStatus({
           status: true,
           message: message,

@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-//Importing reusable components
+//Importing components
 import Button from "../../../../../components/Button";
 import Input from "../../../../../components/Input";
 import Select from "../../../../../components/Select";
 import FormError from "../../../../../components/FormError";
-import FlashMessage from "../../../../../components/FlashMessage";
+import ToastList from "../../../../../components/ToastList";
 
 //Importing hooks
 import useProduct from "../../../../../hooks/useProduct";
+import useInventoryRequest from "../../../../../hooks/useInventoryRequest";
+import useToast from "../../../../../hooks/useToast";
 
 //Importing services
 import { useListDepartmentsQuery } from "../../../../../services/department";
@@ -24,11 +28,10 @@ import {
   FORM_VALIDATIONS,
 } from "../../../../../utils/constants";
 import { AddToInventoryFormType } from "../../../utils/types";
-import useInventoryRequest from "../../../../../hooks/useInventoryRequest";
-import { useSelector } from "react-redux";
 
 /////This component returns the form for AddToInventory
 const AddToInventoryForm: React.FC = () => {
+  const navigate = useNavigate();
   const loggedInUser = useSelector((state: any) => state.loggedInUser);
 
   //State to store the form data and errors
@@ -63,7 +66,7 @@ const AddToInventoryForm: React.FC = () => {
   //Custom hook that calls the API to add product
   const {
     clickHandler: addProductClickHandler,
-    loading: _addProductLoading,
+    loading: addProductLoading,
     requestStatus: addProductRequestStatus,
     error: _addProductError,
   } = useProduct();
@@ -75,6 +78,9 @@ const AddToInventoryForm: React.FC = () => {
     method: "",
     type: "",
   });
+
+  //Custom hook to show toast message
+  const { toasts, showToast, removeToast } = useToast();
 
   //Service to fetch department list for dropdown
   //Data is being stored in redux
@@ -137,8 +143,27 @@ const AddToInventoryForm: React.FC = () => {
     }
   }, [form?.product_department]);
 
+  //useEffect to show the toast message
+  useEffect(() => {
+    if (addProductRequestStatus.status) {
+      if (addProductRequestStatus.type === "success") {
+        navigate("/inventory", {
+          state: {
+            type: "PRODUCT_ADDED",
+          },
+        });
+      } else {
+        showToast(
+          addProductRequestStatus.message,
+          addProductRequestStatus.type
+        );
+      }
+    }
+  }, [addProductRequestStatus]);
+
   return (
     <form id="form" className="w-[90%] h-[100rem] mx-auto mb-[2rem]">
+      <ToastList data={toasts} closeHandler={removeToast} />
       <fieldset className={"border-[.5px] p-[4rem] "}>
         <legend>General Information</legend>
         <>
@@ -301,7 +326,7 @@ const AddToInventoryForm: React.FC = () => {
 
           <div
             id="form__row-3"
-            className="w-[100%] flex justify-around mt-[3rem]">
+            className="w-[100%] flex justify-around mt-[3rem] ">
             <Button
               value="add to inventory"
               styles={FORM_ADD_BUTTON_STYLES}
@@ -318,6 +343,7 @@ const AddToInventoryForm: React.FC = () => {
                   form.product_cap > 0
                 )
               }
+              loading={addProductLoading}
               clickHandler={async (e: KeyboardEvent) => {
                 e.preventDefault();
 
@@ -359,13 +385,6 @@ const AddToInventoryForm: React.FC = () => {
             />
           </div>
         </>
-        {addProductRequestStatus.status && (
-          <FlashMessage
-            message={addProductRequestStatus.message}
-            type={addProductRequestStatus.type}
-            timer={false}
-          />
-        )}
       </fieldset>
     </form>
   );

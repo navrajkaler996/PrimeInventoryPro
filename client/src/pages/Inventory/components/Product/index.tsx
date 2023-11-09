@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 //Importing reusable components
 import Button from "../../../../components/Button";
@@ -12,16 +13,19 @@ import useProduct from "../../../../hooks/useProduct";
 import { useGetProductByProductCodeQuery } from "../../../../services/product";
 
 //Importing constants
-import { EditToInventoryFormType, ProductType } from "../../utils/types";
+import { EditToInventoryFormType } from "../../utils/types";
 import { filterFormData } from "../../../../utils/helpers";
 import {
   FORM_ADD_BUTTON_STYLES,
   SKELETON_STYLES,
 } from "../../../../utils/constants";
 
+
 /////This component display the product details
 //This component also has the edit form and delete functionality
-const Product: React.FC<ProductType> = ({ productCode }) => {
+const Product: React.FC = () => {
+  const { product_code: productCode } = useParams();
+
   //Service to fetch a single product using product_code
   const {
     data: productData,
@@ -90,6 +94,8 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
   useEffect(() => {
     if (editProductRequestStatus && edit) setEdit(false);
   }, [editProductRequestStatus]);
+
+  useEffect(() => {}, []);
 
   //Click handler to display the edit form
   const editClickHandler = () => {
@@ -411,6 +417,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
                     type: "EDIT_PRODUCT",
                   });
                 }}
+                loading={false}
               />
             </div>
           )}
@@ -428,6 +435,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
           styles={{ position: "absolute", top: "3%", right: "8%" }}
           clickHandler={editClickHandler}
           disabled={false}
+          loading={false}
         />
         <Button
           value="Delete"
@@ -439,6 +447,7 @@ const Product: React.FC<ProductType> = ({ productCode }) => {
             })
           }
           disabled={false}
+          loading={false}
         />
       </div>
     );

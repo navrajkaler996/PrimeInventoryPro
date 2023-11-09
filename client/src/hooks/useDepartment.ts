@@ -37,7 +37,6 @@ const useDepartment = (
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             if (data) {
               setDepartmentIsLoading(false);
               setDepartmentData(data);
