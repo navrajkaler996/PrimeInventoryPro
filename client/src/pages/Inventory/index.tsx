@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 //Importing components
 import TotalProducts from "./components/TotalProducts";
@@ -8,9 +9,11 @@ import SearchBar from "./components/SearchBar";
 import Button from "../../components/Button";
 import AddToInventory from "./components/AddToInventory";
 import Product from "./components/Product";
+import ToastList from "../../components/ToastList";
 
 //Importing hooks
 import useFetchProducts from "../../hooks/useFetchProduct";
+import useToast from "../../hooks/useToast";
 
 //Importing types
 import { DepartmentState } from "../../features/featureUtils/featureTypes";
@@ -27,6 +30,9 @@ const Inventory: React.FC = () => {
     (state: any) => state?.activeDepartment
   );
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   //In this component, I have uplifted the state, which is being used in multiple child components.
   const [cursor, setCursor] = useState<number | undefined>(undefined);
   const [keyword, setKeyword] = useState<string>("");
@@ -39,10 +45,23 @@ const Inventory: React.FC = () => {
     INVENTORY_VIEWS.PRODUCT_TABLE
   );
 
+  //Custom hook to show toast message
+  const { toasts, showToast, removeToast } = useToast();
+
   //useEffect to set cursor to undefined when department is changed fromt dropwdown
   useEffect(() => {
     setCursor(undefined);
   }, [currentDepartment?.department_code]);
+
+  useEffect(() => {
+    if (location?.state?.type === "PRODUCT_ADDED") {
+      showToast(
+        "Your request has been submitted successfully for the approval",
+        "success"
+      );
+      window.history.replaceState({}, "type");
+    }
+  }, [location]);
 
   //useFetchProduct custom hook is being used here to provide data to the following components:
   //SearchBar
@@ -75,17 +94,20 @@ const Inventory: React.FC = () => {
   };
 
   const addToInventoryChangeHandler = () => {
-    setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
+    // setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
+
+    navigate("/inventory/add-to-inventory");
   };
 
   //Function that invokes when a row is clicked in the table
   const productClickHandler = (productCode: string) => {
     setProductCode(productCode);
-    setCurrentView(INVENTORY_VIEWS.PRODUCT);
+    navigate(`/inventory/product/${productCode}`);
   };
 
   return (
     <div id="inventory__container" className="lg:max-w-full md:w-full w-full ">
+      <ToastList data={toasts} closeHandler={removeToast} />
       {/*
         Component that displays department description and dropdown
         */}
@@ -99,6 +121,7 @@ const Inventory: React.FC = () => {
           clickHandler={addToInventoryChangeHandler}
           disabled={false}
           styles={{}}
+          loading={false}
         />
         {/*
           Component that contains the search bar
@@ -106,30 +129,25 @@ const Inventory: React.FC = () => {
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 
-      {/*
-      Component that contains the table which displays all the products
-        */}
-      {currentView === INVENTORY_VIEWS.PRODUCT_TABLE && (
-        <TotalProducts
-          productData={productData}
-          productIsLoading={productIsLoading}
-          productError={productError}
-          hasMore={hasMore}
-          cursor={cursor}
-          setCursor={setCursor}
-          productClickHandler={productClickHandler}
+      <Routes>
+        <Route
+          path=""
+          element={
+            <TotalProducts
+              productData={productData}
+              productIsLoading={productIsLoading}
+              productError={productError}
+              hasMore={hasMore}
+              cursor={cursor}
+              setCursor={setCursor}
+              productClickHandler={productClickHandler}
+            />
+          }
         />
-      )}
-      {/*
-      Component that contains add to inventory product form
-        */}
-      {currentView === INVENTORY_VIEWS.ADD_TO_INVENTORY && <AddToInventory />}
-      {/*
-      Component that contains product view
-        */}
-      {currentView === INVENTORY_VIEWS.PRODUCT && (
-        <Product productCode={productCode} />
-      )}
+        <Route path="add" element={<AddToInventory />} />
+        <Route path="product/:product_code" element={<Product />} />
+        <Route path="add-to-inventory" element={<AddToInventory />} />
+      </Routes>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { API_RESPONSE_MESSAGES } from "./constants";
+
 export const filterFormData = (
   data: any,
   departmentList: any,
@@ -83,6 +85,21 @@ export const createResponseMessage = (type: string, method: string) => {
   }
 
   return "Unknown response";
+};
+
+const apiResponseConfig = {
+  success_inventory_request_approved:
+    API_RESPONSE_MESSAGES.success_inventory_request_approved,
+  success_inventory_request_rejected:
+    API_RESPONSE_MESSAGES.success_inventory_request_rejected,
+  success_product_request: API_RESPONSE_MESSAGES.success_product_request,
+  failed_product_request: API_RESPONSE_MESSAGES.failed_product_request,
+};
+
+//Using open/close principle
+export const createApiResponseMessage = (type: string) => {
+  const response = apiResponseConfig[type as keyof typeof apiResponseConfig];
+  return response || "Unknown response";
 };
 
 export const createInventoryRequestBody = (

@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 //Importing components
 import Table from "../../../../components/Table";
+import InventoryRequest from "./components/InventoryRequest";
+import ToastList from "../../../../components/ToastList";
 
 //Importing hooks
 import useInventoryRequest from "../../../../hooks/useInventoryRequest";
+import useProduct from "../../../../hooks/useProduct";
+import useToast from "../../../../hooks/useToast";
 
 //Importing utilities
 import {
@@ -14,10 +18,6 @@ import {
   SKELETON_STYLES,
 } from "../../../../utils/constants";
 import { UserState } from "../../../../features/featureUtils/featureTypes";
-import InventoryRequest from "./components/InventoryRequest";
-import FlashMessage from "../../../../components/FlashMessage";
-import useProduct from "../../../../hooks/useProduct";
-import { displayToastMessage } from "../../../../features/toastSlice";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //InventoryRequests components renders a component which contains a table
@@ -46,7 +46,7 @@ const InventoryRequests: React.FC = () => {
     error: _inventoryRequestError,
     hasMore,
     clickHandler: inventoryRequestClickHandler,
-    requestStatus,
+    requestStatus: inventoryRequestStatus,
   } = useInventoryRequest(employeeId, cursor, INVENORY_REQUESTS_COUNT, {
     method: "GET",
     type: "GET_INVENTORY_REQUEST",
@@ -59,17 +59,17 @@ const InventoryRequests: React.FC = () => {
     error: _productError,
   } = useProduct();
 
+  const { showToast, toasts, removeToast } = useToast();
+
   useEffect(() => {
-    if (requestStatus.status) {
-      dispatch(
-        displayToastMessage({
-          display: true,
-          type: requestStatus.type,
-          message: requestStatus.message,
-        })
-      );
+    if (inventoryRequestStatus.status) {
+      if (inventoryRequestStatus.type === "success") {
+        showToast(inventoryRequestStatus.message, inventoryRequestStatus.type);
+      } else {
+        showToast(inventoryRequestStatus.message, inventoryRequestStatus.type);
+      }
     }
-  }, [requestStatus]);
+  }, [inventoryRequestStatus]);
 
   //useEffect to track the id of the last item in the list for infinite scroll
   useEffect(() => {
@@ -142,6 +142,7 @@ const InventoryRequests: React.FC = () => {
 
   return (
     <div id="dashboard__inventory-requests" className="flex justify-center ">
+      <ToastList data={toasts} closeHandler={removeToast} />
       {isInitialRendering && (
         <div
           style={SKELETON_STYLES}
@@ -159,13 +160,7 @@ const InventoryRequests: React.FC = () => {
             <hr className="m-[1.5rem] text-gray" />
             <div>
               {/* Using reusable component: ProductTable to display the data */}
-              {requestStatus.status && (
-                <FlashMessage
-                  message={requestStatus.message}
-                  type={requestStatus.type}
-                  timer={true}
-                />
-              )}
+
               {inventoryRequestData && inventoryRequestData?.length > 0 && (
                 <Table
                   data={inventoryRequestData}

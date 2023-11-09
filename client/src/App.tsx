@@ -39,7 +39,6 @@ function App() {
     <div className="max-w-full">
       {pathname !== "/login" && (
         <>
-         
           <Header />
 
           <div id="content" className="flex flex-row w-[100%]">
@@ -47,7 +46,7 @@ function App() {
             <Routes>
               <Route element={<PrivateRoutes />}>
                 <Route element={<Dashboard />} path="/dashboard" />
-                <Route element={<Inventory />} path="/inventory" />
+                <Route element={<Inventory />} path="/inventory/*" />
               </Route>
             </Routes>
           </div>

@@ -3,6 +3,7 @@ export interface ButtonType {
   clickHandler: Function;
   disabled: boolean;
   styles: Object;
+  loading: boolean;
 }
 
 export interface InventoryRequestType {
@@ -40,4 +41,16 @@ export interface ModalType {
 export interface ToastType {
   type: string;
   message: string;
+  closeHandler: Function;
+}
+
+export interface SingleToastType {
+  id: Date;
+  message: string;
+  type: string;
+}
+
+export interface ToastListType {
+  data: SingleToastType[];
+  closeHandler: Function;
 }

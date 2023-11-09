@@ -79,7 +79,7 @@ export interface EditToInventoryFormType {
   product_case_pack: number;
   product_cap: number;
   product_total_quantity: number;
-  product_code: string;
+  product_code: string | undefined;
   errors: EditToInventoryFormErrorsType;
 }
 export interface LoginFormType {

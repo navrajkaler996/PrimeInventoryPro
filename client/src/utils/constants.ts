@@ -88,3 +88,10 @@ export const COLOR_CODE = {
   SUCCESS: "#AAFF00",
   FAILED: "#FF0000",
 };
+
+export const API_RESPONSE_MESSAGES = {
+  success_inventory_request_approved: "Product request approved successfully!",
+  success_inventory_request_rejected: "Product request rejected successfully!",
+  success_product_request: "Product request sent for approval successfully!",
+  failed_product_request: "Product request could not be sent!",
+};
