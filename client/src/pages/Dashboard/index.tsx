@@ -18,8 +18,7 @@ const Dashboard: React.FC = () => {
   const { employee_department_code: employeeDepartmentCode } = userData;
 
   return (
-    <div id="dashboard-container" className="lg:max-w-full md:w-full w-full">
-    
+    <div id="dashboard-container" className="lg:max-w-full md:w-full w-full ">
       <DepartmentDescription />
       <Calculations />
       <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">

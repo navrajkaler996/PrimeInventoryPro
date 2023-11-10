@@ -1,6 +1,7 @@
 export interface SearchBarType {
   keyword: string;
   changeHandler: Function;
+  styles: Object;
 }
 
 export interface ProductDataType {
