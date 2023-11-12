@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <div
       id="header"
-      className="flex justify-between items-center w-full h-80 bg-primary-1 sticky top-[0] z-[10]">
+      className="flex justify-between items-center w-full h-80 bg-white sticky top-[0] z-[10] shadow-custom">
       <img src={Logo} alt="logo" width="100px" className="ml-[2rem]" />
       <div className="flex items-center">
         <SearchBar
@@ -41,23 +41,27 @@ const Header: React.FC = () => {
           </div>
           {showDropdown && (
             <Dropdown styles={{ marginTop: "1rem" }}>
-              <h1 className="text-[1.5em] uppercase ml-[2rem] tracking-[.5px]">
+              <h1 className="text-[1.5em] uppercase mx-[2rem] tracking-[.5px]">
                 {employee_name}
               </h1>
-              <p className="text-[.8em] ml-[2rem] mt-[.5rem] tracking-[.5px] normal-case">
-                {employee_email}
-              </p>
-              <p className="text-[.8em] ml-[2rem] mt-[.5rem] tracking-[.5px]">
+
+              <p className="text-[.8em] mx-[2rem] mt-[.5rem] tracking-[.5px]">
                 {employee_designation}
               </p>
               <ul className="list-none capitalize text-[.9em] tracking-[.5px]">
                 <hr className="m-[1rem]" />
-                <li className="ml-[2rem] mt-[1rem]">Account</li>
-                <li className="ml-[2rem] mt-[1rem]">Sales</li>
-                <li className="ml-[2rem] mt-[1rem]">Inventory</li>
-                <li className="ml-[2rem] mt-[1rem]">Recieving reports</li>
+                <li className="mx-[2rem] pl-[.5rem] mt-[1rem]">Account</li>
+                <li className="mx-[2rem] pl-[.5rem] mt-[1rem]">Sales</li>
+                <li className="mx-[2rem] pl-[.5rem] mt-[1rem]">Inventory</li>
+                <li className="mx-[2rem] pl-[.5rem] mt-[1rem]">
+                  Recieving reports
+                </li>
                 <hr className="m-[1rem]" />
-                <li className="ml-[2rem] mt-[1rem]">Log out</li>
+                <li
+                  className="mx-[2rem] pl-[.5rem] hover:cursor-pointer hover:bg-primary-1"
+                  onClick={() => alert("yes")}>
+                  Log out
+                </li>
               </ul>
             </Dropdown>
           )}

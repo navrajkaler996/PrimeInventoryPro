@@ -10,7 +10,7 @@ const NavigationMenu: React.FC = () => {
       <Link to="/dashboard">
         <div
           id="dashboard"
-          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary">
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary shadow-custom">
           <img src={Dashboard} className="w-[4rem] h-[4rem]" />
           <p className="mt-[1rem]">Dashboard</p>
         </div>
@@ -18,16 +18,16 @@ const NavigationMenu: React.FC = () => {
       <Link to="/inventory">
         <div
           id="inventory"
-          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[.6rem] cursor-pointer hover:bg-primary">
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
           <img src={Inventory} className="w-[4rem] h-[4rem]" />
           <p className="mt-[1rem]">Inventory</p>
         </div>
       </Link>
-      <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
-      <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
-      <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
-      <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
-      <div className="w-120 h-120 bg-white mt-[.6rem]"></div>
+      <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
+      <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
+      <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
+      <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
+      <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
     </div>
   );
 };

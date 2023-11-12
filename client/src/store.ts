@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import departmentReducer from "./features/departmentSlice";
 import userReducer from "./features/userSlice";
 import toastReducer from "./features/toastSlice";
+import logoutReducer from "./features/logoutSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { departmentApi } from "./services/department";
 import { subDepartmentApi } from "./services/subdepartment";
@@ -15,6 +16,7 @@ export const store: any = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     loggedInUser: userReducer,
     displayToastMessage: toastReducer,
+    logout: logoutReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
