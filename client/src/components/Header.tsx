@@ -3,13 +3,24 @@ import BellIcon from "../assets/bell.png";
 import Logo from "../assets/logo.png";
 import SearchBar from "../pages/Inventory/components/SearchBar";
 import Dropdown from "./Dropdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loggedInUser } from "../features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const { employee_name, employee_email, employee_designation } = useSelector(
     (state: any) => state.loggedInUser
   );
+
+  const logoutClickHandler = () => {
+    dispatch(loggedInUser({}));
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("loggedInUser");
+    navigate("/login");
+  };
   return (
     <div
       id="header"
@@ -59,7 +70,7 @@ const Header: React.FC = () => {
                 <hr className="m-[1rem]" />
                 <li
                   className="mx-[2rem] pl-[.5rem] hover:cursor-pointer hover:bg-primary-1"
-                  onClick={() => alert("yes")}>
+                  onClick={logoutClickHandler}>
                   Log out
                 </li>
               </ul>

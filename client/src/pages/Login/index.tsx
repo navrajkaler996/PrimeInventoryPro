@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FlashMessage from "../../components/FlashMessage";
 import { useDispatch } from "react-redux";
 import { loggedInUser } from "../../features/userSlice";
+import Logo from "../../assets/logo.png";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -67,12 +68,15 @@ const Login: React.FC = () => {
     <div
       id="login"
       className="w-[100%] h-[100vh] flex justify-center items-center">
-      <div className="w-[60%] bg-white py-[5rem] shadow-custom rounded-custom">
+      <div className="w-[60%] bg-white py-[2rem] shadow-custom rounded-custom">
         <form className="w-[100%] h-[100%] flex flex-col justify-center items-center">
-          <h1 className="uppercase text-[4rem]">Login</h1>
           {state?.message && (
             <FlashMessage message={state.message} type="failed" />
           )}
+          <img src={Logo} width="150px" className="mx-auto" />
+          <p className="mt-[3rem] text-primary">
+            Login using your email and password
+          </p>
           <div id="login__email" className="mt-[3rem]">
             <Input
               label="email"
@@ -94,26 +98,25 @@ const Login: React.FC = () => {
               showLabel={true}
               styles={{}}
             />
+          </div>
+          <div id="login__submit" className="mt-[3rem] text-center">
+            <Button
+              value="login"
+              styles={{}}
+              disabled={!(form.email.length > 0 && form.password.length > 0)}
+              loading={loginIsLoading}
+              clickHandler={(e: KeyboardEvent) => {
+                e.preventDefault();
 
-            <div id="login__submit" className="mt-[3rem] text-center">
-              <Button
-                value="login"
-                styles={{}}
-                disabled={!(form.email.length > 0 && form.password.length > 0)}
-                loading={loginIsLoading}
-                clickHandler={(e: KeyboardEvent) => {
-                  e.preventDefault();
-
-                  clickHandler(
-                    { email: form.email, password: form.password },
-                    {
-                      method: "POST",
-                      type: "LOGIN_AUTH",
-                    }
-                  );
-                }}
-              />
-            </div>
+                clickHandler(
+                  { email: form.email, password: form.password },
+                  {
+                    method: "POST",
+                    type: "LOGIN_AUTH",
+                  }
+                );
+              }}
+            />
           </div>
         </form>
       </div>
