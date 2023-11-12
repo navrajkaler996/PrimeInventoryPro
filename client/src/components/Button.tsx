@@ -57,8 +57,9 @@ const assembleValue = (value: string, disabled: boolean) => {
 
 const BUTTON_TAILWIND = {
   NOT_DISABLED:
-    "group w-[8rem] h-[3rem] bg-primary mr-[2rem] uppercase tracking-[1px]",
-  DISABLED: "bg-gray uppercase tracking-[1px] cursor-not-allowed",
+    "group w-[14rem] h-[3.5rem] bg-primary mr-[2rem] uppercase tracking-[1px]",
+  DISABLED:
+    "w-[14rem] h-[3.5rem] bg-gray uppercase tracking-[1px] cursor-not-allowed",
 };
 
 //////THIS FUNCTION CREATES A BUTTON.

@@ -17,7 +17,7 @@ const Calculations: React.FC = () => {
     <div
       className="grid grid-rows-1 lg:grid-cols-[2fr,1fr] md:grid-cols-[2fr,1fr] mt-[4rem] md:mt-[7rem]"
       id="dashboard__calculations">
-      <div className="flex flex-col items-center md:grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1 md:ml-[9rem]  gap-x-[5rem] sm:justify-center">
+      <div className="flex flex-col items-center md:grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1 md:ml-[0]  gap-x-[5rem] sm:justify-center">
         {/* Three boxes displaying sales, expenses, and profit */}
         {calculations?.map((item, index) => {
           return (
