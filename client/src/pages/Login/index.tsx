@@ -24,7 +24,13 @@ const Login: React.FC = () => {
     },
   });
 
-  const { clickHandler, loading, requestStatus, error, userData } = useLogin();
+  const {
+    clickHandler,
+    loading: loginIsLoading,
+    requestStatus,
+    error,
+    userData,
+  } = useLogin();
 
   //Handler called when input is changed
   const changeHandler = (e: any) => {
@@ -92,8 +98,9 @@ const Login: React.FC = () => {
             <div id="login__submit" className="mt-[3rem] text-center">
               <Button
                 value="login"
-                styles={{ padding: ".5rem 2rem" }}
+                styles={{}}
                 disabled={!(form.email.length > 0 && form.password.length > 0)}
+                loading={loginIsLoading}
                 clickHandler={(e: KeyboardEvent) => {
                   e.preventDefault();
 
