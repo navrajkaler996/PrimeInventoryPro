@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ProductDataType } from "../pages/Dashboard/utils/types";
+import { getValue } from "./utils/helper";
 
 interface ProductTableType {
   productData: ProductDataType["productData"][] | undefined;
@@ -43,10 +44,12 @@ const ProductTable: React.FC<ProductTableType> = ({
                       if (value === "in_transit")
                         return (
                           <td className="pt-3">
-                            {product[value] ? "Yes" : "No"}
+                            {getValue(product, value) ? "Yes" : "No"}
                           </td>
                         );
-                      return <td className="pt-3">{product[value]}</td>;
+                      return (
+                        <td className="pt-3">{getValue(product, value)}</td>
+                      );
                     })}
                   </tr>
                 );
@@ -62,10 +65,10 @@ const ProductTable: React.FC<ProductTableType> = ({
                     if (value === "in_transit")
                       return (
                         <td className="pt-3">
-                          {product[value] ? "Yes" : "No"}
+                          {getValue(product, value) ? "Yes" : "No"}
                         </td>
                       );
-                    return <td className="pt-3">{product[value]}</td>;
+                    return <td className="pt-3">{getValue(product, value)}</td>;
                   })}
                 </tr>
               );

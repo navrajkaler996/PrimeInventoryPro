@@ -40,7 +40,13 @@ const Table: React.FC<TableType> = ({
               return (
                 <tr
                   className="mt-[4rem] align-baseline hover:cursor-pointer hover:bg-gray"
-                  id={item.request_id?.toString()}
+                  id={
+                    item.request_id
+                      ? item.request_id?.toString()
+                      : item.product_code
+                      ? item.product_code
+                      : undefined
+                  }
                   // key={item.request_id}
                   ref={(node) => options?.lastProduct(node)}
                   onClick={(e) => clickHandler(e.currentTarget.id, undefined)}>
@@ -58,7 +64,13 @@ const Table: React.FC<TableType> = ({
             return (
               <tr
                 className="mt-[4rem] align-baseline hover:cursor-pointer hover:bg-gray"
-                id={item.request_id?.toString()}
+                id={
+                  item.request_id
+                    ? item.request_id?.toString()
+                    : item.product_code
+                    ? item.product_code
+                    : undefined
+                }
                 // key={item.request_id}
                 onClick={(e) => clickHandler(e.currentTarget.id, undefined)}>
                 {Object.values(options?.keys)?.map((value) => {
