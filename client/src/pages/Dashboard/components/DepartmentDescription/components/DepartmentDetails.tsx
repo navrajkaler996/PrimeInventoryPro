@@ -63,7 +63,7 @@ const DepartmentDetails: React.FC<DepartmentDetails> = ({
 
   return (
     <div
-      className="relative flex bg-white items-center w-[80%] lg:w-[35rem] md:w-[28rem] h-[8rem] lg:ml-[8rem] md:ml-[9rem] shadow-custom"
+      className="relative flex bg-white items-center w-[80%] lg:w-[35rem] md:w-[28rem] h-[8rem] lg:ml-[8rem] md:ml-[9rem] shadow-custom  rounded-custom"
       style={departmentIsLoading ? SKELETON_STYLES : {}}>
       <img
         src={getDepartmentImage(currentDepartment?.department_name)}

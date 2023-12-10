@@ -54,3 +54,14 @@ export interface ToastListType {
   data: SingleToastType[];
   closeHandler: Function;
 }
+
+export interface SalesType {
+  sales_id: number;
+  product_code: string;
+  sales_amount: number;
+  sales_date: string;
+}
+
+export interface SalesLineChartType {
+  salesData: SalesType[];
+}

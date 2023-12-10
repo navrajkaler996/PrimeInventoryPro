@@ -9,6 +9,7 @@ import { EmployeeModule } from './modules/employee/employee.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { InventoryRequestsModule } from './modules/inventory-requests/inventory-requests.module';
 import { StoreModule } from './modules/store/store.module';
+import { SalesModule } from './modules/sales/sales.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { StoreModule } from './modules/store/store.module';
     AuthModule,
     InventoryRequestsModule,
     StoreModule,
+    SalesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

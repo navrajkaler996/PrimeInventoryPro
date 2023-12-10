@@ -85,6 +85,7 @@ model Product {
   updatedAt           DateTime      @updatedAt
   subDepartment       SubDepartment @relation(fields: [sub_department_code], references: [sub_department_code], onDelete: Cascade)
   department          Department?   @relation(fields: [department_code], references: [department_code], onDelete: Cascade)
+  Sales               Sales[]
 }
 
 //model for employee
@@ -118,4 +119,12 @@ model InventoryRequest {
   department                  Department     @relation(fields: [request_department_code], references: [department_code], onDelete: Cascade)
   subDepartment               SubDepartment? @relation(fields: [request_sub_department_code], references: [sub_department_code], onDelete: Cascade)
   employee                    Employee?      @relation(fields: [request_for_employee_id], references: [employee_id], onDelete: Cascade)
+}
+
+model Sales {
+  sales_id     Int     @id @default(autoincrement())
+  product_code String
+  sales_amount Int     @default(0)
+  sales_date   String  @default("")
+  product      Product @relation(fields: [product_code], references: [product_code], onDelete: Cascade)
 }
