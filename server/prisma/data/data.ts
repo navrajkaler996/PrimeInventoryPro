@@ -702,3 +702,144 @@ export const employeeData = [
 ];
 
 export const inventoryRequestData = [];
+
+export const salesData = [
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 217,
+    sales_date: '2022-01-28',
+    sales_id: 1,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 365,
+    sales_date: '2022-02-28',
+    sales_id: 2,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 319,
+    sales_date: '2022-03-28',
+    sales_id: 3,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 294,
+    sales_date: '2022-04-28',
+    sales_id: 4,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 280,
+    sales_date: '2022-05-28',
+    sales_id: 5,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 261,
+    sales_date: '2022-06-28',
+    sales_id: 6,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 279,
+    sales_date: '2022-07-28',
+    sales_id: 7,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 203,
+    sales_date: '2022-08-28',
+    sales_id: 8,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 327,
+    sales_date: '2022-09-28',
+    sales_id: 9,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 322,
+    sales_date: '2022-10-28',
+    sales_id: 10,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 202,
+    sales_date: '2022-11-28',
+    sales_id: 11,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 261,
+    sales_date: '2022-12-28',
+    sales_id: 12,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 386,
+    sales_date: '2023-01-28',
+    sales_id: 13,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 266,
+    sales_date: '2023-02-28',
+    sales_id: 14,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 310,
+    sales_date: '2023-03-28',
+    sales_id: 15,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 386,
+    sales_date: '2023-04-28',
+    sales_id: 16,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 349,
+    sales_date: '2023-05-28',
+    sales_id: 17,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 331,
+    sales_date: '2023-06-28',
+    sales_id: 18,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 307,
+    sales_date: '2023-07-28',
+    sales_id: 19,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 376,
+    sales_date: '2023-08-28',
+    sales_id: 20,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 263,
+    sales_date: '2023-09-28',
+    sales_id: 21,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 303,
+    sales_date: '2023-10-28',
+    sales_id: 22,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 301,
+    sales_date: '2023-11-28',
+    sales_id: 23,
+  },
+];

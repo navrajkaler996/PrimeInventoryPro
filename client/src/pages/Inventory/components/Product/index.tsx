@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
 //Importing reusable components
 import Button from "../../../../components/Button";
 import Input from "../../../../components/Input";
@@ -19,12 +30,27 @@ import {
   FORM_ADD_BUTTON_STYLES,
   SKELETON_STYLES,
 } from "../../../../utils/constants";
+import { Line } from "react-chartjs-2";
+import useSales from "../../../../hooks/useSales";
+import LineChart from "./SalesLineChart";
+import SalesLineChart from "./SalesLineChart";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 /////This component display the product details
 //This component also has the edit form and delete functionality
 const Product: React.FC = () => {
   const { product_code: productCode } = useParams();
+
+  const [salesChartData, setSalesChartData] = useState(undefined);
 
   //Service to fetch a single product using product_code
   const {
@@ -40,6 +66,16 @@ const Product: React.FC = () => {
     requestStatus: editProductRequestStatus,
     error: _editProductError,
   } = useProduct();
+
+  const {
+    data: salesData,
+    loading: salesLoading,
+    error: salesError,
+  } = useSales(
+    productCode,
+    { filterByDate: true },
+    { method: "GET", type: "GET_BY_LAST_ONE_YEAR_SALES" }
+  );
 
   //State to display edit button
   const [edit, setEdit] = useState<boolean>(false);
@@ -95,8 +131,6 @@ const Product: React.FC = () => {
     if (editProductRequestStatus && edit) setEdit(false);
   }, [editProductRequestStatus]);
 
-  useEffect(() => {}, []);
-
   //Click handler to display the edit form
   const editClickHandler = () => {
     setEdit((prev) => !prev);
@@ -112,6 +146,46 @@ const Product: React.FC = () => {
     });
   };
 
+  const labels = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+  ];
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "SALES THIS YEAR",
+      },
+    },
+  };
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Chicken drumsticks",
+        data: [201, 322, 122, 432, 124, 233, 121, 244, 322, 231],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointBorderColor: "#55FF00",
+        fill: true,
+      },
+    ],
+  };
+
   if (productIsLoading)
     return (
       <div
@@ -120,6 +194,8 @@ const Product: React.FC = () => {
         style={SKELETON_STYLES}></div>
     );
 
+  console.log("...", salesData);
+
   if (!productIsLoading && !productError && productData)
     return (
       <div
@@ -127,6 +203,12 @@ const Product: React.FC = () => {
         className="w-[95%] bg-white md:mt-[4rem] ml-[auto] mr-[auto] shadow-custom rounded-custom relative">
         <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Product</h1>
         <hr className="mt-[1.5rem] text-gray" />
+
+        <div
+          id="inventory__product-chart"
+          className="w-[60%] mx-auto my-[3rem]">
+          {salesData?.length > 0 && <SalesLineChart salesData={salesData} />}
+        </div>
 
         <div
           id="inventory__product-details"
@@ -432,14 +514,14 @@ const Product: React.FC = () => {
         </div>
         <Button
           value={!edit ? "Edit" : "Cancel"}
-          styles={{ position: "absolute", top: "3%", right: "8%" }}
+          styles={{ position: "absolute", top: "1%", right: "12%" }}
           clickHandler={editClickHandler}
           disabled={false}
           loading={false}
         />
         <Button
           value="Delete"
-          styles={{ position: "absolute", top: "3%", right: 0 }}
+          styles={{ position: "absolute", top: "1%", right: 0 }}
           clickHandler={() =>
             clickHandler(undefined, form.product_code, {
               type: "DELETE_PRODUCT",

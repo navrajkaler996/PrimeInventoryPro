@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     <div
       id="header"
       className="flex justify-between items-center w-full h-80 bg-white sticky top-[0] z-[10] shadow-custom">
-      <img src={Logo} alt="logo" width="100px" className="ml-[2rem]" />
+      <img src={Logo} alt="logo" width="130px" className="ml-[2rem]" />
       <div className="flex items-center">
         <SearchBar
           keyword=""

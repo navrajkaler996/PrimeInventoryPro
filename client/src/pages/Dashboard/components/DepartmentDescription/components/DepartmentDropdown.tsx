@@ -43,7 +43,7 @@ const DepartmentDropdown: React.FC<DepartmentDropdownProps> = ({
         {departmentData?.department_name}
       </p>
       <select
-        className="w-[30rem] md:w-[20rem] h-[3rem] bg-white  lg:mr-[8rem] shadow-custom pl-[5px] capitalize"
+        className="w-[30rem] md:w-[30rem] h-[3.5rem] bg-white  lg:mr-[8rem] shadow-custom rounded-custom pl-[5px] capitalize"
         style={subDepartmentIsLoading ? SKELETON_STYLES : {}}
         onChange={(e) => subDepartmentChangeHandler(e.currentTarget.value)}>
         {!subDepartmentIsLoading &&
