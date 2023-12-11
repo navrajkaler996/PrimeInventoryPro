@@ -29,3 +29,12 @@ export const getBackgroundColor = (type: string) => {
   if (type === "success") return { backgroundColor: COLOR_CODE.SUCCESS };
   if (type === "failed") return { backgroundColor: COLOR_CODE.FAILED };
 };
+
+export const getInitials = (value: string) => {
+  let splitValue = value.split(" ");
+
+  return (
+    splitValue[0].charAt(0)?.toUpperCase() +
+    splitValue[1].charAt(0).toUpperCase()
+  );
+};

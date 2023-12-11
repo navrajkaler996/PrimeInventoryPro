@@ -17,7 +17,6 @@ import Login from "./pages/Login";
 
 //Importing slices
 import { loggedInUser } from "./features/userSlice";
-import Toast from "./components/Toast";
 
 function App() {
   const location = useLocation();
@@ -45,6 +44,7 @@ function App() {
             <NavigationMenu />
             <Routes>
               <Route element={<PrivateRoutes />}>
+                <Route element={<Dashboard />} path="/" />
                 <Route element={<Dashboard />} path="/dashboard" />
                 <Route element={<Inventory />} path="/inventory/*" />
               </Route>
