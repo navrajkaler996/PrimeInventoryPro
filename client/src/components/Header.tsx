@@ -6,6 +6,7 @@ import Dropdown from "./Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedInUser } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { getInitials } from "./utils/helper";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const Header: React.FC = () => {
           onClick={() => setShowDropdown(!showDropdown)}
           className="relative">
           <div className="relative flex justify-center items-center bg-primary w-[3.5rem] h-[3.5rem] rounded-[50%] mr-[2rem] text-[.9em] hover:cursor-pointer shadow-custom">
-            AK
+            {employee_name && getInitials(employee_name)}
           </div>
           {showDropdown && (
             <Dropdown styles={{ marginTop: "1rem" }}>

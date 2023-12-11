@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import useFetchProducts from "../../../hooks/useFetchProduct";
 
 //Importing slice
-import { DepartmentState } from "../../../features/departmentSlice";
 
 //Importing utilities
 import {
@@ -16,11 +15,14 @@ import {
 } from "../../../utils/constants";
 import ProductTable from "../../../components/ProductTable";
 
+import { useNavigate } from "react-router-dom";
+
 //THIS COMPONENT CREATES A TABLE WHICH DISPLAYS THE PRODUCTS WITH STOCK ALERTS.
 //////THIS TABLE IS CREATED ACCORDING TO DEPARTMENT OR SUBDEPARTMENT SELECTED.
 const StockAlerts: React.FC<{}> = () => {
+  const navigate = useNavigate();
   //Extracting active department from the redux store.
-  const currentDepartment: DepartmentState["activeDepartment"] = useSelector(
+  const currentDepartment = useSelector(
     (state: any) => state?.activeDepartment
   );
 
@@ -86,6 +88,12 @@ const StockAlerts: React.FC<{}> = () => {
     [productIsLoading, hasMore]
   );
 
+  //Function that invokes when a row is clicked in the table
+  const productClickHandler = (productCode: string) => {
+    // setProductCode(productCode);
+    navigate(`/inventory/product/${productCode}`);
+  };
+
   return (
     <div id="dashboard__stockalerts" className="flex justify-center ">
       <div className="max-w-[80rem] w-[90%] h-[38rem] lg:ml-[6rem] bg-white  rounded-custom shadow-custom overflow-auto">
@@ -100,6 +108,7 @@ const StockAlerts: React.FC<{}> = () => {
               productIsLoading={productIsLoading}
               productError={productError}
               options={{ lastProduct: lastProduct, keys: STOCK_ALERT_KEYS }}
+              productClickHandler={productClickHandler}
             />
           </div>
         </>
