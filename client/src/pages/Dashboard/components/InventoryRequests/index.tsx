@@ -158,7 +158,7 @@ const InventoryRequests: React.FC = () => {
               Inventory requests
             </h1>
             <hr className="m-[1.5rem] text-gray" />
-            <div>
+            <div className="text-center">
               {/* Using reusable component: ProductTable to display the data */}
 
               {inventoryRequestData && inventoryRequestData?.length > 0 && (
@@ -174,7 +174,9 @@ const InventoryRequests: React.FC = () => {
                 />
               )}
               {!inventoryRequestIsLoading &&
-                inventoryRequestData.length === 0 && <p>nothing to show</p>}
+                inventoryRequestData.length === 0 && (
+                  <p className="mt-[10rem]">No new inventory request!</p>
+                )}
             </div>
           </>
         </div>

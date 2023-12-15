@@ -139,6 +139,19 @@ export class ProductsService {
     count: Number,
   ) {
     if (cursor != 'undefined') {
+      if (department_code?.startsWith('STORE')) {
+        return this.prisma.product.findMany({
+          where: {
+            pending_approval: false,
+          },
+          skip: 1,
+          take: Number(count),
+          cursor: {
+            product_id: Number(cursor),
+          },
+        });
+      }
+
       if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
         return this.prisma.product.findMany({
           where: {
@@ -170,6 +183,15 @@ export class ProductsService {
         });
       }
     } else {
+      if (department_code?.startsWith('STORE')) {
+        return this.prisma.product.findMany({
+          where: {
+            pending_approval: false,
+          },
+          skip: 1,
+          take: Number(count),
+        });
+      }
       if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
         return this.prisma.product.findMany({
           where: {

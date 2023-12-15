@@ -194,8 +194,6 @@ const Product: React.FC = () => {
         style={SKELETON_STYLES}></div>
     );
 
-  console.log("...", salesData);
-
   if (!productIsLoading && !productError && productData)
     return (
       <div
