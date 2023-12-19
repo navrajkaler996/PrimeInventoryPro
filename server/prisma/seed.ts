@@ -9,6 +9,7 @@ import {
   inventoryRequestData,
   storeData,
   salesData,
+  receivingReportsData,
 } from './data/data';
 
 // initialize Prisma Client
@@ -41,6 +42,7 @@ async function main() {
   const deleteEmployee = await prisma.employee.deleteMany();
   const deleteSubDepartments = await prisma.subDepartment.deleteMany();
   const deleteDepartments = await prisma.department.deleteMany();
+  const deleteReceivingReports = await prisma.receivingReports.deleteMany();
 
   const deleteProducts = await prisma.product.deleteMany();
   const deleteStores = await prisma.store.deleteMany();
@@ -242,11 +244,16 @@ async function main() {
     data: salesData,
   });
 
+  const receivingReports = await prisma.receivingReports.createMany({
+    data: receivingReportsData,
+  });
+
   console.log({ deleteDepartments });
   console.log({ deleteSubDepartments });
   console.log({ deleteProducts });
   console.log({ deleteEmployee });
   console.log({ deleteInventoryRequests });
+  console.log({ deleteReceivingReports });
   console.log({ departments });
   console.log({ subDepartments });
   console.log({ updateDepartment1 });
@@ -255,6 +262,7 @@ async function main() {
   console.log({ employees });
   console.log({ inventoryRequests });
   console.log({ sales });
+  console.log({ receivingReports });
 
   console.log({ updateFresh });
   console.log({ updateMeats });

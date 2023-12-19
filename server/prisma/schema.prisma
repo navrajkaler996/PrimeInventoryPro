@@ -128,3 +128,14 @@ model Sales {
   sales_date   String  @default("")
   product      Product @relation(fields: [product_code], references: [product_code], onDelete: Cascade)
 }
+
+model ReceivingReports {
+  report_id                        Int     @id @default(autoincrement())
+  truck_number                     String
+  trucking_company                 String
+  received                         Boolean
+  unloaded                         Boolean
+  received_at                      String
+  total_products_quantity_expected Int     @default(0)
+  total_products_quantity_received Int     @default(0)
+}
