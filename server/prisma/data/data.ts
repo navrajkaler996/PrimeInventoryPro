@@ -854,6 +854,7 @@ export const receivingReportsData = [
     received_at: '2023-01-01 10:30:00',
     total_products_quantity_expected: 400,
     total_products_quantity_received: 380,
+    store_code: 'STORE3117',
   },
   {
     report_id: 2,
@@ -864,6 +865,7 @@ export const receivingReportsData = [
     received_at: '2023-01-02 11:45:00',
     total_products_quantity_expected: 300,
     total_products_quantity_received: 250,
+    store_code: 'STORE3117',
   },
   {
     report_id: 3,
@@ -874,6 +876,7 @@ export const receivingReportsData = [
     received_at: '2023-01-03 09:15:00',
     total_products_quantity_expected: 200,
     total_products_quantity_received: 180,
+    store_code: 'STORE3117',
   },
   {
     report_id: 4,
@@ -884,6 +887,7 @@ export const receivingReportsData = [
     received_at: '2023-01-04 14:20:00',
     total_products_quantity_expected: 150,
     total_products_quantity_received: 120,
+    store_code: 'STORE3117',
   },
   {
     report_id: 5,
@@ -894,6 +898,7 @@ export const receivingReportsData = [
     received_at: '2023-01-05 08:30:00',
     total_products_quantity_expected: 250,
     total_products_quantity_received: 220,
+    store_code: 'STORE3117',
   },
   {
     report_id: 6,
@@ -904,6 +909,7 @@ export const receivingReportsData = [
     received_at: '2023-01-06 12:10:00',
     total_products_quantity_expected: 350,
     total_products_quantity_received: 320,
+    store_code: 'STORE3117',
   },
   {
     report_id: 7,
@@ -914,6 +920,7 @@ export const receivingReportsData = [
     received_at: '2023-01-07 13:45:00',
     total_products_quantity_expected: 180,
     total_products_quantity_received: 150,
+    store_code: 'STORE3117',
   },
   {
     report_id: 8,
@@ -924,6 +931,7 @@ export const receivingReportsData = [
     received_at: '2023-01-08 16:00:00',
     total_products_quantity_expected: 280,
     total_products_quantity_received: 250,
+    store_code: 'STORE3117',
   },
   {
     report_id: 9,
@@ -934,6 +942,7 @@ export const receivingReportsData = [
     received_at: '2023-01-09 10:55:00',
     total_products_quantity_expected: 200,
     total_products_quantity_received: 170,
+    store_code: 'STORE3117',
   },
   {
     report_id: 10,
@@ -944,5 +953,6 @@ export const receivingReportsData = [
     received_at: '2023-01-10 15:30:00',
     total_products_quantity_expected: 300,
     total_products_quantity_received: 280,
+    store_code: 'STORE3117',
   },
 ];

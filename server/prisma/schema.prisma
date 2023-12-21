@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Store {
-  store_id                  Int          @id @default(autoincrement())
-  store_code                String       @unique
+  store_id                  Int                @id @default(autoincrement())
+  store_code                String             @unique
   store_name                String
   general_manager           String
   total_departments         Int
@@ -21,6 +21,7 @@ model Store {
   total_products_quantity   Int
   total_products_in_transit Int
   Department                Department[]
+  ReceivingReports          ReceivingReports[]
 }
 
 //model for departments
@@ -138,4 +139,6 @@ model ReceivingReports {
   received_at                      String
   total_products_quantity_expected Int     @default(0)
   total_products_quantity_received Int     @default(0)
+  store_code                       String
+  store                            Store   @relation(fields: [store_code], references: [store_code], onDelete: Cascade)
 }
