@@ -87,3 +87,15 @@ export interface InventoryRequestType {
   requestId: number | undefined;
   clickHandler: Function;
 }
+
+export interface ReceivingReportType {
+  report_id: number;
+  truck_number: string;
+  trucking_company: string;
+  received: boolean;
+  unloaded: boolean;
+  received_at: string;
+  total_products_quantity_expected: number;
+  total_products_quantity_received: number;
+  store_code: string;
+}

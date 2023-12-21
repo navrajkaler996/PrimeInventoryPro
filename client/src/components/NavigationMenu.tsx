@@ -1,5 +1,6 @@
 import Dashboard from "../assets/dashboard.png";
 import Inventory from "../assets/inventory.png";
+import Receiving from "../assets/receiving.png";
 
 import { Link } from "react-router-dom";
 
@@ -21,6 +22,14 @@ const NavigationMenu: React.FC = () => {
           className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
           <img src={Inventory} className="w-[4rem] h-[4rem]" />
           <p className="mt-[1rem]">Inventory</p>
+        </div>
+      </Link>
+      <Link to="/receiving">
+        <div
+          id="receiving"
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
+          <img src={Receiving} className="w-[4rem] h-[4rem]" />
+          <p className="mt-[1rem]">Receiving</p>
         </div>
       </Link>
       <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>

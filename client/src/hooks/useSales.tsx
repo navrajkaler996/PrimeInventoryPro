@@ -27,8 +27,6 @@ const useSales = (
 
       salesUrl = urlDirector.getProductURL();
 
-      console.log("sales", salesUrl);
-
       if (salesUrl) {
         setLoading(true);
 
