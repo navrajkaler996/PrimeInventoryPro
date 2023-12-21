@@ -1,6 +1,7 @@
 import TrucksInTransit from "../../assets/trucks_in_transit.png";
 import ProductsInTransit from "../../assets/product.png";
 import ReceivingReports from "./components/ReceivingReports";
+import Filter from "./components/ReceivingReports/Filter";
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //Recieving component renders everything related to recieving
 const Receiving: React.FC = () => {
@@ -41,6 +42,9 @@ const Receiving: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="w-[95%] mx-auto flex justify-end mt-[4rem]">
+        <Filter />
       </div>
 
       <ReceivingReports />

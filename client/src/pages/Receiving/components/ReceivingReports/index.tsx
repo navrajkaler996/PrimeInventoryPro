@@ -55,8 +55,6 @@ const ReceivingReports = () => {
     [receivingReportsLoading, hasMore]
   );
 
-  console.log("a", receivingReportsData);
-
   return (
     <div
       id="receiving__reports"
