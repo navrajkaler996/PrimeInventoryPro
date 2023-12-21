@@ -9,6 +9,7 @@ export class ReceivingService {
     store_code: String,
     cursor: any | undefined,
     count: number,
+    body: any,
   ) {
     //If cursor is available.
     //It won't be available for the first API call.
@@ -21,6 +22,7 @@ export class ReceivingService {
         },
         where: {
           store_code: store_code?.toUpperCase(),
+          ...body,
         },
       });
     }
