@@ -17,6 +17,7 @@ const Table: React.FC<TableType> = ({
   options,
   clickHandler,
 }) => {
+  console.log("ssss", data);
   return (
     <table className="table-auto w-[100%] text-[.7em] md:text-[1em] border-seperate border-spacing-y-3">
       <thead className="sticky top-0 bg-white">

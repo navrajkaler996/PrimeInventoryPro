@@ -12,7 +12,8 @@ interface ItemType {
 export const getValue = (item: ItemType, value: string) => {
   for (const key in item) {
     if (key == value) {
-      if (key == "createdAt") return moment(item[key]).fromNow();
+      if (key == "createdAt" || key == "received_at")
+        return moment(item[key]).fromNow();
 
       return item[key];
     }

@@ -10,6 +10,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { InventoryRequestsModule } from './modules/inventory-requests/inventory-requests.module';
 import { StoreModule } from './modules/store/store.module';
 import { SalesModule } from './modules/sales/sales.module';
+import { ReceivingModule } from './modules/receiving/receiving.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SalesModule } from './modules/sales/sales.module';
     InventoryRequestsModule,
     StoreModule,
     SalesModule,
+    ReceivingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

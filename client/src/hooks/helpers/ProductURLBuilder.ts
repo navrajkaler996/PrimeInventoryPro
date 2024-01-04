@@ -163,6 +163,17 @@ export class GetByLastOneYearSales extends ProductURLBuilder {
   }
 }
 
+export class GetReceivingReports extends ProductURLBuilder {
+  buildUrl(
+    store_code: string | number | null | undefined,
+    options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.receiving_development
+    }/${store_code}/${options?.cursor}/${options?.count}`;
+  }
+}
+
 export class ProductURLDirector {
   code: string | number | null | undefined;
   type: string | null;
@@ -225,6 +236,9 @@ export class ProductURLDirector {
         break;
       case "GET_BY_LAST_ONE_YEAR_SALES":
         urlBuilder = new GetByLastOneYearSales();
+        break;
+      case "GET_RECEIVING_REPORTS":
+        urlBuilder = new GetReceivingReports();
         break;
       default:
         throw new Error("Invalid type");

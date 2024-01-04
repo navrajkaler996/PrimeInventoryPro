@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 
 //Importing slices
 import { loggedInUser } from "./features/userSlice";
+import Receiving from "./pages/Receiving";
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
                 <Route element={<Dashboard />} path="/" />
                 <Route element={<Dashboard />} path="/dashboard" />
                 <Route element={<Inventory />} path="/inventory/*" />
+                <Route element={<Receiving />} path="/receiving" />
               </Route>
             </Routes>
           </div>

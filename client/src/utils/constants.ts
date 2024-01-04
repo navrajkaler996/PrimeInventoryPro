@@ -48,6 +48,16 @@ export const PRODUCT_TABLE_TYPES = {
   INVENORY_REQUESTS: "INVENORY_REQUESTS",
 };
 
+export const RECEIVING_REPORTS_KEYS = {
+  "report id": "report_id",
+  "truck number": "truck_number",
+  company: "trucking_company",
+
+  "received at": "received_at",
+  "quantity expected": "total_products_quantity_expected",
+  "quantity received": "total_products_quantity_received",
+};
+
 export const API_ENDPOINTS = {
   product_development: "api/v1/product",
   auth_development: "api/v1/auth",
@@ -56,11 +66,13 @@ export const API_ENDPOINTS = {
   inventory_request_development: "api/v1/inventory-request",
   store_development: "api/v1/store",
   sales_development: "api/v1/sales",
+  receiving_development: "api/v1/receiving",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;
 export const STOCK_ALERT_PRODUCT_COUNT = 12;
 export const INVENORY_REQUESTS_COUNT = 6;
+export const RECEIVING_REPORT_COUNT = 10;
 
 export const FLASH_MESSAGE_TYPES = {
   success: "#AAFF00",
