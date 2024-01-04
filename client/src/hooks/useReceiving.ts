@@ -4,6 +4,7 @@ import { ReceivingReportType } from "../pages/Dashboard/utils/types";
 
 const useReceiving = (
   storeCode: string | undefined,
+  filter: Object,
   cursor: number | undefined,
   count: number | 0,
   options: {
@@ -31,13 +32,15 @@ const useReceiving = (
       if (receivingUrl) {
         setLoading(true);
         const token = localStorage.getItem("accessToken");
+        const body = filter;
 
         fetch(receivingUrl, {
-          method: options.method,
+          method: "post",
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify(body),
         })
           .then((response) => response?.json())
           .then((data) => {
@@ -60,7 +63,7 @@ const useReceiving = (
           });
       }
     }
-  }, [storeCode, cursor]);
+  }, [storeCode, cursor, filter]);
 
   return { data, loading, error, hasMore };
 };

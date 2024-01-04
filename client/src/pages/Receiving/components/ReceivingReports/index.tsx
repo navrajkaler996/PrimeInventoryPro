@@ -6,7 +6,7 @@ import {
 } from "../../../../utils/constants";
 import useReceiving from "../../../../hooks/useReceiving";
 
-const ReceivingReports = () => {
+const ReceivingReports = (filter: Object) => {
   const [cursor, setCursor] = useState<number | undefined>(undefined);
 
   //Ref for IntersectionObserver
@@ -18,12 +18,17 @@ const ReceivingReports = () => {
   const {
     data: receivingReportsData,
     loading: receivingReportsLoading,
-    error: receivingReportsError,
+    error: _receivingReportsError,
     hasMore,
-  } = useReceiving("store3117", undefined, 10, {
+  } = useReceiving("store3117", filter, cursor, 10, {
     type: "GET_RECEIVING_REPORTS",
     method: "GET",
   });
+
+  useEffect(() => {
+    console.log("---", filter);
+    setCursor(undefined);
+  }, [filter]);
 
   useEffect(() => {
     if (

@@ -2,9 +2,20 @@ import TrucksInTransit from "../../assets/trucks_in_transit.png";
 import ProductsInTransit from "../../assets/product.png";
 import ReceivingReports from "./components/ReceivingReports";
 import Filter from "./components/ReceivingReports/Filter";
+import { useState } from "react";
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //Recieving component renders everything related to recieving
 const Receiving: React.FC = () => {
+  const [filter, setFilter] = useState({});
+
+  const changeHandler = (filterValue: string) => {
+    if (filterValue === "in_transit") setFilter({ received: false });
+    if (filterValue === "received") setFilter({ received: true });
+    if (filterValue === "unloaded")
+      setFilter({ received: true, unloaded: true });
+    if (filterValue === "loaded")
+      setFilter({ received: true, unloaded: false });
+  };
   return (
     <div id="receiving">
       <div
@@ -44,10 +55,10 @@ const Receiving: React.FC = () => {
         </div>
       </div>
       <div className="w-[95%] mx-auto flex justify-end mt-[4rem]">
-        <Filter />
+        <Filter filter={filter} changeHandler={changeHandler} />
       </div>
 
-      <ReceivingReports />
+      <ReceivingReports filter={filter} />
     </div>
   );
 };

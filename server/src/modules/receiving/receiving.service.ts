@@ -11,6 +11,7 @@ export class ReceivingService {
     count: number,
     body: any,
   ) {
+    const { filter } = body;
     //If cursor is available.
     //It won't be available for the first API call.
     if (cursor != 'undefined') {
@@ -22,7 +23,7 @@ export class ReceivingService {
         },
         where: {
           store_code: store_code?.toUpperCase(),
-          ...body,
+          ...filter,
         },
       });
     }
@@ -31,6 +32,7 @@ export class ReceivingService {
       return this.prisma.receivingReports.findMany({
         where: {
           store_code: store_code?.toUpperCase(),
+          ...filter,
         },
         take: Number(count),
       });

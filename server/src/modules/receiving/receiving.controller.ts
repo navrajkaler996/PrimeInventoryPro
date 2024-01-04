@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ReceivingService } from './receiving.service';
 
 @Controller('/api/v1/receiving')
@@ -7,7 +7,7 @@ export class ReceivingController {
 
   //FETCH All RECEIVING REPORTS USING STORE CODE
   //////api/v1/receiving/:store_code/:cursor/:count
-  @Get('/:store_code/:cursor/:count')
+  @Post('/:store_code/:cursor/:count')
   findReceivingReportsByStoreCode(
     @Param('store_code') store_code: String,
     @Param('cursor') cursor: String | undefined,
