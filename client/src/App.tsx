@@ -18,6 +18,9 @@ import Login from "./pages/Login";
 //Importing slices
 import { loggedInUser } from "./features/userSlice";
 import Receiving from "./pages/Receiving";
+import Home from "./pages/Home";
+import HeaderHome from "./components/HeaderHome";
+import Welcome from "./pages/Home/Welcome";
 
 function App() {
   const location = useLocation();
@@ -37,26 +40,37 @@ function App() {
 
   return (
     <div className="max-w-full">
-      {pathname !== "/login" && (
+      {pathname?.startsWith("/home") && (
+        <>
+          <HeaderHome />
+          <Routes>
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </>
+      )}
+
+      {pathname !== "/app/login" && !pathname?.startsWith("/home") && (
         <>
           <Header />
-
           <div id="content" className="flex flex-row w-[100%]">
             <NavigationMenu />
             <Routes>
               <Route element={<PrivateRoutes />}>
-                <Route element={<Dashboard />} path="/" />
-                <Route element={<Dashboard />} path="/dashboard" />
-                <Route element={<Inventory />} path="/inventory/*" />
-                <Route element={<Receiving />} path="/receiving" />
+                {/* <Route element={<Dashboard />} path="/app" /> */}
+                <Route element={<Dashboard />} path="/app/dashboard" />
+                <Route element={<Inventory />} path="/app/inventory/*" />
+                <Route element={<Receiving />} path="/app/receiving" />
               </Route>
             </Routes>
           </div>
         </>
       )}
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
+
+      {pathname === "/app/login" && (
+        <Routes>
+          <Route path="/app/login" element={<Login />} />
+        </Routes>
+      )}
     </div>
   );
 }
