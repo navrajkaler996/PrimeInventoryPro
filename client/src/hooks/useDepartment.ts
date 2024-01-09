@@ -14,7 +14,7 @@ const useDepartment = (
   useEffect(() => {
     let departmentUrl;
 
-    if (departmentCode) {
+    if (departmentCode || options?.type?.split("_")[1] === "ADMIN") {
       const urlDirector = new ProductURLDirector(
         options.type,
         departmentCode,

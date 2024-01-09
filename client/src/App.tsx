@@ -21,6 +21,7 @@ import Receiving from "./pages/Receiving";
 import Home from "./pages/Home";
 import HeaderHome from "./components/HeaderHome";
 import Welcome from "./pages/Home/Welcome";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
                 <Route element={<Dashboard />} path="/app/dashboard" />
                 <Route element={<Inventory />} path="/app/inventory/*" />
                 <Route element={<Receiving />} path="/app/receiving" />
+                <Route element={<AdminPanel />} path="/app/admin" />
               </Route>
             </Routes>
           </div>

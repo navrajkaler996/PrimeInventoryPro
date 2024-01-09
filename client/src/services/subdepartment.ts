@@ -22,6 +22,9 @@ export const subDepartmentApi = createApi({
     getBySubDepartmentCode: builder.query({
       query: (subDepartmentCode) => `/${subDepartmentCode}`,
     }),
+    listSubDepartmentsForAdmin: builder.query({
+      query: () => `/admin/list`,
+    }),
   }),
 });
 
@@ -29,4 +32,5 @@ export const {
   useListSubDepartmentsQuery,
   useGetSubDepartmentsByDepartmentCodeQuery,
   useGetBySubDepartmentCodeQuery,
+  useListSubDepartmentsForAdminQuery,
 } = subDepartmentApi;

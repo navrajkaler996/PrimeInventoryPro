@@ -1,6 +1,7 @@
 import Dashboard from "../assets/dashboard.png";
 import Inventory from "../assets/inventory.png";
 import Receiving from "../assets/receiving.png";
+import Admin from "../assets/admin.png";
 
 import { Link } from "react-router-dom";
 
@@ -8,7 +9,15 @@ import { Link } from "react-router-dom";
 const NavigationMenu: React.FC = () => {
   return (
     <div className="hidden md:flex flex-col ">
-      <Link to="/dashboard">
+      <Link to="/app/admin">
+        <div
+          id="admin"
+          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary shadow-custom">
+          <img src={Admin} className="w-[4rem] h-[4rem]" />
+          <p className="mt-[1rem]">Admin</p>
+        </div>
+      </Link>
+      <Link to="/app/dashboard">
         <div
           id="dashboard"
           className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary shadow-custom">
@@ -16,7 +25,7 @@ const NavigationMenu: React.FC = () => {
           <p className="mt-[1rem]">Dashboard</p>
         </div>
       </Link>
-      <Link to="/inventory">
+      <Link to="/app/inventory">
         <div
           id="inventory"
           className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
@@ -24,7 +33,7 @@ const NavigationMenu: React.FC = () => {
           <p className="mt-[1rem]">Inventory</p>
         </div>
       </Link>
-      <Link to="/receiving">
+      <Link to="/app/receiving">
         <div
           id="receiving"
           className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">

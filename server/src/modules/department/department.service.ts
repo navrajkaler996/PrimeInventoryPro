@@ -36,6 +36,10 @@ export class DepartmentsService {
 
   //ADMIN SERVICE
   listDepartmentsForAdmin() {
-    return this.prisma.department.findMany();
+    return this.prisma.department.findMany({
+      orderBy: {
+        department_id: 'asc',
+      },
+    });
   }
 }

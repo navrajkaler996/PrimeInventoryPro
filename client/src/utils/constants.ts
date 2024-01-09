@@ -3,6 +3,12 @@ export const CHART_HEADINGS = {
   PROFIT: "Profit",
 };
 
+export const ADMIN_PANEL_HEADINGS = {
+  TOTAL_DEPARTMENTS: "Total Departments",
+  TOTAL_SUBDEPARTMENTS: "Total Subdepartments",
+  TOTAL_EMPLOYEES: "Total Employees",
+};
+
 export const DEPARTMENTS = [
   {
     department: "Fresh",
@@ -52,10 +58,34 @@ export const RECEIVING_REPORTS_KEYS = {
   "report id": "report_id",
   "truck number": "truck_number",
   company: "trucking_company",
-
   "received at": "received_at",
   "quantity expected": "total_products_quantity_expected",
   "quantity received": "total_products_quantity_received",
+};
+
+export const ADMIN_PANEL_DEPARTMENTS_KEYS = {
+  id: "department_id",
+  name: "department_name",
+  code: "department_code",
+  directsupervisor: "direct_supervisor",
+  "total products": "total_products",
+};
+
+export const ADMIN_PANEL_SUBDEPARTMENTS_KEYS = {
+  id: "sub_department_id",
+  name: "sub_department_name",
+  code: "sub_department_code",
+  department: "department_code",
+  "direct supervisor": "sub_department_manager",
+  "total products": "total_products",
+};
+
+export const ADMIN_PANEL_EMPLOYEES_KEYS = {
+  id: "employee_id",
+  email: "employee_email",
+  designation: "employee_designation",
+  role: "employee_role",
+  department: "employee_department_code",
 };
 
 export const API_ENDPOINTS = {
@@ -67,6 +97,8 @@ export const API_ENDPOINTS = {
   store_development: "api/v1/store",
   sales_development: "api/v1/sales",
   receiving_development: "api/v1/receiving",
+  admin_development: "api/v1/admin",
+  employee_development: "api/v1/employee",
 };
 
 export const TOTAL_PRODUCT_COUNT = 15;

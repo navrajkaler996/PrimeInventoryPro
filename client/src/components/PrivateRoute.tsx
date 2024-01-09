@@ -24,7 +24,7 @@ const PrivateRoutes = () => {
     <Outlet />
   ) : (
     <Navigate
-      to="/login"
+      to="/app/login"
       state={{
         message: "Token expired! Please login",
       }}

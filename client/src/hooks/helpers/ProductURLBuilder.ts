@@ -174,6 +174,28 @@ export class GetReceivingReports extends ProductURLBuilder {
   }
 }
 
+export class GetAdminDepartments extends ProductURLBuilder {
+  buildUrl(
+    _store_code: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.department_development
+    }/admin/list`;
+  }
+}
+
+export class GetAdminEmployees extends ProductURLBuilder {
+  buildUrl(
+    _employee_id: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.employee_development
+    }/admin/list`;
+  }
+}
+
 export class ProductURLDirector {
   code: string | number | null | undefined;
   type: string | null;
@@ -239,6 +261,12 @@ export class ProductURLDirector {
         break;
       case "GET_RECEIVING_REPORTS":
         urlBuilder = new GetReceivingReports();
+        break;
+      case "GET_ADMIN_DEPARTMENTS":
+        urlBuilder = new GetAdminDepartments();
+        break;
+      case "GET_ADMIN_EMPLOYEES":
+        urlBuilder = new GetAdminEmployees();
         break;
       default:
         throw new Error("Invalid type");
