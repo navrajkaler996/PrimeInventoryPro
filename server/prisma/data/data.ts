@@ -852,6 +852,18 @@ export const salesData = [
     sales_date: '2023-11-28',
     sales_id: 23,
   },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 327,
+    sales_date: '2023-12-28',
+    sales_id: 24,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 402,
+    sales_date: '2024-01-28',
+    sales_id: 25,
+  },
 ];
 
 export const receivingReportsData = [
