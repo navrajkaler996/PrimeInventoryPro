@@ -11,6 +11,7 @@ export class DepartmentController {
   findDepartments() {
     return this.departmentsService.listDepartments();
   }
+
   //FETCH All DEPARTMENTS
   @Get()
   @UseGuards(JwtAuthGaurd)
@@ -22,5 +23,12 @@ export class DepartmentController {
   @UseGuards(JwtAuthGaurd)
   findByDepartmentCode(@Param('department_code') department_code: string) {
     return this.departmentsService.findByDepartmentCode(department_code);
+  }
+
+  //ADMIN ROUTES
+
+  @Get('/admin/list')
+  findDepartmentsForAdmin() {
+    return this.departmentsService.listDepartmentsForAdmin();
   }
 }

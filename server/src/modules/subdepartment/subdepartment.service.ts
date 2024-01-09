@@ -35,4 +35,8 @@ export class SubdepartmentService {
       where: { sub_department_code: sub_department_code?.toUpperCase() },
     });
   }
+
+  listSubdepartmentsForAdmin() {
+    return this.prisma.subDepartment.findMany();
+  }
 }

@@ -33,4 +33,9 @@ export class DepartmentsService {
       },
     });
   }
+
+  //ADMIN SERVICE
+  listDepartmentsForAdmin() {
+    return this.prisma.department.findMany();
+  }
 }

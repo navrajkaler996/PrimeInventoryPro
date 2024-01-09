@@ -37,4 +37,11 @@ export class SubdepartmentController {
       sub_department_code,
     );
   }
+
+  //ADMIN ROUTES
+
+  @Get('/admin/list')
+  findSubdepartmentsForAdmin() {
+    return this.subdepartmentService.listSubdepartmentsForAdmin();
+  }
 }
