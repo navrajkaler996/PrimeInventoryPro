@@ -98,6 +98,7 @@ model Employee {
   employee_role            String             @default("")
   employee_department_code String             @default("")
   employee_password        String
+  isAdmin                  Boolean            @default(false)
   createdAt                DateTime           @default(now())
   updatedAt                DateTime           @updatedAt
   inventoryRequest         InventoryRequest[]

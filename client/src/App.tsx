@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useLocation } from "react-router-dom";
 
@@ -20,12 +20,13 @@ import { loggedInUser } from "./features/userSlice";
 import Receiving from "./pages/Receiving";
 import Home from "./pages/Home";
 import HeaderHome from "./components/HeaderHome";
-import Welcome from "./pages/Home/Welcome";
 import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const { pathname } = location;
 
@@ -35,7 +36,9 @@ function App() {
   useEffect(() => {
     const storedUserData = localStorage.getItem("loggedInUser");
     if (storedUserData) {
-      dispatch(loggedInUser(JSON.parse(storedUserData)));
+      const parsedStoredUserData = JSON.parse(storedUserData);
+
+      dispatch(loggedInUser(parsedStoredUserData));
     }
   }, []);
 

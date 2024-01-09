@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     dispatch(loggedInUser({}));
     localStorage.removeItem("accessToken");
     localStorage.removeItem("loggedInUser");
-    navigate("/login");
+    navigate("/app/login");
   };
   return (
     <div

@@ -699,6 +699,16 @@ export const employeeData = [
     employee_department_code: 'FRE001',
     employee_password: 'password',
   },
+  {
+    employee_id: 4,
+    employee_name: 'navraj kaler',
+    employee_email: 'navraj.kaler@walmart.com',
+    employee_designation: 'admin',
+    employee_role: 'admin',
+    employee_department_code: 'ADMIN',
+    employee_password: 'password',
+    isAdmin: true,
+  },
 ];
 
 export const inventoryRequestData = [];
