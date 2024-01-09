@@ -57,8 +57,6 @@ const StoreData = () => {
       setDisplayData(employeeData);
   }, [displayValue, departmentIsLoading, subDepartmentIsLoading]);
 
-  console.log("display", displayValue);
-
   return (
     <div id="store-data">
       <div className="max-w-[80rem] w-[90%] h-[38rem] lg:ml-[6rem] bg-white  rounded-custom shadow-custom overflow-auto">
