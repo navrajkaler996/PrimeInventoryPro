@@ -2,7 +2,12 @@ import Departments from "../../assets/admin_panel/departments.png";
 import Subdepartments from "../../assets/admin_panel/sub_departments.png";
 import Users from "../../assets/admin_panel/users.png";
 
-const StoreSummary = () => {
+const StoreSummary = ({
+  totalDepartments,
+  totalSubdepartments,
+  totalEmployees,
+}) => {
+  console.log("t", totalDepartments);
   return (
     <div
       id="store-summary"
@@ -16,7 +21,7 @@ const StoreSummary = () => {
             <p>Departments</p>
             <p className="flex items-center text-[2rem]">
               {" "}
-              <span className="text-[3.5rem] mx-auto">4</span>
+              <span className="text-[3.5rem] mx-auto">{totalDepartments}</span>
             </p>
           </div>
         </div>
@@ -28,7 +33,9 @@ const StoreSummary = () => {
             <p>Subdepartments</p>
             <p className="flex items-center text-[2rem]">
               {" "}
-              <span className="text-[3.5rem]  mx-auto">4</span>
+              <span className="text-[3.5rem]  mx-auto">
+                {totalSubdepartments}
+              </span>
               {/* {item.value} */}
             </p>
           </div>
@@ -41,7 +48,7 @@ const StoreSummary = () => {
             <p>Employees</p>
             <p className="flex items-center text-[2rem]">
               {" "}
-              <span className="text-[3.5rem]  mx-auto">4</span>
+              <span className="text-[3.5rem] mx-auto">{totalEmployees}</span>
               {/* {item.value} */}
             </p>
           </div>

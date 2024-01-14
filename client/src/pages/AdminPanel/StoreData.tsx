@@ -11,30 +11,19 @@ import useDepartment from "../../hooks/useDepartment";
 import { useListSubDepartmentsForAdminQuery } from "../../services/subdepartment";
 import useEmployees from "../../hooks/useEmployee";
 
-const StoreData = () => {
+const StoreData: React.FC = ({
+  departmentData,
+  departmentIsLoading,
+  subDepartmentsData,
+  subDepartmentIsLoading,
+  employeeData,
+  employeeIsLoading,
+}) => {
   const [displayValue, setDisplayValue] = useState<string>(
     ADMIN_PANEL_HEADINGS.TOTAL_DEPARTMENTS
   );
 
   const [displayData, setDisplayData] = useState();
-
-  const { departmentData, departmentError, departmentIsLoading } =
-    useDepartment(undefined, {
-      type: "GET_ADMIN_DEPARTMENTS",
-    });
-
-  const {
-    data: subDepartmentsData,
-    error: _subDepartmentsError,
-    isLoading: subDepartmentIsLoading,
-  } = useListSubDepartmentsForAdminQuery(undefined);
-
-  const { employeeData, employeeError, employeeIsLoading } = useEmployees(
-    undefined,
-    {
-      type: "GET_ADMIN_EMPLOYEES",
-    }
-  );
 
   const changeDisplayValue = () => {
     if (displayValue === ADMIN_PANEL_HEADINGS.TOTAL_DEPARTMENTS) {
@@ -55,7 +44,12 @@ const StoreData = () => {
 
     if (displayValue === ADMIN_PANEL_HEADINGS.TOTAL_EMPLOYEES)
       setDisplayData(employeeData);
-  }, [displayValue, departmentIsLoading, subDepartmentIsLoading]);
+  }, [
+    displayValue,
+    departmentIsLoading,
+    subDepartmentIsLoading,
+    employeeIsLoading,
+  ]);
 
   return (
     <div id="store-data">

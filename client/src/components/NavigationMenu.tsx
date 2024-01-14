@@ -31,7 +31,6 @@ const menus = [
     id: "receiving",
     image: Receiving,
     value: "Receiving",
-    
   },
 ];
 
@@ -57,7 +56,7 @@ const NavigationMenu: React.FC = () => {
               </Link>
             );
           } else return null;
-        } else {
+        } else if (!isAdmin) {
           return (
             <Link to={value.to}>
               <div
@@ -71,30 +70,6 @@ const NavigationMenu: React.FC = () => {
         }
       })}
 
-      {/* <Link to="/app/dashboard">
-        <div
-          id="dashboard"
-          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary shadow-custom">
-          <img src={Dashboard} className="w-[4rem] h-[4rem]" />
-          <p className="mt-[1rem]">Dashboard</p>
-        </div>
-      </Link>
-      <Link to="/app/inventory">
-        <div
-          id="inventory"
-          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
-          <img src={Inventory} className="w-[4rem] h-[4rem]" />
-          <p className="mt-[1rem]">Inventory</p>
-        </div>
-      </Link>
-      <Link to="/app/receiving">
-        <div
-          id="receiving"
-          className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
-          <img src={Receiving} className="w-[4rem] h-[4rem]" />
-          <p className="mt-[1rem]">Receiving</p>
-        </div>
-      </Link> */}
       <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
       <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>
       <div className="w-120 h-120 bg-white mt-[1rem] shadow-custom"></div>

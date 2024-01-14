@@ -196,6 +196,17 @@ export class GetAdminEmployees extends ProductURLBuilder {
   }
 }
 
+export class AddAdminDepartmentURLBuilder extends ProductURLBuilder {
+  buildUrl(
+    store_code: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.department_development
+    }/admin/add/${store_code}`;
+  }
+}
+
 export class ProductURLDirector {
   code: string | number | null | undefined;
   type: string | null;
@@ -267,6 +278,9 @@ export class ProductURLDirector {
         break;
       case "GET_ADMIN_EMPLOYEES":
         urlBuilder = new GetAdminEmployees();
+        break;
+      case "ADD_ADMIN_DEPARTMENT":
+        urlBuilder = new AddAdminDepartmentURLBuilder();
         break;
       default:
         throw new Error("Invalid type");

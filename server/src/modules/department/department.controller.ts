@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { DepartmentsService } from './department.service';
 import { JwtAuthGaurd } from '../auth/jwt-auth.gaurd';
 
@@ -30,5 +30,10 @@ export class DepartmentController {
   @Get('/admin/list')
   findDepartmentsForAdmin() {
     return this.departmentsService.listDepartmentsForAdmin();
+  }
+
+  @Post('/admin/add/:store_code')
+  addDepartment(@Param('store_code') store_code: string, @Body() body: any) {
+    return this.departmentsService.addDepartment(store_code, body);
   }
 }

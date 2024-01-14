@@ -1,5 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import AddIcon from "../../assets/admin_panel/add.png";
 const Add = () => {
+  const navigate = useNavigate();
+
+  const showFormHandler = (id: string) => {
+    navigate("/app/admin/add", {
+      state: {
+        type: id,
+      },
+    });
+  };
   return (
     <div
       id="add"
@@ -13,19 +23,24 @@ const Add = () => {
           <ul>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
-              <span style={{ marginLeft: "1rem" }}>+Add department</span>
+              <span
+                id="department"
+                style={{ marginLeft: "1rem" }}
+                onClick={(e) => showFormHandler(e.currentTarget.id)}>
+                + Add department
+              </span>
             </li>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
-              <span style={{ marginLeft: "1rem" }}>+Add subdepartment</span>
+              <span style={{ marginLeft: "1rem" }}>+ Add subdepartment</span>
             </li>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
-              <span style={{ marginLeft: "1rem" }}>+Add employee</span>
+              <span style={{ marginLeft: "1rem" }}>+ Add employee</span>
             </li>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
-              <span style={{ marginLeft: "1rem" }}>+Add roles</span>
+              <span style={{ marginLeft: "1rem" }}>+ Add roles</span>
             </li>
           </ul>
         </div>

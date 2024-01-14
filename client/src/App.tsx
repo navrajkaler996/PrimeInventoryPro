@@ -64,7 +64,7 @@ function App() {
                 <Route element={<Dashboard />} path="/app/dashboard" />
                 <Route element={<Inventory />} path="/app/inventory/*" />
                 <Route element={<Receiving />} path="/app/receiving" />
-                <Route element={<AdminPanel />} path="/app/admin" />
+                <Route element={<AdminPanel />} path="/app/admin/*" />
               </Route>
             </Routes>
           </div>

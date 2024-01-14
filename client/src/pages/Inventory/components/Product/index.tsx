@@ -186,6 +186,8 @@ const Product: React.FC = () => {
     ],
   };
 
+  console.log("------s", salesError);
+
   if (productIsLoading)
     return (
       <div
