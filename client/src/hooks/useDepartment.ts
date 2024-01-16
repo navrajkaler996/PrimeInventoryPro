@@ -69,7 +69,7 @@ const useDepartment = (
     urlDirector.buildURL();
 
     departmentUrl = urlDirector.getProductURL();
-    console.log(departmentUrl, "aaa");
+
     if (departmentUrl) {
       const response = await fetch(departmentUrl, {
         method: method,

@@ -32,7 +32,12 @@ const Add = () => {
             </li>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
-              <span style={{ marginLeft: "1rem" }}>+ Add subdepartment</span>
+              <span
+                id="subdepartment"
+                style={{ marginLeft: "1rem" }}
+                onClick={(e) => showFormHandler(e.currentTarget.id)}>
+                + Add subdepartment
+              </span>
             </li>
             <li className=" hover:cursor-pointer hover:tracking-[1px] transition-all">
               {" "}
