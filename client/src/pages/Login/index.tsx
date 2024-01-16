@@ -54,7 +54,7 @@ const Login: React.FC = () => {
       requestStatus.type === "success" &&
       localStorage.getItem("accessToken")
     ) {
-      navigate("/dashboard");
+      navigate("/app/dashboard");
     }
   }, [requestStatus]);
 

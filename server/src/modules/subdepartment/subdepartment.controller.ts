@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { SubdepartmentService } from './subdepartment.service';
 import { JwtAuthGaurd } from '../auth/jwt-auth.gaurd';
 
@@ -36,5 +36,17 @@ export class SubdepartmentController {
     return this.subdepartmentService.findBySubDepartmentCode(
       sub_department_code,
     );
+  }
+
+  //ADMIN ROUTES
+
+  @Get('/admin/list')
+  findSubdepartmentsForAdmin() {
+    return this.subdepartmentService.listSubdepartmentsForAdmin();
+  }
+
+  @Post('/admin/add/:store_code')
+  addDepartment(@Param('store_code') store_code: string, @Body() body: any) {
+    return this.subdepartmentService.addSubdepartment(store_code, body);
   }
 }

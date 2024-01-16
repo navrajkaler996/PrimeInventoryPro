@@ -699,6 +699,16 @@ export const employeeData = [
     employee_department_code: 'FRE001',
     employee_password: 'password',
   },
+  {
+    employee_id: 4,
+    employee_name: 'navraj kaler',
+    employee_email: 'navraj.kaler@walmart.com',
+    employee_designation: 'admin',
+    employee_role: 'admin',
+    employee_department_code: 'ADMIN',
+    employee_password: 'password',
+    isAdmin: true,
+  },
 ];
 
 export const inventoryRequestData = [];
@@ -841,6 +851,18 @@ export const salesData = [
     sales_amount: 301,
     sales_date: '2023-11-28',
     sales_id: 23,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 327,
+    sales_date: '2023-12-28',
+    sales_id: 24,
+  },
+  {
+    product_code: 'FREMEA001',
+    sales_amount: 402,
+    sales_date: '2024-01-28',
+    sales_id: 25,
   },
 ];
 

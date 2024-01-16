@@ -9,7 +9,6 @@ import StockAlerts from "./components/StockAlert";
 import TopSellings from "./components/TopSellings";
 import { UserState } from "../../features/featureUtils/featureTypes";
 import InventoryRequests from "./components/InventoryRequests";
-import Toast from "../../components/Toast";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //Dashboard is built according to the designation of the logged in employee

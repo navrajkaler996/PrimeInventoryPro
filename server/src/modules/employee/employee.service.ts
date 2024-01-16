@@ -15,4 +15,8 @@ export class EmployeeService {
     if (user) return user;
     else throw new NotFoundException();
   }
+
+  listEmployeesForAdmin() {
+    return this.prisma.employee.findMany();
+  }
 }

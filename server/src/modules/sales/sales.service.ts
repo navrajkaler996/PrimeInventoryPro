@@ -11,8 +11,8 @@ export class SalesService {
       const month = date.getMonth();
       const year = date.getFullYear();
 
-      let toDate = `${year}-${month}-28`;
-      let fromDate = `${year - 1}-${month}-28`;
+      let toDate = `${year}-${month + 1}-28`;
+      let fromDate = `${year - 1}-${month + 1}-28`;
 
       const data = await this.prisma.sales.findMany({
         where: {

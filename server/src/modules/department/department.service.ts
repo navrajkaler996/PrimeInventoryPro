@@ -33,4 +33,68 @@ export class DepartmentsService {
       },
     });
   }
+
+  //ADMIN SERVICE
+  listDepartmentsForAdmin() {
+    return this.prisma.department.findMany({
+      orderBy: {
+        department_id: 'asc',
+      },
+    });
+  }
+
+  async addDepartment(store_code: string, body: any) {
+    try {
+      const response = await this.findLastDepartmentCode();
+
+      let lastDepartmentCode;
+      if (response?.length > 0) {
+        lastDepartmentCode = response[0].department_code;
+
+        let temp = '';
+        for (let i = lastDepartmentCode.length - 1; i >= 0; i--) {
+          if (lastDepartmentCode[i] !== '0') {
+            temp = temp + lastDepartmentCode[i];
+          } else break;
+        }
+
+        temp = temp.split('').reverse().join('');
+
+        temp = String(Number(temp) + 1);
+
+        let newDepartmentCode =
+          lastDepartmentCode.slice(0, lastDepartmentCode.length - temp.length) +
+          temp;
+
+        body.department_code = newDepartmentCode;
+
+        body.store_code = store_code;
+
+        body.total_sub_departments = 0;
+        body.total_products = 0;
+        body.total_products_quantity = 0;
+        body.total_products_in_transit = 0;
+        body.stock_alert = false;
+
+        const createdDepartment = await this.prisma.department.create({
+          data: body,
+        });
+
+        // return createdProduct;
+      }
+    } catch (error) {}
+  }
+
+  //HELPERS
+
+  async findLastDepartmentCode() {
+    const data = await this.prisma.department.findMany({
+      orderBy: {
+        department_id: 'desc',
+      },
+      take: 1,
+    });
+
+    return data;
+  }
 }

@@ -11,4 +11,11 @@ export class EmployeeController {
   findUserById(@Param('id') id: number) {
     return this.employeeService.findUserbyId(id);
   }
+
+  //ADMIN ROUTES
+
+  @Get('/admin/list')
+  findEmployeesForAdmin() {
+    return this.employeeService.listEmployeesForAdmin();
+  }
 }
