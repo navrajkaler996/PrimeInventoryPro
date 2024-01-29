@@ -675,7 +675,7 @@ export const employeeData = [
   {
     employee_id: 1,
     employee_name: 'avneet kaur',
-    employee_email: 'avneet.kaur@walmart.com',
+    employee_email: 'avneet.kaur@primemart.com',
     employee_designation: 'general manager',
     employee_role: 'manager',
     employee_department_code: 'STORE3117',
@@ -684,7 +684,7 @@ export const employeeData = [
   {
     employee_id: 2,
     employee_name: 'john doe',
-    employee_email: 'john.doe@walmart.com',
+    employee_email: 'john.doe@primemart.com',
     employee_designation: 'assistant store manager',
     employee_role: 'department manager',
     employee_department_code: 'DEP001',
@@ -693,7 +693,7 @@ export const employeeData = [
   {
     employee_id: 3,
     employee_name: 'wang wu',
-    employee_email: 'wang.wu@walmart.com',
+    employee_email: 'wang.wu@primemart.com',
     employee_designation: 'sub department manager',
     employee_role: 'sub department manager',
     employee_department_code: 'FRE001',
@@ -702,7 +702,7 @@ export const employeeData = [
   {
     employee_id: 4,
     employee_name: 'navraj kaler',
-    employee_email: 'navraj.kaler@walmart.com',
+    employee_email: 'navraj.kaler@primemart.com',
     employee_designation: 'admin',
     employee_role: 'admin',
     employee_department_code: 'ADMIN',
