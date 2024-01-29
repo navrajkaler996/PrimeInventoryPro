@@ -25,6 +25,8 @@ const Login: React.FC = () => {
     },
   });
 
+  const [showMessage, setShowMessage] = useState(false);
+
   const {
     clickHandler,
     loading: loginIsLoading,
@@ -68,7 +70,7 @@ const Login: React.FC = () => {
     <div
       id="login"
       className="w-[100%] h-[100vh] flex justify-center items-center">
-      <div className="w-[60%] bg-white py-[2rem] shadow-custom rounded-custom">
+      <div className="w-[60%] bg-white py-[2rem] shadow-custom rounded-custom relative">
         <form className="w-[100%] h-[100%] flex flex-col justify-center items-center">
           {/* {state?.message && (
             <FlashMessage message={state.message} type="failed" />
@@ -100,7 +102,8 @@ const Login: React.FC = () => {
                 styles={{}}
               />
             </div>
-            <div id="login__submit" className=" text-center">
+
+            <div id="login__submit" className="relative text-center">
               <Button
                 value="login"
                 styles={{}}
@@ -118,6 +121,23 @@ const Login: React.FC = () => {
                   );
                 }}
               />
+              <div
+                className="absolute top-[6px] right-0 my-auto w-[2.5rem] h-[2.5rem] border rounded-[50%]  border-gray hover:cursor-pointer transition-all duration-300"
+                onClick={() => setShowMessage(!showMessage)}>
+                ?
+              </div>
+
+              {showMessage && (
+                <div className="w-[25rem] mx-auto py-[2rem] text-[0.9em] normal-case">
+                  <p className="my-[1rem] tracking-[.5px]">
+                    <b>Login using following credentials </b>
+                  </p>
+                  <p className="text-left my-[1rem]">
+                    <b>Email:</b> john.doe@primemart.com <br />
+                    <b>Password:</b> password
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </form>
