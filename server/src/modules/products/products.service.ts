@@ -34,6 +34,7 @@ export class ProductsService {
             department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
+            store_code: 'STORE3117',
           },
         });
       }
@@ -55,6 +56,7 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
+            store_code: 'STORE3117',
           },
         });
       }
@@ -66,6 +68,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
+            store_code: 'STORE3117',
             product_stock_alert: true,
             pending_approval: false,
           },
@@ -85,6 +88,7 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
+            store_code: 'STORE3117',
           },
           take: Number(count),
         });
@@ -100,6 +104,7 @@ export class ProductsService {
       return this.prisma.product.findMany({
         where: {
           department_code: department_code?.toUpperCase(),
+          store_code: 'STORE3117',
           pending_approval: false,
         },
         orderBy: [
@@ -121,6 +126,7 @@ export class ProductsService {
       return this.prisma.product.findMany({
         where: {
           sub_department_code: department_code?.toUpperCase(),
+          store_code: 'STORE3117',
           pending_approval: false,
         },
         orderBy: [
@@ -156,6 +162,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
+            store_code: 'STORE3117',
             pending_approval: false,
           },
           skip: 1,
@@ -173,6 +180,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
+            store_code: 'STORE3117',
             pending_approval: false,
           },
           skip: 1,
@@ -196,6 +204,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
+            store_code: 'STORE3117',
             pending_approval: false,
           },
           take: Number(count),
@@ -209,6 +218,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
+            store_code: 'STORE3117',
             pending_approval: false,
           },
           take: Number(count),
@@ -229,6 +239,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code.toUpperCase(),
+            store_code: 'STORE3117',
             product_code: keyword,
             pending_approval: false,
           },
@@ -237,6 +248,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code.toUpperCase(),
+            store_code: 'STORE3117',
             product_name: {
               contains: keyword?.toLowerCase(),
             },
@@ -256,6 +268,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code,
+            store_code: 'STORE3117',
             product_code: keyword,
             pending_approval: false,
           },
@@ -264,6 +277,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code,
+            store_code: 'STORE3117',
             product_name: {
               contains: keyword?.toLowerCase(),
             },
@@ -319,22 +333,23 @@ export class ProductsService {
   /////api/v1/product/update
   updateProductByProductCode(body: any) {
     const product_code = body.product_code;
-    return this.prisma.product.update({
-      where: {
-        product_code: product_code,
-      },
-      data: body,
-    });
+    // return this.prisma.product.update({
+    //   where: {
+    //     product_code: product_code,
+    //     store_code: 'STORE3117',
+    //   },
+    //   data: body,
+    // });
   }
 
   //DELETE A SINGLE PRODUCT USING product_code
   /////api/v1/product/delete/:product_code
   deleteProductByProductCode(product_code: string) {
-    return this.prisma.product.delete({
-      where: {
-        product_code: product_code?.toUpperCase(),
-      },
-    });
+    // return this.prisma.product.delete({
+    //   where: {
+    //     product_code: product_code?.toUpperCase(),
+    //   },
+    // });
   }
 
   deleteProductByRequestId(request_id: string) {

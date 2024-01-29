@@ -66,8 +66,8 @@ model SubDepartment {
 //model for products
 model Product {
   product_id          Int           @id @default(autoincrement())
-  product_name        String        @unique
-  product_code        String        @unique
+  product_name        String
+  product_code        String
   price               Float
   total_quantity      Int           @default(0)
   cap                 Int
@@ -82,11 +82,11 @@ model Product {
   brand               String        @default("")
   case_pack           Int           @default(0)
   pending_approval    Boolean       @default(true)
+  store_code          String        @default("XXXXXX")
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
   subDepartment       SubDepartment @relation(fields: [sub_department_code], references: [sub_department_code], onDelete: Cascade)
   department          Department?   @relation(fields: [department_code], references: [department_code], onDelete: Cascade)
-  Sales               Sales[]
 }
 
 //model for employee
@@ -124,11 +124,11 @@ model InventoryRequest {
 }
 
 model Sales {
-  sales_id     Int     @id @default(autoincrement())
+  sales_id     Int    @id @default(autoincrement())
   product_code String
-  sales_amount Int     @default(0)
-  sales_date   String  @default("")
-  product      Product @relation(fields: [product_code], references: [product_code], onDelete: Cascade)
+
+  sales_amount Int    @default(0)
+  sales_date   String @default("")
 }
 
 model ReceivingReports {
