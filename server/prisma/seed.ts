@@ -223,7 +223,7 @@ async function main() {
 
   const updateStore = await prisma.store.update({
     where: {
-      store_code: 'STORE3117',
+      store_code: 'STORE001',
     },
     data: {
       total_products: freshProductsCount,

@@ -26,6 +26,10 @@ const StockAlerts: React.FC<{}> = () => {
     (state: any) => state?.activeDepartment
   );
 
+  const { store_code: storeCode } = useSelector(
+    (state: any) => state?.loggedInUser
+  );
+
   //Using IntersectionObserver API for infinite scroll
   const observer: RefObject<IntersectionObserver | null> = useRef(null);
 
@@ -47,6 +51,7 @@ const StockAlerts: React.FC<{}> = () => {
     hasMore,
   } = useFetchProducts(
     currentDepartment?.department_code,
+    storeCode,
     cursor,
     STOCK_ALERT_PRODUCT_COUNT,
     "",

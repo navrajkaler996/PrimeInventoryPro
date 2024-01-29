@@ -16,6 +16,7 @@ export class ProductsService {
   //////api/v1/product/stockalert/:department_code/:cursor/:count
   findStockAlertByDepartmentCode(
     department_code: String,
+    store_code: string,
     cursor: any | undefined,
     count: number,
   ) {
@@ -34,7 +35,7 @@ export class ProductsService {
             department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
-            store_code: 'STORE3117',
+            store_code: store_code,
           },
         });
       }
@@ -56,7 +57,7 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
-            store_code: 'STORE3117',
+            store_code: store_code,
           },
         });
       }
@@ -68,7 +69,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             product_stock_alert: true,
             pending_approval: false,
           },
@@ -88,7 +89,7 @@ export class ProductsService {
             sub_department_code: department_code?.toUpperCase(),
             product_stock_alert: true,
             pending_approval: false,
-            store_code: 'STORE3117',
+            store_code: store_code,
           },
           take: Number(count),
         });
@@ -98,13 +99,17 @@ export class ProductsService {
 
   //FETCH PRODUCTS WITH TOP SALES using department_code/sub_department_code and count
   //////api/v1/product/topsales/:department_code/:count
-  findTopSalesByDepartmentCode(department_code: String, count: number) {
+  findTopSalesByDepartmentCode(
+    department_code: String,
+    store_code: string,
+    count: number,
+  ) {
     //Fetching data for a department.
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       return this.prisma.product.findMany({
         where: {
           department_code: department_code?.toUpperCase(),
-          store_code: 'STORE3117',
+          store_code: store_code,
           pending_approval: false,
         },
         orderBy: [
@@ -126,7 +131,7 @@ export class ProductsService {
       return this.prisma.product.findMany({
         where: {
           sub_department_code: department_code?.toUpperCase(),
-          store_code: 'STORE3117',
+          store_code: store_code,
           pending_approval: false,
         },
         orderBy: [
@@ -141,6 +146,7 @@ export class ProductsService {
 
   findProductsByDepartmentCode(
     department_code: String,
+    store_code: string,
     cursor: any | undefined,
     count: Number,
   ) {
@@ -162,7 +168,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             pending_approval: false,
           },
           skip: 1,
@@ -180,7 +186,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             pending_approval: false,
           },
           skip: 1,
@@ -204,7 +210,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code?.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             pending_approval: false,
           },
           take: Number(count),
@@ -218,7 +224,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code?.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             pending_approval: false,
           },
           take: Number(count),
@@ -232,14 +238,18 @@ export class ProductsService {
   /////Search is performed either by product_name or product_code.
   /////To search with product_code, entire value of the product_code is needed.
   /////To search with product_name, at least one character is needed
-  findProductsByKeyword(keyword: string, department_code: string) {
+  findProductsByKeyword(
+    keyword: string,
+    department_code: string,
+    store_code: string,
+  ) {
     //When searching using a department code
     if (department_code?.startsWith(DEPARTMENT_CODES_STARTING)) {
       if (SEARCH_BY_PRODUCT_CODE_REGEX.test(keyword)) {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             product_code: keyword,
             pending_approval: false,
           },
@@ -248,7 +258,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             department_code: department_code.toUpperCase(),
-            store_code: 'STORE3117',
+            store_code: store_code,
             product_name: {
               contains: keyword?.toLowerCase(),
             },
@@ -268,7 +278,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code,
-            store_code: 'STORE3117',
+            store_code: store_code,
             product_code: keyword,
             pending_approval: false,
           },
@@ -277,7 +287,7 @@ export class ProductsService {
         return this.prisma.product.findMany({
           where: {
             sub_department_code: department_code,
-            store_code: 'STORE3117',
+            store_code: store_code,
             product_name: {
               contains: keyword?.toLowerCase(),
             },

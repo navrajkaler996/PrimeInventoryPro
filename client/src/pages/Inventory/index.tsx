@@ -30,6 +30,10 @@ const Inventory: React.FC = () => {
     (state: any) => state?.activeDepartment
   );
 
+  const { store_code: storeCode } = useSelector(
+    (state: any) => state?.loggedInUser
+  );
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -73,6 +77,7 @@ const Inventory: React.FC = () => {
     hasMore,
   } = useFetchProducts(
     currentDepartment?.department_code,
+    storeCode,
     keyword.length > 0 ? undefined : cursor,
     TOTAL_PRODUCT_COUNT,
     keyword,

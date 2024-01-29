@@ -6,6 +6,7 @@ import { API_ENDPOINTS } from "../utils/constants";
 //CUSTOM HOOK TO FETCH PRODUCRS USING department_code/sub_department_code.
 const useFetchProduct = (
   departmentCode: String | undefined,
+  storeCode: String | undefined,
   cursor: Number | undefined,
   count: number | 0,
   keyword: string | undefined,
@@ -44,18 +45,18 @@ const useFetchProduct = (
       if (options.api === "stockalert") {
         productURL = `${import.meta.env.VITE_REACT_API}/${
           API_ENDPOINTS.product_development
-        }/${options.api}/${departmentCode}/${cursor}/${count}`;
+        }/${options.api}/${departmentCode}/${storeCode}/${cursor}/${count}`;
       }
 
       if (options.api === "search" && keyword && keyword?.length > 0) {
         productURL = `${import.meta.env.VITE_REACT_API}/${
           API_ENDPOINTS.product_development
-        }/${options.api}/${keyword}/${departmentCode}`;
+        }/${options.api}/${keyword}/${departmentCode}/${storeCode}`;
       }
     } else if (keyword?.length === 0) {
       productURL = `${import.meta.env.VITE_REACT_API}/${
         API_ENDPOINTS.product_development
-      }/${departmentCode}/${cursor}/${count}`;
+      }/${departmentCode}/${storeCode}/${cursor}/${count}`;
     }
 
     if (productURL) {

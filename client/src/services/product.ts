@@ -18,8 +18,8 @@ export const productApi = createApi({
       query: (product_code) => `/${product_code}`,
     }),
     getTopSellingProdcutsByDepartmentCode: builder.query({
-      query: ({ departmentCode, count }) =>
-        `/topsales/${departmentCode}/${count}`,
+      query: ({ departmentCode, storeCode, count }) =>
+        `/topsales/${departmentCode}/${storeCode}/${count}`,
     }),
   }),
 });
