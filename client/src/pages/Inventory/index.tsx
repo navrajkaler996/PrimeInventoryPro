@@ -101,13 +101,13 @@ const Inventory: React.FC = () => {
   const addToInventoryChangeHandler = () => {
     // setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
 
-    navigate("/inventory/add-to-inventory");
+    navigate("/app/inventory/add-to-inventory");
   };
 
   //Function that invokes when a row is clicked in the table
   const productClickHandler = (productCode: string) => {
     setProductCode(productCode);
-    navigate(`/inventory/product/${productCode}`);
+    navigate(`/app/inventory/product/${productCode}`);
   };
 
   return (

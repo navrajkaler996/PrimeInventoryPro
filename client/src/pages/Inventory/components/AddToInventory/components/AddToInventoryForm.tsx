@@ -350,7 +350,8 @@ const AddToInventoryForm: React.FC = () => {
                 let filteredFormData = filterFormData(
                   Object.assign({}, form),
                   departmentListData,
-                  subDepartmentListData
+                  subDepartmentListData,
+                  loggedInUser.store_code
                 );
 
                 let { product_code }: any = await addProductClickHandler(
