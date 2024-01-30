@@ -30,6 +30,10 @@ const Inventory: React.FC = () => {
     (state: any) => state?.activeDepartment
   );
 
+  const { store_code: storeCode } = useSelector(
+    (state: any) => state?.loggedInUser
+  );
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -73,6 +77,7 @@ const Inventory: React.FC = () => {
     hasMore,
   } = useFetchProducts(
     currentDepartment?.department_code,
+    storeCode,
     keyword.length > 0 ? undefined : cursor,
     TOTAL_PRODUCT_COUNT,
     keyword,
@@ -96,13 +101,13 @@ const Inventory: React.FC = () => {
   const addToInventoryChangeHandler = () => {
     // setCurrentView(INVENTORY_VIEWS.ADD_TO_INVENTORY);
 
-    navigate("/inventory/add-to-inventory");
+    navigate("/app/inventory/add-to-inventory");
   };
 
   //Function that invokes when a row is clicked in the table
   const productClickHandler = (productCode: string) => {
     setProductCode(productCode);
-    navigate(`/inventory/product/${productCode}`);
+    navigate(`/app/inventory/product/${productCode}`);
   };
 
   return (

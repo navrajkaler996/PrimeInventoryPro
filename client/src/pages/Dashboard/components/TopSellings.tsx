@@ -16,12 +16,16 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const TopSellings: React.FC = () => {
   const currentDepartment = useSelector((state: any) => state.activeDepartment);
 
+  const { store_code: storeCode } = useSelector(
+    (state: any) => state?.loggedInUser
+  );
   const {
     data: topSellingData,
     error: _topSellingError,
     isLoading: topSellingIsLoading,
   } = useGetTopSellingProdcutsByDepartmentCodeQuery({
     departmentCode: currentDepartment?.department_code,
+    storeCode,
     count: 10,
   });
 

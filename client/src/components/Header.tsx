@@ -12,9 +12,8 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { employee_name, employee_email, employee_designation } = useSelector(
-    (state: any) => state.loggedInUser
-  );
+  const { employee_name, employee_email, employee_designation, store_code } =
+    useSelector((state: any) => state.loggedInUser);
 
   const logoutClickHandler = () => {
     dispatch(loggedInUser({}));
@@ -38,6 +37,7 @@ const Header: React.FC = () => {
             width: "35rem",
           }}
         />
+        <span className="mx-[2rem]">{store_code}</span>
         <img
           src={BellIcon}
           width="25px"

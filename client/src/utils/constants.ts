@@ -141,3 +141,5 @@ export const API_RESPONSE_MESSAGES = {
   success_product_request: "Product request sent for approval successfully!",
   failed_product_request: "Product request could not be sent!",
 };
+
+export const STORE_CODES = ["STORE001", "STORE002"];

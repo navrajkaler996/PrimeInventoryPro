@@ -3,7 +3,8 @@ import { API_RESPONSE_MESSAGES } from "./constants";
 export const filterFormData = (
   data: any,
   departmentList: any,
-  subDepartmentList: any
+  subDepartmentList: any,
+  storeCode: string
 ) => {
   delete data.errors;
 
@@ -55,6 +56,7 @@ export const filterFormData = (
   filteredData.selling_price = Number(filteredData.selling_price);
   filteredData.case_pack = Number(filteredData.case_pack);
   filteredData.cap = Number(filteredData.cap);
+  filteredData.store_code = storeCode;
 
   return filteredData;
 };
