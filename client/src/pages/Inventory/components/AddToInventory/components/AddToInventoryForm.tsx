@@ -147,7 +147,7 @@ const AddToInventoryForm: React.FC = () => {
   useEffect(() => {
     if (addProductRequestStatus.status) {
       if (addProductRequestStatus.type === "success") {
-        navigate("/inventory", {
+        navigate("/app/inventory", {
           state: {
             type: "PRODUCT_ADDED",
           },
