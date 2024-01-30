@@ -5,9 +5,12 @@ import {
   RECEIVING_REPORT_COUNT,
 } from "../../../../utils/constants";
 import useReceiving from "../../../../hooks/useReceiving";
+import { useSelector } from "react-redux";
 
 const ReceivingReports = (filter: Object) => {
   const [cursor, setCursor] = useState<number | undefined>(undefined);
+
+  const { store_code } = useSelector((state: any) => state.loggedInUser);
 
   //Ref for IntersectionObserver
   const observer: RefObject<IntersectionObserver | null> = useRef(null);
@@ -20,7 +23,7 @@ const ReceivingReports = (filter: Object) => {
     loading: receivingReportsLoading,
     error: _receivingReportsError,
     hasMore,
-  } = useReceiving("store3117", filter, cursor, 10, {
+  } = useReceiving(store_code, filter, cursor, 10, {
     type: "GET_RECEIVING_REPORTS",
     method: "GET",
   });
