@@ -9,8 +9,6 @@ interface FilterTypes {
 const Filter: React.FC<FilterTypes> = ({ filter, changeHandler }) => {
   const [show, setShow] = useState(false);
 
-  console.log("----", Object.keys(filter).includes("received"), filter);
-
   return (
     <div className="relative" id="receiving__reports-filter">
       <Button

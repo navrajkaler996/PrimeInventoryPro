@@ -12,6 +12,7 @@ export default {
       "primary-1": "#DCDCFA",
       btnPrimary: "#7FFE3C",
       success: "#AAFF00",
+      "success-2": "#00A300",
       error: "#FF0000",
     },
 

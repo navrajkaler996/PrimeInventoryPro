@@ -144,3 +144,12 @@ model ReceivingReports {
   store_code                       String
   store                            Store   @relation(fields: [store_code], references: [store_code], onDelete: Cascade)
 }
+
+model StoreSales {
+  store_sales_id Int    @id @default(autoincrement())
+  store_code     String
+  total_sales    Int    @default(0)
+  total_expenses Int    @default(0)
+  month          Int
+  year           Int
+}

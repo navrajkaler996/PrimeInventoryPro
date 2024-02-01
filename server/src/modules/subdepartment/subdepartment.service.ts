@@ -66,8 +66,6 @@ export class SubdepartmentService {
             lastSubdepartmentCode.length - temp.length,
           ) + temp;
 
-        console.log(newSubdepartmentCode);
-
         body.sub_department_code = newSubdepartmentCode;
 
         // body.store_code = store_code;
@@ -80,7 +78,6 @@ export class SubdepartmentService {
         const createdSubdepartment = await this.prisma.subDepartment.create({
           data: body,
         });
-        console.log(createdSubdepartment);
 
         // return createdProduct;
       }
