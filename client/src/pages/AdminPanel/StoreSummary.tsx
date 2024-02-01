@@ -7,7 +7,6 @@ const StoreSummary = ({
   totalSubdepartments,
   totalEmployees,
 }) => {
-  console.log("t", totalDepartments);
   return (
     <div
       id="store-summary"

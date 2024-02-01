@@ -36,4 +36,25 @@ export class SalesService {
       };
     }
   }
+
+  async findMonthlySales(store_code: string) {
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
+
+    const monthlySales = await this.prisma.storeSales.findMany({
+      where: {
+        store_code: store_code,
+        month: Number(month) + 1,
+        year: {
+          lte: Number(year),
+          gte: Number(year) - 1,
+        },
+      },
+    });
+
+    return {
+      status: 'success',
+      data: monthlySales,
+    };
+  }
 }

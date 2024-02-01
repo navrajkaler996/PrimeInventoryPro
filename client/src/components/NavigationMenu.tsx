@@ -42,7 +42,7 @@ const NavigationMenu: React.FC = () => {
   return (
     <div className="hidden md:flex flex-col ">
       {menus?.map((value) => {
-        console.log(value.active?.includes("isAdmin"));
+   
         if (value.active?.includes("isAdmin")) {
           if (isAdmin) {
             return (

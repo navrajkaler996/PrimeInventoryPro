@@ -29,7 +29,6 @@ const ReceivingReports = (filter: Object) => {
   });
 
   useEffect(() => {
-    console.log("---", filter);
     setCursor(undefined);
   }, [filter]);
 

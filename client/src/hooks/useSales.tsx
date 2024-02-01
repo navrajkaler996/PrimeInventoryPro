@@ -3,7 +3,7 @@ import { ProductURLDirector } from "./helpers/ProductURLBuilder";
 
 const useSales = (
   product_code: string | undefined,
-  body: { filterByDate: boolean },
+  body: { filterByDate: boolean } | undefined,
   options: {
     type: string;
     method: string;
@@ -26,8 +26,6 @@ const useSales = (
       urlDirector.buildURL();
 
       salesUrl = urlDirector.getProductURL();
-
-      console.log(salesUrl);
 
       if (salesUrl) {
         setLoading(true);

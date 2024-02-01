@@ -20,8 +20,6 @@ const useEmployee = (employeeId: number | undefined, options: any) => {
 
       employeeUrl = urlDirector.getProductURL();
 
-      console.log(employeeUrl);
-
       if (employeeUrl) {
         setemployeeIsLoading(true);
         const token = localStorage.getItem("accessToken");
