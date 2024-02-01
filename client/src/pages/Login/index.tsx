@@ -140,6 +140,11 @@ const Login: React.FC = () => {
               )}
             </div>
           </div>
+          {requestStatus?.type === "failed" && (
+            <div className="w-[100%] mx-auto py-[2rem] text-[0.9em] normal-case">
+              <FlashMessage message={requestStatus.message} type="failed" />{" "}
+            </div>
+          )}
         </form>
       </div>
     </div>

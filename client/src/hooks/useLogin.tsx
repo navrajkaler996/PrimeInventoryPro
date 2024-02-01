@@ -52,11 +52,12 @@ const useLogin = () => {
           type: "success",
         });
       } else {
-        const message = createResponseMessage("failed", method);
+        console.log(data, "aa");
+        // const message = createResponseMessage("failed", method);
 
         setRequestStatus({
           status: true,
-          message: message,
+          message: data.message,
           type: "failed",
         });
       }
