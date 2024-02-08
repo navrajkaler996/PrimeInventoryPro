@@ -9,6 +9,7 @@ import StockAlerts from "./components/StockAlert";
 import TopSellings from "./components/TopSellings";
 import { UserState } from "../../features/featureUtils/featureTypes";
 import InventoryRequests from "./components/InventoryRequests";
+import TransitReport from "./components/TransitReport";
 
 /////RENDERS A REACT FUNCTIONAL COMPONENT
 //Dashboard is built according to the designation of the logged in employee
@@ -40,9 +41,9 @@ const Dashboard: React.FC = () => {
             </>
           )}
       </div>
-      <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] mt-[7rem]">
+      <div className="grid lg:grid-cols-[2fr,1fr] grid-cols-[1fr] my-[7rem]">
         <Chart />
-        <div>Component</div>
+        <TransitReport />
       </div>
     </div>
   );

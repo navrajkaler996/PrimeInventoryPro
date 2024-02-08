@@ -12,6 +12,7 @@ export class ReceivingService {
     body: any,
   ) {
     const { filter } = body;
+
     //If cursor is available.
     //It won't be available for the first API call.
     if (cursor != 'undefined') {

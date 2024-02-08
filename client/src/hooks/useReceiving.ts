@@ -32,6 +32,7 @@ const useReceiving = (
       if (receivingUrl) {
         setLoading(true);
         const token = localStorage.getItem("accessToken");
+
         const body = filter;
 
         fetch(receivingUrl, {
