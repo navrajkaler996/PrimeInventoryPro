@@ -5,6 +5,7 @@ import InventorySummary from "./InventorySummary";
 import useSales from "../../../hooks/useSales";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import CalculationsSkeleton from "./CalculationsSkeleton";
 
 interface calculationsInterface {
   type: string;
@@ -101,7 +102,7 @@ const Calculations: React.FC = () => {
       id="dashboard__calculations">
       <div className="flex flex-col items-center md:grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1 md:ml-[0]  gap-x-[5rem] sm:justify-center">
         {/* Three boxes displaying sales, expenses, and profit */}
-        {calculations?.length > 0 &&
+        {calculations?.length > 0 ? (
           calculations?.map((item, index) => {
             return (
               <div
@@ -116,10 +117,6 @@ const Calculations: React.FC = () => {
                     {item.value.toString()}
                   </p>
                 </div>
-                {/* <img
-                src={item.trend === "Increase" ? Increase : Decrease}
-                className="absolute top-[.5rem] right-[1rem] w-[3.5rem]"
-              /> */}
 
                 {item.trend.valueOf() > 0 ? (
                   <span className="absolute top-[.5rem] right-[1rem]  text-success-2">
@@ -134,7 +131,10 @@ const Calculations: React.FC = () => {
                 )}
               </div>
             );
-          })}
+          })
+        ) : (
+          <CalculationsSkeleton />
+        )}
       </div>
 
       <InventorySummary />
