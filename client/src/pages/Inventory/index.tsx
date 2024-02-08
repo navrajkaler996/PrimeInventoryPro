@@ -117,10 +117,10 @@ const Inventory: React.FC = () => {
         Component that displays department description and dropdown
         */}
       <Department />
-      <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto] md:mt-[4rem] md:mb-[4rem]">
+      <div className="flex justify-end items-center relative w-[95%] ml-[auto] mr-[auto]  mt-[4rem] mb-[4rem]">
         {/*
-          Button to open add to inventory product form
-          */}
+            Button to open add to inventory product form
+            */}
         <Button
           value="new"
           clickHandler={addToInventoryChangeHandler}
@@ -129,8 +129,8 @@ const Inventory: React.FC = () => {
           loading={false}
         />
         {/*
-          Component that contains the search bar
-          */}
+            Component that contains the search bar
+            */}
         <SearchBar keyword={keyword} changeHandler={searchBarChangeHandler} />
       </div>
 

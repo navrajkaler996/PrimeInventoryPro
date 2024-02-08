@@ -98,9 +98,9 @@ const Calculations: React.FC = () => {
 
   return (
     <div
-      className="grid grid-rows-1 lg:grid-cols-[2fr,1fr] md:grid-cols-[2fr,1fr] mt-[4rem] md:mt-[7rem]"
+      className="grid grid-rows-1 lg:grid-cols-[2fr,1fr] md:grid-cols-[2fr,1fr] mt-[4rem] "
       id="dashboard__calculations">
-      <div className="flex flex-col items-center md:grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1 md:ml-[0]  gap-x-[5rem] sm:justify-center">
+      <div className="flex flex-col items-center md:grid lg:grid-rows-1 md:grid-rows-3 lg:grid-cols-3 md:grid-cols-1  gap-x-[5rem] sm:justify-center lg:ml-[0] ml-[9rem]">
         {/* Three boxes displaying sales, expenses, and profit */}
         {calculations?.length > 0 ? (
           calculations?.map((item, index) => {
