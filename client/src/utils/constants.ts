@@ -63,6 +63,14 @@ export const RECEIVING_REPORTS_KEYS = {
   "quantity received": "total_products_quantity_received",
 };
 
+export const IN_TRANSIT_KEYS = {
+  "report id": "report_id",
+  "truck number": "truck_number",
+  company: "trucking_company",
+
+  "quantity expected": "total_products_quantity_expected",
+};
+
 export const ADMIN_PANEL_DEPARTMENTS_KEYS = {
   id: "department_id",
   name: "department_name",
