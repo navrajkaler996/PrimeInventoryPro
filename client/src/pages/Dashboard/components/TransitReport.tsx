@@ -75,7 +75,7 @@ const TransitReport = () => {
     <div
       id="dashboard__transit-report"
       className="flex justify-center mt-[4rem] lg:mt-[0] lg:ml-[4rem]">
-      <div className="max-w-[35rem] w-[30rem] h-auto bg-white rounded-custom shadow-custom overflow-auto">
+      <div className="max-w-[35rem] w-[30rem] h-[38rem] bg-white rounded-custom shadow-custom overflow-auto">
         <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">Trucks in transit</h1>
         <hr className="m-[1.5rem] text-gray" />
         <div className="h-[38rem] text-[0.9em]">

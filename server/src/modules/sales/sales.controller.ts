@@ -16,4 +16,10 @@ export class SalesController {
   findMonthlySales(@Param('store_code') store_code: string) {
     return this.salesService.findMonthlySales(store_code);
   }
+
+  @Get('/yearly/:store_code')
+  @UseGuards(JwtAuthGaurd)
+  findYearlySales(@Param('store_code') store_code: string) {
+    return this.salesService.findYearlySales(store_code);
+  }
 }

@@ -150,6 +150,7 @@ model StoreSales {
   store_code     String
   total_sales    Int    @default(0)
   total_expenses Int    @default(0)
-  month          Int
-  year           Int
+  sales_date     String @default("")
+  // month          Int
+  // year           Int
 }

@@ -46,7 +46,7 @@ export const Chart: React.FC = () => {
         <hr className="m-[1.5rem] text-gray" />
         <div className="flex justify-center">
           <Bar
-            style={{ padding: "0 2rem", height: "38rem", maxHeight: "100%" }}
+            style={{ padding: "0 2rem", height: "32rem", maxHeight: "100%" }}
             data={
               displayValue === CHART_HEADINGS.SALES_AND_EXPENSES
                 ? chartSalesAndExpensesData
