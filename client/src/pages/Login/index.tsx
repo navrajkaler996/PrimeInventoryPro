@@ -66,6 +66,8 @@ const Login: React.FC = () => {
     }
   }, [userData]);
 
+  console.log(requestStatus);
+
   return (
     <div
       id="login"

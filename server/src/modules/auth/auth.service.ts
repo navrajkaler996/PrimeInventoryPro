@@ -22,7 +22,7 @@ export class AuthService {
     }
 
     if (password !== user.employee_password) {
-      throw new UnauthorizedException('Wrong password');
+      throw new UnauthorizedException('Wrong password. Please try again!');
     }
 
     delete user.employee_password;
