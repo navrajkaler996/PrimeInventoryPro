@@ -1,7 +1,7 @@
 import SuccessIcon from "../../assets/toast/success.png";
 import FailedIcon from "../../assets/toast/failed.png";
 import moment from "moment";
-import { COLOR_CODE } from "../../utils/constants";
+import { COLOR_CODE, months } from "../../utils/constants";
 //Index signature
 interface ItemType {
   [key: string]: any;
@@ -38,4 +38,81 @@ export const getInitials = (value: string) => {
     splitValue[0].charAt(0)?.toUpperCase() +
     splitValue[1].charAt(0).toUpperCase()
   );
+};
+
+export const generateSalesAndExpenses = (data: any) => {
+  const salesData = data?.map((d) => d.total_sales);
+  const expensesData = data?.map((d) => d.total_expenses);
+
+  const date = new Date();
+
+  let month = date.getMonth();
+
+  let labels: string[] = [];
+  let i = 0;
+  while (labels?.length < 12) {
+    labels.push(months[month]);
+
+    month++;
+
+    if (month > 11) month = 0;
+  }
+
+  const chartSalesAndExpensesData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Sales",
+        data: salesData,
+        backgroundColor: "#55FF00",
+        borderColor: "black",
+        pointBorderColor: "#55FF00",
+        fill: true,
+      },
+      {
+        label: "Expenses",
+        data: expensesData,
+        backgroundColor: "#FF0000",
+        borderColor: "black",
+        pointBorderColor: "#FF0000",
+        fill: true,
+      },
+    ],
+  };
+
+  return chartSalesAndExpensesData;
+};
+
+export const generateProfit = (data: any) => {
+  const profitData = data?.map((d) => d.total_sales - d.total_expenses);
+
+  const date = new Date();
+
+  let month = date.getMonth();
+
+  let labels: string[] = [];
+  let i = 0;
+  while (labels?.length < 12) {
+    labels.push(months[month]);
+
+    month++;
+
+    if (month > 11) month = 0;
+  }
+
+  const chartProfitData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Profit",
+        data: profitData,
+        backgroundColor: "#55FF00",
+        borderColor: "black",
+        pointBorderColor: "#55FF00",
+        fill: true,
+      },
+    ],
+  };
+
+  return chartProfitData;
 };

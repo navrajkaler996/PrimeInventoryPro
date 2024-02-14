@@ -39,8 +39,6 @@ const TransitReport = () => {
     setCursor(undefined);
   }, [filter]);
 
-  console.log("---", filter);
-
   useEffect(() => {
     if (
       receivingReportsData &&

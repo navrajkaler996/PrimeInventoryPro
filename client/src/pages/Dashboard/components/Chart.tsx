@@ -10,21 +10,49 @@ import {
 
 import Switch from "../../../assets/switch.png";
 
-import {
-  chartProfitData,
-  chartSalesAndExpensesData,
-  chartOptions,
-} from "../utils/chartUtils";
+import { chartOptions } from "../utils/chartUtils";
 import { useState } from "react";
-import { CHART_HEADINGS } from "../../../utils/constants";
+import { CHART_HEADINGS, months } from "../../../utils/constants";
 import * as React from "react";
+import useSales from "../../../hooks/useSales";
+import { useSelector } from "react-redux";
+import {
+  generateProfit,
+  generateSalesAndExpenses,
+} from "../../../components/utils/helper";
+import { StoreSalesType } from "../../../components/utils/types";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 export const Chart: React.FC = () => {
+  const { store_code } = useSelector((state: any) => state.loggedInUser);
+
   const [displayValue, setDisplayValue] = useState<string>(
     CHART_HEADINGS.SALES_AND_EXPENSES
   );
+
+  const [dataSet, setDataSet] = useState<StoreSalesType | undefined>(undefined);
+
+  const {
+    data: yearlySalesData,
+    loading: yearlySalesLoading,
+    error: yearlySalesError,
+  } = useSales(store_code, undefined, {
+    type: "GET_YEARLY_SALES",
+    method: "GET",
+  });
+
+  React.useEffect(() => {
+    if (yearlySalesData?.length > 0) {
+      if (displayValue === CHART_HEADINGS.SALES_AND_EXPENSES) {
+        const data = generateSalesAndExpenses(yearlySalesData);
+        setDataSet(data);
+      } else if (displayValue === CHART_HEADINGS.PROFIT) {
+        const data = generateProfit(yearlySalesData);
+        setDataSet(data);
+      }
+    }
+  }, [yearlySalesData, displayValue]);
 
   return (
     <div id="dashboard__charts" className="flex justify-center ">
@@ -45,15 +73,13 @@ export const Chart: React.FC = () => {
         </div>
         <hr className="m-[1.5rem] text-gray" />
         <div className="flex justify-center">
-          <Bar
-            style={{ padding: "0 2rem", height: "32rem", maxHeight: "100%" }}
-            data={
-              displayValue === CHART_HEADINGS.SALES_AND_EXPENSES
-                ? chartSalesAndExpensesData
-                : chartProfitData
-            }
-            options={chartOptions}
-          />
+          {dataSet !== undefined && (
+            <Bar
+              style={{ padding: "0 2rem", height: "32rem", maxHeight: "100%" }}
+              data={dataSet}
+              options={chartOptions}
+            />
+          )}
         </div>
       </div>
     </div>
