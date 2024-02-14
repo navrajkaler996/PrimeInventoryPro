@@ -229,6 +229,17 @@ export class getMonthlySalesURLBuilder extends ProductURLBuilder {
   }
 }
 
+export class getYearlySalesURLBuilder extends ProductURLBuilder {
+  buildUrl(
+    store_code: string | number | null | undefined,
+    _options: UrlBuilderOptionsType | undefined
+  ): string {
+    return `${import.meta.env.VITE_REACT_API}/${
+      API_ENDPOINTS.sales_development
+    }/yearly/${store_code}`;
+  }
+}
+
 export class ProductURLDirector {
   code: string | number | null | undefined;
   type: string | null;
@@ -309,6 +320,9 @@ export class ProductURLDirector {
         break;
       case "GET_MONTHLY_SALES":
         urlBuilder = new getMonthlySalesURLBuilder();
+        break;
+      case "GET_YEARLY_SALES":
+        urlBuilder = new getYearlySalesURLBuilder();
         break;
       default:
         throw new Error("Invalid type");

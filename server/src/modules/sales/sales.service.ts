@@ -48,7 +48,6 @@ export class SalesService {
     let thisYear = `${year}-${(month + 1).toString().padStart(2, '0')}-28`;
 
     let lastYear = `${year - 1}-${(month + 1).toString().padStart(2, '0')}-28`;
-    console.log(thisYear);
 
     const monthlySales = await this.prisma.storeSales.findMany({
       where: {

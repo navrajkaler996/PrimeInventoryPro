@@ -27,6 +27,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [isAdmin, setIsAdmin] = useState(false);
+  const [active, setActive] = useState("dashboard");
 
   const { pathname } = location;
 
@@ -41,6 +42,12 @@ function App() {
       dispatch(loggedInUser(parsedStoredUserData));
     }
   }, []);
+
+  useEffect(() => {
+    if (location) {
+      setActive(pathname);
+    }
+  }, [location]);
 
   return (
     <div className="max-w-full">
@@ -57,7 +64,7 @@ function App() {
         <>
           <Header />
           <div id="content" className="flex flex-row w-[100%]">
-            <NavigationMenu />
+            <NavigationMenu active={active} />
             <Routes>
               <Route element={<PrivateRoutes />}>
                 {/* <Route element={<Dashboard />} path="/app" /> */}

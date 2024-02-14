@@ -51,8 +51,6 @@ const useLogin = () => {
           message: message,
           type: "success",
         });
-      } else {
-        console.log(data, "aa");
         // const message = createResponseMessage("failed", method);
 
         setRequestStatus({

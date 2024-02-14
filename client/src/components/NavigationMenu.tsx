@@ -34,20 +34,28 @@ const menus = [
   },
 ];
 
+interface NavigationMenuType {
+  active: string;
+}
+
 //NavigationMenu, react functional component, that accepts 'navigate' function which switchs the view on the home.
-const NavigationMenu: React.FC = () => {
+const NavigationMenu: React.FC<NavigationMenuType> = ({ active }) => {
   const { loggedInUser } = useSelector((state: any) => state);
   const { isAdmin } = loggedInUser;
 
   return (
     <div className="hidden md:flex flex-col ">
       {menus?.map((value) => {
-   
         if (value.active?.includes("isAdmin")) {
           if (isAdmin) {
             return (
               <Link to={value.to}>
                 <div
+                  style={
+                    active.split("/")[2] == value.id
+                      ? { backgroundColor: "#8383EE" }
+                      : {}
+                  }
                   id={value.id}
                   className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
                   <img src={value.image} className="w-[4rem] h-[4rem]" />
@@ -60,6 +68,11 @@ const NavigationMenu: React.FC = () => {
           return (
             <Link to={value.to}>
               <div
+                style={
+                  active.split("/")[2] == value.id
+                    ? { backgroundColor: "#8383EE" }
+                    : {}
+                }
                 id={value.id}
                 className="flex flex-col justify-center items-center w-120 h-120 bg-white mt-[1rem] cursor-pointer hover:bg-primary  shadow-custom">
                 <img src={value.image} className="w-[4rem] h-[4rem]" />

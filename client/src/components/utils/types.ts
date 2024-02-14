@@ -65,3 +65,11 @@ export interface SalesType {
 export interface SalesLineChartType {
   salesData: SalesType[];
 }
+
+export interface StoreSalesType {
+  store_sales_id: number;
+  store_code: string;
+  total_sales: number;
+  total_expenses: number;
+  sales_date: string;
+}
