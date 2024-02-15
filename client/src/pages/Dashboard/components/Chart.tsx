@@ -12,7 +12,11 @@ import Switch from "../../../assets/switch.png";
 
 import { chartOptions } from "../utils/chartUtils";
 import { useState } from "react";
-import { CHART_HEADINGS, months } from "../../../utils/constants";
+import {
+  CHART_HEADINGS,
+  SKELETON_STYLES,
+  months,
+} from "../../../utils/constants";
 import * as React from "react";
 import useSales from "../../../hooks/useSales";
 import { useSelector } from "react-redux";
@@ -56,32 +60,46 @@ export const Chart: React.FC = () => {
 
   return (
     <div id="dashboard__charts" className="flex justify-center ">
-      <div className="max-w-[80rem] w-[90%] h-auto bg-white lg:ml-[6rem] rounded-custom shadow-custom">
-        <div className="flex justify-between items-center ">
-          <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">{displayValue}</h1>
-          <img
-            src={Switch}
-            className="w-[2rem] mr-[1.5rem] cursor-pointer transition-all ease-in-out duration-100 hover:scale-[1.5]"
-            onClick={() =>
-              setDisplayValue((prev) =>
-                prev === CHART_HEADINGS.SALES_AND_EXPENSES
-                  ? CHART_HEADINGS.PROFIT
-                  : CHART_HEADINGS.SALES_AND_EXPENSES
-              )
-            }
-          />
+      {yearlySalesLoading ? (
+        <div
+          className="max-w-[80rem] w-[90%] h-[38rem] bg-white lg:ml-[6rem] rounded-custom shadow-custom"
+          style={yearlySalesLoading ? SKELETON_STYLES : {}}>
+          {" "}
         </div>
-        <hr className="m-[1.5rem] text-gray" />
-        <div className="flex justify-center">
-          {dataSet !== undefined && (
-            <Bar
-              style={{ padding: "0 2rem", height: "32rem", maxHeight: "100%" }}
-              data={dataSet}
-              options={chartOptions}
+      ) : (
+        <div
+          className="max-w-[80rem] w-[90%] h-auto bg-white lg:ml-[6rem] rounded-custom shadow-custom"
+          style={yearlySalesLoading ? SKELETON_STYLES : {}}>
+          <div className="flex justify-between items-center ">
+            <h1 className="ml-[2rem] pt-[1rem] text-[2rem]">{displayValue}</h1>
+            <img
+              src={Switch}
+              className="w-[2rem] mr-[1.5rem] cursor-pointer transition-all ease-in-out duration-100 hover:scale-[1.5]"
+              onClick={() =>
+                setDisplayValue((prev) =>
+                  prev === CHART_HEADINGS.SALES_AND_EXPENSES
+                    ? CHART_HEADINGS.PROFIT
+                    : CHART_HEADINGS.SALES_AND_EXPENSES
+                )
+              }
             />
-          )}
+          </div>
+          <hr className="m-[1.5rem] text-gray" />
+          <div className="flex justify-center">
+            {dataSet !== undefined && (
+              <Bar
+                style={{
+                  padding: "0 2rem",
+                  height: "32rem",
+                  maxHeight: "100%",
+                }}
+                data={dataSet}
+                options={chartOptions}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
