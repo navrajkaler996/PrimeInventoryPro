@@ -39,8 +39,6 @@ const useLogin = () => {
       const data = await response?.json();
       setLoading(false);
 
-      console.log(data);
-
       if (data?.accessToken) {
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));

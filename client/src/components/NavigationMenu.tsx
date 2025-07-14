@@ -2,6 +2,7 @@ import Dashboard from "../assets/dashboard.png";
 import Inventory from "../assets/inventory.png";
 import Receiving from "../assets/receiving.png";
 import Admin from "../assets/admin.png";
+import Waste from "../assets/waste.png";
 
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -31,6 +32,12 @@ const menus = [
     id: "receiving",
     image: Receiving,
     value: "Receiving",
+  },
+  {
+    to: "/app/waste",
+    id: "waste",
+    image: Waste,
+    value: "Waste",
   },
 ];
 
